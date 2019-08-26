@@ -10,6 +10,13 @@ Depois, para clonar o repositório
 git clone <url do repositório>
 ```
 
+Para mudar de branch e dar pull na develop 
+```
+git checkout <nome_da_branch> -- pegar branch
+
+git pull origin <develop> -- dar pull na develop pela branch que voce ta
+```
+
 Ai podem escrever o código a vontade,
 
 Depois, para comitar no git
@@ -34,6 +41,7 @@ E antes de começar a mexer no código, sempre façam
 ```
 git pull
 ```
+
 para que o seu projeto esteja up to date
 
 ;))
