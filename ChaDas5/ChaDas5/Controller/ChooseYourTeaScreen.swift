@@ -35,7 +35,7 @@ class ChooseYourTeaScreen: UIViewController, UICollectionViewDelegate, UICollect
         chooseYourTeaCollectionView.dataSource = self
         chooseYourTeaCollectionView.delegate = self
         chooseYourTeaCollectionView.allowsSelection = true
-        chooseYourTeaCollectionView.bounds.inset(by: chooseYourTeaCollectionView.layoutMargins).width
+        chooseYourTeaCollectionView.bounds.inset(by: chooseYourTeaCollectionView.layoutMargins)
         let nib = UINib.init(nibName: "ChooseYourTeaCollectionViewCell", bundle: nil)
         self.chooseYourTeaCollectionView.register(nib, forCellWithReuseIdentifier: "PickYouTea")
         salvar.alpha = 0.5
@@ -62,7 +62,6 @@ class ChooseYourTeaScreen: UIViewController, UICollectionViewDelegate, UICollect
         salvar.alpha = 1
         salvar.isEnabled = true
         self.index = collectionView.indexPath(for: selected!)
-        print("foi")
         
     }
     
@@ -88,9 +87,9 @@ class ChooseYourTeaScreen: UIViewController, UICollectionViewDelegate, UICollect
             "username": yourTea
         ]) { err in
             if let err = err {
-                print("Error writing document: \(err)")
+                debugPrint("Error writing document: \(err)")
             } else {
-                print("Document successfully written!")
+                debugPrint("Document successfully written!")
                 self.db.collection("users").document("\(uid)").collection("myChannels").document("first").setData(["channelID" : ""])
                 Auth.auth().currentUser?.reload()
                 AppSettings.displayName = yourTea

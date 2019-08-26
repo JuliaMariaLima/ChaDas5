@@ -25,7 +25,6 @@ class ChannelsManager {
         let channelsRef = FBRef.db.collection("channels")
         let channel = Channel(story: story)
         guard let channelId = channel.id else { return }
-        debugPrint(channel.asDictionary)
         channelsRef.document(channelId).setData(channel.asDictionary) { (error) in
             if error != nil {
                 completion(nil, error)
@@ -42,7 +41,7 @@ class ChannelsManager {
             (Auth.auth().currentUser?.uid)!).collection("block")
         docRef.getDocuments { (querySnapshot, err) in
             if let err = err {
-                print("Document error \(err.localizedDescription)")
+                debugPrint("Document error \(err.localizedDescription)")
             } else {
                 for document in querySnapshot!.documents {
                     self.block.append(document.documentID)
@@ -95,16 +94,12 @@ class ChannelsManager {
             
             self.retriveDisplayName(withUID: first) { (fUsername, error) in
                 if let error = error {
-                    debugPrint("======================")
-                    debugPrint(#function, error.localizedDescription)
-                    debugPrint("======================")
+                    debugPrint("Error retrieving first display name", error.localizedDescription)
                 }
                 channel.firstUser?.displayName = fUsername
                 self.retriveDisplayName(withUID: second) { (sUsername, error) in
                     if let error = error {
-                        debugPrint("======================")
-                        debugPrint(#function, error.localizedDescription)
-                        debugPrint("======================")
+                        debugPrint("Error retrieving second display name", error.localizedDescription)
                     }
                     channel.secondUser?.displayName = sUsername
                     dispatch.leave()

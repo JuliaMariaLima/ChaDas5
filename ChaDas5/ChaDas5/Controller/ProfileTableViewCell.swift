@@ -49,9 +49,9 @@ class ProfileTableViewCell: UITableViewCell {
         let excluir = UIAlertAction(title: "Excluir relato", style: .default, handler: { (action) -> Void in
             FBRef.db.collection("stories").document(id).delete(){ err in
                 if let err = err {
-                    print("Error removing document: \(err)")
+                    debugPrint("Error removing document: \(err)")
                 } else {
-                    print("Document successfully removed!")
+                    debugPrint("Document successfully removed!")
                     self.myProfileView?.profileTableView.reloadData()
                 }
             }
@@ -84,7 +84,7 @@ class ProfileTableViewCell: UITableViewCell {
     
     var myIndexPath:IndexPath? {
         guard let superView = self.superview as? UITableView else {
-            print("superview is not a UITableView - getIndexPath")
+            debugPrint("superview is not a UITableView - getIndexPath")
             return nil
         }
         
@@ -94,11 +94,11 @@ class ProfileTableViewCell: UITableViewCell {
     
     var myProfileView:Profile? {
         guard let superView = self.superview as? UITableView else {
-            print("superview is not a UITableView")
+            debugPrint("superview is not a UITableView")
             return nil
         }
         guard let profileView = superView.superview?.parentViewController as? Profile else {
-            print("not a profile descendant")
+            debugPrint("not a profile descendant")
             return nil
 
         }

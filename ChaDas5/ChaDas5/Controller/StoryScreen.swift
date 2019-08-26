@@ -18,7 +18,7 @@ protocol ChannelCreationObserver {
 class StoryScreen: UIViewController, ChannelsManagerProtocol, ChannelCreationObserver {
     
     func readedChannels(channels: [Channel]) {
-        debugPrint("not here too")
+        
     }
     
     var selectedStory:QueryDocumentSnapshot?
@@ -37,11 +37,8 @@ class StoryScreen: UIViewController, ChannelsManagerProtocol, ChannelCreationObs
         guard let channelStory = selectedStory else { return }
         ChannelsManager.instance.createChannel(withStory: channelStory) { (result, error) in
             if error != nil {
-                debugPrint("======================")
-                debugPrint(#function, String(describing: error?.localizedDescription))
-                debugPrint("======================")
+                debugPrint("Error creating channel", String(describing: error?.localizedDescription))
             } else {
-                debugPrint("====================== CRIOU")
                 self.created(channel: result!)
             }
         }
@@ -69,8 +66,6 @@ class StoryScreen: UIViewController, ChannelsManagerProtocol, ChannelCreationObs
             if let document = document {
                 
                 property = document.get("status") as? String
-                
-                print (property!)
                 
                 if property == "archived" {
                     let alert = UIAlertController(title: "Deseja mesmo desarquivar esse relato?", message: "Esse relato voltará a aparecer para outras pessoa no Feed.", preferredStyle: .alert)
@@ -119,9 +114,7 @@ class StoryScreen: UIViewController, ChannelsManagerProtocol, ChannelCreationObs
                 }
                 
             } else {
-                debugPrint("======================")
-                debugPrint(#function,"Document does not exist in cache")
-                debugPrint("======================")
+                debugPrint("Document does not exist in cache")
             }
         }
     }

@@ -103,7 +103,7 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, Manage
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "storyScreen" {
-            print("go to Story")
+            debugPrint("go to Story")
             if let destinationVC = segue.destination as? StoryScreen{
                 destinationVC.selectedStory = RelatoManager.instance.stories[self.selectedIndex!]
             }
@@ -111,7 +111,7 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, Manage
     }
     
     func readedStories(stories: [QueryDocumentSnapshot]) {
-        print("got stories")
+        debugPrint("got stories")
         feedTableView.reloadData()
         activityView.stopAnimating()
         if RelatoManager.instance.stories.count == 0 {
@@ -122,7 +122,7 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, Manage
     }
     
     func readedMyStories(stories: [[QueryDocumentSnapshot]]) {
-        print("not here")
+        
     }
     
     

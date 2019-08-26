@@ -31,19 +31,7 @@ class MessagesTableViewCell: UITableViewCell {
             return
         }
         
-         let channel = ChannelsManager.instance.channels[selected]
-        
-        print(channel)
-        
-//        guard let choosedChannel = Channel(document: channel) else {
-//            print("Error retrieving channel")
-//            return
-//        }
-        
-//
-//        print(choosedChannel.id!)
-//
-//        let selectedChannel = choosedChannel.id
+        let channel = ChannelsManager.instance.channels[selected]
         
         
         let alert = UIAlertController(title: "Deseja mesmo excluir essa conversa?", message: "A conversa será excluída para todos e essa ação não poderá ser desfeita.", preferredStyle: .alert)
@@ -53,9 +41,9 @@ class MessagesTableViewCell: UITableViewCell {
             FBRef.db.collection("channels").document(channel.id!)
                 .delete(){ err in
                 if let err = err {
-                    print("Error removing document: \(err)")
+                    debugPrint("Error removing document: \(err)")
                 } else {
-                    print("Document successfully removed!")
+                    debugPrint("Document successfully removed!")
                     self.myMessageView?.messagesTableView.reloadData()
                 }
             }
@@ -90,7 +78,7 @@ class MessagesTableViewCell: UITableViewCell {
     
     var myIndexPath:IndexPath? {
         guard let superView = self.superview as? UITableView else {
-            print("superview is not a UITableView - getIndexPath")
+            debugPrint("superview is not a UITableView - getIndexPath")
             return nil
         }
         
@@ -100,11 +88,11 @@ class MessagesTableViewCell: UITableViewCell {
     
     var myMessageView:Messages? {
         guard let superView = self.superview as? UITableView else {
-            print("superview is not a UITableView")
+            debugPrint("superview is not a UITableView")
             return nil
         }
         guard let messageView = superView.superview?.parentViewController as? Messages else {
-            print("not a message descendant")
+            debugPrint("not a message descendant")
             return nil
             
         }

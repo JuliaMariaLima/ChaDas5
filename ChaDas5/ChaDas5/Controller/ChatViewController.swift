@@ -31,7 +31,7 @@ class ChatViewController: MessagesViewController, MessagesProtocol, UINavigation
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let id = channel.id else {
+        guard channel.id != nil else {
             self.dismiss(animated: true)
             return
         }
@@ -52,7 +52,7 @@ class ChatViewController: MessagesViewController, MessagesProtocol, UINavigation
 
     func readedMessagesFromChannel(messages: [Message]) {
         self.messagesCollectionView.reloadData()
-         activityView.stopAnimating()
+        activityView.stopAnimating()
         messagesCollectionView.scrollToBottom()
     }
 
@@ -111,7 +111,7 @@ class ChatViewController: MessagesViewController, MessagesProtocol, UINavigation
 
     private func insertNewMessage(_ message: Message) {
 
-        let isLatestMessage = MessagesManager.instance.messages.index(of: message) == (MessagesManager.instance.messages.count - 1)
+        let isLatestMessage = MessagesManager.instance.messages.firstIndex(of: message) == (MessagesManager.instance.messages.count - 1)
         let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
         if shouldScrollToBottom {
             DispatchQueue.main.async {
@@ -138,7 +138,7 @@ class ChatViewController: MessagesViewController, MessagesProtocol, UINavigation
         bar.frame = CGRect(x: 0.5, y: 0.5, width: 375, height: 100)
         bar.barTintColor = UIColor.basePink
         bar.isTranslucent = true
-        let navbarFont = UIFont(name: "SFCompactDisplay-Ultralight", size: 17) ?? UIFont.systemFont(ofSize: 17)
+//        let navbarFont = UIFont(name: "SFCompactDisplay-Ultralight", size: 17) ?? UIFont.systemFont(ofSize: 17)
         self.view.addSubview(bar)
         configureButtons()
     }
@@ -253,7 +253,7 @@ extension ChatViewController: MessagesDataSource {
 
 
     func currentSender() -> Sender {
-        return Sender(id: (UserManager.instance.currentUser)!, displayName: AppSettings.displayName)
+        return Sender(id: (UserManager.instance.currentUser) ?? "Error retrieving sender", displayName: AppSettings.displayName)
     }
 
     func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {

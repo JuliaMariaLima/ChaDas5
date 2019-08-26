@@ -67,7 +67,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         pickYourTeaCollectionView.dataSource = self
         pickYourTeaCollectionView.delegate = self
         pickYourTeaCollectionView.allowsSelection = true
-        pickYourTeaCollectionView.bounds.inset(by: pickYourTeaCollectionView.layoutMargins).width
+        pickYourTeaCollectionView.bounds.inset(by: pickYourTeaCollectionView.layoutMargins)
         let nib = UINib.init(nibName: "ChooseYourTeaCollectionViewCell", bundle: nil)
         self.pickYourTeaCollectionView.register(nib, forCellWithReuseIdentifier: "PickYouTea")
         
@@ -185,7 +185,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         
         Auth.auth().fetchProviders(forEmail: email, completion: { (stringArray, error) in
             if error != nil {
-                print(error!)
+                debugPrint(error!)
             } else {
                 if stringArray == nil {
                     debugPrint("No password. No active account")
@@ -274,7 +274,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
                                                             }
                                                         } else {
                                                             
-                                                            print(err?.localizedDescription)
+                                                            debugPrint(err?.localizedDescription ?? "")
                                                         }
                                                     })
                                                 })
@@ -306,7 +306,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
                                     }
                                     })
                                 } else {
-                                    print("Error: \(error!.localizedDescription)")
+                                    debugPrint("Error: \(error!.localizedDescription)")
                                     self.resetForm()
                                     Auth.auth().currentUser?.delete(completion: nil)
                                 }
@@ -319,7 +319,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
                     }
                     
                 } else {
-                    print("There is an active account")
+                    debugPrint("There is an active account")
                     let tentarNovamente = UIAlertAction(
                         title: "Tentar Novamente",
                         style: .default,
@@ -361,7 +361,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
             if let err = err {
                 debugPrint("Error writing document: \(err.localizedDescription)")
             } else {
-                print("Document successfully written!")
+                debugPrint("Document successfully written!")
                 FBRef.users.document("\(uid)").collection("myChannels").document("first").setData(["channelID" : ""])
                 self.performSegue(withIdentifier: "Feed", sender: self)
             }

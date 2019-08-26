@@ -39,7 +39,7 @@ class Channel {
             return
         }
         guard let sUser = data["secondUser"] as? String else {
-            debugPrint("Error in first user")
+            debugPrint("Error in second user")
             return
         }
         guard let createdDate = data["created"] as? String else {
@@ -75,18 +75,18 @@ class Channel {
     
     func add(message:Message) {
         guard let id = self.id else {
-            print("error saving message")
+            debugPrint("error saving message")
             return}
         let channelMessagesRef = FBRef.channels.document(id).collection("thread")
         channelMessagesRef.addDocument(data: message.representation) { (error) in
             if let error = error {
                 debugPrint(error.localizedDescription)
             } else {
-                debugPrint("saved message")
+                debugPrint("successfully saved message")
             }
         }
         self.lastMessageDate = message.sentDate.keyString
-        FBRef.channels.document(id).updateData(["lastMessageDate" : self.lastMessageDate])
+        FBRef.channels.document(id).updateData(["lastMessageDate" : self.lastMessageDate ?? "error getting message date"])
     }
     
   }

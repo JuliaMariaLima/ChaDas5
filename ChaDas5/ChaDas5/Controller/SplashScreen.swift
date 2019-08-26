@@ -34,7 +34,7 @@ class SplashScreen: UIViewController {
         
         
         Auth.auth().addStateDidChangeListener { auth, user in
-            if let user = user {
+            if user != nil {
                 self.performSegue(withIdentifier: "profile", sender: self)
             } else {
                 self.animate()

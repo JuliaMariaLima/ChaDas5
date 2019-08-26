@@ -164,7 +164,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
     
     override func viewWillAppear(_ animated: Bool) {
         nameLabel.text = AppSettings.displayName
-        profileImage.image = UIImage(named: AppSettings.displayName)
+        profileImage.image = UIImage(named: AppSettings.displayName ?? "")
         profileImage.contentMode =  UIView.ContentMode.scaleAspectFit
         if profileIsEditing {
             
@@ -240,7 +240,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
 
 
     func readedStories(stories: [QueryDocumentSnapshot]) {
-        print("not here")
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
