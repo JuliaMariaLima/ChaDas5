@@ -84,6 +84,7 @@
 		155CF81321DE92D400AFB04B /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
 		155CF81521DE92E000AFB04B /* UICollectionView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Additions.swift"; sourceTree = "<group>"; };
 		155CF81721DE92E800AFB04B /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
+		15639B5C2314728900BDF79B /* ChaDas5.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChaDas5.entitlements; sourceTree = "<group>"; };
 		1588D7B121E7AEB000136083 /* MessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesManager.swift; sourceTree = "<group>"; };
 		1588D7B321F0CAB100136083 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		158DBDB421C976CF00C9888F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -203,6 +204,7 @@
 		96451FD121AC79EF00C9C351 /* ChaDas5 */ = {
 			isa = PBXGroup;
 			children = (
+				15639B5C2314728900BDF79B /* ChaDas5.entitlements */,
 				9AEAA57A21C84CF5001B490F /* SFCompactDisplay-Ultralight.otf */,
 				9A1B11DA21C43B83006956B7 /* AppDelegate.swift */,
 				9A76AF8B21C038CB003ED02C /* Model */,
@@ -368,6 +370,14 @@
 					96451FCE21AC79EF00C9C351 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1030;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					96451FE221AC79F000C9C351 = {
 						CreatedOnToolsVersion = 10.1;
@@ -719,6 +729,7 @@
 			baseConfigurationReference = ECA468CD40A087C800DF596A /* Pods-ChaDas5.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ChaDas5/ChaDas5.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 32H23754C8;
 				INFOPLIST_FILE = "$(SRCROOT)/ChaDas5/Supporting Files/Info.plist";
@@ -739,6 +750,7 @@
 			baseConfigurationReference = 9A6CCCF8A94A8707BCC3154E /* Pods-ChaDas5.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ChaDas5/ChaDas5.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 32H23754C8;
 				INFOPLIST_FILE = "$(SRCROOT)/ChaDas5/Supporting Files/Info.plist";

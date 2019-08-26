@@ -29,21 +29,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserManager.instance.setup()
         }
         
-//        UserDefaults.standard.set(["pt_BR"], forKey: "AppleLanguages")
-//        UserDefaults.standard.synchronize()
-//
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.badge , .alert]) { (sucess, error) in
-//            if error != nil{
-//
-//                print("Authorizatiion Unsucessful")
-//
-//            }
-//            else{
-//
-//                print("Authorizatiion Sucessful")
-//
-//            }
-//        }
+        UserDefaults.standard.set(["pt_BR"], forKey: "AppleLanguages")
+        UserDefaults.standard.synchronize()
+
+        UNUserNotificationCenter.current().requestAuthorization(options: [.badge , .alert]) { (sucess, error) in
+            if error != nil{
+                debugPrint("Authorizatiion Unsucessful")
+            }
+            else{
+                debugPrint("Authorizatiion Sucessful")
+            }
+        }
         
         return true
     }
