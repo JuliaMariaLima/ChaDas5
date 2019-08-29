@@ -27,7 +27,7 @@ class RelatoManager {
     
     func preLoad(requester: Manager) {
         self.block = []
-        let currentUser = UserManager.instance.currentUser!
+        if let currentUser = UserManager.instance.currentUser {
         let docRef = FBRef.users.document(currentUser).collection("block")
         docRef.getDocuments { (querySnapshot, err) in
             if let err = err {
@@ -38,6 +38,7 @@ class RelatoManager {
                 }
                 self.loadStories(requester: requester, blocks: self.block)
             }
+        }
         }
     }
     

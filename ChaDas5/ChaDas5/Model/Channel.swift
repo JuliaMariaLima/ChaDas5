@@ -8,6 +8,7 @@
 
 import FirebaseFirestore
 import UserNotifications
+import FirebaseMessaging
 
 struct ChannelUser {
     var uid: String
@@ -86,7 +87,26 @@ class Channel {
             }
         }
         self.lastMessageDate = message.sentDate.keyString
+        UNUserNotificationCenter.current()
         FBRef.channels.document(id).updateData(["lastMessageDate" : self.lastMessageDate ?? "error getting message date"])
+        
+        let notificationSender = PushNotificationSender()
+        var toUser = ""
+        if UserManager.instance.currentUser! == firstUser?.uid {
+            toUser = secondUser!.uid
+        } else {
+            toUser = firstUser!.uid
+        }
+        let docRef = FBRef.db.collection("users").document(toUser)
+        
+        docRef.getDocument { (document, error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+            }
+            let property = document?.get("fcmtoken") as? String ?? "erro no token"
+            notificationSender.sendPushNotification(to: property, title: "Nova mensagem", body: message.content)
+            print("=============", property, message.content)
+        }
     }
     
   }

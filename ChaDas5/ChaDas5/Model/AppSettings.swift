@@ -16,6 +16,7 @@ final class AppSettings {
     
     static var displayName: String! {
         get {
+            
             return UserDefaults.standard.string(forKey: SettingKey.displayName.rawValue)
         }
         set {

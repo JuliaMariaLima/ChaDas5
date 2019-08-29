@@ -183,7 +183,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         
         
         
-        Auth.auth().fetchProviders(forEmail: email, completion: { (stringArray, error) in
+        Auth.auth().fetchSignInMethods(forEmail: email, completion: { (stringArray, error) in
             if error != nil {
                 debugPrint(error!)
             } else {

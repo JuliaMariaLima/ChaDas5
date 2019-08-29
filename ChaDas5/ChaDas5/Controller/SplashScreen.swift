@@ -22,8 +22,10 @@ class SplashScreen: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         Auth.auth().addStateDidChangeListener { auth, user in
-            if user != nil {
+            UserManager.instance.setup()
+            if UserManager.instance.currentUser != nil {
                 self.performSegue(withIdentifier: "profile", sender: self)
+                debugPrint("======= USER INFO:", user?.uid)
             } else {
                 self.animate()
                 Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(SplashScreen.passScreen)), userInfo: nil, repeats: false)

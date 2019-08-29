@@ -4,7 +4,7 @@ import UIKit
 import Firebase
 import MessageKit
 import FirebaseFirestore
-import MessageInputBar
+import InputBarAccessoryView
 
 
 class ChatViewController: MessagesViewController, MessagesProtocol, UINavigationBarDelegate {
@@ -271,6 +271,8 @@ extension ChatViewController: MessagesLayoutDelegate {
 
 extension ChatViewController: MessagesDataSource {
     
+    
+    
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return 1
     }
@@ -280,7 +282,7 @@ extension ChatViewController: MessagesDataSource {
     }
 
 
-    func currentSender() -> Sender {
+    func currentSender() -> SenderType {
         return Sender(id: (UserManager.instance.currentUser) ?? "Error retrieving sender", displayName: AppSettings.displayName)
     }
 
@@ -296,9 +298,9 @@ extension ChatViewController: MessagesDataSource {
 
 // MARK: - MessageInputBarDelegate
 
-extension ChatViewController: MessageInputBarDelegate  {
+extension ChatViewController: InputBarAccessoryViewDelegate {
 
-    func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         save(text)
         inputBar.inputTextView.text = ""
     }

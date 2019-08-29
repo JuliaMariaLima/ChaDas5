@@ -9,11 +9,14 @@
 import UIKit
 import Firebase
 import UserNotifications
+import FirebaseMessaging
+import FirebaseInstanceID
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
+  
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -22,30 +25,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         FBRef.db = Firestore.firestore()
         let settings = FBRef.db.settings
-        settings.areTimestampsInSnapshotsEnabled = true
         FBRef.db.settings = settings
-        
-        if Auth.auth().currentUser != nil {
-            UserManager.instance.setup()
-        }
-        
-        UserDefaults.standard.set(["pt_BR"], forKey: "AppleLanguages")
-        UserDefaults.standard.synchronize()
 
-        UNUserNotificationCenter.current().requestAuthorization(options: [.badge , .alert]) { (sucess, error) in
-            if error != nil{
-                debugPrint("Authorizatiion Unsucessful")
-            }
-            else{
-                debugPrint("Authorizatiion Sucessful")
-            }
+        guard let userID = UserManager.instance.currentUser else {
+            return true
         }
-        
+        let pushNotificationManager = PushNotificationManager(userID: userID)
+        pushNotificationManager.registerForPushNotifications()
         return true
     }
     
     
-
+    
+    
     func applicationWillResignActive(_ application: UIApplication) { }
 
     func applicationDidEnterBackground(_ application: UIApplication) { }

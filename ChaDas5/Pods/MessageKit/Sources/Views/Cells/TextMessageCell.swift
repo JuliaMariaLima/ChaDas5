@@ -1,7 +1,7 @@
 /*
  MIT License
 
- Copyright (c) 2017-2018 MessageKit
+ Copyright (c) 2017-2019 MessageKit
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -45,7 +45,7 @@ open class TextMessageCell: MessageContentCell {
         super.apply(layoutAttributes)
         if let attributes = layoutAttributes as? MessagesCollectionViewLayoutAttributes {
             messageLabel.textInsets = attributes.messageLabelInsets
-            messageLabel.font = attributes.messageLabelFont
+            messageLabel.messageLabelFont = attributes.messageLabelFont
             messageLabel.frame = messageContainerView.bounds
         }
     }

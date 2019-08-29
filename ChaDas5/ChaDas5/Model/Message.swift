@@ -12,11 +12,12 @@ import FirebaseFirestore
 
 struct Message: MessageType {
     
+    
     var kind: MessageKind
     let id: String?
     let content: String
     let sentDate: Date
-    let sender: Sender
+    let sender: SenderType
     
     var messageId: String {
         return id ?? UUID().uuidString
@@ -58,7 +59,7 @@ extension Message {
     var representation: [String : Any] {
         let rep: [String : Any] = [
             "created": sentDate,
-            "senderID": sender.id,
+            "senderID": sender.senderId,
             "senderName": sender.displayName,
             "content":content
         ]
