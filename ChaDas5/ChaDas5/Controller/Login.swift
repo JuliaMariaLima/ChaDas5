@@ -24,7 +24,7 @@ class Login: UIViewController {
         forgotPasswordAlert.addTextField { (textField) in
             textField.placeholder = "Digite seu e-mail"
         }
-        forgotPasswordAlert.view.tintColor = UIColor.buttonPink
+        forgotPasswordAlert.view.tintColor = UIColor.buttonOrange
         forgotPasswordAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: nil))
         forgotPasswordAlert.addAction(UIAlertAction(title: "Redefinir senha", style: .default, handler: { (action) in
             let resetEmail = forgotPasswordAlert.textFields?.first?.text
@@ -37,12 +37,12 @@ class Login: UIViewController {
                         debugPrint("error: \(error.localizedDescription)")
                         let resetFailedAlert = UIAlertController(title: "Redefinir senha falhou", message: "Não existe nenhuma conta com este e-mail", preferredStyle: .alert)
                         resetFailedAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                        resetFailedAlert.view.tintColor = UIColor.buttonPink
+                        resetFailedAlert.view.tintColor = UIColor.buttonOrange
                         self.present(resetFailedAlert, animated: true, completion: nil)
                     } else {
                         let resetEmailSentAlert = UIAlertController(title: "E-mail enviado com sucesso!", message: "Cheque seu e-mail para redefinir sua senha", preferredStyle: .alert)
                         resetEmailSentAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                        resetEmailSentAlert.view.tintColor = UIColor.buttonPink
+                        resetEmailSentAlert.view.tintColor = UIColor.buttonOrange
                         self.present(resetEmailSentAlert, animated: true, completion: nil)
                     }
                 }
@@ -69,7 +69,7 @@ class Login: UIViewController {
         passwordTextField.isSecureTextEntry = true
         
         activityView = UIActivityIndicatorView(style: .gray)
-        activityView.color = UIColor.buttonPink
+        activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 50.0, height: 50.0)
         activityView.center = loginButton.center
         
@@ -185,7 +185,7 @@ class Login: UIViewController {
         alert.addAction(tentarNovamente)
         alert.addAction(cancelar)
         self.present(alert, animated: true, completion: nil)
-        alert.view.tintColor = UIColor.buttonPink
+        alert.view.tintColor = UIColor.buttonOrange
         
         setLoginButton(enabled: true)
         loginButton.setTitle("Fazer Login", for: .normal)

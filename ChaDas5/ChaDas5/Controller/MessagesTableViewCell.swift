@@ -55,12 +55,11 @@ class MessagesTableViewCell: UITableViewCell {
         alert.addAction(excluir)
         alert.addAction(cancelar)
         myMessageView!.present(alert, animated: true, completion: nil)
-        alert.view.tintColor = UIColor.buttonPink
+        alert.view.tintColor = UIColor.buttonOrange
 
         
     }
-    
-    
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         

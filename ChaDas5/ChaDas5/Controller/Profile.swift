@@ -39,41 +39,6 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
        
     }
 
-    
-    
-
-
-    //actions
-    @IBAction func logoutButton(_ sender: Any) {
-
-        let alert = UIAlertController(title: "Deseja mesmo sair?", message: "", preferredStyle: .alert)
-
-
-        let ok = UIAlertAction(title: "Sim, desejo sair", style: .default, handler: { (action) -> Void in
-
-            UserManager.instance.signOut(completion: { (error) in
-                if error != nil {
-                    debugPrint(#function, String(describing: error?.localizedDescription))
-                } else {
-                   self.performSegue(withIdentifier: "main", sender: self)
-                }
-            })
-
-        })
-
-        let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
-            alert.dismiss(animated: true, completion: nil)
-        }
-
-        alert.addAction(ok)
-        alert.addAction(cancelar)
-        self.present(alert, animated: true, completion: nil)
-        alert.view.tintColor = UIColor.buttonPink
-
-
-
-    }
-
 
     @IBAction func editButton(_ sender: Any) {
         if !profileIsEditing{
@@ -99,8 +64,8 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
 
         //segmented control customization
         segmentedControl = CustomSegmentedContrl.init(frame: CGRect.init(x: 0, y: 440, width: self.view.frame.width, height: 45))
-        segmentedControl.backgroundColor = .white
-        segmentedControl.commaSeperatedButtonTitles = "Relatos passados, Relatos atuais"
+        segmentedControl.backgroundColor = .baseOrange
+        segmentedControl.commaSeperatedButtonTitles = "Relatos atuais, Relatos passados"
         segmentedControl.addTarget(self, action: #selector(onChangeOfSegment(_:)), for: .valueChanged)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(segmentedControl)
@@ -117,7 +82,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
 
 
         activityView = UIActivityIndicatorView(style: .gray)
-        activityView.color = UIColor.buttonPink
+        activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 300.0, height: 300.0)
         activityView.center = profileTableView.center
         activityView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
@@ -137,7 +102,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
 
         self.profileTableView.isUserInteractionEnabled = true
         profileTableView.refreshControl = refreshControl
-        refreshControl.tintColor = UIColor.buttonPink
+        refreshControl.tintColor = UIColor.buttonOrange
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         
         profileIsEditing =  false
@@ -178,14 +143,14 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
     }
 
     func label() {
-        let labelsText = ["Você não possui relatos passados ainda.", "Você não possui relatos atuais ainda."]
+        let labelsText = ["Você não possui relatos atuais ainda.", "Você não possui relatos passados ainda."]
         self.noStoryLabel.text = labelsText[self.currentSegment]
 
-        if currentSegment == 0 && MyStoriesManager.instance.relatosPassados.count == 0 {
+        if currentSegment == 1 && MyStoriesManager.instance.relatosPassados.count == 0 {
             
             self.noStoryLabel.alpha = 1
             
-        } else if currentSegment == 1  && MyStoriesManager.instance.relatosAtuais.count == 0 {
+        } else if currentSegment == 0  && MyStoriesManager.instance.relatosAtuais.count == 0 {
             self.noStoryLabel.alpha = 1
         }
         else {
@@ -207,7 +172,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
 
     //table view setting
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if currentSegment == 0 {
+        if currentSegment == 1 {
             return MyStoriesManager.instance.relatosPassados.count
         } else {
             return MyStoriesManager.instance.relatosAtuais.count
@@ -219,7 +184,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Man
         let profileCell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as! ProfileTableViewCell
         profileCell.deleteButton.alpha = profileIsEditing ? 1 : 0
         let docId:QueryDocumentSnapshot
-        if currentSegment == 0 {
+        if currentSegment == 1 {
             docId = MyStoriesManager.instance.relatosPassados[indexPath.row]
         } else {
             docId = MyStoriesManager.instance.relatosAtuais[indexPath.row]

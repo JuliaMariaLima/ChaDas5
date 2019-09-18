@@ -83,7 +83,7 @@ class StoryScreen: UIViewController, ChannelsManagerProtocol, ChannelCreationObs
                     alert.addAction(desarquivar)
                     alert.addAction(cancelar)
                     self.present(alert, animated: true, completion: nil)
-                    alert.view.tintColor = UIColor.buttonPink
+                    alert.view.tintColor = UIColor.buttonOrange
                 } else {
                     
                     let alert = UIAlertController(
@@ -109,7 +109,7 @@ class StoryScreen: UIViewController, ChannelsManagerProtocol, ChannelCreationObs
                     alert.addAction(arquivar)
                     alert.addAction(cancelar)
                     self.present(alert, animated: true, completion: nil)
-                    alert.view.tintColor = UIColor.buttonPink
+                    alert.view.tintColor = UIColor.buttonOrange
                     
                 }
                 

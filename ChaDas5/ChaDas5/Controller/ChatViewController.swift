@@ -94,7 +94,7 @@ class ChatViewController: MessagesViewController, MessagesProtocol, UINavigation
         alert.addAction(bloquear)
         alert.addAction(cancelar)
         self.present(alert, animated: true, completion: nil)
-        alert.view.tintColor = UIColor.buttonPink
+        alert.view.tintColor = UIColor.buttonOrange
     }
     
     
@@ -125,7 +125,7 @@ class ChatViewController: MessagesViewController, MessagesProtocol, UINavigation
     
     func configureActivityView() {
         activityView = UIActivityIndicatorView(style: .gray)
-        activityView.color = UIColor.buttonPink
+        activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 300.0, height: 300.0)
         activityView.center = view.center
         activityView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
@@ -136,7 +136,7 @@ class ChatViewController: MessagesViewController, MessagesProtocol, UINavigation
     func configureNavigationBar() {
         let bar = CustomNavigationBar()
         bar.frame = CGRect(x: 0.5, y: 0.5, width: 375, height: 100)
-        bar.barTintColor = UIColor.basePink
+        bar.barTintColor = UIColor.middleOrange
         bar.isTranslucent = true
 //        let navbarFont = UIFont(name: "SFCompactDisplay-Ultralight", size: 17) ?? UIFont.systemFont(ofSize: 17)
         self.view.addSubview(bar)
@@ -156,16 +156,21 @@ class ChatViewController: MessagesViewController, MessagesProtocol, UINavigation
     
     func configureButtons() {
         let img = UIImage(named: "dismissIcon")
-        let dismissButton = UIButton(frame: CGRect(x: 30, y: 45, width: 65, height: 55))
+        let dismissButton = UIButton(frame: CGRect(x: 30, y: 45, width: 45, height: 35))
         dismissButton.setImage(img , for: .normal)
         dismissButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         dismissButton.contentMode = .center
+        dismissButton.imageView?.contentMode = .scaleAspectFit
+        
+        
         self.view.addSubview(dismissButton)
         let complainButtonImg = UIImage(named: "complainIcon")
         let complainButton = UIButton(frame: CGRect(x: 375 - dismissButton.frame.maxX, y: 45, width: 65, height: 55))
         complainButton.setImage(complainButtonImg , for: .normal)
         complainButton.addTarget(self, action: #selector(complainAction), for: .touchUpInside)
         complainButton.contentMode = .center
+        complainButton.imageView?.contentMode = .scaleAspectFit
+        
         self.view.addSubview(complainButton)
         
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
@@ -187,15 +192,15 @@ class ChatViewController: MessagesViewController, MessagesProtocol, UINavigation
     }
     
     func configureInputBar() {
-        messageInputBar.inputTextView.tintColor = UIColor.basePink
-        messageInputBar.sendButton.setTitleColor(UIColor.buttonPink, for: .normal)
+        messageInputBar.inputTextView.tintColor = UIColor.middleOrange
+        messageInputBar.sendButton.setTitleColor(UIColor.buttonOrange, for: .normal)
         messageInputBar.sendButton.title = ""
         messageInputBar.sendButton.image = UIImage(named: "sendIcon")
         messageInputBar.sendButton.contentMode = .scaleAspectFill
         messageInputBar.delegate = self
         messageInputBar.leftStackView.alignment = .center
         messageInputBar.sendButton.title = "Enviar"
-        messageInputBar.backgroundView.backgroundColor = UIColor.basePink
+        messageInputBar.backgroundView.backgroundColor = UIColor.middleOrange
         messageInputBar.isTranslucent = true
         messageInputBar.inputTextView.placeholderLabel.text = "Nova mensagem"
         messageInputBar.inputTextView.placeholderLabel.font = UIFont(name: "SFCompactDisplay-Ultralight", size: 18)
@@ -217,7 +222,7 @@ extension ChatViewController: MessagesDisplayDelegate {
         for message: MessageType,
         at indexPath: IndexPath,
         in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? UIColor.basePink : UIColor.lightGray.withAlphaComponent(0.25)
+        return isFromCurrentSender(message: message) ? UIColor.middleOrange : UIColor.lightGray.withAlphaComponent(0.25)
     }
     
     func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool {

@@ -7,9 +7,43 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
 
 class FeedTableViewCell: UITableViewCell {
+    
+    
     @IBOutlet weak var feedTableViewTextField: UITextView!
+    
+    
+    enum CellType {
+        case yourStory
+        case otherStory
+    }
+    
+    
+    var user: User? = nil
+    var type: CellType = .otherStory
+    
+    
+    func myStory() {
+        if let user = user,
+            type == .yourStory {
+            feedTableViewTextField.backgroundColor = UIColor.middleOrange
+        }
+    }
+    
+    func otherStory() {
+        if let user = user,
+            type == .yourStory {
+            feedTableViewTextField.backgroundColor = UIColor.baseOrange
+        }
+    }
+
+    
+
+    
+    
     
 
 }

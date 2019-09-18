@@ -39,7 +39,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
             let alert = UIAlertController(title: "Oops...", message: "Erro na confirmação de senha", preferredStyle: .alert)
             alert.addAction(tentarNovamente)
             self.present(alert, animated: true, completion: nil)
-            alert.view.tintColor = UIColor.buttonPink
+            alert.view.tintColor = UIColor.buttonOrange
             
             } else {
                 let ok = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
@@ -47,7 +47,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
                 let alert = UIAlertController(title: "Oops...", message: "Esqueceu de escolher seu chá", preferredStyle: .alert)
                 alert.addAction(ok)
                 self.present(alert, animated: true, completion: nil)
-                alert.view.tintColor = UIColor.buttonPink
+                alert.view.tintColor = UIColor.buttonOrange
             }
         }
     }
@@ -72,7 +72,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         self.pickYourTeaCollectionView.register(nib, forCellWithReuseIdentifier: "PickYouTea")
         
         activityView = UIActivityIndicatorView(style: .gray)
-        activityView.color = UIColor.buttonPink
+        activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 50.0, height: 50.0)
         activityView.center = self.createNewAccountButton.center
         
@@ -131,7 +131,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         //        pickYourTeaCollectionView.beginInteractiveMovementForItem(at: indexPath)
         //        pickYourTeaCollectionView.cellForItem(at: indexPath)?.isHighlighted = true
         let selectedCell = collectionView.cellForItem(at: indexPath) as! ChooseYourTeaCollectionViewCell
-        selectedCell.contentView.backgroundColor = UIColor.basePink
+        selectedCell.contentView.backgroundColor = UIColor.baseOrange
         self.selected = selectedCell
         self.index = collectionView.indexPath(for: selected!)
     }
@@ -268,7 +268,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
                                                                 alertVC.addAction(alertActionVerified)
                                                                 alertVC.addAction(alertActionCancel)
                                                                 
-                                                                alertVC.view.tintColor = UIColor.buttonPink
+                                                                alertVC.view.tintColor = UIColor.buttonOrange
                                                                 self.present(alertVC, animated: true, completion: nil)
                                                                 
                                                             }
@@ -286,7 +286,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
                                                 alert.addAction(ok)
                                                 alert.addAction(reenviar)
                                                 self.present(alert, animated: true, completion: nil)
-                                                alert.view.tintColor = UIColor.buttonPink
+                                                alert.view.tintColor = UIColor.buttonOrange
                                                 
                                                 
                                                 
@@ -302,7 +302,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
                                                 preferredStyle: .alert)
                                             alert.addAction(ok)
                                             self.present(alert, animated: true, completion: nil)
-                                            alert.view.tintColor = UIColor.buttonPink
+                                            alert.view.tintColor = UIColor.buttonOrange
                                     }
                                     })
                                 } else {
@@ -343,7 +343,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
                     alert.addAction(tentarNovamente)
                     alert.addAction(cancelar)
                     self.present(alert, animated: true, completion: nil)
-                    alert.view.tintColor = UIColor.buttonPink
+                    alert.view.tintColor = UIColor.buttonOrange
                     self.setcreateNewAccountButton(enabled: true)
                     self.createNewAccountButton.setTitle("Criar Conta", for: .normal)
                     self.activityView.stopAnimating()
@@ -390,7 +390,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         alert.addAction(tentarNovamente)
         alert.addAction(cancelar)
         self.present(alert, animated: true, completion: nil)
-        alert.view.tintColor = UIColor.buttonPink
+        alert.view.tintColor = UIColor.buttonOrange
         
         setcreateNewAccountButton(enabled: true)
         createNewAccountButton.setTitle("Criar Conta", for: .normal)

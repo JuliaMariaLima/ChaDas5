@@ -63,7 +63,7 @@ class ProfileTableViewCell: UITableViewCell {
         alert.addAction(excluir)
         alert.addAction(cancelar)
         myProfileView!.present(alert, animated: true, completion: nil)
-        alert.view.tintColor = UIColor.buttonPink
+        alert.view.tintColor = UIColor.buttonOrange
 
     
 }

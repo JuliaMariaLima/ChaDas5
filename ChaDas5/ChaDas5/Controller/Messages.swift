@@ -41,7 +41,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
         self.messagesTableView.register(nib, forCellReuseIdentifier: "MessagesCell")
         
         activityView = UIActivityIndicatorView(style: .gray)
-        activityView.color = UIColor.buttonPink
+        activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 300.0, height: 300.0)
         activityView.center = view.center
         activityView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
@@ -53,7 +53,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
         activityView.startAnimating()
         
         messagesTableView.refreshControl = refreshControl
-        refreshControl.tintColor = UIColor.buttonPink
+        refreshControl.tintColor = UIColor.buttonOrange
         
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         

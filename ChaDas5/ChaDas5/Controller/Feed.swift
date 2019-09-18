@@ -33,14 +33,17 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, Manage
         feedTableView.allowsSelection = true
         
         feedTableView.refreshControl = refreshControl
-        refreshControl.tintColor = UIColor.buttonPink
+        refreshControl.tintColor = UIColor.middleOrange
         
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         let nib = UINib.init(nibName: "FeedTableViewCell", bundle: nil)
         self.feedTableView.register(nib, forCellReuseIdentifier: "FeedCell")
         
+        
+       
+        
         activityView = UIActivityIndicatorView(style: .gray)
-        activityView.color = UIColor.buttonPink
+        activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 300.0, height: 300.0)
         activityView.center = view.center
         activityView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
@@ -132,5 +135,33 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, Manage
         
     }
     
+    @IBAction func exitButton(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Deseja mesmo sair?", message: "", preferredStyle: .alert)
+        
+        
+        let ok = UIAlertAction(title: "Sim, desejo sair", style: .default, handler: { (action) -> Void in
+            
+            UserManager.instance.signOut(completion: { (error) in
+                if error != nil {
+                    debugPrint(#function, String(describing: error?.localizedDescription))
+                } else {
+                    self.performSegue(withIdentifier: "main", sender: self)
+                }
+            })
+            
+        })
+        
+        let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addAction(ok)
+        alert.addAction(cancelar)
+        self.present(alert, animated: true, completion: nil)
+        alert.view.tintColor = UIColor.buttonOrange
+
+        
+    }
 }
 
