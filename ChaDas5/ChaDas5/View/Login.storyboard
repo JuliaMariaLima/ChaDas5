@@ -85,7 +85,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRL-PV-AOZ">
-                                <rect key="frame" x="50.666666666666664" y="94" width="50" height="50"/>
+                                <rect key="frame" x="50.666666666666657" y="94" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="i0W-Kb-B58"/>
                                     <constraint firstAttribute="width" constant="50" id="udU-BA-Tw5"/>

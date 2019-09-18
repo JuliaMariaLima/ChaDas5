@@ -82,10 +82,10 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQb-cN-k8y">
-                        <rect key="frame" x="2" y="5" width="40" height="40"/>
+                        <rect key="frame" x="9" y="3" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="2eE-9D-Qne"/>
-                            <constraint firstAttribute="width" constant="40" id="99x-wU-wYw"/>
+                            <constraint firstAttribute="height" constant="30" id="2eE-9D-Qne"/>
+                            <constraint firstAttribute="width" constant="30" id="99x-wU-wYw"/>
                         </constraints>
                         <state key="normal" image="dismissIcon"/>
                         <connections>
@@ -94,8 +94,8 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="NQb-cN-k8y" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-49.75" id="1cI-K4-JhE"/>
-                    <constraint firstItem="NQb-cN-k8y" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-165.5" id="Fky-Om-ozn"/>
+                    <constraint firstItem="NQb-cN-k8y" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-56.75" id="1cI-K4-JhE"/>
+                    <constraint firstItem="NQb-cN-k8y" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-163.5" id="Fky-Om-ozn"/>
                     <constraint firstItem="rPV-kT-USH" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="iIc-bk-6kH"/>
                     <constraint firstItem="rPV-kT-USH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nlt-fA-Daa"/>
                 </constraints>
