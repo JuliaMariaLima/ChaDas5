@@ -277,10 +277,6 @@
 		96451FF421AC7A0300C9C351 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1588D7B321F0CAB100136083 /* NavigationBar.swift */,
-				155CF81321DE92D400AFB04B /* UIView+Additions.swift */,
-				155CF81521DE92E000AFB04B /* UICollectionView+Additions.swift */,
-				155CF81721DE92E800AFB04B /* UIImage+Additions.swift */,
 				96451FD621AC79EF00C9C351 /* Main.storyboard */,
 				E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */,
 				96451FDB21AC79F000C9C351 /* LaunchScreen.storyboard */,
@@ -292,7 +288,6 @@
 				9A4E542C21AF46000033FEBF /* Informations.storyboard */,
 				9A4E542E21AF4B160033FEBF /* NewStoryScreen.storyboard */,
 				9A4E543021AF4C490033FEBF /* StoryScreen.storyboard */,
-				9AFBE5A121B305630050AE3E /* ViewExtensions.swift */,
 				9A76AF8221C02873003ED02C /* MessagesTableViewCell.xib */,
 				9A76AF8821C034F8003ED02C /* FeedTableViewCell.xib */,
 				9A76AF8F21C04B80003ED02C /* ProfileTableViewCell.xib */,
@@ -321,6 +316,7 @@
 		9A76AF8B21C038CB003ED02C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E2FA245D23203EFB0049AF03 /* View */,
 				1588D7B021E7A3C100136083 /* Managers */,
 				158069892332AA4100C458FE /* MeUser.swift */,
 				158069872332A94700C458FE /* User.swift */,
@@ -342,6 +338,25 @@
 				13138019BAAD1FCD878B0713 /* Pods-ChaDas5.release.xcconfig */,
 			);
 			name = Pods;
+		D885C731E9951ADACC6D34A7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ECA468CD40A087C800DF596A /* Pods-ChaDas5.debug.xcconfig */,
+				9A6CCCF8A94A8707BCC3154E /* Pods-ChaDas5.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E2FA245D23203EFB0049AF03 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9AFBE5A121B305630050AE3E /* ViewExtensions.swift */,
+				1588D7B321F0CAB100136083 /* NavigationBar.swift */,
+				155CF81321DE92D400AFB04B /* UIView+Additions.swift */,
+				155CF81521DE92E000AFB04B /* UICollectionView+Additions.swift */,
+				155CF81721DE92E800AFB04B /* UIImage+Additions.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -727,6 +742,7 @@
 			baseConfigurationReference = D71E81824C6FD27BB88A6028 /* Pods-ChaDas5.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ChaDas5/ChaDas5.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 32H23754C8;
@@ -748,6 +764,7 @@
 			baseConfigurationReference = 13138019BAAD1FCD878B0713 /* Pods-ChaDas5.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ChaDas5/ChaDas5.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 32H23754C8;

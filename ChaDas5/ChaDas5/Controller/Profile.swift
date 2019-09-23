@@ -36,11 +36,11 @@
 //        imageCircle.alpha = 0.25
 //        profileImage.alpha = 0.25
 //        pickYouTeaButton.alpha = 1
-//       
+//
 //    }
 //
-//    
-//    
+//
+//
 //
 //
 //    //actions
@@ -104,7 +104,7 @@
 //        segmentedControl.addTarget(self, action: #selector(onChangeOfSegment(_:)), for: .valueChanged)
 //        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
 //        self.view.addSubview(segmentedControl)
-//        
+//
 //        // Add constraints
 //        setUpSegmentedControlConstraints()
 //
@@ -130,7 +130,7 @@
 //        activityView.startAnimating()
 //
 ////        Auth.auth().currentUser?.reload()
-//        
+//
 //        MyStoriesManager.instance.loadMyStories(requester: self)
 //
 //        self.currentSegment = 0
@@ -139,11 +139,11 @@
 //        profileTableView.refreshControl = refreshControl
 //        refreshControl.tintColor = UIColor.buttonPink
 //        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
-//        
+//
 //        profileIsEditing =  false
-//        
+//
 //    }
-//    
+//
 //    private func setUpSegmentedControlConstraints() {
 //        NSLayoutConstraint.activate([
 //            segmentedControl.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 40),
@@ -161,20 +161,20 @@
 //        label()
 //
 //    }
-//    
+//
 //    override func viewWillAppear(_ animated: Bool) {
 //        nameLabel.text = AppSettings.displayName
 //        profileImage.image = UIImage(named: AppSettings.displayName ?? "")
 //        profileImage.contentMode =  UIView.ContentMode.scaleAspectFit
 //        if profileIsEditing {
-//            
+//
 //            pickYouTeaButton.alpha = 1
 //        }
 //        else{
-//            
+//
 //           pickYouTeaButton.alpha = 0
 //        }
-//        
+//
 //    }
 //
 //    func label() {
@@ -182,9 +182,9 @@
 //        self.noStoryLabel.text = labelsText[self.currentSegment]
 //
 //        if currentSegment == 0 && MyStoriesManager.instance.relatosPassados.count == 0 {
-//            
+//
 //            self.noStoryLabel.alpha = 1
-//            
+//
 //        } else if currentSegment == 1  && MyStoriesManager.instance.relatosAtuais.count == 0 {
 //            self.noStoryLabel.alpha = 1
 //        }
@@ -192,7 +192,7 @@
 //            self.noStoryLabel.alpha = 0
 //        }
 //    }
-//    
+//
 //    func readedMyStories(stories: [[QueryDocumentSnapshot]]) {
 //        profileTableView.reloadData()
 //        self.activityView.stopAnimating()
@@ -240,7 +240,7 @@
 //
 //
 //    func readedStories(stories: [QueryDocumentSnapshot]) {
-//        
+//
 //    }
 //
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

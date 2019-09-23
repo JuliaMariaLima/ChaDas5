@@ -57,7 +57,7 @@ class ChooseYourTeaScreen: UIViewController, UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedCell = collectionView.cellForItem(at: indexPath) as! ChooseYourTeaCollectionViewCell
-        selectedCell.contentView.backgroundColor = UIColor.basePink
+        selectedCell.contentView.backgroundColor = UIColor.baseOrange
         self.selected = selectedCell
         salvar.alpha = 1
         salvar.isEnabled = true

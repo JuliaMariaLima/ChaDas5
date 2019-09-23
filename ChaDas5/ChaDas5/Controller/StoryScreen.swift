@@ -16,23 +16,23 @@ protocol ChannelCreationObserver {
 
 
 class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObserver {
-    
+
     func readedChannels(channels: [Channel]) {
-        
+
     }
-    
+
     var selectedStory:CKRecord?
-    
+
     // Outlets
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var archiveButton: UIButton!
-    
+
     @IBAction func dismissButton(_ sender: Any) {
         dismiss(animated: true)
     }
-    
+
     @IBOutlet weak var storyTextView: UITextView!
-    
+
     @IBAction func chatButton(_ sender: Any) {
 //        guard let channelStory = selectedStory else { return }
 //        ChannelManager.instance.createChannel(withStory: channelStory) { (result, error) in
@@ -43,14 +43,14 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
 //            }
 //        }
     }
-    
+
     func created(channel: Channel) {
         let vc = ChatViewController(channel: channel)
-        
+
         self.present(vc, animated: true, completion: nil)
     }
-    
-    
+
+
     @IBAction func archiveButton(_ sender: Any) {
         guard let status = selectedStory?.object(forKey: "status") as? String else {
             debugPrint("error retrieving story status", #function)
@@ -58,7 +58,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
         }
         if status == "archived" {
             let alert = UIAlertController(title: "Deseja mesmo desarquivar esse relato?", message: "Esse relato voltará a aparecer para outras pessoa no Feed.", preferredStyle: .alert)
-            
+
             let desarquivar = UIAlertAction(title: "Desarquivar relato", style: .default, handler: { (action) -> Void in
                     self.selectedStory?.setValue("active", forKey: "status")
                     self.dismiss(animated: true)
@@ -76,7 +76,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
                 message: "Seus relatos arquivados só aparecem no seu perfil e não aparecerão mais para outras pessoas.",
                 preferredStyle: .alert
             )
-            
+
             let arquivar = UIAlertAction(
                 title: "Arquivar relato",
                 style: .default,
@@ -89,20 +89,20 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
             style: .default) { (action) -> Void in
                 alert.dismiss(animated: true, completion: nil)
             }
-            
+
             alert.addAction(arquivar)
             alert.addAction(cancelar)
             self.present(alert, animated: true, completion: nil)
             alert.view.tintColor = UIColor.buttonPink
-            
+
         }
     }
 
     @objc private func dismiss() {
         self.dismiss(animated: true, completion: nil)
-        
+
     }
-    
+
     override func viewDidLoad() {
         guard let contentToView = self.selectedStory?.object(forKey: "conteudo") as? String else {
             debugPrint("error retrieving content of story", #function)
@@ -113,7 +113,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
             return
         }
         self.storyTextView.text = contentToView
-        
+
         if storyAuthor == MeUser.instance.email {
             chatButton.isEnabled = false
         } else {

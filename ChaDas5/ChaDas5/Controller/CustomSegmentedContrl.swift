@@ -55,14 +55,14 @@ class CustomSegmentedContrl: UIControl {
     }
     
     
-    @IBInspectable var selectorColor: UIColor = .buttonPink {
+    @IBInspectable var selectorColor: UIColor = .buttonOrange {
         
         didSet {
             updateView()
         }
     }
     
-    @IBInspectable var selectorTextColor: UIColor = .buttonPink {
+    @IBInspectable var selectorTextColor: UIColor = .buttonOrange {
         
         didSet {
             updateView()

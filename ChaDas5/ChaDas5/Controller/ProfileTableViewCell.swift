@@ -10,42 +10,42 @@
 //import CloudKit
 //
 //class ProfileTableViewCell: UITableViewCell {
-//    
+//
 //    //outlets
 //    @IBOutlet weak var profileCellTextField: UITextView!
 //    @IBOutlet weak var deleteButton: UIButton!
-//    
+//
 //    var selectedStory:QueryDocumentSnapshot?
-//   
-//    
+//
+//
 //    //actions
 //    @IBAction func deleteButton(_ sender: Any) {
-//        
+//
 //        guard let selected = myIndexPath?.row else {
 //            return
 //        }
-//        
+//
 //        if myProfileView?.currentSegment == 0 {
-//           
+//
 //            self.selectedStory = MyStoriesManager.instance.relatosPassados[selected]
-//        
+//
 //        }
-//        
+//
 //        else{
-//            
+//
 //            self.selectedStory = MyStoriesManager.instance.relatosAtuais[selected]
 //
 //        }
-//        
-//        
+//
+//
 //        guard let id = selectedStory?.documentID else {
 //            return
 //        }
-//        
+//
 //        let alert = UIAlertController(title: "Deseja mesmo excluir esse relato?", message: "Essa ação não poderá ser desfeita.", preferredStyle: .alert)
-//        
-//        
-//        
+//
+//
+//
 //        let excluir = UIAlertAction(title: "Excluir relato", style: .default, handler: { (action) -> Void in
 //            FBRef.db.collection("stories").document(id).delete(){ err in
 //                if let err = err {
@@ -56,7 +56,7 @@
 //                }
 //            }
 //        })
-//        
+//
 //        let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
 //            alert.dismiss(animated: true, completion: nil)
 //        }
@@ -65,33 +65,33 @@
 //        myProfileView!.present(alert, animated: true, completion: nil)
 //        alert.view.tintColor = UIColor.buttonPink
 //
-//    
+//
 //}
-//    
+//
 //    override func awakeFromNib() {
 //        super.awakeFromNib()
 //        // Initialization code
 //        profileCellTextField.isEditable = false
 //    }
-//    
+//
 //
 //    override func setSelected(_ selected: Bool, animated: Bool) {
 //        super.setSelected(selected, animated: animated)
 //
 //        // Configure the view for the selected state
 //    }
-//    
-//    
+//
+//
 //    var myIndexPath:IndexPath? {
 //        guard let superView = self.superview as? UITableView else {
 //            debugPrint("superview is not a UITableView - getIndexPath")
 //            return nil
 //        }
-//        
+//
 //        let indexPath = superView.indexPath(for: self)
 //        return indexPath
 //    }
-//    
+//
 //    var myProfileView:Profile? {
 //        guard let superView = self.superview as? UITableView else {
 //            debugPrint("superview is not a UITableView")
@@ -102,10 +102,10 @@
 //            return nil
 //
 //        }
-//        
+//
 //        return profileView
 //    }
-//    
+//
 //}
 //
 //
