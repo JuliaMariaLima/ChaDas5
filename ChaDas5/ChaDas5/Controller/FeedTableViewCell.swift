@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import Firebase
 
 class FeedTableViewCell: UITableViewCell {
     

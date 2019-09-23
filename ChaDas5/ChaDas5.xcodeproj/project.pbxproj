@@ -12,16 +12,12 @@
 		155CF80E21DE89F400AFB04B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80D21DE89F400AFB04B /* Message.swift */; };
 		155CF81021DE8A9000AFB04B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80F21DE8A9000AFB04B /* AppSettings.swift */; };
 		155CF81221DE926100AFB04B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF81121DE926100AFB04B /* ChatViewController.swift */; };
-		155CF81421DE92D400AFB04B /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF81321DE92D400AFB04B /* UIView+Additions.swift */; };
-		155CF81621DE92E000AFB04B /* UICollectionView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF81521DE92E000AFB04B /* UICollectionView+Additions.swift */; };
-		155CF81821DE92E800AFB04B /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF81721DE92E800AFB04B /* UIImage+Additions.swift */; };
 		158069882332A94700C458FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158069872332A94700C458FE /* User.swift */; };
 		1580698A2332AA4100C458FE /* MeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158069892332AA4100C458FE /* MeUser.swift */; };
 		1580698C2332DDA200C458FE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698B2332DDA200C458FE /* Notification.swift */; };
 		1580698E2332DF4400C458FE /* DAOPushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698D2332DF4400C458FE /* DAOPushNotifications.swift */; };
 		158069902332E00D00C458FE /* CodableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698F2332E00D00C458FE /* CodableExtensions.swift */; };
 		1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588D7B121E7AEB000136083 /* MessagesManager.swift */; };
-		1588D7B421F0CAB100136083 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588D7B321F0CAB100136083 /* NavigationBar.swift */; };
 		158DBDB721CAD40100C9888F /* StoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158DBDB621CAD40100C9888F /* StoryManager.swift */; };
 		15F34C9A231850A60015FEFB /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34C98231850A60015FEFB /* LocalNotificationManager.swift */; };
 		15F34C9B231850A60015FEFB /* LocalNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34C99231850A60015FEFB /* LocalNotificationSender.swift */; };
@@ -66,7 +62,6 @@
 		9A82FD8721E5030400566AE1 /* ChooseYourTeaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A82FD8621E5030400566AE1 /* ChooseYourTeaScreen.swift */; };
 		9AEAA57B21C84CF8001B490F /* SFCompactDisplay-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAA57A21C84CF5001B490F /* SFCompactDisplay-Ultralight.otf */; };
 		9AFBE59E21B1D2D90050AE3E /* CustomSegmentedContrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFBE59D21B1D2D90050AE3E /* CustomSegmentedContrl.swift */; };
-		9AFBE5A221B305630050AE3E /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFBE5A121B305630050AE3E /* ViewExtensions.swift */; };
 		E23901B321CADD94006B3CF3 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */; };
 		E23901B521CADDA8006B3CF3 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23901B421CADDA8006B3CF3 /* SplashScreen.swift */; };
 /* End PBXBuildFile section */
@@ -281,6 +276,7 @@
 				155CF81321DE92D400AFB04B /* UIView+Additions.swift */,
 				155CF81521DE92E000AFB04B /* UICollectionView+Additions.swift */,
 				155CF81721DE92E800AFB04B /* UIImage+Additions.swift */,
+				9AFBE5A121B305630050AE3E /* ViewExtensions.swift */,
 				96451FD621AC79EF00C9C351 /* Main.storyboard */,
 				E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */,
 				96451FDB21AC79F000C9C351 /* LaunchScreen.storyboard */,
@@ -292,7 +288,6 @@
 				9A4E542C21AF46000033FEBF /* Informations.storyboard */,
 				9A4E542E21AF4B160033FEBF /* NewStoryScreen.storyboard */,
 				9A4E543021AF4C490033FEBF /* StoryScreen.storyboard */,
-				9AFBE5A121B305630050AE3E /* ViewExtensions.swift */,
 				9A76AF8221C02873003ED02C /* MessagesTableViewCell.xib */,
 				9A76AF8821C034F8003ED02C /* FeedTableViewCell.xib */,
 				9A76AF8F21C04B80003ED02C /* ProfileTableViewCell.xib */,
@@ -534,7 +529,6 @@
 				9A76AF8321C02873003ED02C /* MessagesTableViewCell.swift in Sources */,
 				15F34C9A231850A60015FEFB /* LocalNotificationManager.swift in Sources */,
 				9A82FD8721E5030400566AE1 /* ChooseYourTeaScreen.swift in Sources */,
-				155CF81821DE92E800AFB04B /* UIImage+Additions.swift in Sources */,
 				15F34CA5231F0B8C0015FEFB /* DAOManager.swift in Sources */,
 				155CF81021DE8A9000AFB04B /* AppSettings.swift in Sources */,
 				155CF80C21DE7D2B00AFB04B /* ChannelManager.swift in Sources */,
@@ -547,11 +541,8 @@
 				1580698E2332DF4400C458FE /* DAOPushNotifications.swift in Sources */,
 				9A1B11DB21C43B83006956B7 /* AppDelegate.swift in Sources */,
 				1580698C2332DDA200C458FE /* Notification.swift in Sources */,
-				9AFBE5A221B305630050AE3E /* ViewExtensions.swift in Sources */,
 				9A1B11D721C43B39006956B7 /* Story.swift in Sources */,
-				155CF81421DE92D400AFB04B /* UIView+Additions.swift in Sources */,
 				1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */,
-				1588D7B421F0CAB100136083 /* NavigationBar.swift in Sources */,
 				9A1B11CE21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift in Sources */,
 				9A76AF9021C04B80003ED02C /* ProfileTableViewCell.swift in Sources */,
 				1580698A2332AA4100C458FE /* MeUser.swift in Sources */,
@@ -564,7 +555,6 @@
 				9A4E543521B0066F0033FEBF /* Login.swift in Sources */,
 				9A1B11D921C43B39006956B7 /* Extentions.swift in Sources */,
 				155CF81221DE926100AFB04B /* ChatViewController.swift in Sources */,
-				155CF81621DE92E000AFB04B /* UICollectionView+Additions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
