@@ -7,20 +7,19 @@
 //
 
 import Foundation
-import Firebase
+import CloudKit
 
 protocol Manager {
     
-    
-    func readedStories(stories:[QueryDocumentSnapshot])
+    func readedStories(stories:[Story])
     
     func readedMyStories(stories:[[QueryDocumentSnapshot]])
     
 }
 
-class RelatoManager {
+class StoryManager {
     
-    static let instance = RelatoManager()
+    static let instance = StoryManager()
     private init(){}
     var stories = [QueryDocumentSnapshot]()
     var block = [String]()

@@ -7,36 +7,35 @@
 //
 
 import UIKit
-import Firebase
 import UserNotifications
-import FirebaseMessaging
-import FirebaseInstanceID
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
   
-
-
+    
+//    var currentUserID:String {
+//        var myID = ""
+//        DAOManager.instance?.ckUsers.userID({ (userID, error) in
+//            if let id = userID?.recordName {
+//                myID = id
+//            }
+//        })
+//        return myID
+//    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        FirebaseApp.configure()
-        FBRef.db = Firestore.firestore()
-        let settings = FBRef.db.settings
-        FBRef.db.settings = settings
-
-        guard let userID = UserManager.instance.currentUser else {
-            return true
-        }
-        let pushNotificationManager = PushNotificationManager(userID: userID)
-        pushNotificationManager.registerForPushNotifications()
+        
+        
+        let notificationManager = LocalNotificationManager()
+        notificationManager.registerForLocalNotifications()
         return true
     }
     
-    
-    
+
     
     func applicationWillResignActive(_ application: UIApplication) { }
 
@@ -51,3 +50,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
    
     
 }
+

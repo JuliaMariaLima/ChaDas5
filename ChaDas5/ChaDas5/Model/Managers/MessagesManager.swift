@@ -7,12 +7,12 @@
 //
 
 import Foundation
-import Firebase
+import CloudKit
 
 
 protocol MessagesProtocol {
     
-    func readedMessagesFromChannel(messages:[Message]) 
+    func readedMessagesFromChannel(messages:[Message])
 }
 
 class MessagesManager {
@@ -20,22 +20,12 @@ class MessagesManager {
     static let instance = MessagesManager()
     private init(){}
     
-    var messages = [Message]() 
+    var messages = [Message]()
     
     func loadMessages(from channel: Channel, requester: MessagesProtocol) {
-        let messagesRef = FBRef.channels.document(channel.id!).collection("thread").order(by: "created")
-        
-        messagesRef.addSnapshotListener { (query, error) in
-            if let error = error {
-                debugPrint("Document error \(error.localizedDescription)")
-            }
-            self.messages = []
-            for document in (query?.documents)! {
-                guard let message = Message(document: document) else { return }
-                self.messages.append(message)
-            }
-            requester.readedMessagesFromChannel(messages: self.messages)
-        }
+        // TODO: Get messages from channel
+
+        requester.readedMessagesFromChannel(messages: self.messages)
         
     }
     

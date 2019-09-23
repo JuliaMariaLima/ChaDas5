@@ -12,7 +12,7 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
     
     //outlets
     
-    @IBOutlet weak var newStoryLabel: UILabel!    
+    @IBOutlet weak var newStoryLabel: UILabel!
     @IBOutlet weak var sendButton: UIButton!
     
     
@@ -24,7 +24,7 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
     }
     @IBAction func sendButton(_ sender: Any) {
         
-        Relato(conteudo: newStoryTextView.text, autor: (UserManager.instance.currentUser)!).fbSave()
+        Story(conteudo: newStoryTextView.text, autor: "teste")
         
         dismiss()
     }

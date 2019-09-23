@@ -7,47 +7,36 @@
 //
 
 import Foundation
-import Firebase
+import CloudKit
 
 class MyStoriesManager {
+    
     static let instance = MyStoriesManager()
     private init(){}
 
-    var relatosPassados = [QueryDocumentSnapshot]()
-    var relatosAtuais = [QueryDocumentSnapshot]()
+    var nonActiveStories = [Story]()
+    var activeStories = [Story]()
     
-    func loadMyStories(requester:Manager) {
+    func loadMyStories(requester:StoryManagerProtocol) {
         emptyArrays()
-        let dbRef = FBRef.stories.order(by: "data", descending: true)
-        dbRef.getDocuments { (querySnapshot, err) in
-            if let err = err {
-                debugPrint("Document error \(err.localizedDescription)")
-            } else {
-                for document in querySnapshot!.documents {
-                    guard let status = document.data()["status"] as? String else {
-                        return
-                    }
-                    guard let authorID = document.data()["autor"] as? String else {
-                        return
-                    }
-                    if authorID == UserManager.instance.currentUser {
-                        if status == "active" {
-                            self.relatosAtuais.append(document)
-                        } else {
-                            self.relatosPassados.append(document)
-                        }
-                }
-                requester.readedMyStories(stories: [self.relatosPassados, self.relatosAtuais])
-            }
-        }
-    }
+        
+//        
+//        requester.readedMyStories(stories: [self.nonActiveStories, self.activeStories])
     }
     
     func emptyArrays() {
-        self.relatosAtuais = []
-        self.relatosPassados = []
+        self.activeStories = []
+        self.nonActiveStories = []
     }
     
+    
+    func switchToNonAvaliable(storyID: String) {
+        
+    }
+    
+    func switchToArchived(storyID: String) {
+        
+    }
     
     
 }

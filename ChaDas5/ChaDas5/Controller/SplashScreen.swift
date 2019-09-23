@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Firebase
+
 
 class SplashScreen: UIViewController {
     
@@ -21,16 +21,15 @@ class SplashScreen: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            UserManager.instance.setup()
-            if UserManager.instance.currentUser != nil {
+//        Auth.auth().addStateDidChangeListener { auth, user in
+//            UserManager.instance.setup()
+//            if UserManager.instance.currentUser != nil {
                 self.performSegue(withIdentifier: "profile", sender: self)
-                debugPrint("======= USER INFO:", user?.uid)
-            } else {
-                self.animate()
-                Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(SplashScreen.passScreen)), userInfo: nil, repeats: false)
-            }
-        }
+//            } else {
+//                self.animate()
+//                Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(SplashScreen.passScreen)), userInfo: nil, repeats: false)
+//            }
+//        }
     }
     
     func animate() {

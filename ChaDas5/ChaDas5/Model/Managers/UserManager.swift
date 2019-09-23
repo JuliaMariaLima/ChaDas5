@@ -1,77 +1,290 @@
 //
-//  UserManager.swift
-//  ChaDas5
+//  DAOUsers.swift
+//  MeAcompanha
 //
-//  Created by Julia Rocha on 20/12/18.
+//  Created by Julia Maria Santos on 03/12/18.
 //  Copyright © 2018 Julia Maria Santos. All rights reserved.
 //
 
-import Foundation
-import Firebase
+import CloudKit
+import UIKit
+
+protocol UserRequester {
+    func saved(userRecord: CKRecord?, userError: Error?)
+    func retrieved(user: User?, userError: Error?)
+    func retrieved(userArray: [User]?, userError: Error?)
+    func retrieved(meUser: MeUser?, meUserError: Error?)
+    func retrieved(user: User?, fromIndex: Int, userError: Error?)
+}
+
 
 class UserManager {
-    
-    static let instance = UserManager()
-    private init(){}
-    
-    var currentUser: String? = nil
+    var database: CKDatabase
+    var container: CKContainer
     
     let teas = ["Gengibre", "Frutas Vermelhas", "Erva Doce", "Camomila", "Capim Limão", "Chá Preto", "Hibisco", "Hortelã"]
+//    
+//    var currentUser:String {
+//        
+//    }
     
-    func setup() {
-        self.currentUser = Auth.auth().currentUser?.uid
-        if let userID = self.currentUser {
-            let pushManager = PushNotificationManager(userID: userID)
-            pushManager.registerForPushNotifications()
-            let docRef = FBRef.users.document(userID)
-            docRef.getDocument { (document, error) in
-                if let error = error {
-                    debugPrint(error.localizedDescription)
-                }
-                let property = document?.get("username") as? String ?? ""
-                AppSettings.displayName = property
-            }
-        }
+    init(database: CKDatabase, container: CKContainer) {
+        self.container = container
+        self.database = database
     }
     
-    func login(withEmail email: String, password: String, completion: @escaping (Error?) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-            if let error = error {
-                completion(error)
-            }
-            else{
-
-                self.currentUser = user?.user.uid
-                
-                let docRef = FBRef.db.collection("users").document(self.currentUser!)
-                
-                docRef.getDocument { (document, error) in
-                    if let error = error {
-                        debugPrint(error.localizedDescription)
-                    }
-                    let property = document?.get("username") as? String ?? ""
-                    AppSettings.displayName = property
+    func save(newUser: MeUser, requester: UserRequester) {
+        let predicate = NSPredicate(format: "email = %@", newUser.email)
+        let query = CKQuery(recordType: "User", predicate: predicate)
+        
+        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            
+            // Erro ao executar query no CloudKit.
+            if error != nil{
+                print("erro no cloudkit")
+            } else {
+                // Não há registro com o nome fornecido já salvo no CloudKit.
+                if (results!.count == 0) {
+                    let record = CKRecord(recordType: "User")
+                    record.setObject(newUser.name as CKRecordValue?, forKey: "name")
+                    record.setObject(newUser.email as CKRecordValue?, forKey: "email")
+                    record.setObject(newUser.password as CKRecordValue?, forKey: "password")
                     
-                    if let userID = self.currentUser {
-                        let pushNotificationManager = PushNotificationManager(userID: userID)
-                        pushNotificationManager.registerForPushNotifications()
-                    }
+                    // Salvar nome do CloudKit.
+                    self.database.save(record, completionHandler: {(record,error) -> Void in
+                        
+                        if (error != nil) {
+                            print(#function, error!)
+                            requester.saved(userRecord: nil, userError: error)
+                            return
+                        }
+                        print("sucesso")
+                        requester.saved(userRecord: record, userError: nil)
+                        return
+                    })
+                } else { // Há registro com o nome fornecido já salvo no CloudKit.
+                    print("ja tem esse email salvo")
+                    requester.saved(userRecord: nil, userError: nil)
                 }
-                completion(nil)
             }
-       
+        })
+    }
+    
+    func isSave(meUser: MeUser, completionHandler: @escaping ((Bool) -> Void)) {
+        let predicate = NSPredicate(format: "email = %@", meUser.email)
+        let query = CKQuery(recordType: "User", predicate: predicate)
+        
+        self.database.perform(query, inZoneWith: nil, completionHandler: {(results, error) in
+            if let _ = error {
+                completionHandler(false)
+                return
+            }
+            if let results = results, results.count > 0 {
+                completionHandler(true)
+                return
+            }
+            completionHandler(false)
+        })
+    }
+    
+    func getAllUsers(requester: UserRequester) {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "User", predicate: predicate)
+        
+        var users: [User] = []
+        
+        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            if error != nil {
+                print(error!)
+                requester.retrieved(userArray: nil, userError: error)
+                return
+            }
+            if (results?.count)! > 0 {
+                for result in results! {
+                    let user = self.get(userFromRecord: result)
+                    users.append(user)
+                }
+                requester.retrieved(userArray: users, userError: nil)
+                return
+            }
+            requester.retrieved(userArray: nil, userError: nil)
+        })
+    }
+    
+    func get(meFromEmail: String, requester: UserRequester) {
+        
+        let predicate = NSPredicate(format: "email = %@", meFromEmail)
+        let query = CKQuery(recordType: "User", predicate: predicate)
+        
+        self.database.perform(query, inZoneWith: nil, completionHandler: {(result, error) in
+            if error != nil {
+                print("erro no cloudkit \(#function)")
+                requester.retrieved(meUser: nil, meUserError: error)
+                return
+            }
+            if let result = result,
+                result.count == 1 {
+                // ja existe
+                let record = result.first
+                let meUser = self.get(meFromRecord: record!)
+                requester.retrieved(meUser: meUser, meUserError: nil)
+                return
+            } else {
+                // nao existe
+                requester.retrieved(meUser: nil, meUserError: nil)
+            }
+        })
+    }
+    
+    func get(user fromId: UUID, fromIndex: Int, requester: UserRequester) {
+        let recordID = CKRecord.ID(recordName: fromId.uuidString)
+        
+        self.database.fetch(withRecordID: recordID) {(record, error) in
+            if let error = error {
+                requester.retrieved(user: nil, fromIndex: -1, userError: error)
+                return
+            }
+            
+            if let record = record {
+                let user = self.get(userFromRecord: record)
+                requester.retrieved(user: user, fromIndex: fromIndex, userError: nil)
+                return
+            }
         }
     }
     
-    func signOut(completion: @escaping (Error?) -> Void) {
-        do {
-            try Auth.auth().signOut()
-            currentUser = nil
-            completion(nil)
-        } catch {
-            completion(error)
+    func get(meFromRecord: CKRecord) -> MeUser {
+        let name = meFromRecord["name"] as! String
+        let email = meFromRecord["email"] as! String
+        let password = meFromRecord["password"] as! String
+        let meUser = MeUser(name: name, email: email, password: password)
+        return meUser
+    }
+    
+    func get(userFromRecord: CKRecord) -> User {
+        let name = userFromRecord["name"] as! String
+        let idString = userFromRecord.recordID.recordName
+        let user = User(name: name, id: idString)
+        return user
+    }
+    
+    func edit(meUser: MeUser,requester: UserRequester) {
+        let predicate = NSPredicate(format: "email = %@", meUser.email)
+        let query = CKQuery(recordType: "User", predicate: predicate)
+        
+        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            
+            // Erro ao executar query no CloudKit.
+            if let error = error {
+                print("erro no cloudkit")
+                requester.saved(userRecord: nil, userError: error)
+                return
+            }
+            
+            // Não há registro com o nome fornecido já salvo no CloudKit.
+            guard let results = results, results.count > 0 else {
+                print("nao tem esse email salvo")
+                requester.saved(userRecord: nil, userError: nil)
+                return
+            }
+            
+            let record = results.first!
+            
+            record.setObject(meUser.name as CKRecordValue?, forKey: "name")
+            record.setObject(meUser.email as CKRecordValue?, forKey: "email")
+            record.setObject(meUser.password as CKRecordValue?, forKey: "password")
+            // Salvar nome do CloudKit.
+            self.database.save(record, completionHandler: {(record,error) -> Void in
+
+                if let error = error {
+                    print(#function, error)
+                    requester.saved(userRecord: nil, userError: error)
+                    return
+                }
+                print("sucesso no upload")
+                requester.saved(userRecord: record, userError: nil)
+                return
+            })
+        })
+    }
+    
+    func block(_ user: User, from me: MeUser, requester: UserRequester) {
+        let predicateMe = NSPredicate(format: "email = %@", me.email)
+        let queryMe = CKQuery(recordType: "User", predicate: predicateMe)
+        
+        self.database.perform(queryMe, inZoneWith: nil) {(records, error) in
+            if let error = error {
+                requester.saved(userRecord: nil, userError: error)
+                return
+            }
+            
+            if let records = records,
+                records.count == 1 {
+                let record = records.first
+                var blocked = record!["blocked"] as? [String] ?? []
+                
+                blocked.append(user.id)
+                record!["blocked"] = blocked
+                
+                self.database.save(record!, completionHandler: {(record, error) in
+                    if let error = error {
+                        requester.saved(userRecord: nil, userError: error)
+                        return
+                    }
+                    self.block(me, from: user, requester: requester)
+                })
+            }
         }
     }
     
+    private func block(_ me: MeUser, from user: User, requester: UserRequester) {
+        let predicateUser = NSPredicate(format: "email = %@", user.id)
+        let queryUser = CKQuery(recordType: "User", predicate: predicateUser)
+        
+        self.database.perform(queryUser, inZoneWith: nil) {(records, error) in
+            if let error = error {
+                requester.saved(userRecord: nil, userError: error)
+                return
+            }
+            
+            if let records = records,
+                records.count == 1 {
+                let record = records.first
+                var blocked = record!["blocked"] as? [String] ?? []
+                
+                blocked.append(me.email)
+                record!["blocked"] = blocked
+                
+                self.database.save(record!, completionHandler: {(record, error) in
+                    if let error = error {
+                        requester.saved(userRecord: nil, userError: error)
+                        return
+                    }
+                    requester.saved(userRecord: record, userError: nil)
+                })
+            }
+        }
+    }
+    
+    func get(blocksFrom me: MeUser, requester: UserRequester) {
+        let predicate = NSPredicate(format: "email = %@", me.email)
+        let query = CKQuery(recordType: "User", predicate: predicate)
+        
+        self.database.perform(query, inZoneWith: nil) {(records, error) in
+            if let error = error {
+                requester.retrieved(meUser: nil, meUserError: error)
+                return
+            }
+            
+            if let records = records,
+                records.count == 1 {
+                let record = records.first
+                let blocked = record!["blocked"] as? [String] ?? []
+                
+                me.blocked = blocked
+                requester.retrieved(meUser: me, meUserError: nil)
+            }
+        }
+    }
 }
 

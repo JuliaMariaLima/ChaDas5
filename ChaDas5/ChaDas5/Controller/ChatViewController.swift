@@ -1,20 +1,20 @@
 
 
 import UIKit
-import Firebase
+import CloudKit
 import MessageKit
-import FirebaseFirestore
 import InputBarAccessoryView
 
 
-class ChatViewController: MessagesViewController, MessagesProtocol, UINavigationBarDelegate {
+
+class ChatViewController: MessagesViewController, UINavigationBarDelegate, MessagesProtocol {
 
     var activityView: UIActivityIndicatorView!
-    private let user: User
+//    private let user: User
     private let channel: Channel
 
     init(channel: Channel) {
-        self.user = Auth.auth().currentUser!
+//        self.user = nil
         self.channel = channel
         super.init(nibName: nil, bundle: nil)
     }
@@ -65,46 +65,47 @@ class ChatViewController: MessagesViewController, MessagesProtocol, UINavigation
     @objc func complainAction(sender: UIButton!) {
         
         let alert = UIAlertController(title: "Deseja mesmo bloquear esse usuário?", message: "Vocês não verão postagens um do outro mais! Esse usuário também será mandado para análise.", preferredStyle: .alert)
-        let bloquear = UIAlertAction(title: "Bloquear Usuário", style: .default, handler: { (action) -> Void in
-            var firstUser: String?
-            var secondUser: String?
-            guard let id = self.channel.id else { return }
-            let docRef = FBRef.channels.document(id)
-            docRef.getDocument(source: .cache) { (document, error) in
-                if let document = document {
-                    firstUser = document.get("firstUser") as? String
-                    secondUser  = document.get("secondUser") as? String
-                    let firstUserRef = FBRef.users.document(firstUser!)
-                    let secondUserRef = FBRef.users.document(secondUser!)
-                    firstUserRef.collection("block").document(secondUser!).setData(["id" : secondUser!])
-                    secondUserRef.collection("block").document(firstUser!).setData(["id" : firstUser!])
-                    
-                    if firstUser ==  UserManager.instance.currentUser {
-                        FBRef.analise.document(secondUser!).setData(["id" : secondUser!])
-                    } else {
-                        FBRef.analise.document(firstUser!).setData(["id" : firstUser!])
-                    }
-                }
-            }
-            self.dismiss(animated: true)
-        })
+//        let bloquear = UIAlertAction(title: "Bloquear Usuário", style: .default, handler: { (action) -> Void in
+//            var firstUser: String?
+//            var secondUser: String?
+//            guard let id = self.channel.id else { return }
+//            let docRef = FBRef.channels.document(id)
+//            docRef.getDocument(source: .cache) { (document, error) in
+//                if let document = document {
+//                    firstUser = document.get("firstUser") as? String
+//                    secondUser  = document.get("secondUser") as? String
+//                    let firstUserRef = FBRef.users.document(firstUser!)
+//                    let secondUserRef = FBRef.users.document(secondUser!)
+//                    firstUserRef.collection("block").document(secondUser!).setData(["id" : secondUser!])
+//                    secondUserRef.collection("block").document(firstUser!).setData(["id" : firstUser!])
+//
+//                    if firstUser ==  UserManager.instance.currentUser {
+//                        FBRef.analise.document(secondUser!).setData(["id" : secondUser!])
+//                    } else {
+//                        FBRef.analise.document(firstUser!).setData(["id" : firstUser!])
+//                    }
+//                }
+//            }
+//            self.dismiss(animated: true)
+//        })
         let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
         }
-        alert.addAction(bloquear)
+//        alert.addAction(bloquear)
         alert.addAction(cancelar)
         self.present(alert, animated: true, completion: nil)
         alert.view.tintColor = UIColor.buttonPink
     }
-    
-    
 
 
   // MARK: - Helpers
 
     private func save(_ message: String) {
-        let messageRep = Message(content: message)
-        self.channel.add(message: messageRep)
+        guard let channelID = self.channel.id else {
+            return
+        }
+        let messageRep = Message(content: message, on: channelID)
+//        self.channel.add(message: messageRep)
         self.messagesCollectionView.scrollToBottom()
         insertNewMessage(messageRep)
   }
@@ -283,7 +284,7 @@ extension ChatViewController: MessagesDataSource {
 
 
     func currentSender() -> SenderType {
-        return Sender(id: (UserManager.instance.currentUser) ?? "Error retrieving sender", displayName: AppSettings.displayName)
+        return Sender(id: MeUser.instance.email , displayName: MeUser.instance.name)
     }
 
     func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
@@ -301,7 +302,7 @@ extension ChatViewController: MessagesDataSource {
 extension ChatViewController: InputBarAccessoryViewDelegate {
 
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        save(text)
+//        save(text)
         inputBar.inputTextView.text = ""
     }
     

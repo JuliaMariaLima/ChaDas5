@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import Firebase
+import CloudKit
 
-class Relato{
+class Story{
     
     var conteudo:String
     var autor:String

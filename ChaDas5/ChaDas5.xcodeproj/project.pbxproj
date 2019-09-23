@@ -8,29 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		155CF80821DE6E6800AFB04B /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80721DE6E6800AFB04B /* Channel.swift */; };
-		155CF80C21DE7D2B00AFB04B /* ChannelsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80B21DE7D2B00AFB04B /* ChannelsManager.swift */; };
+		155CF80C21DE7D2B00AFB04B /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80B21DE7D2B00AFB04B /* ChannelManager.swift */; };
 		155CF80E21DE89F400AFB04B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80D21DE89F400AFB04B /* Message.swift */; };
 		155CF81021DE8A9000AFB04B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80F21DE8A9000AFB04B /* AppSettings.swift */; };
 		155CF81221DE926100AFB04B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF81121DE926100AFB04B /* ChatViewController.swift */; };
 		155CF81421DE92D400AFB04B /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF81321DE92D400AFB04B /* UIView+Additions.swift */; };
 		155CF81621DE92E000AFB04B /* UICollectionView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF81521DE92E000AFB04B /* UICollectionView+Additions.swift */; };
 		155CF81821DE92E800AFB04B /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF81721DE92E800AFB04B /* UIImage+Additions.swift */; };
+		158069882332A94700C458FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158069872332A94700C458FE /* User.swift */; };
+		1580698A2332AA4100C458FE /* MeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158069892332AA4100C458FE /* MeUser.swift */; };
+		1580698C2332DDA200C458FE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698B2332DDA200C458FE /* Notification.swift */; };
+		1580698E2332DF4400C458FE /* DAOPushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698D2332DF4400C458FE /* DAOPushNotifications.swift */; };
+		158069902332E00D00C458FE /* CodableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698F2332E00D00C458FE /* CodableExtensions.swift */; };
 		1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588D7B121E7AEB000136083 /* MessagesManager.swift */; };
 		1588D7B421F0CAB100136083 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588D7B321F0CAB100136083 /* NavigationBar.swift */; };
-		158DBDB721CAD40100C9888F /* RelatoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158DBDB621CAD40100C9888F /* RelatoManager.swift */; };
-		158DBDBB21CBED6B00C9888F /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158DBDBA21CBED6B00C9888F /* UserManager.swift */; };
-		15BC149E21C8101900768231 /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC149D21C8101900768231 /* Firebase.swift */; };
-		15F34C9A231850A60015FEFB /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34C98231850A60015FEFB /* PushNotificationManager.swift */; };
-		15F34C9B231850A60015FEFB /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34C99231850A60015FEFB /* PushNotificationSender.swift */; };
-		15F34C9D23186AA00015FEFB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15F34C9C23186AA00015FEFB /* GoogleService-Info.plist */; };
-		2C259F4340BA470479E4580F /* Pods_ChaDas5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0F800A4A25388DF1E63175 /* Pods_ChaDas5.framework */; };
+		158DBDB721CAD40100C9888F /* StoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158DBDB621CAD40100C9888F /* StoryManager.swift */; };
+		15F34C9A231850A60015FEFB /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34C98231850A60015FEFB /* LocalNotificationManager.swift */; };
+		15F34C9B231850A60015FEFB /* LocalNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34C99231850A60015FEFB /* LocalNotificationSender.swift */; };
+		15F34C9F231D9FE10015FEFB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F34C9E231D9FE10015FEFB /* CloudKit.framework */; };
+		15F34CA3231DB7160015FEFB /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34CA2231DB7160015FEFB /* UserManager.swift */; };
+		15F34CA5231F0B8C0015FEFB /* DAOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34CA4231F0B8C0015FEFB /* DAOManager.swift */; };
+		87E6EFDC56BBE0AC7CDDA59E /* Pods_ChaDas5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2348569ACD9BB32945EBB10C /* Pods_ChaDas5.framework */; };
 		96451FD821AC79EF00C9C351 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96451FD621AC79EF00C9C351 /* Main.storyboard */; };
 		96451FDA21AC79F000C9C351 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96451FD921AC79F000C9C351 /* Assets.xcassets */; };
 		96451FDD21AC79F000C9C351 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96451FDB21AC79F000C9C351 /* LaunchScreen.storyboard */; };
 		96451FE821AC79F000C9C351 /* ChaDas5UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96451FE721AC79F000C9C351 /* ChaDas5UITests.swift */; };
 		9A1B11CE21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11CC21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift */; };
 		9A1B11CF21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1B11CD21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.xib */; };
-		9A1B11D721C43B39006956B7 /* Relato.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11D221C43B39006956B7 /* Relato.swift */; };
+		9A1B11D721C43B39006956B7 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11D221C43B39006956B7 /* Story.swift */; };
 		9A1B11D921C43B39006956B7 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11D421C43B39006956B7 /* Extentions.swift */; };
 		9A1B11DB21C43B83006956B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11DA21C43B83006956B7 /* AppDelegate.swift */; };
 		9A1B11E621C43CAF006956B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11E521C43CAF006956B7 /* ViewController.swift */; };
@@ -77,8 +82,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13138019BAAD1FCD878B0713 /* Pods-ChaDas5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChaDas5.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5.release.xcconfig"; sourceTree = "<group>"; };
 		155CF80721DE6E6800AFB04B /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		155CF80B21DE7D2B00AFB04B /* ChannelsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsManager.swift; sourceTree = "<group>"; };
+		155CF80B21DE7D2B00AFB04B /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		155CF80D21DE89F400AFB04B /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		155CF80F21DE8A9000AFB04B /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		155CF81121DE926100AFB04B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -86,17 +92,21 @@
 		155CF81521DE92E000AFB04B /* UICollectionView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Additions.swift"; sourceTree = "<group>"; };
 		155CF81721DE92E800AFB04B /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		15639B5C2314728900BDF79B /* ChaDas5.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChaDas5.entitlements; sourceTree = "<group>"; };
+		158069872332A94700C458FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		158069892332AA4100C458FE /* MeUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeUser.swift; sourceTree = "<group>"; };
+		1580698B2332DDA200C458FE /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		1580698D2332DF4400C458FE /* DAOPushNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOPushNotifications.swift; sourceTree = "<group>"; };
+		1580698F2332E00D00C458FE /* CodableExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableExtensions.swift; sourceTree = "<group>"; };
 		1588D7B121E7AEB000136083 /* MessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesManager.swift; sourceTree = "<group>"; };
 		1588D7B321F0CAB100136083 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
-		158DBDB621CAD40100C9888F /* RelatoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatoManager.swift; sourceTree = "<group>"; };
-		158DBDBA21CBED6B00C9888F /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
-		15BC149D21C8101900768231 /* Firebase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
+		158DBDB621CAD40100C9888F /* StoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
 		15BC14A021C811D500768231 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		15F34C98231850A60015FEFB /* PushNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
-		15F34C99231850A60015FEFB /* PushNotificationSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
-		15F34C9C23186AA00015FEFB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		3D0F800A4A25388DF1E63175 /* Pods_ChaDas5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChaDas5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8EEDA30B8ECD30B8FC3397C5 /* Pods-ChaDas5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChaDas5.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5.release.xcconfig"; sourceTree = "<group>"; };
+		15F34C98231850A60015FEFB /* LocalNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		15F34C99231850A60015FEFB /* LocalNotificationSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationSender.swift; sourceTree = "<group>"; };
+		15F34C9E231D9FE10015FEFB /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		15F34CA2231DB7160015FEFB /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		15F34CA4231F0B8C0015FEFB /* DAOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAOManager.swift; sourceTree = "<group>"; };
+		2348569ACD9BB32945EBB10C /* Pods_ChaDas5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChaDas5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96451FCF21AC79EF00C9C351 /* ChaDas5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChaDas5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96451FD721AC79EF00C9C351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		96451FD921AC79F000C9C351 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,7 +116,7 @@
 		96451FE921AC79F000C9C351 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A1B11CC21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseYourTeaCollectionViewCell.swift; sourceTree = "<group>"; };
 		9A1B11CD21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseYourTeaCollectionViewCell.xib; sourceTree = "<group>"; };
-		9A1B11D221C43B39006956B7 /* Relato.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Relato.swift; sourceTree = "<group>"; };
+		9A1B11D221C43B39006956B7 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		9A1B11D421C43B39006956B7 /* Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		9A1B11DA21C43B83006956B7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A1B11E521C43CAF006956B7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -138,7 +148,7 @@
 		9AEAA57A21C84CF5001B490F /* SFCompactDisplay-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Ultralight.otf"; sourceTree = "<group>"; };
 		9AFBE59D21B1D2D90050AE3E /* CustomSegmentedContrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedContrl.swift; sourceTree = "<group>"; };
 		9AFBE5A121B305630050AE3E /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
-		D4383BF1EF9639DBEBCE598A /* Pods-ChaDas5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChaDas5.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5.debug.xcconfig"; sourceTree = "<group>"; };
+		D71E81824C6FD27BB88A6028 /* Pods-ChaDas5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChaDas5.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5.debug.xcconfig"; sourceTree = "<group>"; };
 		E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		E23901B421CADDA8006B3CF3 /* SplashScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,7 +158,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C259F4340BA470479E4580F /* Pods_ChaDas5.framework in Frameworks */,
+				15F34C9F231D9FE10015FEFB /* CloudKit.framework in Frameworks */,
+				87E6EFDC56BBE0AC7CDDA59E /* Pods_ChaDas5.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,12 +177,13 @@
 			isa = PBXGroup;
 			children = (
 				15F34C97231850A60015FEFB /* PushNotifications */,
-				15BC149D21C8101900768231 /* Firebase.swift */,
-				158DBDB621CAD40100C9888F /* RelatoManager.swift */,
-				155CF80B21DE7D2B00AFB04B /* ChannelsManager.swift */,
+				158DBDB621CAD40100C9888F /* StoryManager.swift */,
+				15F34CA2231DB7160015FEFB /* UserManager.swift */,
+				155CF80B21DE7D2B00AFB04B /* ChannelManager.swift */,
 				9A76AF8C21C038D9003ED02C /* MyStoriesManager.swift */,
-				158DBDBA21CBED6B00C9888F /* UserManager.swift */,
 				1588D7B121E7AEB000136083 /* MessagesManager.swift */,
+				1580698D2332DF4400C458FE /* DAOPushNotifications.swift */,
+				15F34CA4231F0B8C0015FEFB /* DAOManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -179,25 +191,17 @@
 		15F34C97231850A60015FEFB /* PushNotifications */ = {
 			isa = PBXGroup;
 			children = (
-				15F34C98231850A60015FEFB /* PushNotificationManager.swift */,
-				15F34C99231850A60015FEFB /* PushNotificationSender.swift */,
+				15F34C98231850A60015FEFB /* LocalNotificationManager.swift */,
+				15F34C99231850A60015FEFB /* LocalNotificationSender.swift */,
 			);
 			path = PushNotifications;
-			sourceTree = "<group>";
-		};
-		1C32C95FCD71D4156518A013 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D4383BF1EF9639DBEBCE598A /* Pods-ChaDas5.debug.xcconfig */,
-				8EEDA30B8ECD30B8FC3397C5 /* Pods-ChaDas5.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		424A2D0D90E6AA111FED91B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3D0F800A4A25388DF1E63175 /* Pods_ChaDas5.framework */,
+				15F34C9E231D9FE10015FEFB /* CloudKit.framework */,
+				2348569ACD9BB32945EBB10C /* Pods_ChaDas5.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -208,8 +212,8 @@
 				96451FD121AC79EF00C9C351 /* ChaDas5 */,
 				96451FE621AC79F000C9C351 /* ChaDas5UITests */,
 				96451FD021AC79EF00C9C351 /* Products */,
-				1C32C95FCD71D4156518A013 /* Pods */,
 				424A2D0D90E6AA111FED91B2 /* Frameworks */,
+				D18DA73EC7F1B23E19834045 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -308,7 +312,6 @@
 		9A1B11E721C43CC1006956B7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				15F34C9C23186AA00015FEFB /* GoogleService-Info.plist */,
 				9A1B11E821C43CC1006956B7 /* Assets.xcassets */,
 				15BC14A021C811D500768231 /* Info.plist */,
 			);
@@ -319,13 +322,26 @@
 			isa = PBXGroup;
 			children = (
 				1588D7B021E7A3C100136083 /* Managers */,
-				9A1B11D421C43B39006956B7 /* Extentions.swift */,
-				9A1B11D221C43B39006956B7 /* Relato.swift */,
+				158069892332AA4100C458FE /* MeUser.swift */,
+				158069872332A94700C458FE /* User.swift */,
+				9A1B11D221C43B39006956B7 /* Story.swift */,
 				155CF80721DE6E6800AFB04B /* Channel.swift */,
 				155CF80D21DE89F400AFB04B /* Message.swift */,
+				1580698B2332DDA200C458FE /* Notification.swift */,
 				155CF80F21DE8A9000AFB04B /* AppSettings.swift */,
+				9A1B11D421C43B39006956B7 /* Extentions.swift */,
+				1580698F2332E00D00C458FE /* CodableExtensions.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D18DA73EC7F1B23E19834045 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D71E81824C6FD27BB88A6028 /* Pods-ChaDas5.debug.xcconfig */,
+				13138019BAAD1FCD878B0713 /* Pods-ChaDas5.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,11 +351,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96451FEC21AC79F000C9C351 /* Build configuration list for PBXNativeTarget "ChaDas5" */;
 			buildPhases = (
-				832697991C512162E09FFE3E /* [CP] Check Pods Manifest.lock */,
+				1B2298764B9529CD9D39704D /* [CP] Check Pods Manifest.lock */,
 				96451FCB21AC79EF00C9C351 /* Sources */,
 				96451FCC21AC79EF00C9C351 /* Frameworks */,
 				96451FCD21AC79EF00C9C351 /* Resources */,
-				6B2D4C3A11F449787496B800 /* [CP] Embed Pods Frameworks */,
+				8E8FA8532CCEF224B2FA727A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -388,6 +404,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
 						};
 					};
 					96451FE221AC79F000C9C351 = {
@@ -432,7 +451,6 @@
 				9A4E542B21AF458A0033FEBF /* Messages.storyboard in Resources */,
 				9A76AF8421C02873003ED02C /* MessagesTableViewCell.xib in Resources */,
 				96451FDD21AC79F000C9C351 /* LaunchScreen.storyboard in Resources */,
-				15F34C9D23186AA00015FEFB /* GoogleService-Info.plist in Resources */,
 				E23901B321CADD94006B3CF3 /* SplashScreen.storyboard in Resources */,
 				9A4E542021AEC8C30033FEBF /* CreateNewAccount.storyboard in Resources */,
 				96451FDA21AC79F000C9C351 /* Assets.xcassets in Resources */,
@@ -453,47 +471,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6B2D4C3A11F449787496B800 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/InputBarAccessoryView/InputBarAccessoryView.framework",
-				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InputBarAccessoryView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		832697991C512162E09FFE3E /* [CP] Check Pods Manifest.lock */ = {
+		1B2298764B9529CD9D39704D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -515,6 +493,30 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8E8FA8532CCEF224B2FA727A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/InputBarAccessoryView/InputBarAccessoryView.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InputBarAccessoryView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -525,35 +527,40 @@
 				9A4E543321B0065A0033FEBF /* CreateNewAccount.swift in Sources */,
 				9A4E543F21B006E60033FEBF /* NewStoryScreen.swift in Sources */,
 				9A1B11EF21C43EFB006956B7 /* FeedTableViewCell.swift in Sources */,
+				158069902332E00D00C458FE /* CodableExtensions.swift in Sources */,
 				155CF80821DE6E6800AFB04B /* Channel.swift in Sources */,
 				155CF80E21DE89F400AFB04B /* Message.swift in Sources */,
 				9A4E543921B0069B0033FEBF /* Feed.swift in Sources */,
 				9A76AF8321C02873003ED02C /* MessagesTableViewCell.swift in Sources */,
-				15F34C9A231850A60015FEFB /* PushNotificationManager.swift in Sources */,
+				15F34C9A231850A60015FEFB /* LocalNotificationManager.swift in Sources */,
 				9A82FD8721E5030400566AE1 /* ChooseYourTeaScreen.swift in Sources */,
 				155CF81821DE92E800AFB04B /* UIImage+Additions.swift in Sources */,
-				15BC149E21C8101900768231 /* Firebase.swift in Sources */,
+				15F34CA5231F0B8C0015FEFB /* DAOManager.swift in Sources */,
 				155CF81021DE8A9000AFB04B /* AppSettings.swift in Sources */,
-				155CF80C21DE7D2B00AFB04B /* ChannelsManager.swift in Sources */,
+				155CF80C21DE7D2B00AFB04B /* ChannelManager.swift in Sources */,
 				9A4E544121B0071F0033FEBF /* StoryScreen.swift in Sources */,
 				9A1B11E621C43CAF006956B7 /* ViewController.swift in Sources */,
-				158DBDB721CAD40100C9888F /* RelatoManager.swift in Sources */,
+				158DBDB721CAD40100C9888F /* StoryManager.swift in Sources */,
 				9A4E543721B006870033FEBF /* Profile.swift in Sources */,
 				9A4E543B21B006B30033FEBF /* Messages.swift in Sources */,
+				158069882332A94700C458FE /* User.swift in Sources */,
+				1580698E2332DF4400C458FE /* DAOPushNotifications.swift in Sources */,
 				9A1B11DB21C43B83006956B7 /* AppDelegate.swift in Sources */,
+				1580698C2332DDA200C458FE /* Notification.swift in Sources */,
 				9AFBE5A221B305630050AE3E /* ViewExtensions.swift in Sources */,
-				9A1B11D721C43B39006956B7 /* Relato.swift in Sources */,
+				9A1B11D721C43B39006956B7 /* Story.swift in Sources */,
 				155CF81421DE92D400AFB04B /* UIView+Additions.swift in Sources */,
 				1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */,
 				1588D7B421F0CAB100136083 /* NavigationBar.swift in Sources */,
 				9A1B11CE21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift in Sources */,
 				9A76AF9021C04B80003ED02C /* ProfileTableViewCell.swift in Sources */,
-				158DBDBB21CBED6B00C9888F /* UserManager.swift in Sources */,
+				1580698A2332AA4100C458FE /* MeUser.swift in Sources */,
 				9A76AF8D21C038D9003ED02C /* MyStoriesManager.swift in Sources */,
 				E23901B521CADDA8006B3CF3 /* SplashScreen.swift in Sources */,
 				9A4E543D21B006CC0033FEBF /* Informations.swift in Sources */,
 				9AFBE59E21B1D2D90050AE3E /* CustomSegmentedContrl.swift in Sources */,
-				15F34C9B231850A60015FEFB /* PushNotificationSender.swift in Sources */,
+				15F34CA3231DB7160015FEFB /* UserManager.swift in Sources */,
+				15F34C9B231850A60015FEFB /* LocalNotificationSender.swift in Sources */,
 				9A4E543521B0066F0033FEBF /* Login.swift in Sources */,
 				9A1B11D921C43B39006956B7 /* Extentions.swift in Sources */,
 				155CF81221DE926100AFB04B /* ChatViewController.swift in Sources */,
@@ -717,7 +724,7 @@
 		};
 		96451FED21AC79F000C9C351 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4383BF1EF9639DBEBCE598A /* Pods-ChaDas5.debug.xcconfig */;
+			baseConfigurationReference = D71E81824C6FD27BB88A6028 /* Pods-ChaDas5.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ChaDas5/ChaDas5.entitlements;
@@ -738,7 +745,7 @@
 		};
 		96451FEE21AC79F000C9C351 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8EEDA30B8ECD30B8FC3397C5 /* Pods-ChaDas5.release.xcconfig */;
+			baseConfigurationReference = 13138019BAAD1FCD878B0713 /* Pods-ChaDas5.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ChaDas5/ChaDas5.entitlements;

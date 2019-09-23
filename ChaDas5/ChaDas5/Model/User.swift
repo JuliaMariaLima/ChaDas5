@@ -1,16 +1,21 @@
 //
 //  User.swift
-//  ChaDas5
+//  MeAcompanha
 //
-//  Created by Julia Rocha on 10/12/18.
+//  Created by Julia Maria Santos on 29/11/18.
 //  Copyright © 2018 Julia Maria Santos. All rights reserved.
 //
 
 import Foundation
-import Firebase
 
-class User {
+class User: Codable {
+    var name: String
+    var id: String
     
-    var keysRelato:[String] = []
-    var keysConversa:[String] = []
+    init(name: String,
+         id: String) {
+        
+        self.name = name
+        self.id = id
+    }
 }

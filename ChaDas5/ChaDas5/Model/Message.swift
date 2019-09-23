@@ -6,9 +6,8 @@
 //  Copyright © 2019 Julia Maria Santos. All rights reserved.
 //
 
-import Firebase
+import CloudKit
 import MessageKit
-import FirebaseFirestore
 
 struct Message: MessageType {
     
@@ -18,55 +17,38 @@ struct Message: MessageType {
     let content: String
     let sentDate: Date
     let sender: SenderType
+    let onChannel: String
     
     var messageId: String {
         return id ?? UUID().uuidString
     }
     
-    
-    init(content: String) {
-        sender = Sender(id: (UserManager.instance.currentUser)!, displayName: AppSettings.displayName)
+    init(content: String, on channel: String) {
+        let userID = MeUser.instance.email
+        self.sender = Sender(id: userID, displayName: AppSettings.displayName)
         self.content = content
         sentDate = Date()
         id = nil
         kind = .text(content)
+        onChannel = channel
     }
     
-    
-    
-    init?(document: QueryDocumentSnapshot) {
-        let data = document.data()
-        guard let sentDate = (data["created"] as? Timestamp)?.dateValue() else { return nil }
-        guard let senderID = data["senderID"] as? String else { return nil }
-        guard let senderName = data["senderName"] as? String else { return nil }
-        
-        self.id = document.documentID
-        self.sentDate = sentDate
-        self.sender = Sender(id: senderID, displayName: senderName)
-        
-        if let content = data["content"] as? String {
-            self.content = content
-            self.kind = .text(content)
-        } else {
-            return nil
-        }
-    }
     
 }
-
-extension Message {
-
-    var representation: [String : Any] {
-        let rep: [String : Any] = [
-            "created": sentDate,
-            "senderID": sender.senderId,
-            "senderName": sender.displayName,
-            "content":content
-        ]
-        return rep
-    }
-    
-}
+//
+//extension Message {
+//
+//    var representation: [String : Any] {
+//        let rep: [String : Any] = [
+//            "created": sentDate,
+//            "senderID": sender.senderId,
+//            "senderName": sender.displayName,
+//            "content":content
+//        ]
+//        return rep
+//    }
+//
+//}
 
 extension Message: Comparable {
     

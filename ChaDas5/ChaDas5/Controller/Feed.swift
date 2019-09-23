@@ -7,10 +7,12 @@
 //
 
 import UIKit
-import Firebase
+import CloudKit
 
 
-class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, Manager {
+class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryManagerProtocol {
+    
+    
 
     var activityView:UIActivityIndicatorView!
     var xibCell:FeedTableViewCell?
@@ -21,6 +23,9 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, Manage
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var feedTableView: UITableView!
     @IBOutlet weak var noStoryLabel: UILabel!
+    
+    let dao = DAOManager.instance?.ckStories
+
     
     
     override func viewDidLoad() {
@@ -51,8 +56,11 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, Manage
         
         activityView.startAnimating()
         
-    
-        RelatoManager.instance.preLoad(requester: self)
+        if let dao = dao {
+            dao.getStories(requester: self, blocks: [])
+        } else {
+            debugPrint("error getting connection with dao")
+        }
         
         feedTableView.reloadData()
         noStoryLabel.alpha = 0
@@ -61,20 +69,28 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, Manage
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return RelatoManager.instance.stories.count
+        if let dao = dao {
+            return dao.stories.count
+        }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let feedCell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as! FeedTableViewCell
-        
-        if !RelatoManager.instance.stories.isEmpty {
-            let doc = RelatoManager.instance.stories[indexPath.row]
-            
-            feedCell.feedTableViewTextField.text = (doc.data()["conteudo"] as! String)
-            
+        guard let dao = dao else {
+            debugPrint("error reaching for Story Manager")
+            return feedCell
+        }
+        if !dao.stories.isEmpty {
+            let doc = dao.stories[indexPath.row]
+            if let content = doc.object(forKey: "content") as? String {
+                feedCell.feedTableViewTextField.text = content
+            }
+            if let date = doc.object(forKey: "date") as? String {
+//                feedCell.dateLabel.text = doc["date"]
+            }
             feedCell.selectionStyle = .none
         }
-
         return feedCell
     }
     
@@ -83,7 +99,6 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, Manage
         let selectedCell = tableView.cellForRow(at: indexPath) as! FeedTableViewCell
         selectedCell.contentView.backgroundColor = UIColor.clear
         self.selectedIndex = indexPath.row
-        
         self.performSegue(withIdentifier: "storyScreen", sender: nil)
     }
     
@@ -104,32 +119,40 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, Manage
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "storyScreen" {
             debugPrint("go to Story")
-            if let destinationVC = segue.destination as? StoryScreen{
-                destinationVC.selectedStory = RelatoManager.instance.stories[self.selectedIndex!]
+            if let destinationVC = segue.destination as? StoryScreen {
+                if let index = selectedIndex {
+                    destinationVC.selectedStory = DAOManager.instance?.ckStories.stories[index]
+                }
             }
         }
     }
-    
-    func readedStories(stories: [QueryDocumentSnapshot]) {
-        debugPrint("got stories")
-        feedTableView.reloadData()
-        activityView.stopAnimating()
-        if RelatoManager.instance.stories.count == 0 {
-            self.noStoryLabel.alpha = 1
-            self.noStoryLabel.text = "Ainda não temos relatos postados..."
-            
+
+    func readedStories(stories:[CKRecord]?, error: Error?) {
+        if error == nil {
+            debugPrint("got stories")
+            feedTableView.reloadData()
+            activityView.stopAnimating()
+            if DAOManager.instance?.ckStories.stories.count == 0 {
+                self.noStoryLabel.alpha = 1
+                self.noStoryLabel.text = "Ainda não temos relatos postados..."
+            }
+        } else {
+            debugPrint("error querying stories", error.debugDescription, #function)
         }
     }
     
-    func readedMyStories(stories: [[QueryDocumentSnapshot]]) {
+    func readedMyStories(stories: [[CKRecord]]) {
         
     }
     
-    
-    @objc private func refreshData(_ sender: Any) {
-        RelatoManager.instance.preLoad(requester: self)
-        self.refreshControl.endRefreshing()
+    func saved(reportRecord: CKRecord?, reportError: Error?) {
         
+    }
+
+    @objc private func refreshData(_ sender: Any) {
+        DAOManager.instance?.ckStories.getStories(requester: self, blocks: [])
+        self.refreshControl.endRefreshing()
+
     }
     
 }
