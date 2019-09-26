@@ -18,6 +18,7 @@ class DAOManager {
     var ckStories: StoryManager
     var ckUsers: UserManager
     var ckMessages: MessagesManager
+    var ckChannels: ChannelManager
     
     // MARK:- Configure Cloud
     private init?() {
@@ -38,5 +39,6 @@ class DAOManager {
         self.ckStories = StoryManager(database: database, container: container)
         self.ckUsers = UserManager(database: database, container: container)
         self.ckMessages = MessagesManager(database: database, container: container)
+        self.ckChannels = ChannelManager(database: database, container: container)
     }
 }

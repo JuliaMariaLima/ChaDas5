@@ -16,16 +16,10 @@ protocol ChannelCreationObserver {
 
 
 class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObserver {
-    func readedChannels(channels: [Channel]?, error: Error?) {
-        
-    }
-    
-
-    func readedChannels(channels: [Channel]) {
-
-    }
 
     var selectedStory:CKRecord?
+    
+    let dao = DAOManager.instance?.ckChannels
 
     // Outlets
     @IBOutlet weak var chatButton: UIButton!
@@ -38,14 +32,21 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
     @IBOutlet weak var storyTextView: UITextView!
 
     @IBAction func chatButton(_ sender: Any) {
-//        guard let channelStory = selectedStory else { return }
-//        ChannelManager.instance.createChannel(withStory: channelStory) { (result, error) in
-//            if error != nil {
-//                debugPrint("Error creating channel", String(describing: error?.localizedDescription))
-//            } else {
-//                self.created(channel: result!)
-//            }
-//        }
+        guard let channelStory = selectedStory else { return }
+        dao?.createChannel(withStory: channelStory, completion: { (record, error) in
+            if error != nil {
+                debugPrint("error creating channel")
+                return
+            } else {
+                guard let channelRecord = record,
+                      let channel = Channel(from: channelRecord) else {
+                    debugPrint("no channel created")
+                    return
+                }
+                self.created(channel: channel)
+            }
+        })
+        
     }
 
     func created(channel: Channel) {
@@ -54,6 +55,9 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
         self.present(vc, animated: true, completion: nil)
     }
 
+    func readedChannels(channels: [Channel]?, error: Error?) {
+        
+    }
 
     @IBAction func archiveButton(_ sender: Any) {
         guard let status = selectedStory?.object(forKey: "status") as? String else {
@@ -108,7 +112,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
     }
 
     override func viewDidLoad() {
-        guard let contentToView = self.selectedStory?.object(forKey: "conteudo") as? String else {
+        guard let contentToView = self.selectedStory?["content"] as? String else {
             debugPrint("error retrieving content of story", #function)
             return
         }
@@ -118,11 +122,11 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
         }
         self.storyTextView.text = contentToView
 
-        if storyAuthor == MeUser.instance.email {
-            chatButton.isEnabled = false
-        } else {
-            archiveButton.isEnabled = false
-        }
+//        if storyAuthor == MeUser.instance.email {
+//            chatButton.isEnabled = false
+//        } else {
+//            archiveButton.isEnabled = false
+//        }
         storyTextView.isEditable = false
     }
 }

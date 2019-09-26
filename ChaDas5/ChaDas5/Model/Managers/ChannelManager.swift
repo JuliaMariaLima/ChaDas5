@@ -28,9 +28,8 @@ class ChannelManager {
     var block = [String]()
 
 
-    func createChannel(withStory story: Story, completion: @escaping (CKRecord?, Error?) -> Void) {
-        let record = Channel(fromStory: story).asCKRecord
-        self.database.save(record, completionHandler: {(record, error) in
+    func createChannel(withStory story: CKRecord, completion: @escaping (CKRecord?, Error?) -> Void) {
+        self.database.save(story, completionHandler: {(record, error) in
             if let error = error {
                 completion(nil, error)
             }

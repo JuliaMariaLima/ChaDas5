@@ -89,9 +89,9 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
             if let content = doc.object(forKey: "content") as? String {
                 feedCell.feedTableViewTextField.text = content
             }
-            if let date = doc.object(forKey: "date") as? String {
+//            if let date = doc.object(forKey: "date") as? String {
 //                feedCell.dateLabel.text = doc["date"]
-            }
+//            }
             feedCell.selectionStyle = .none
         }
         return feedCell
@@ -133,8 +133,10 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
     func readedStories(stories:[CKRecord]?, error: Error?) {
         if error == nil {
             debugPrint("got stories")
-            feedTableView.reloadData()
-            activityView.stopAnimating()
+            DispatchQueue.main.sync {
+                feedTableView.reloadData()
+                activityView.stopAnimating()
+            }
             if DAOManager.instance?.ckStories.stories.count == 0 {
                 self.noStoryLabel.alpha = 1
                 self.noStoryLabel.text = "Ainda não temos relatos postados..."

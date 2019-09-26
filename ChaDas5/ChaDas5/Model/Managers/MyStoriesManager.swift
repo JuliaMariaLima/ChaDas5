@@ -50,7 +50,7 @@ class MyStoriesManager {
                 for result in results! {
                     let nonAvaliable = false
                     if result.recordID.recordName == storyID {
-                        result.setObject(nonAvaliable as CKRecordValue?, forKey: "isEnabled")
+                        result.setObject(nonAvaliable as CKRecordValue?, forKey: "status")
                         self.database.save(result, completionHandler: {(record,error) -> Void in
                             if let error = error {
                                 print(#function, error)
