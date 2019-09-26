@@ -77,3 +77,12 @@ extension Decodable {
         }
     }
 }
+
+extension Date {
+    var keyString:String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd_HH_mm_ss"
+        return dateFormatter.string(from: self)
+    }
+}
+

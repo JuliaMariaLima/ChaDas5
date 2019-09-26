@@ -12,25 +12,62 @@ import CloudKit
 
 protocol MessagesProtocol {
     
-    func readedMessagesFromChannel(messages:[Message])
+    func readedMessagesFromChannel(messages:[Message]?, error:Error?)
 }
 
 class MessagesManager {
     
-    static let instance = MessagesManager()
-    private init(){}
+    
+    var database: CKDatabase
+    var container: CKContainer
+    
+    
+    init(database: CKDatabase, container: CKContainer){
+        self.container = container
+        self.database = database
+    }
     
     var messages = [Message]()
     
     func loadMessages(from channel: Channel, requester: MessagesProtocol) {
-        // TODO: Get messages from channel
-
-        requester.readedMessagesFromChannel(messages: self.messages)
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Thread", predicate: predicate)
+        self.messages = []
         
+        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            if error != nil {
+                print(error!)
+                requester.readedMessagesFromChannel(messages: nil, error: nil)
+                return
+            }
+            if (results?.count)! > 0 {
+                for result in results! {
+                    guard let message = Message(from: result) else {
+                        debugPrint("error retrieving messages")
+                        return
+                    }
+                    self.messages.append(message)
+                }
+                self.messages = self.messages.sorted(by: { $0.sentDate < $1.sentDate })
+                requester.readedMessagesFromChannel(messages: self.messages, error: nil)
+                return
+            }
+            requester.readedMessagesFromChannel(messages: nil, error: nil)
+        })
     }
     
-    
+    func save(message:Message, completion: @escaping (CKRecord?, Error?) -> Void) {
+        self.database.save(message.asCKRecord, completionHandler: {(record, error) in
+            if let error = error {
+                completion(nil, error)
+            }
+            if let record = record {
+                completion(record, nil)
+                self.messages.append(message)
+                self.messages = self.messages.sorted(by: { $0.sentDate.keyString < $1.sentDate.keyString })
+            }
+        })
+    }
     
 
-    
 }

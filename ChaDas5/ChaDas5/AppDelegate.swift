@@ -13,24 +13,13 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
-  
-    
-//    var currentUserID:String {
-//        var myID = ""
-//        DAOManager.instance?.ckUsers.userID({ (userID, error) in
-//            if let id = userID?.recordName {
-//                myID = id
-//            }
-//        })
-//        return myID
-//    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         
         
-        let notificationManager = LocalNotificationManager()
+        let notificationManager = NotificationsManager()
         notificationManager.registerForLocalNotifications()
         return true
     }

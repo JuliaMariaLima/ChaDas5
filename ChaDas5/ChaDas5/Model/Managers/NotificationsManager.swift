@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-class LocalNotificationManager: NSObject, UNUserNotificationCenterDelegate {
+class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
 
 
     func registerForLocalNotifications() {

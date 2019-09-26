@@ -38,7 +38,6 @@ class UserManager {
         let query = CKQuery(recordType: "User", predicate: predicate)
         
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
-            
             // Erro ao executar query no CloudKit.
             if error != nil{
                 print("erro no cloudkit")
@@ -87,32 +86,7 @@ class UserManager {
         })
     }
     
-    func getAllUsers(requester: UserRequester) {
-        let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: "User", predicate: predicate)
-        
-        var users: [User] = []
-        
-        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
-            if error != nil {
-                print(error!)
-                requester.retrieved(userArray: nil, userError: error)
-                return
-            }
-            if (results?.count)! > 0 {
-                for result in results! {
-                    let user = self.get(userFromRecord: result)
-                    users.append(user)
-                }
-                requester.retrieved(userArray: users, userError: nil)
-                return
-            }
-            requester.retrieved(userArray: nil, userError: nil)
-        })
-    }
-    
     func get(meFromEmail: String, requester: UserRequester) {
-        
         let predicate = NSPredicate(format: "email = %@", meFromEmail)
         let query = CKQuery(recordType: "User", predicate: predicate)
         
@@ -136,23 +110,6 @@ class UserManager {
         })
     }
     
-    func get(user fromId: UUID, fromIndex: Int, requester: UserRequester) {
-        let recordID = CKRecord.ID(recordName: fromId.uuidString)
-        
-        self.database.fetch(withRecordID: recordID) {(record, error) in
-            if let error = error {
-                requester.retrieved(user: nil, fromIndex: -1, userError: error)
-                return
-            }
-            
-            if let record = record {
-                let user = self.get(userFromRecord: record)
-                requester.retrieved(user: user, fromIndex: fromIndex, userError: nil)
-                return
-            }
-        }
-    }
-    
     func get(meFromRecord: CKRecord) -> MeUser {
         let name = meFromRecord["name"] as! String
         let email = meFromRecord["email"] as! String
@@ -163,8 +120,8 @@ class UserManager {
     
     func get(userFromRecord: CKRecord) -> User {
         let name = userFromRecord["name"] as! String
-        let idString = userFromRecord.recordID.recordName
-        let user = User(name: name, id: idString)
+        let email = userFromRecord["email"] as! String
+        let user = User(name: name, email: email)
         return user
     }
     
@@ -208,8 +165,8 @@ class UserManager {
         })
     }
     
-    func block(_ user: User, from me: MeUser, requester: UserRequester) {
-        let predicateMe = NSPredicate(format: "email = %@", me.email)
+    func block(_ user: User, requester: UserRequester) {
+        let predicateMe = NSPredicate(format: "email = %@", MeUser.instance.email)
         let queryMe = CKQuery(recordType: "User", predicate: predicateMe)
         
         self.database.perform(queryMe, inZoneWith: nil) {(records, error) in
@@ -223,7 +180,7 @@ class UserManager {
                 let record = records.first
                 var blocked = record!["blocked"] as? [String] ?? []
                 
-                blocked.append(user.id)
+                blocked.append(user.email)
                 record!["blocked"] = blocked
                 
                 self.database.save(record!, completionHandler: {(record, error) in
@@ -231,36 +188,6 @@ class UserManager {
                         requester.saved(userRecord: nil, userError: error)
                         return
                     }
-                    self.block(me, from: user, requester: requester)
-                })
-            }
-        }
-    }
-    
-    private func block(_ me: MeUser, from user: User, requester: UserRequester) {
-        let predicateUser = NSPredicate(format: "email = %@", user.id)
-        let queryUser = CKQuery(recordType: "User", predicate: predicateUser)
-        
-        self.database.perform(queryUser, inZoneWith: nil) {(records, error) in
-            if let error = error {
-                requester.saved(userRecord: nil, userError: error)
-                return
-            }
-            
-            if let records = records,
-                records.count == 1 {
-                let record = records.first
-                var blocked = record!["blocked"] as? [String] ?? []
-                
-                blocked.append(me.email)
-                record!["blocked"] = blocked
-                
-                self.database.save(record!, completionHandler: {(record, error) in
-                    if let error = error {
-                        requester.saved(userRecord: nil, userError: error)
-                        return
-                    }
-                    requester.saved(userRecord: record, userError: nil)
                 })
             }
         }

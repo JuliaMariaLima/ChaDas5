@@ -9,55 +9,48 @@
 import CloudKit
 import MessageKit
 
-struct Message: MessageType {
-    
-    
-    var kind: MessageKind
-    let id: String?
-    let content: String
-    let sentDate: Date
-    let sender: SenderType
-    let onChannel: String
-    
-    var messageId: String {
-        return id ?? UUID().uuidString
-    }
+struct Message {
+
+    var content: String
+    var sentDate: Date
+    var senderID: String
+    var senderDisplayName: String
+    var onChannel: String
+
     
     init(content: String, on channel: String) {
-        let userID = MeUser.instance.email
-        self.sender = Sender(id: userID, displayName: AppSettings.displayName)
+        self.senderID = MeUser.instance.email
+        self.senderDisplayName = MeUser.instance.name
         self.content = content
-        sentDate = Date()
-        id = nil
-        kind = .text(content)
         onChannel = channel
+        sentDate = Date()
     }
     
+    init?(from record:CKRecord) {
+        guard let recordContent  = record.object(forKey: "content") as? String,
+              let recordDate     = record.object(forKey: "sentDate") as? Date,
+              let recordSenderID = record.object(forKey: "senderID") as? String,
+              let recordSenderDisplayName = record.object(forKey: "senderDisplayName") as? String,
+              let recordChannel  = record.object(forKey: "onChannel") as? String else {
+            return nil
+        }
+        
+        content = recordContent
+        senderID = recordSenderID
+        senderDisplayName = recordSenderDisplayName
+        sentDate = recordDate
+        onChannel = recordChannel
+    }
     
-}
-//
-//extension Message {
-//
-//    var representation: [String : Any] {
-//        let rep: [String : Any] = [
-//            "created": sentDate,
-//            "senderID": sender.senderId,
-//            "senderName": sender.displayName,
-//            "content":content
-//        ]
-//        return rep
-//    }
-//
-//}
+    var asCKRecord:CKRecord {
+        let record = CKRecord(recordType: "Thread")
+        record.setObject(self.content as __CKRecordObjCValue, forKey: "content")
+        record.setObject(self.sentDate as __CKRecordObjCValue, forKey: "sentDate")
+        record.setObject(self.onChannel as __CKRecordObjCValue, forKey: "onChannel")
+        record.setObject(self.senderID as __CKRecordObjCValue, forKey: "senderID")
+        record.setObject(self.senderDisplayName as __CKRecordObjCValue, forKey: "senderDisplayName")
+        return record
 
-extension Message: Comparable {
-    
-    static func == (lhs: Message, rhs: Message) -> Bool {
-        return lhs.id == rhs.id
-    }
-    
-    static func < (lhs: Message, rhs: Message) -> Bool {
-        return lhs.sentDate < rhs.sentDate
     }
     
 }

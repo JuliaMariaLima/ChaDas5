@@ -8,6 +8,10 @@ import InputBarAccessoryView
 
 
 class ChatViewController: MessagesViewController, UINavigationBarDelegate, MessagesProtocol {
+    func readedMessagesFromChannel(messages: [Message]?, error: Error?) {
+        
+    }
+    
 
     var activityView: UIActivityIndicatorView!
 //    private let user: User
@@ -31,17 +35,17 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard channel.id != nil else {
-            self.dismiss(animated: true)
-            return
-        }
+//        guard channel.id != nil else {
+//            self.dismiss(animated: true)
+//            return
+//        }
     
 
-        MessagesManager.instance.messages = []
-        MessagesManager.instance.loadMessages(from: self.channel, requester: self)
-        messagesCollectionView.messagesDataSource = self
-        messagesCollectionView.messagesLayoutDelegate = self
-        messagesCollectionView.messagesDisplayDelegate = self
+//        MessagesManager.instance.messages = []
+//        MessagesManager.instance.loadMessages(from: self.channel, requester: self)
+//        messagesCollectionView.messagesDataSource = self
+//        messagesCollectionView.messagesLayoutDelegate = self
+//        messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.scrollToBottom()
         scrollsToBottomOnKeyboardBeginsEditing = true
         maintainPositionOnKeyboardFrameChanged = true
@@ -101,19 +105,19 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
   // MARK: - Helpers
 
     private func save(_ message: String) {
-        guard let channelID = self.channel.id else {
-            return
-        }
-        let messageRep = Message(content: message, on: channelID)
-//        self.channel.add(message: messageRep)
-        self.messagesCollectionView.scrollToBottom()
-        insertNewMessage(messageRep)
+//        guard let channelID = self.channel.id else {
+//            return
+//        }
+//        let messageRep = Message(content: message, on: channelID)
+////        self.channel.add(message: messageRep)
+//        self.messagesCollectionView.scrollToBottom()
+//        insertNewMessage(messageRep)
   }
 
     private func insertNewMessage(_ message: Message) {
 
-        let isLatestMessage = MessagesManager.instance.messages.firstIndex(of: message) == (MessagesManager.instance.messages.count - 1)
-        let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
+//        let isLatestMessage = MessagesManager.instance.messages.firstIndex(of: message) == (MessagesManager.instance.messages.count - 1)
+        let shouldScrollToBottom = messagesCollectionView.isAtBottom
         if shouldScrollToBottom {
             DispatchQueue.main.async {
                 self.messagesCollectionView.scrollToBottom(animated: true)
@@ -215,92 +219,92 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
 
 
 
-// MARK: - MessagesDisplayDelegate
-
-extension ChatViewController: MessagesDisplayDelegate {
-
-    func backgroundColor(
-        for message: MessageType,
-        at indexPath: IndexPath,
-        in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? UIColor.middleOrange : UIColor.lightGray.withAlphaComponent(0.25)
-    }
-    
-    func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool {
-        return true
-    }
-    
-    func messageStyle(
-        for message: MessageType,
-        at indexPath: IndexPath,
-        in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
-        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
-        return .bubbleTail(corner, .curved)
-    }
-
-    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        avatarView.removeFromSuperview()
-    }
-    
-}
+//// MARK: - MessagesDisplayDelegate
+//
+//extension ChatViewController: MessagesDisplayDelegate {
+//
+//    func backgroundColor(
+//        for message: MessageType,
+//        at indexPath: IndexPath,
+//        in messagesCollectionView: MessagesCollectionView) -> UIColor {
+//        return isFromCurrentSender(message: message) ? UIColor.middleOrange : UIColor.lightGray.withAlphaComponent(0.25)
+//    }
+//    
+//    func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool {
+//        return true
+//    }
+//    
+//    func messageStyle(
+//        for message: MessageType,
+//        at indexPath: IndexPath,
+//        in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+//        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
+//        return .bubbleTail(corner, .curved)
+//    }
+//
+//    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+//        avatarView.removeFromSuperview()
+//    }
+//    
+//}
 
 // MARK: - MessagesLayoutDelegate
 
-extension ChatViewController: MessagesLayoutDelegate {
-
-    func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
-        return .zero
-    }
-
-    func footerViewSize(
-        for message: MessageType,
-        at indexPath: IndexPath,
-        in messagesCollectionView: MessagesCollectionView) -> CGSize {
-        return CGSize(width: 0, height: 8)
-    }
-
-    func textColor(
-        for message: MessageType,
-        at indexPath: IndexPath,
-        in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? UIColor.black : UIColor.black
-    }
-    
-    func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
-        return CGSize(width: self.view.bounds.width, height: 120)
-    }
-
-
-}
+//extension ChatViewController: MessagesLayoutDelegate {
+//
+//    func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+//        return .zero
+//    }
+//
+//    func footerViewSize(
+//        for message: MessageType,
+//        at indexPath: IndexPath,
+//        in messagesCollectionView: MessagesCollectionView) -> CGSize {
+//        return CGSize(width: 0, height: 8)
+//    }
+//
+//    func textColor(
+//        for message: MessageType,
+//        at indexPath: IndexPath,
+//        in messagesCollectionView: MessagesCollectionView) -> UIColor {
+//        return isFromCurrentSender(message: message) ? UIColor.black : UIColor.black
+//    }
+//    
+//    func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+//        return CGSize(width: self.view.bounds.width, height: 120)
+//    }
+//
+//
+//}
 
 // MARK: - MessagesDataSource
 
-extension ChatViewController: MessagesDataSource {
-    
-    
-    
-    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return 1
-    }
-
-    func numberOfItems(inSection section: Int, in messagesCollectionView: MessagesCollectionView) -> Int {
-        return MessagesManager.instance.messages.count
-    }
-
-
-    func currentSender() -> SenderType {
-        return Sender(id: MeUser.instance.email , displayName: MeUser.instance.name)
-    }
-
-    func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return MessagesManager.instance.messages.count
-    }
-
-    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        return MessagesManager.instance.messages[indexPath.row]
-    }
-
-}
+//extension ChatViewController: MessagesDataSource {
+//    
+//    
+//    
+//    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
+//        return 1
+//    }
+//
+//    func numberOfItems(inSection section: Int, in messagesCollectionView: MessagesCollectionView) -> Int {
+//        return 0
+//    }
+//
+//
+//    func currentSender() -> SenderType {
+//        return Sender(id: MeUser.instance.email , displayName: MeUser.instance.name)
+//    }
+//
+//    func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
+//        return 0
+//    }
+//
+//    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
+//        return
+//    }
+//
+//}
 
 // MARK: - MessageInputBarDelegate
 

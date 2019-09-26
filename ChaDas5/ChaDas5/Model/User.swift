@@ -10,12 +10,11 @@ import Foundation
 
 class User: Codable {
     var name: String
-    var id: String
+    var email: String
     
     init(name: String,
-         id: String) {
-        
+         email: String) {
         self.name = name
-        self.id = id
+        self.email = email
     }
 }

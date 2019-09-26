@@ -23,6 +23,7 @@ class StoryManager {
     
     var database: CKDatabase
     var container: CKContainer
+    var stories = [CKRecord]()
 
     
     init(database: CKDatabase, container: CKContainer){
@@ -36,9 +37,6 @@ class StoryManager {
         record.setObject(story.author as __CKRecordObjCValue?, forKey: "author")
         record.setObject(story.date as __CKRecordObjCValue?, forKey: "date")
         record.setObject(story.status as __CKRecordObjCValue?, forKey: "status")
-        
-        print("===========", record.recordID)
-        
         self.database.save(record, completionHandler: {(record, error) in
             if let error = error {
                 completion(nil, error)
@@ -50,21 +48,12 @@ class StoryManager {
         })
     }
     
-    var stories = [CKRecord]()
-    var block = [String]()
-    
-    func getBlockedList(requester: StoryManagerProtocol) {
-        self.block = []
-        // TODO: Get list of blocked users
-        
-        getStories(requester: requester, blocks: self.block)
-    }
-    
     func getStories(requester:StoryManagerProtocol, blocks:[String]) {
         self.stories = []
         // TODO: Get list of stories from database and cross with blocked list
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Story", predicate: predicate)
+
         
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             if error != nil {
@@ -73,6 +62,7 @@ class StoryManager {
                 return
             }
             if (results?.count)! > 0 {
+                
                 for result in results! {
                     self.stories.append(result)
                 }
@@ -80,6 +70,32 @@ class StoryManager {
                 return
             }
             requester.readedStories(stories: nil, error: nil)
+        })
+    }
+    
+    func retrieve(authorFrom storyID: String, completion: @escaping (CKRecord?, Error?) -> Void) {
+        
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "User", predicate: predicate)
+        
+        self.database.perform(query, inZoneWith: nil, completionHandler: {(results, error) in
+            if error != nil {
+                print("erro no cloudkit \(#function)")
+                completion(nil, error)
+                return
+            }
+            if (results?.count)! > 0 {
+            
+            for result in results! {
+                if result.recordID.recordName == storyID {
+                    completion(result, nil)
+                }
+            }
+            }
+            else {
+                // nao existe
+                completion(nil, nil)
+            }
         })
     }
     
