@@ -33,16 +33,16 @@ class Story : Codable {
     
     init?(from record:CKRecord) {
         guard let recordContent = record.object(forKey: "content") as? String,
-              let recordAuthor  = record.object(forKey: "author") as? String,
-              let recordDate    = record.object(forKey: "date") as? String,
-              let recordStatus  = record.object(forKey: "status") as? String
+              let recordAuthor  = record["author"] as? String,
+              let recordDate    = record["date"] as? String,
+              let recordStatus  = record["status"] as? String
         else {
             return nil
         }
-        content = recordContent
-        author = recordAuthor
-        date = recordDate
-        status = recordStatus
+        self.content = recordContent
+        self.author = recordAuthor
+        self.date = recordDate
+        self.status = recordStatus
     }
     
     var asCKRecord:CKRecord {

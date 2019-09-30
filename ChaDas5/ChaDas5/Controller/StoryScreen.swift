@@ -33,13 +33,19 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
 
     @IBAction func chatButton(_ sender: Any) {
         guard let channelStory = selectedStory else { return }
-        dao?.createChannel(withStory: channelStory, completion: { (record, error) in
+        print(selectedStory?.description)
+        guard let story = Story(from: channelStory) else {
+            debugPrint("error creating story")
+            return
+        }
+        let channel = Channel(fromStory: story)
+        print(channel.asCKRecord.description)
+        dao?.createChannel(withChannel: channel.asCKRecord, completion: { (record, error) in
             if error != nil {
                 debugPrint("error creating channel")
                 return
             } else {
-                guard let channelRecord = record,
-                      let channel = Channel(from: channelRecord) else {
+                guard let channelRecord = record else {
                     debugPrint("no channel created")
                     return
                 }
@@ -51,7 +57,6 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
 
     func created(channel: Channel) {
         let vc = ChatViewController(channel: channel)
-
         self.present(vc, animated: true, completion: nil)
     }
 

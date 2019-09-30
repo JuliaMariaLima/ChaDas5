@@ -29,9 +29,9 @@ class Channel {
     }
     
     init?(from record:CKRecord) {
-        guard let recordOwner = record.object(forKey: "owner") as? String,
-              let recordFromStory  = record.object(forKey: "fromStory") as? String,
-              let recordLastMessageDate    = record.object(forKey: "lastMessageDate") as? String
+        guard let recordOwner = record["owner"] as? String,
+              let recordFromStory  = record["fromStory"] as? String,
+              let recordLastMessageDate    = record["lastMessageDate"] as? String
         else {
             return nil
         }
