@@ -31,18 +31,20 @@ class Story : Codable {
         })
     }
     
-    init?(from record:CKRecord) {
-        guard let recordContent = record.object(forKey: "content") as? String,
+    init?(from record:CKRecord, completion: @escaping (Story?, String?) -> Void) {
+        guard let recordContent = record["content"] as? String,
               let recordAuthor  = record["author"] as? String,
-              let recordDate    = record["date"] as? String,
-              let recordStatus  = record["status"] as? String
+              let recordDate    = record["date"] as? String
+//              let recordStatus  = record["status"] as? String
         else {
+            completion(nil, NSError().description)
             return nil
         }
         self.content = recordContent
         self.author = recordAuthor
         self.date = recordDate
-        self.status = recordStatus
+        self.status = "active"
+        completion(self, nil)
     }
     
     var asCKRecord:CKRecord {

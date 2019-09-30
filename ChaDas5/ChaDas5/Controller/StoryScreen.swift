@@ -34,25 +34,30 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
     @IBAction func chatButton(_ sender: Any) {
         guard let channelStory = selectedStory else { return }
         print(selectedStory?.description)
-        guard let story = Story(from: channelStory) else {
-            debugPrint("error creating story")
-            return
-        }
-        let channel = Channel(fromStory: story)
-        print(channel.asCKRecord.description)
-        dao?.createChannel(withChannel: channel.asCKRecord, completion: { (record, error) in
+        Story(from: channelStory) { (story, error) in
             if error != nil {
-                debugPrint("error creating channel")
+                debugPrint("error creating story", error)
                 return
-            } else {
-                guard let channelRecord = record else {
-                    debugPrint("no channel created")
-                    return
-                }
-                self.created(channel: channel)
             }
-        })
-        
+            guard let story = story else {
+                debugPrint("no story")
+                return
+            }
+            let channel = Channel(fromStory: story)
+            print(channel.asCKRecord.description)
+            self.dao?.createChannel(withChannel: channel.asCKRecord, completion: { (record, error) in
+                if error != nil {
+                    debugPrint("error creating channel")
+                    return
+                } else {
+                    guard let channelRecord = record else {
+                        debugPrint("no channel created")
+                        return
+                    }
+                    self.created(channel: channel)
+                }
+            })
+        }
     }
 
     func created(channel: Channel) {

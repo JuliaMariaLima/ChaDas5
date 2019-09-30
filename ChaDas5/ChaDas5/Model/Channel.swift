@@ -23,7 +23,7 @@ class Channel {
     var lastMessageDate: String
   
     init(fromStory: Story, lastMessageDate: Date = Date.distantPast) {
-        self.ownerID = MeUser.instance.email
+        self.ownerID = "" //user id
         self.fromStory = fromStory.date + fromStory.author
         self.lastMessageDate = lastMessageDate.keyString
     }
@@ -43,7 +43,7 @@ class Channel {
     var asCKRecord:CKRecord {
         let record = CKRecord(recordType: "Channel")
         record.setObject(self.fromStory as __CKRecordObjCValue?, forKey: "fromStory")
-        record.setObject(MeUser.instance.email as __CKRecordObjCValue?, forKey: "owner")
+        record.setObject("" as __CKRecordObjCValue?, forKey: "owner") //user id
         record.setObject(self.lastMessageDate as __CKRecordObjCValue?, forKey: "lastMessageDate")
         return record
     }
