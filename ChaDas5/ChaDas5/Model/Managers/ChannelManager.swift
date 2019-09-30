@@ -57,9 +57,9 @@ class ChannelManager {
                     DAOManager.instance?.ckStories.retrieve(authorFrom: channel.fromStory, completion: { (record, error) in
                         storyAuthor = record?["author"] ?? ""
                     })
-                    if channel.ownerID == MeUser.instance.email || storyAuthor == MeUser.instance.email {
+//                    if channel.ownerID == MeUser.instance.email || storyAuthor == MeUser.instance.email {
                         self.channels.append(channel)
-                    }
+//                    }
                 }
                 requester.readedChannels(channels: self.channels, error: nil)
                 return

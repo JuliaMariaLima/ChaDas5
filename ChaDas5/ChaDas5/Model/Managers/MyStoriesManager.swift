@@ -25,7 +25,33 @@ class MyStoriesManager {
     
     func loadMyStories(requester:StoryManagerProtocol) {
         emptyArrays()
-        
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Story", predicate: predicate)
+        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            if error != nil {
+                print(error!)
+                requester.readedMyStories(stories: [[]])
+                return
+            }
+            if (results?.count)! > 0 {
+                for result in results! {
+                    Story(from: result) { (story, error) in
+                        if error != nil {
+                            debugPrint(error, #function)
+                            return
+                        }
+                        guard let story = story else {
+                            debugPrint("error creating story")
+                            return
+                        }
+                        self.activeStories.append(story)
+                    }
+                }
+                requester.readedMyStories(stories: [results!, []])
+                return
+            }
+            requester.readedMyStories(stories: [[]])
+        })
 //        
 //        requester.readedMyStories(stories: [self.nonActiveStories, self.activeStories])
     }
