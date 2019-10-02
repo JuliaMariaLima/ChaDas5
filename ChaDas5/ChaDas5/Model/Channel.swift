@@ -9,7 +9,6 @@
 
 import UserNotifications
 import CloudKit
-import MessageKit
 
 struct ChannelUser {
     var uid: String

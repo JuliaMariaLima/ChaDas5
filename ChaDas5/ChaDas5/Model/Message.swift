@@ -9,6 +9,7 @@
 import CloudKit
 import MessageKit
 
+
 struct Message: MessageType {
 
     let id: String?

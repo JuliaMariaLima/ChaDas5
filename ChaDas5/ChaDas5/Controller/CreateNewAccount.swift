@@ -26,39 +26,28 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
     @IBOutlet weak var createNewAccountButton: UIButton!
 
     var activityView:UIActivityIndicatorView!
-    var newAccountUserResquester: UserRequester!
     var meUser: MeUser!
+    var newAccountUserResquester: UserRequester!
 
     //actions
     @IBAction func createNewButton(_ sender: Any) {
-
-        if passwordTextField.text == passwordConfirmationTextField.text && selected?.chooseYourTeaLabel.text != nil {
-            handleSignUp()
+        
+        newAccountUserResquester = self
+        
+        if checkPassword(password1: passwordTextField.text!, password2: passwordConfirmationTextField.text!) {
+            meUser = MeUser(name: selected!.chooseYourTeaLabel.text!, email: emailTextField.text!, password: passwordTextField.text!)
         } else {
-            if passwordTextField.text != passwordConfirmationTextField.text {
-                let tentarNovamente = UIAlertAction(title: "Tentar Novamente", style: .default, handler: { (action) -> Void in
-                self.passwordConfirmationTextField.text = ""
-                self.passwordTextField.text = ""
-            })
-            let alert = UIAlertController(title: "Oops...", message: "Erro na confirmação de senha", preferredStyle: .alert)
-            alert.addAction(tentarNovamente)
+            let alert = UIAlertController(title: "", message: "Reveja a sua senha, ela tem que ter no mínimo 8 caracteres", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-            alert.view.tintColor = UIColor.buttonOrange
-
-            } else {
-                let ok = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
-                })
-                let alert = UIAlertController(title: "Oops...", message: "Esqueceu de escolher seu chá", preferredStyle: .alert)
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
-                alert.view.tintColor = UIColor.buttonOrange
-            }
         }
+
+
     }
-//
-//    @IBAction func dismissButton(_ sender: Any) {
-//        dismiss()
-//    }
+
+    @IBAction func dismissButton(_ sender: Any) {
+        dismiss()
+    }
 
     override func viewDidLoad() {
         hideKeyboardWhenTappedAround()
@@ -130,10 +119,6 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        pickYourTeaCollectionView.allowsSelection = true
-        //        pickYourTeaCollectionView.allowsMultipleSelection = false
-        //        pickYourTeaCollectionView.beginInteractiveMovementForItem(at: indexPath)
-        //        pickYourTeaCollectionView.cellForItem(at: indexPath)?.isHighlighted = true
         let selectedCell = collectionView.cellForItem(at: indexPath) as! ChooseYourTeaCollectionViewCell
         selectedCell.contentView.backgroundColor = UIColor.baseOrange
         self.selected = selectedCell
@@ -167,7 +152,6 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
             passwordConfirmationTextField.becomeFirstResponder()
             break
         case passwordConfirmationTextField:
-            handleSignUp()
             break
         default:
             break
@@ -175,32 +159,6 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         return true
     }
 
-
-    @objc func handleSignUp() {
-        guard let email = emailTextField.text else { return }
-        guard let pass = passwordTextField.text else { return }
-        guard let yourTea = self.selected!.chooseYourTeaLabel.text else { return }
-
-        setcreateNewAccountButton(enabled: false)
-        createNewAccountButton.setTitle("", for: .normal)
-        activityView.startAnimating()
-
-
-
-        newAccountUserResquester = self
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "dd/MM/yyyy"
-
-
-
-        if checkPassword(password1: pass, password2: passwordConfirmationTextField.text!) {
-            meUser = MeUser(name: yourTea, email: email, password: pass)
-        } else {
-            let alert = UIAlertController(title: "", message: "Reveja a sua senha, ela tem que ter no mínimo 8 caracteres", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
 
     func resetForm() {
         let tentarNovamente = UIAlertAction(
@@ -265,7 +223,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         }
     }
 
-
+    
 }
 
 extension UICollectionView {
@@ -276,12 +234,14 @@ extension UICollectionView {
     }
 }
 
+
+
 extension CreateNewAccount: UserRequester {
     func saved(userRecord: CKRecord?, userError: Error?){
         if userRecord != nil {
             do{
                 try meUser.save()
-                goTo(identifier: "inicialMapScreen")
+                goTo(identifier: "Feed")
                 print("salvouuuuuuuuuuuuu")
             } catch {
                 let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
@@ -291,12 +251,14 @@ extension CreateNewAccount: UserRequester {
             }
         }
     }
-
+    
     func retrieved(user: User?, userError: Error?) {}
-
+    
     func retrieved(userArray: [User]?, userError: Error?) {}
-
+    
     func retrieved(meUser: MeUser?, meUserError: Error?) {}
 
     func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
 }
+
+

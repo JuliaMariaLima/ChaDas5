@@ -81,7 +81,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="loginButton:" destination="FdJ-g9-0s6" eventType="touchUpInside" id="n9s-TK-u2w"/>
+                                    <action selector="loginButton:" destination="FdJ-g9-0s6" eventType="touchUpInside" id="CHW-eP-9JZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRL-PV-AOZ">
@@ -92,7 +92,7 @@
                                 </constraints>
                                 <state key="normal" image="dismissIcon"/>
                                 <connections>
-                                    <action selector="dismissButton:" destination="FdJ-g9-0s6" eventType="touchUpInside" id="ovN-Ru-0vN"/>
+                                    <action selector="dismissButton:" destination="FdJ-g9-0s6" eventType="touchUpInside" id="oze-hD-oov"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUx-kp-kTl">
@@ -106,7 +106,7 @@
                                     <color key="titleColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="forgotPassword:" destination="FdJ-g9-0s6" eventType="touchUpInside" id="S65-As-dq2"/>
+                                    <action selector="forgotPassword:" destination="FdJ-g9-0s6" eventType="touchUpInside" id="Xga-DZ-MFh"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -130,9 +130,9 @@
                         <viewLayoutGuide key="safeArea" id="DJx-MN-RT6"/>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="k2G-Sy-b9v" id="kUw-KT-9FT"/>
-                        <outlet property="loginButton" destination="mTT-Oa-eTo" id="jcc-To-fYA"/>
-                        <outlet property="passwordTextField" destination="8vj-HA-pqc" id="uXk-MW-HX7"/>
+                        <outlet property="emailTextField" destination="k2G-Sy-b9v" id="pC8-af-gmn"/>
+                        <outlet property="loginButton" destination="mTT-Oa-eTo" id="v1v-Pi-ocg"/>
+                        <outlet property="passwordTextField" destination="8vj-HA-pqc" id="saZ-yT-gEs"/>
                         <segue destination="a8d-0r-HBW" kind="show" identifier="Feed" id="5O7-9n-hYD"/>
                     </connections>
                 </viewController>
