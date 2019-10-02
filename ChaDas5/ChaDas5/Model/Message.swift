@@ -9,13 +9,20 @@
 import CloudKit
 import MessageKit
 
-struct Message {
+struct Message: MessageType {
 
+    let id: String?
     var content: String
     var sentDate: Date
     var senderID: String
     var senderDisplayName: String
     var onChannel: String
+    var kind: MessageKind
+    var sender: SenderType
+    
+    var messageId: String {
+        return id ?? UUID().uuidString
+    }
 
     
     init(content: String, on channel: String) {
@@ -24,15 +31,20 @@ struct Message {
         self.content = content
         onChannel = channel
         sentDate = Date()
+        kind = .text(content)
+        sender = Sender(id: senderID, displayName: senderDisplayName)
+        id = nil
     }
     
-    init?(from record:CKRecord) {
+    init?(from record:CKRecord, completion: @escaping (Message?, String?) -> Void) {
         guard let recordContent  = record.object(forKey: "content") as? String,
               let recordDate     = record.object(forKey: "sentDate") as? Date,
               let recordSenderID = record.object(forKey: "senderID") as? String,
               let recordSenderDisplayName = record.object(forKey: "senderDisplayName") as? String,
-              let recordChannel  = record.object(forKey: "onChannel") as? String else {
-            return nil
+              let recordChannel  = record.object(forKey: "onChannel") as? String
+            else {
+                completion(nil, NSError().description)
+                return nil
         }
         
         content = recordContent
@@ -40,6 +52,10 @@ struct Message {
         senderDisplayName = recordSenderDisplayName
         sentDate = recordDate
         onChannel = recordChannel
+        id = record.recordID.recordName
+        kind = .text(content)
+        sender = Sender(id: senderID, displayName: senderDisplayName)
+        completion(self, nil)
     }
     
     var asCKRecord:CKRecord {

@@ -18,6 +18,7 @@ struct ChannelUser {
 
 class Channel {
   
+    var id: String?
     var ownerID: String
     var fromStory: String
     var lastMessageDate: String
@@ -26,18 +27,22 @@ class Channel {
         self.ownerID = "" //user id
         self.fromStory = fromStory.date + fromStory.author
         self.lastMessageDate = lastMessageDate.keyString
+        self.id = nil
     }
     
-    init?(from record:CKRecord) {
+    init?(from record:CKRecord, completion: @escaping (Channel?, String?) -> Void)  {
         guard let recordOwner = record["owner"] as? String,
               let recordFromStory  = record["fromStory"] as? String,
               let recordLastMessageDate    = record["lastMessageDate"] as? String
         else {
+            completion(nil, NSError().description)
             return nil
         }
         ownerID = recordOwner
         fromStory = recordFromStory
         lastMessageDate = recordLastMessageDate
+        id = record.recordID.recordName
+        completion(self, nil)
     }
     
     var asCKRecord:CKRecord {

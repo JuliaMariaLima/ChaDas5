@@ -42,11 +42,11 @@ class MessagesManager {
             }
             if (results?.count)! > 0 {
                 for result in results! {
-                    guard let message = Message(from: result) else {
-                        debugPrint("error retrieving messages")
-                        return
+                    _ = Message(from: result) { (message, error) in
+                        if error == nil && message != nil {
+                            self.messages.append(message!)
+                        }
                     }
-                    self.messages.append(message)
                 }
                 self.messages = self.messages.sorted(by: { $0.sentDate < $1.sentDate })
                 requester.readedMessagesFromChannel(messages: self.messages, error: nil)

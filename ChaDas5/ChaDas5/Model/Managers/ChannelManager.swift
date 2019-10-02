@@ -50,16 +50,17 @@ class ChannelManager {
             }
             if (results?.count)! > 0 {
                 for result in results! {
-                    guard let channel = Channel(from: result) else {
-                        return
+                    Channel(from: result) { (channel, error) in
+                        if error == nil && channel != nil {
+                            var storyAuthor = ""
+                            DAOManager.instance?.ckStories.retrieve(authorFrom: channel!.fromStory, completion: { (record, error) in
+                                        storyAuthor = record?["author"] ?? ""
+                                })
+        //                      if channel.ownerID == MeUser.instance.email || storyAuthor == MeUser.instance.email {
+                                self.channels.append(channel!)
+        //                      }
+                        }
                     }
-                    var storyAuthor = ""
-                    DAOManager.instance?.ckStories.retrieve(authorFrom: channel.fromStory, completion: { (record, error) in
-                        storyAuthor = record?["author"] ?? ""
-                    })
-//                    if channel.ownerID == MeUser.instance.email || storyAuthor == MeUser.instance.email {
-                        self.channels.append(channel)
-//                    }
                 }
                 requester.readedChannels(channels: self.channels, error: nil)
                 return

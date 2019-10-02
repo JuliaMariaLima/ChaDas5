@@ -266,9 +266,6 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         }
     }
     
-    
-
-    
     func saved(reportRecord: CKRecord?, reportError: Error?) {
         
     }

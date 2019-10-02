@@ -86,3 +86,14 @@ extension Date {
     }
 }
 
+extension Message: Comparable {
+    
+    static func == (lhs: Message, rhs: Message) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    static func < (lhs: Message, rhs: Message) -> Bool {
+        return lhs.sentDate < rhs.sentDate
+    }
+    
+}
