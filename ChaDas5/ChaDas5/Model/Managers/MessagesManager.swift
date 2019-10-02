@@ -30,7 +30,7 @@ class MessagesManager {
     var messages = [Message]()
     
     func loadMessages(from channel: Channel, requester: MessagesProtocol) {
-        let predicate = NSPredicate(value: true)
+        let predicate = NSPredicate(format: "onChannel = %@", channel.id ?? "")
         let query = CKQuery(recordType: "Thread", predicate: predicate)
         self.messages = []
         
@@ -57,6 +57,7 @@ class MessagesManager {
     }
     
     func save(message:Message, completion: @escaping (CKRecord?, Error?) -> Void) {
+        
         self.database.save(message.asCKRecord, completionHandler: {(record, error) in
             if let error = error {
                 completion(nil, error)

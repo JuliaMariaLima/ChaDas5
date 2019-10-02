@@ -72,11 +72,11 @@ class StoryManager {
     }
     
     func retrieve(authorFrom storyID: String, completion: @escaping (CKRecord?, Error?) -> Void) {
-        let predicate = NSPredicate(value: true)
+        let predicate = NSPredicate(format: "email = %@", "")
         let query = CKQuery(recordType: "User", predicate: predicate)
         self.database.perform(query, inZoneWith: nil, completionHandler: {(results, error) in
             if error != nil {
-                print("erro no cloudkit \(#function)")
+                print("erro no cloudkit \(#function)", error.debugDescription)
                 completion(nil, error)
                 return
             }

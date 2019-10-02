@@ -21,7 +21,7 @@ class DaoPushNotifications: Codable {
         DaoPushNotifications.instance = self
     }
 
-    private func createSubscription(recordType: String, predicate: NSPredicate, option: CKQuerySubscription.Options) {
+    func createSubscription(recordType: String, predicate: NSPredicate, option: CKQuerySubscription.Options) {
         let subscription = CKQuerySubscription(recordType: recordType, predicate: predicate, options: option)
         let info = CKSubscription.NotificationInfo()
         info.shouldBadge = true

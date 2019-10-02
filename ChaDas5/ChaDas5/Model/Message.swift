@@ -11,6 +11,7 @@ import MessageKit
 
 
 struct Message: MessageType {
+    
 
     let id: String?
     var content: String
@@ -67,7 +68,6 @@ struct Message: MessageType {
         record.setObject(self.senderID as __CKRecordObjCValue, forKey: "senderID")
         record.setObject(self.senderDisplayName as __CKRecordObjCValue, forKey: "senderDisplayName")
         return record
-
     }
     
 }

@@ -53,12 +53,6 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         configureActivityView()
   }
 
-    func readedMessagesFromChannel(messages: [Message]) {
-        self.messagesCollectionView.reloadData()
-        activityView.stopAnimating()
-        messagesCollectionView.scrollToBottom()
-    }
-
     @objc func buttonAction(sender: UIButton!) {
         self.dismiss(animated: false, completion: nil)
     }
@@ -93,13 +87,16 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         let messageRep = Message(content: message, on: channelID)
         dao?.save(message: messageRep, completion: { (record, error) in
             if record != nil {
-                self.messagesCollectionView.scrollToBottom()
                 self.insertNewMessage(messageRep)
+            }
+            if error != nil {
+                debugPrint(error.debugDescription, #function)
             }
         })
   }
 
     private func insertNewMessage(_ message: Message) {
+        
         guard let messages = dao?.messages else {
             return
         }
@@ -110,12 +107,17 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
                 self.messagesCollectionView.scrollToBottom(animated: true)
             }
         }
-        self.messagesCollectionView.scrollToBottom(animated: true)
     }
     
     
     func readedMessagesFromChannel(messages: [Message]?, error: Error?) {
-        
+        if error == nil && messages != nil {
+            DispatchQueue.main.sync {
+                self.messagesCollectionView.reloadData()
+                activityView.stopAnimating()
+                messagesCollectionView.scrollToBottom()
+            }
+        }
     }
     
     
@@ -264,6 +266,8 @@ extension ChatViewController: MessagesLayoutDelegate {
     func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
         return CGSize(width: self.view.bounds.width, height: 120)
     }
+    
+    
 
 
 }
@@ -279,16 +283,22 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func numberOfItems(inSection section: Int, in messagesCollectionView: MessagesCollectionView) -> Int {
-        return 0
+        guard let dao = dao else {
+            fatalError()
+        }
+        return dao.messages.count
     }
 
 
     func currentSender() -> SenderType {
-        return Sender(id: MeUser.instance.email , displayName: MeUser.instance.name)
+        return Sender(id: "no_user_logged" , displayName: "no_user_logged")
     }
 
     func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return 0
+        guard let dao = dao else {
+            fatalError()
+        }
+        return dao.messages.count
     }
 
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {

@@ -40,6 +40,7 @@ class ChannelManager {
     }
     
     func getChannels(requester: ChannelManagerProtocol) {
+        self.channels = []
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Channel", predicate: predicate)
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
@@ -50,11 +51,11 @@ class ChannelManager {
             }
             if (results?.count)! > 0 {
                 for result in results! {
-                    Channel(from: result) { (channel, error) in
+                    _ = Channel(from: result) { (channel, error) in
                         if error == nil && channel != nil {
-                            var storyAuthor = ""
+//                            var storyAuthor = ""
                             DAOManager.instance?.ckStories.retrieve(authorFrom: channel!.fromStory, completion: { (record, error) in
-                                        storyAuthor = record?["author"] ?? ""
+//                                        storyAuthor = record?["author"] ?? ""
                                 })
         //                      if channel.ownerID == MeUser.instance.email || storyAuthor == MeUser.instance.email {
                                 self.channels.append(channel!)
