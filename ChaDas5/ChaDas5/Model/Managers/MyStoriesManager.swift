@@ -35,16 +35,19 @@ class MyStoriesManager {
             }
             if (results?.count)! > 0 {
                 for result in results! {
-                    Story(from: result) { (story, error) in
+                    _ = Story(from: result) { (story, error) in
                         if error != nil {
-                            debugPrint(error, #function)
+                            debugPrint(error!, #function)
                             return
                         }
                         guard let story = story else {
                             debugPrint("error creating story")
                             return
                         }
-                        self.activeStories.append(story)
+                        if story.status == "Active" {
+                            self.activeStories.append(story)
+                        }
+                        self.nonActiveStories.append(story)
                     }
                 }
                 requester.readedMyStories(stories: [results!, []])
@@ -74,9 +77,9 @@ class MyStoriesManager {
             }
             if (results?.count)! > 0 {
                 for result in results! {
-                    let nonAvaliable = false
+                    let nonAvaliable = "non_avaliable"
                     if result.recordID.recordName == storyID {
-                        result.setObject(nonAvaliable as CKRecordValue?, forKey: "status")
+                        result.setObject(nonAvaliable as CKRecordValue?, forKey: "isEnabled")
                         self.database.save(result, completionHandler: {(record,error) -> Void in
                             if let error = error {
                                 print(#function, error)
@@ -106,21 +109,25 @@ class MyStoriesManager {
             }
             if (results?.count)! > 0 {
                 for result in results! {
-                    guard let toSwitch = result["status"] as? Bool else {
-                        return
-                    }
                     if result.recordID.recordName == storyID {
-                        result.setObject(!toSwitch as CKRecordValue?, forKey: "isEnabled")
-                        self.database.save(result, completionHandler: {(record,error) -> Void in
-                            if let error = error {
-                                print(#function, error)
-                                completion(nil, error)
-                                return
+                        self.retrieve(statusFrom: result) { (currentStatus, error) in
+                            if currentStatus != nil && currentStatus == "active" {
+                                result.setObject("archived" as CKRecordValue?, forKey: "status")
                             }
-                            print("sucesso no upload")
-                            completion(record, nil)
-                            return
-                        })
+                            if currentStatus != nil && currentStatus == "archived" {
+                                result.setObject("active" as CKRecordValue?, forKey: "status")
+                            }
+                            self.database.save(result, completionHandler: {(record,error) -> Void in
+                                if let error = error {
+                                    print(#function, error)
+                                    completion(nil, error)
+                                    return
+                                }
+                                print("sucesso no upload")
+                                completion(record, nil)
+                                return
+                            })
+                        }
                     }
                 }
             }
@@ -128,6 +135,21 @@ class MyStoriesManager {
         })
     }
     
+    func retrieve(statusFrom story: CKRecord, completion: @escaping (String?, String?) -> Void) {
+        guard let status = story["status" ] as? String else {
+            completion(nil, NSError().description)
+            return
+        }
+        completion(status, nil)
+    }
+    
+    func retrieve(avaliablilityFrom story: CKRecord, completion: @escaping (String?, String?) -> Void) {
+        guard let status = story["isEnabled" ] as? String else {
+            completion(nil, NSError().description)
+            return
+        }
+        completion(status, nil)
+    }
     
 }
 

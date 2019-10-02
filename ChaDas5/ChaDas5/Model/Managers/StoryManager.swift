@@ -53,8 +53,6 @@ class StoryManager {
         // TODO: Get list of stories from database and cross with blocked list
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Story", predicate: predicate)
-
-        
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             if error != nil {
                 print(error!)
@@ -95,6 +93,15 @@ class StoryManager {
                 completion(nil, nil)
             }
         })
+    }
+    
+    func retrieve(contentFrom story: CKRecord, completion: @escaping ([String:String]?, Error?) -> Void) {
+        guard let content = story["content"] as? String,
+              let author = story["author"] as? String else {
+                completion(nil, NSError())
+                return
+        }
+        completion(["author":author, "content":content], nil)
     }
     
 }

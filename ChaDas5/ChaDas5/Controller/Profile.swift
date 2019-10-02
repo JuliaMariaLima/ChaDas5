@@ -261,8 +261,8 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     
     func readedMyStories(stories: [[CKRecord]]) {
         DispatchQueue.main.sync {
-            profileTableView.reloadData()
-            self.refreshControl.endRefreshing()
+            self.profileTableView.reloadData()
+            self.activityView.stopAnimating()
         }
     }
     

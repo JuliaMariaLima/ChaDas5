@@ -26,8 +26,8 @@ struct Message: MessageType {
 
     
     init(content: String, on channel: String) {
-        self.senderID = MeUser.instance.email
-        self.senderDisplayName = MeUser.instance.name
+        self.senderID = "no_user_logged"
+        self.senderDisplayName = "no_user_logged"
         self.content = content
         onChannel = channel
         sentDate = Date()

@@ -122,15 +122,14 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
     }
 
     override func viewDidLoad() {
-        guard let contentToView = self.selectedStory?["content"] as? String else {
-            debugPrint("error retrieving content of story", #function)
+        guard let story = selectedStory else {
             return
         }
-        guard let storyAuthor = self.selectedStory?.object(forKey: "author") as? String else {
-            debugPrint("error retrieving author of story", #function)
-            return
-        }
-        self.storyTextView.text = contentToView
+        DAOManager.instance?.ckStories.retrieve(contentFrom: story, completion: { (storyContent, error) in
+            if storyContent != nil {
+                self.storyTextView.text = storyContent!["content"]
+            }
+        })
 
 //        if storyAuthor == MeUser.instance.email {
 //            chatButton.isEnabled = false
