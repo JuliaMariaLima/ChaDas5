@@ -14,29 +14,24 @@ class SplashScreen: UIViewController {
     //outlets
     @IBOutlet weak var splashView: UIView!
     @IBOutlet weak var splashImage: UIImageView!
+    var window: UIWindow?
     
     override func viewDidLoad() {
-
+        
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        Auth.auth().addStateDidChangeListener { auth, user in
-//            UserManager.instance.setup()
-//            if UserManager.instance.currentUser != nil {
-                self.performSegue(withIdentifier: "profile", sender: self)
-//            } else {
-//                self.animate()
-//                Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(SplashScreen.passScreen)), userInfo: nil, repeats: false)
-//            }
-//        }
+       animate()
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(SplashScreen.passScreen)), userInfo: nil, repeats: false)
+        
     }
     
     func animate() {
         UIView.animate(withDuration: 1, animations: {
         
         self.splashView.frame.size.height = 434
-            self.splashImage.frame.origin.y = 117
+        self.splashImage.frame.origin.y = 117
         
         
         }, completion: nil)

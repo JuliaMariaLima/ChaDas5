@@ -34,6 +34,8 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
         guard channel.id != nil else {
             self.dismiss(animated: true)
             return

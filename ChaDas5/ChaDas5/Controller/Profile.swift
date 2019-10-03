@@ -18,6 +18,9 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     var currentSegment:Int = 0
     private let refreshControl = UIRefreshControl()
     var profileIsEditing =  false
+    
+    var userRequester: UserRequester!
+    var meUser: MeUser!
 
     let dao = DAOManager.instance?.ckMyStories
     
@@ -43,38 +46,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
 
 
 
-
-
     //actions
-    @IBAction func logoutButton(_ sender: Any) {
-
-        let alert = UIAlertController(title: "Deseja mesmo sair?", message: "", preferredStyle: .alert)
-
-
-        let ok = UIAlertAction(title: "Sim, desejo sair", style: .default, handler: { (action) -> Void in
-
-//            UserManager.instance.signOut(completion: { (error) in
-//                if error != nil {
-//                    debugPrint(#function, String(describing: error?.localizedDescription))
-//                } else {
-//                   self.performSegue(withIdentifier: "main", sender: self)
-//                }
-//            })
-//
-        })
-
-        let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
-            alert.dismiss(animated: true, completion: nil)
-        }
-
-        alert.addAction(ok)
-        alert.addAction(cancelar)
-        self.present(alert, animated: true, completion: nil)
-        alert.view.tintColor = UIColor.buttonOrange
-
-
-
-    }
 
 
     @IBAction func editButton(_ sender: Any) {
@@ -131,7 +103,15 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
 
         activityView.startAnimating()
 
-//        Auth.auth().currentUser?.reload()
+        do {
+           try MeUser.instance.load()
+           meUser = MeUser.instance
+       } catch {
+           print("nao carregou mesmo nao")
+       }
+       
+       userRequester = self
+
 
         dao?.loadMyStories(requester: self)
 
@@ -165,8 +145,15 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        nameLabel.text = AppSettings.displayName
-        profileImage.image = UIImage(named: AppSettings.displayName ?? "")
+
+        do {
+                  try MeUser.instance.load()
+                  meUser = MeUser.instance
+              } catch {
+                  print("nao carregou mesmo nao")
+              }
+        nameLabel.text = meUser.name
+        profileImage.image = UIImage(named: meUser.name )
         profileImage.contentMode =  UIView.ContentMode.scaleAspectFit
         if profileIsEditing {
 
@@ -271,4 +258,30 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     }
 
 
+}
+
+extension Profile: UserRequester {
+    // pra editar
+    func saved(userRecord: CKRecord?, userError: Error?) {
+        if userRecord != nil {
+            print("user novo salvou")
+            do{
+                try meUser.save()
+                print("salvouuuuuuuuuuuuu")
+            } catch {
+                let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                print("erro ao salvar local nova conta")
+            }
+        }
+    }
+    
+    func retrieved(user: User?, userError: Error?) {}
+    
+    func retrieved(userArray: [User]?, userError: Error?) {}
+    
+    func retrieved(meUser: MeUser?, meUserError: Error?) {}
+
+    func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
 }

@@ -153,12 +153,37 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
     func saved(reportRecord: CKRecord?, reportError: Error?) {
         
     }
-
+    
+    func goTo(identifier: String) {
+          DispatchQueue.main.async {
+              self.performSegue(withIdentifier: identifier, sender: self)
+          }
+      }
+    
     @objc private func refreshData(_ sender: Any) {
         DAOManager.instance?.ckStories.getStories(requester: self, blocks: [])
         self.refreshControl.endRefreshing()
 
     }
+    
+    
+    
+    @IBAction func configurationsButton(_ sender: Any) {
+        
+        let popOverVc = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(identifier: "popUpID") as! ConfigurationsPopUpViewController
+        
+        self.addChild(popOverVc)
+        popOverVc.view.frame = self.view.frame
+        self.view.addSubview(popOverVc.view)
+        popOverVc.didMove(toParent: self)
+        
+        
+        
+    }
+    
+    
+    
+    
     
     @IBAction func exitButton(_ sender: Any) {
         
@@ -166,14 +191,10 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
         
         
         let ok = UIAlertAction(title: "Sim, desejo sair", style: .default, handler: { (action) -> Void in
-            
-//            UserManager.instance.signOut(completion: { (error) in
-//                if error != nil {
-//                    debugPrint(#function, String(describing: error?.localizedDescription))
-//                } else {
-//                    self.performSegue(withIdentifier: "main", sender: self)
-//                }
-//            })
+                            
+                MeUser.instance.delete()
+                DaoPushNotifications.instance.delete()
+                self.goTo(identifier: "main")
             
         })
         

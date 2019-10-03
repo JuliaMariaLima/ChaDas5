@@ -61,6 +61,7 @@
 		9AFBE59E21B1D2D90050AE3E /* CustomSegmentedContrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFBE59D21B1D2D90050AE3E /* CustomSegmentedContrl.swift */; };
 		E23901B321CADD94006B3CF3 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */; };
 		E23901B521CADDA8006B3CF3 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23901B421CADDA8006B3CF3 /* SplashScreen.swift */; };
+		E2814B9823465B6800CB0CF9 /* ConfigurationsPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2814B9723465B6800CB0CF9 /* ConfigurationsPopUpViewController.swift */; };
 		E28284E32339719500137924 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284DE2339719500137924 /* ViewExtensions.swift */; };
 		E28284E42339719500137924 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284DF2339719500137924 /* NavigationBar.swift */; };
 		E28284E52339719500137924 /* UICollectionView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284E02339719500137924 /* UICollectionView+Additions.swift */; };
@@ -140,6 +141,7 @@
 		D71E81824C6FD27BB88A6028 /* Pods-ChaDas5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChaDas5.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5.debug.xcconfig"; sourceTree = "<group>"; };
 		E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		E23901B421CADDA8006B3CF3 /* SplashScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		E2814B9723465B6800CB0CF9 /* ConfigurationsPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationsPopUpViewController.swift; sourceTree = "<group>"; };
 		E28284DE2339719500137924 /* ViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		E28284DF2339719500137924 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		E28284E02339719500137924 /* UICollectionView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Additions.swift"; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				9A76AF8E21C04B80003ED02C /* ProfileTableViewCell.swift */,
 				9A1B11CC21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift */,
 				9AFBE59D21B1D2D90050AE3E /* CustomSegmentedContrl.swift */,
+				E2814B9723465B6800CB0CF9 /* ConfigurationsPopUpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				9A1B11EF21C43EFB006956B7 /* FeedTableViewCell.swift in Sources */,
 				158069902332E00D00C458FE /* Extensions.swift in Sources */,
 				155CF80821DE6E6800AFB04B /* Channel.swift in Sources */,
+				E2814B9823465B6800CB0CF9 /* ConfigurationsPopUpViewController.swift in Sources */,
 				155CF80E21DE89F400AFB04B /* Message.swift in Sources */,
 				9A4E543921B0069B0033FEBF /* Feed.swift in Sources */,
 				9A76AF8321C02873003ED02C /* MessagesTableViewCell.swift in Sources */,
@@ -704,7 +708,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 32H23754C8;
 				INFOPLIST_FILE = "$(SRCROOT)/ChaDas5/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -725,7 +729,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 32H23754C8;
 				INFOPLIST_FILE = "$(SRCROOT)/ChaDas5/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

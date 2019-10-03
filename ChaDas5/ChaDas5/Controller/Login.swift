@@ -67,8 +67,16 @@ class Login: UIViewController {
     
     
     @IBAction func loginButton(_ sender: Any) {
+        
+        setLoginButton(enabled: false)
+        activityView.center = loginButton.center
+        loginButton.setTitle("", for: .normal)
+        activityView.startAnimating()
+        
+         
         loginUserRequester = self as UserRequester
         DAOManager.instance?.ckUsers.get(meFromEmail: emailTextField.text!, requester: loginUserRequester)
+        MeUser.instance = self.meUser
         password = passwordTextField.text!
         loginButton.isEnabled = false
     }
@@ -160,6 +168,7 @@ class Login: UIViewController {
 
 
     func setLoginButton(enabled:Bool) {
+        activityView.center = loginButton.center
         if enabled {
             loginButton.alpha = 1.0
             loginButton.isEnabled = true
@@ -190,7 +199,13 @@ extension Login: UserRequester {
         if meUser != nil {
             if meUser!.password == password {
                 MeUser.instance = meUser
+                
+                do { try! MeUser.instance.save() }
+
                 print("sucesso login")
+                DispatchQueue.main.sync {
+                    activityView.stopAnimating()
+                }
                 goTo(identifier: "Feed")
                 
             } else {
@@ -205,15 +220,11 @@ extension Login: UserRequester {
             }
         } else if meUserError != nil {
             // nao tem cadastro
-            MeUser.instance = self.meUser
-            do { try MeUser.instance.save() }
-                
-            catch {
+
                 let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-                debugPrint("deu erro salvando infos do facebook")
-            }
+
         }
     }
     

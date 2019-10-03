@@ -62,6 +62,9 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
 
     func created(channel: Channel) {
         let vc = ChatViewController(channel: channel)
+
+        vc.modalPresentationStyle = .fullScreen
+      
         self.present(vc, animated: true, completion: nil)
     }
 

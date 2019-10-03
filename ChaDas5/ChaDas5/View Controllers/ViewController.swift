@@ -14,14 +14,14 @@ class ViewController: UIViewController {
     //outlets
     @IBOutlet weak var createNewAccountButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
+    var window: UIWindow?
+
     
     override func viewDidLoad() {
-    
-      
+   
         super.viewDidLoad()
         
-        
-//
+
         // Do any additional setup after loading the view, typically from a nib.
         
 //        Auth.auth().signInAnonymously(completion: nil)

@@ -40,7 +40,7 @@ class UserManager {
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             // Erro ao executar query no CloudKit.
             if error != nil{
-                print("erro no cloudkit")
+                print("erro no cloudkit", error.debugDescription)
             } else {
                 // Não há registro com o nome fornecido já salvo no CloudKit.
                 if (results!.count == 0) {
@@ -71,7 +71,7 @@ class UserManager {
     
     func isSave(meUser: MeUser, completionHandler: @escaping ((Bool) -> Void)) {
         let predicate = NSPredicate(format: "email = %@", meUser.email)
-        let query = CKQuery(recordType: "User", predicate: predicate)
+        let query = CKQuery(recordType: "Users", predicate: predicate)
         
         self.database.perform(query, inZoneWith: nil, completionHandler: {(results, error) in
             if let _ = error {
@@ -167,7 +167,7 @@ class UserManager {
     
     func block(_ user: User, requester: UserRequester) {
         let predicateMe = NSPredicate(format: "email = %@", MeUser.instance.email)
-        let queryMe = CKQuery(recordType: "User", predicate: predicateMe)
+        let queryMe = CKQuery(recordType: "Users", predicate: predicateMe)
         
         self.database.perform(queryMe, inZoneWith: nil) {(records, error) in
             if let error = error {
@@ -195,7 +195,7 @@ class UserManager {
     
     func get(blocksFrom me: MeUser, requester: UserRequester) {
         let predicate = NSPredicate(format: "email = %@", me.email)
-        let query = CKQuery(recordType: "User", predicate: predicate)
+        let query = CKQuery(recordType: "Users", predicate: predicate)
         
         self.database.perform(query, inZoneWith: nil) {(records, error) in
             if let error = error {
