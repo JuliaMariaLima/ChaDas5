@@ -33,7 +33,6 @@ class MessagesManager {
         let predicate = NSPredicate(format: "onChannel = %@", channel.id ?? "")
         let query = CKQuery(recordType: "Thread", predicate: predicate)
         self.messages = []
-        
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             if error != nil {
                 print(error!)

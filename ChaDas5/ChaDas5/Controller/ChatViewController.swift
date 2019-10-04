@@ -107,6 +107,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
                 self.messagesCollectionView.scrollToBottom(animated: true)
             }
         }
+        dao?.loadMessages(from: channel, requester: self)
     }
     
     
