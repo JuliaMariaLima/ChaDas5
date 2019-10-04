@@ -38,6 +38,18 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         createNewAccountButton.setTitle("", for: .normal)
         activityView.startAnimating()
         
+        if passwordTextField.text != passwordConfirmationTextField.text{
+            let alert = UIAlertController(title: "", message: "Erro na Confirmação de Senha", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            passwordTextField.text = ""
+            alert.view.tintColor = UIColor.buttonOrange
+            passwordConfirmationTextField.text = ""
+            setcreateNewAccountButton(enabled: true)
+            createNewAccountButton.setTitle("Criar Conta", for: .normal)
+            activityView.stopAnimating()
+            
+        }
     
         if checkPassword(password1: passwordTextField.text!, password2: passwordConfirmationTextField.text!) {
         
@@ -47,11 +59,23 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         } else {
             let alert = UIAlertController(title: "", message: "Reveja a sua senha, ela tem que ter no mínimo 8 caracteres", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            alert.view.tintColor = UIColor.buttonOrange
+            
             self.present(alert, animated: true, completion: nil)
+            passwordTextField.text = ""
+            passwordConfirmationTextField.text = ""
+            setcreateNewAccountButton(enabled: true)
+            createNewAccountButton.setTitle("Criar Conta", for: .normal)
+            activityView.stopAnimating()
+            
         }
 
 
     }
+    
+    
+    
+    
 
     @IBAction func dismissButton(_ sender: Any) {
         dismiss()
@@ -259,6 +283,7 @@ extension CreateNewAccount: UserRequester {
             } catch {
                 let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                alert.view.tintColor = UIColor.buttonOrange
                 self.present(alert, animated: true, completion: nil)
                 print("erro ao salvar local nova conta")
                 self.setcreateNewAccountButton(enabled: true)
