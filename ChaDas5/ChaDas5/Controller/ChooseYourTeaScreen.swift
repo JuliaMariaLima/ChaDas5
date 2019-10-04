@@ -23,8 +23,8 @@ class ChooseYourTeaScreen: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     var selected:ChooseYourTeaCollectionViewCell?
-    
-    
+    var chooseYourTeaUserResquester: UserRequester!
+    var meUser: MeUser!
     var index: IndexPath?
     
     var pickYourTeaCell: ChooseYourTeaCollectionViewCell?
@@ -79,26 +79,58 @@ class ChooseYourTeaScreen: UIViewController, UICollectionViewDelegate, UICollect
     
     @IBAction func salvar(_ sender: Any) {
         
-//    
-//        guard let yourTea = self.selected!.chooseYourTeaLabel.text else { return }
-////        guard let uid = Auth.auth().currentUser?.uid else { return }
-//        
-//        db.collection("users").document("\(uid)").setData([
-//            "username": yourTea
-//        ]) { err in
-//            if let err = err {
-//                debugPrint("Error writing document: \(err)")
-//            } else {
-//                debugPrint("Document successfully written!")
-//                self.db.collection("users").document("\(uid)").collection("myChannels").document("first").setData(["channelID" : ""])
-//                Auth.auth().currentUser?.reload()
-//                AppSettings.displayName = yourTea
-//                self.dismiss()
-//            }
-//        }
-//        
-//        
+       chooseYourTeaUserResquester = self
+       guard let yourTea = self.selected!.chooseYourTeaLabel.text else { return }
+      
+       meUser = MeUser(name: yourTea, email: MeUser.instance.email, password: MeUser.instance.password, blocked: MeUser.instance.blocked)
+       DAOManager.instance?.ckUsers.edit(meUser: meUser, requester: chooseYourTeaUserResquester)
+       MeUser.instance = meUser
+       do {
+        try MeUser.instance.save()
+        try MeUser.instance.load()
+       }
+       catch {
+        print("Erro ao Salvar")
+        let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
+        let ok = UIAlertAction(title: "Ok", style: .default, handler: { (action) -> Void in
+                            
+            self.dismiss()
+            
+        })
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+       }
+
+        self.dismiss()
+       
     }
     
-    
 }
+
+
+extension ChooseYourTeaScreen: UserRequester {
+    // pra editar
+    func saved(userRecord: CKRecord?, userError: Error?) {
+        if userRecord != nil {
+            print("user novo salvou")
+            do{
+                try meUser.save()
+                print("salvouuuuuuuuuuuuu")
+            } catch {
+                let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                print("erro ao salvar local nova conta")
+            }
+        }
+    }
+    
+    func retrieved(user: User?, userError: Error?) {}
+    
+    func retrieved(userArray: [User]?, userError: Error?) {}
+    
+    func retrieved(meUser: MeUser?, meUserError: Error?) {}
+
+    func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
+}
+

@@ -121,6 +121,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
         selectedCell.contentView.backgroundColor = UIColor.clear
         guard let channel = dao?.channels[indexPath.row] else { return }
         let vc = ChatViewController(channel: channel)
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
 
     }

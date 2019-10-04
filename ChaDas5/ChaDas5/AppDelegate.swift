@@ -17,7 +17,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        
+        do {
+            try MeUser.instance.load()
+            print("vai p tela do mapa")
+            print(MeUser.instance.email)
+            // first responder default
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            
+            let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+            
+            let initialViewController = storyboard.instantiateInitialViewController()
+            
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        } catch {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            
+            let storyboard = UIStoryboard(name: "SplashScreen", bundle: nil)
+            
+            let initialViewController = storyboard.instantiateInitialViewController()
+            self.window?.rootViewController = initialViewController
+                  self.window?.makeKeyAndVisible()
+            
+            print("Se cadastra, porra!")
+            // first responder login
+        }
         
         let notificationManager = NotificationsManager()
         notificationManager.registerForLocalNotifications()

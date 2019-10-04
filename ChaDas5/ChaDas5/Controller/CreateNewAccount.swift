@@ -33,9 +33,17 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
     @IBAction func createNewButton(_ sender: Any) {
         
         newAccountUserResquester = self
+        setcreateNewAccountButton(enabled: false)
+        activityView.center = self.createNewAccountButton.center
+        createNewAccountButton.setTitle("", for: .normal)
+        activityView.startAnimating()
         
+    
         if checkPassword(password1: passwordTextField.text!, password2: passwordConfirmationTextField.text!) {
-            meUser = MeUser(name: selected!.chooseYourTeaLabel.text!, email: emailTextField.text!, password: passwordTextField.text!)
+        
+            print("Entrou")
+            meUser = MeUser(name: selected!.chooseYourTeaLabel.text!, email: emailTextField.text!, password: passwordTextField.text!, blocked: [])
+            DAOManager.instance?.ckUsers.save(newUser: meUser, requester: newAccountUserResquester)
         } else {
             let alert = UIAlertController(title: "", message: "Reveja a sua senha, ela tem que ter no mínimo 8 caracteres", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -54,7 +62,10 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
 
         passwordTextField.isSecureTextEntry = true
         passwordConfirmationTextField.isSecureTextEntry = true
-
+        emailTextField.textContentType = .emailAddress
+        passwordTextField.textContentType = .password
+        passwordConfirmationTextField.textContentType = .password
+        
         //collection view settings
         pickYourTeaCollectionView.allowsMultipleSelection = false
         pickYourTeaCollectionView.dataSource = self
@@ -214,6 +225,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
      */
 
     func setcreateNewAccountButton(enabled:Bool) {
+        activityView.center = self.createNewAccountButton.center
         if enabled {
             createNewAccountButton.alpha = 1.0
             createNewAccountButton.isEnabled = true
@@ -241,6 +253,7 @@ extension CreateNewAccount: UserRequester {
         if userRecord != nil {
             do{
                 try meUser.save()
+                activityView.stopAnimating()
                 goTo(identifier: "Feed")
                 print("salvouuuuuuuuuuuuu")
             } catch {
@@ -248,6 +261,9 @@ extension CreateNewAccount: UserRequester {
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 print("erro ao salvar local nova conta")
+                self.setcreateNewAccountButton(enabled: true)
+                self.createNewAccountButton.setTitle("Criar Conta", for: .normal)
+                self.activityView.stopAnimating()
             }
         }
     }

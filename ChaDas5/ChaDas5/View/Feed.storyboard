@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8MD-QL-NjA">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8MD-QL-NjA">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,9 +16,9 @@
         <!--Feed-->
         <scene sceneID="w4j-sk-JFT">
             <objects>
-                <viewController id="8MD-QL-NjA" customClass="Feed" customModule="ChaDas5" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="8MD-QL-NjA" customClass="Feed" customModule="ChaDas5" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jx1-3x-tf0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rsd-4Z-ZH2">
@@ -33,7 +32,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9yW-A5-ssU" id="cfV-1V-JOj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="119.66666666666667"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -43,7 +42,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAk-hd-CQt">
-                                <rect key="frame" x="305" y="654" width="50" height="50"/>
+                                <rect key="frame" x="305" y="543" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.92549019610000005" green="0.45882352939999999" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="3uI-Fz-iyU"/>
@@ -95,6 +94,9 @@
                                         <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="configurationsButton:" destination="8MD-QL-NjA" eventType="touchUpInside" id="f9f-jV-4Lv"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zla-eB-A3f">
                                 <rect key="frame" x="31" y="34" width="32" height="32"/>
@@ -170,11 +172,95 @@
             </objects>
             <point key="canvasLocation" x="752" y="115"/>
         </scene>
+        <!--Configurations Pop Up View Controller-->
+        <scene sceneID="ogc-ab-pOy">
+            <objects>
+                <viewController storyboardIdentifier="popUpID" id="678-jU-ePf" customClass="ConfigurationsPopUpViewController" customModule="ChaDas5" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="34M-oC-a4U">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Rs-0E-PB1">
+                                <rect key="frame" x="29" y="224.5" width="317" height="180"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hun-Tp-NHo">
+                                        <rect key="frame" x="16.5" y="18" width="39" height="39"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="39" id="U64-9v-6WE"/>
+                                            <constraint firstAttribute="width" constant="39" id="hGS-0A-3Tb"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="dismissIcon"/>
+                                        <connections>
+                                            <action selector="closePopUp:" destination="678-jU-ePf" eventType="touchUpInside" id="8dk-X6-Y5F"/>
+                                        </connections>
+                                    </button>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IPE-pB-Nfl">
+                                        <rect key="frame" x="135" y="120" width="49" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="47" id="eMv-bt-X9v"/>
+                                            <constraint firstAttribute="height" constant="31" id="sgV-Ye-aO2"/>
+                                        </constraints>
+                                        <color key="onTintColor" red="0.94509803920000002" green="0.60784313729999995" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="notificationsSwitcher:" destination="678-jU-ePf" eventType="valueChanged" id="04q-hX-Ke5"/>
+                                        </connections>
+                                    </switch>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notificações" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnU-dM-pPL">
+                                        <rect key="frame" x="108" y="79" width="126" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="126" id="rfs-1H-WlA"/>
+                                            <constraint firstAttribute="height" constant="21" id="wPQ-SN-R7j"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notificationsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="SdP-Ss-xvy">
+                                        <rect key="frame" x="77" y="-77.5" width="18" height="331"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="18" id="kZD-n6-goR"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.97647058819999999" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="IPE-pB-Nfl" secondAttribute="bottom" constant="29" id="37R-dZ-ZLs"/>
+                                    <constraint firstItem="IPE-pB-Nfl" firstAttribute="leading" secondItem="8Rs-0E-PB1" secondAttribute="leading" constant="135" id="IzQ-BF-UvW"/>
+                                    <constraint firstAttribute="height" constant="180" id="K5A-te-bi6"/>
+                                    <constraint firstItem="SdP-Ss-xvy" firstAttribute="centerY" secondItem="8Rs-0E-PB1" secondAttribute="centerY" constant="-2" id="RCk-TY-ZvS"/>
+                                    <constraint firstAttribute="width" constant="317" id="SzL-CG-1P6"/>
+                                    <constraint firstItem="KnU-dM-pPL" firstAttribute="leading" secondItem="SdP-Ss-xvy" secondAttribute="trailing" constant="13" id="ZRr-Le-7jL"/>
+                                    <constraint firstItem="hun-Tp-NHo" firstAttribute="leading" secondItem="8Rs-0E-PB1" secondAttribute="leading" constant="16.5" id="fR5-cP-CfE"/>
+                                    <constraint firstAttribute="trailing" secondItem="hun-Tp-NHo" secondAttribute="trailing" constant="261.5" id="lfs-gC-LdG"/>
+                                    <constraint firstItem="hun-Tp-NHo" firstAttribute="top" secondItem="8Rs-0E-PB1" secondAttribute="top" constant="18" id="mXD-rE-poc"/>
+                                    <constraint firstItem="SdP-Ss-xvy" firstAttribute="leading" secondItem="8Rs-0E-PB1" secondAttribute="leading" constant="77" id="ucH-Sy-9HA"/>
+                                    <constraint firstItem="IPE-pB-Nfl" firstAttribute="top" secondItem="KnU-dM-pPL" secondAttribute="bottom" constant="20" id="uvg-rc-V4b"/>
+                                    <constraint firstAttribute="trailing" secondItem="IPE-pB-Nfl" secondAttribute="trailing" constant="135" id="xf8-52-Moj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="8Rs-0E-PB1" firstAttribute="centerY" secondItem="34M-oC-a4U" secondAttribute="centerY" constant="-19" id="rog-hL-kLH"/>
+                            <constraint firstItem="8Rs-0E-PB1" firstAttribute="centerX" secondItem="34M-oC-a4U" secondAttribute="centerX" id="vIb-Ep-h9D"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="H3H-uH-ZbV"/>
+                    </view>
+                    <connections>
+                        <outlet property="popUpView" destination="8Rs-0E-PB1" id="IcS-6X-ryq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e89-Pv-4BY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1308" y="108.39580209895054"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="addIcon" width="640.33331298828125" height="640.33331298828125"/>
-        <image name="configurationsIcon" width="640.33331298828125" height="640.33331298828125"/>
+        <image name="addIcon" width="640.5" height="640.5"/>
+        <image name="configurationsIcon" width="640.5" height="640.5"/>
+        <image name="dismissIcon" width="640.5" height="640.5"/>
         <image name="feedIcon" width="40" height="40"/>
-        <image name="logout" width="640.33331298828125" height="640.33331298828125"/>
+        <image name="logout" width="640.5" height="640.5"/>
+        <image name="notificationsIcon" width="288.5" height="331"/>
     </resources>
 </document>
