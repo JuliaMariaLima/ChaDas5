@@ -274,6 +274,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         DispatchQueue.main.sync {
             self.profileTableView.reloadData()
             self.activityView.stopAnimating()
+            label()
             var storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
              if storiesCount == 0 || storiesCount == 1{
                  storiesAndChannelsLabel.text = "\(storiesCount) Relato"
