@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wVE-nP-jju">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -182,6 +181,7 @@
                         <outlet property="pickYouTeaButton" destination="ROh-BM-ggp" id="MAI-GN-Qbv"/>
                         <outlet property="profileImage" destination="LOX-oQ-RBh" id="n1y-wT-qoc"/>
                         <outlet property="profileTableView" destination="S3a-Mc-Id0" id="Uxp-QP-TXR"/>
+                        <outlet property="storiesAndChannelsLabel" destination="poq-io-vgS" id="iEk-rL-Kw6"/>
                         <segue destination="E6a-j2-m7h" kind="show" identifier="toChooseYourTea" id="G2q-pK-9Lc"/>
                         <segue destination="vqG-2j-0aZ" kind="show" identifier="showStory" id="z6h-lP-Mu1"/>
                     </connections>

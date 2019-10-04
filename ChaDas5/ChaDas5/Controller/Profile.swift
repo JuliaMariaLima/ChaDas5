@@ -18,12 +18,13 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     var currentSegment:Int = 0
     private let refreshControl = UIRefreshControl()
     var profileIsEditing =  false
-    
+
     var userRequester: UserRequester!
     var meUser: MeUser!
 
     let dao = DAOManager.instance?.ckMyStories
-    
+    let dao2 = DAOManager.instance?.ckChannels
+
     //outlets
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var profileImage: UIImageView!
@@ -33,6 +34,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     @IBOutlet weak var pickYouTeaButton: UIButton!
     @IBOutlet weak var imageCircle: UIButton!
 
+    @IBOutlet weak var storiesAndChannelsLabel: UILabel!
     var activityView:UIActivityIndicatorView!
 
 
@@ -106,10 +108,18 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         do {
            try MeUser.instance.load()
            meUser = MeUser.instance
+           var storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
+            if storiesCount == 0 || storiesCount == 1{
+                storiesAndChannelsLabel.text = "\(storiesCount) Relato"
+            }else{
+
+                storiesAndChannelsLabel.text = "\(storiesCount) Relatos"
+            }
+
        } catch {
            print("nao carregou mesmo nao")
        }
-       
+
        userRequester = self
 
 
@@ -152,7 +162,16 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
               } catch {
                   print("nao carregou mesmo nao")
               }
+
+
         nameLabel.text = meUser.name
+        var storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
+         if storiesCount == 0 || storiesCount == 1{
+             storiesAndChannelsLabel.text = "\(storiesCount) Relato"
+         }else{
+
+             storiesAndChannelsLabel.text = "\(storiesCount) Relatos"
+         }
         profileImage.image = UIImage(named: meUser.name )
         profileImage.contentMode =  UIView.ContentMode.scaleAspectFit
         if profileIsEditing {
@@ -235,25 +254,38 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     @objc private func refreshData(_ sender: Any) {
         dao?.loadMyStories(requester: self)
         profileTableView.reloadData()
+        var storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
+         if storiesCount == 0 || storiesCount == 1{
+             storiesAndChannelsLabel.text = "\(storiesCount) Relato"
+         }else{
+
+             storiesAndChannelsLabel.text = "\(storiesCount) Relatos"
+         }
         self.refreshControl.endRefreshing()
         label()
 
     }
-    
+
     func readedStories(stories: [CKRecord]?, error: Error?) {
-        
+
     }
-    
+
     func readedMyStories(stories: [[CKRecord]]) {
         DispatchQueue.main.sync {
             self.profileTableView.reloadData()
             self.activityView.stopAnimating()
-            label()
+            var storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
+             if storiesCount == 0 || storiesCount == 1{
+                 storiesAndChannelsLabel.text = "\(storiesCount) Relato"
+             }else{
+
+                 storiesAndChannelsLabel.text = "\(storiesCount) Relatos"
+             }
         }
     }
-    
+
     func saved(reportRecord: CKRecord?, reportError: Error?) {
-        
+
     }
 
 
@@ -275,11 +307,11 @@ extension Profile: UserRequester {
             }
         }
     }
-    
+
     func retrieved(user: User?, userError: Error?) {}
-    
+
     func retrieved(userArray: [User]?, userError: Error?) {}
-    
+
     func retrieved(meUser: MeUser?, meUserError: Error?) {}
 
     func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
