@@ -23,41 +23,6 @@ class Login: UIViewController {
     var meUser: MeUser!
 
 
-//    @IBAction func forgotPassword(_ sender: Any) {
-//
-//        let forgotPasswordAlert = UIAlertController(title: "Esqueceu sua senha?", message: "Digite seu e-mail de login abaixo:", preferredStyle: .alert)
-//        forgotPasswordAlert.addTextField { (textField) in
-//            textField.placeholder = "Digite seu e-mail"
-//        }
-//        forgotPasswordAlert.view.tintColor = UIColor.buttonOrange
-//        forgotPasswordAlert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: nil))
-//        forgotPasswordAlert.addAction(UIAlertAction(title: "Redefinir senha", style: .default, handler: { (action) in
-//            let resetEmail = forgotPasswordAlert.textFields?.first?.text
-//
-//            Auth.auth().sendPasswordReset(withEmail: resetEmail!, completion: { (error) in
-//                //Make sure you execute the following code on the main queue
-//                DispatchQueue.main.async {
-//                    //Use "if let" to access the error, if it is non-nil
-//                    if let error = error {
-//                        debugPrint("error: \(error.localizedDescription)")
-//                        let resetFailedAlert = UIAlertController(title: "Redefinir senha falhou", message: "Não existe nenhuma conta com este e-mail", preferredStyle: .alert)
-//                        resetFailedAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//                        resetFailedAlert.view.tintColor = UIColor.buttonPink
-//                        self.present(resetFailedAlert, animated: true, completion: nil)
-//                    } else {
-//                        let resetEmailSentAlert = UIAlertController(title: "E-mail enviado com sucesso!", message: "Cheque seu e-mail para redefinir sua senha", preferredStyle: .alert)
-//                        resetEmailSentAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//                        resetEmailSentAlert.view.tintColor = UIColor.buttonPink
-//                        self.present(resetEmailSentAlert, animated: true, completion: nil)
-//                    }
-//                }
-//            })
-//        }))
-//        //PRESENT ALERT
-//        self.present(forgotPasswordAlert, animated: true, completion: nil)
-//
-//    }
-
     var activityView:UIActivityIndicatorView!
 
     //action
@@ -104,7 +69,6 @@ class Login: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         emailTextField.becomeFirstResponder()
-        //NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillAppear), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 
     }
 
@@ -197,6 +161,7 @@ extension Login: UserRequester {
     
     func retrieved(meUser: MeUser?, meUserError: Error?) {
         if meUser != nil {
+            print("UHUL")
             if meUser!.password == password {
                 MeUser.instance = meUser
                 
@@ -213,6 +178,11 @@ extension Login: UserRequester {
                 let alert = UIAlertController(title: "", message: "Sua senha ou email estão errados.", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                alert.view.tintColor = UIColor.buttonOrange
+                setLoginButton(enabled: true)
+                loginButton.setTitle("Criar Conta", for: .normal)
+                activityView.stopAnimating()
+                 
                 
                 DispatchQueue.main.sync {
                     loginButton.isEnabled = true
@@ -223,6 +193,7 @@ extension Login: UserRequester {
 
                 let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                alert.view.tintColor = UIColor.buttonOrange
                 self.present(alert, animated: true, completion: nil)
 
         }
