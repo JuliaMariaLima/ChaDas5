@@ -17,9 +17,9 @@ class Story : Codable {
     var status:String
     var isEnabled:Bool = true
 
-    init(conteudo:String, autor:String) {
+    init(conteudo:String) {
         self.content = conteudo
-        self.author = autor
+        self.author = MeUser.instance.email
         self.date = Date().keyString
         self.status = "active"
         DAOManager.instance?.ckStories.save(story: self, completion: { (record, error) in

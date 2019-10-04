@@ -32,12 +32,7 @@ class StoryManager {
     }
     
     func save(story:Story, completion: @escaping (CKRecord?, Error?) -> Void) {
-        let record = CKRecord(recordType: "Story")
-        record.setObject(story.content as __CKRecordObjCValue?, forKey: "content")
-        record.setObject(story.author as __CKRecordObjCValue?, forKey: "author")
-        record.setObject(story.date as __CKRecordObjCValue?, forKey: "date")
-        record.setObject(story.status as __CKRecordObjCValue?, forKey: "status")
-        self.database.save(record, completionHandler: {(record, error) in
+        self.database.save(story.asCKRecord, completionHandler: {(record, error) in
             if let error = error {
                 completion(nil, error)
             }
@@ -48,7 +43,7 @@ class StoryManager {
         })
     }
     
-    func getStories(requester:StoryManagerProtocol, blocks:[String]) {
+    func preLoadStories(requester:StoryManagerProtocol) {
         self.stories = []
         // TODO: Get list of stories from database and cross with blocked list
         let predicate = NSPredicate(value: true)
@@ -71,6 +66,36 @@ class StoryManager {
         })
     }
     
+    func getStories(requester:StoryManagerProtocol, blocks:[String]) {
+        self.stories = []
+        // TODO: Get list of stories from database and cross with blocked list
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Story", predicate: predicate)
+        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            if error != nil {
+                print(error!)
+                requester.readedStories(stories: nil, error: error)
+                return
+            }
+            if (results?.count)! > 0 {
+                
+                for result in results! {
+                    self.retrieve(authorFrom: result) { (author, error) in
+                        if author != nil {
+                            if !MeUser.instance.blocked.contains(author!) {
+                                self.stories.append(result)
+                            }
+                        }
+                    }
+
+                }
+                requester.readedStories(stories: results, error: nil)
+                return
+            }
+            requester.readedStories(stories: nil, error: nil)
+        })
+    }
+    
     func retrieve(authorFrom storyID: String, completion: @escaping (CKRecord?, Error?) -> Void) {
         let predicate = NSPredicate(format: "email = %@", "")
         let query = CKQuery(recordType: "User", predicate: predicate)
@@ -81,12 +106,11 @@ class StoryManager {
                 return
             }
             if (results?.count)! > 0 {
-            
-            for result in results! {
-                if result.recordID.recordName == storyID {
-                    completion(result, nil)
+                for result in results! {
+                    if result.recordID.recordName == storyID {
+                        completion(result, nil)
+                    }
                 }
-            }
             }
             else {
                 // nao existe
@@ -102,6 +126,15 @@ class StoryManager {
                 return
         }
         completion(["author":author, "content":content], nil)
+    }
+    
+    func retrieve(authorFrom story: CKRecord, completion: @escaping (String?, String?) -> Void) {
+         guard let author = story["author"] as? String else {
+            completion(nil, NSError().description)
+            return
+        }
+        completion(author, nil)
+        return
     }
     
 }

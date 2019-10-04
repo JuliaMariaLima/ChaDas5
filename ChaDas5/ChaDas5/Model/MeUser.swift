@@ -27,7 +27,7 @@ class MeUser: Codable {
         self.name = name
         self.email = email
         self.blocked = blocked
-        
+
         // Quase um singleton, se criar uma nova instância, atualiza o .instance
         MeUser.instance = self
     }

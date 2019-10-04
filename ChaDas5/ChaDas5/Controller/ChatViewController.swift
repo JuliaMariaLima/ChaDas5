@@ -47,7 +47,9 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
-        messagesCollectionView.scrollToBottom()
+        if self.messagesCollectionView.collectionViewLayout.collectionViewContentSize.height > 0 {
+            self.messagesCollectionView.scrollToBottom()
+        }
         scrollsToBottomOnKeyboardBeginsEditing = true
         maintainPositionOnKeyboardFrameChanged = true
         configureNavigationBar()
@@ -106,7 +108,9 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
         if shouldScrollToBottom {
             DispatchQueue.main.async {
-                self.messagesCollectionView.scrollToBottom(animated: true)
+                if self.messagesCollectionView.collectionViewLayout.collectionViewContentSize.height > 0 {
+                    self.messagesCollectionView.scrollToBottom(animated: true)
+                }
             }
         }
         dao?.loadMessages(from: channel, requester: self)
@@ -118,7 +122,9 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
             DispatchQueue.main.sync {
                 self.messagesCollectionView.reloadData()
                 activityView.stopAnimating()
-                messagesCollectionView.scrollToBottom()
+                if self.messagesCollectionView.collectionViewLayout.collectionViewContentSize.height > 0 {
+                    self.messagesCollectionView.scrollToBottom(animated: true)
+                }
             }
         }
     }
