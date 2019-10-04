@@ -108,7 +108,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         do {
            try MeUser.instance.load()
            meUser = MeUser.instance
-           var storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
+           let storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
             if storiesCount == 0 || storiesCount == 1{
                 storiesAndChannelsLabel.text = "\(storiesCount) Relato"
             }else{
@@ -165,7 +165,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
 
 
         nameLabel.text = meUser.name
-        var storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
+        let storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
          if storiesCount == 0 || storiesCount == 1{
              storiesAndChannelsLabel.text = "\(storiesCount) Relato"
          }else{
@@ -254,7 +254,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     @objc private func refreshData(_ sender: Any) {
         dao?.loadMyStories(requester: self)
         profileTableView.reloadData()
-        var storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
+        let storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
          if storiesCount == 0 || storiesCount == 1{
              storiesAndChannelsLabel.text = "\(storiesCount) Relato"
          }else{
@@ -275,7 +275,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
             self.profileTableView.reloadData()
             self.activityView.stopAnimating()
             label()
-            var storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
+            let storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
              if storiesCount == 0 || storiesCount == 1{
                  storiesAndChannelsLabel.text = "\(storiesCount) Relato"
              }else{
