@@ -80,7 +80,7 @@ class StoryManager {
             if (results?.count)! > 0 {
                 
                 for result in results! {
-                    self.retrieve(authorFrom: result) { (author, error) in
+                    DAOManager.instance?.ckUsers.retrieve(authorFrom: result) { (author, error) in
                         if author != nil {
                             if !MeUser.instance.blocked.contains(author!) {
                                 self.stories.append(result)
@@ -126,15 +126,6 @@ class StoryManager {
                 return
         }
         completion(["author":author, "content":content], nil)
-    }
-    
-    func retrieve(authorFrom story: CKRecord, completion: @escaping (String?, String?) -> Void) {
-         guard let author = story["author"] as? String else {
-            completion(nil, NSError().description)
-            return
-        }
-        completion(author, nil)
-        return
     }
     
 }

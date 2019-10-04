@@ -44,10 +44,13 @@ class MyStoriesManager {
                             debugPrint("error creating story")
                             return
                         }
-                        if story.status == "Active" {
-                            self.activeStories.append(story)
+                        if story.author == MeUser.instance.email {
+                            if story.status == "active" {
+                                self.activeStories.append(story)
+                            } else {
+                                self.nonActiveStories.append(story)
+                            }
                         }
-                        self.nonActiveStories.append(story)
                     }
                 }
                 requester.readedMyStories(stories: [results!, []])

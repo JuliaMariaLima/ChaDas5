@@ -128,17 +128,20 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
         guard let story = selectedStory else {
             return
         }
+        guard let author = story["author"] as? String else {
+            return
+        }
         DAOManager.instance?.ckStories.retrieve(contentFrom: story, completion: { (storyContent, error) in
             if storyContent != nil {
                 self.storyTextView.text = storyContent!["content"]
             }
         })
-
-//        if storyAuthor == MeUser.instance.email {
-//            chatButton.isEnabled = false
-//        } else {
-//            archiveButton.isEnabled = false
-//        }
+        
+        if author == MeUser.instance.email {
+            chatButton.isEnabled = false
+        } else {
+            archiveButton.isEnabled = false
+        }
         storyTextView.isEditable = false
     }
 }

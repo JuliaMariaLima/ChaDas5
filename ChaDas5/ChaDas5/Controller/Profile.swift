@@ -169,11 +169,8 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     func label() {
         let labelsText = ["Você não possui relatos passados ainda.", "Você não possui relatos atuais ainda."]
         self.noStoryLabel.text = labelsText[self.currentSegment]
-
         if currentSegment == 0 && dao?.nonActiveStories.count == 0 {
-
             self.noStoryLabel.alpha = 1
-
         } else if currentSegment == 1  && dao?.activeStories.count == 0 {
             self.noStoryLabel.alpha = 1
         }
@@ -239,6 +236,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         dao?.loadMyStories(requester: self)
         profileTableView.reloadData()
         self.refreshControl.endRefreshing()
+        label()
 
     }
     
@@ -250,6 +248,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         DispatchQueue.main.sync {
             self.profileTableView.reloadData()
             self.activityView.stopAnimating()
+            label()
         }
     }
     
