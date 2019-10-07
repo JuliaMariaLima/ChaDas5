@@ -26,14 +26,14 @@ class FeedTableViewCell: UITableViewCell {
     
     
     func myStory() {
-        if let user = user,
+        if let _ = user,
             type == .yourStory {
             feedTableViewTextField.backgroundColor = UIColor.middleOrange
         }
     }
     
     func otherStory() {
-        if let user = user,
+        if let _ = user,
             type == .yourStory {
             feedTableViewTextField.backgroundColor = UIColor.baseOrange
         }

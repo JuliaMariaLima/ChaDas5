@@ -43,7 +43,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
         let nib = UINib.init(nibName: "MessagesTableViewCell", bundle: nil)
         self.messagesTableView.register(nib, forCellReuseIdentifier: "MessagesCell")
 
-        activityView = UIActivityIndicatorView(style: .gray)
+        activityView = UIActivityIndicatorView(style: .medium)
         activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 300.0, height: 300.0)
         activityView.center = view.center
@@ -95,18 +95,22 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
         if dao?.channels.isEmpty ?? true {
             return messagesCell
         } else {
-            let channel = dao?.channels[indexPath.row]
+            let currentChannel = dao?.channels[indexPath.row]
 
             var username: String?
-//            if UserManager.instance.currentUser == channel.firstUser?.uid {
-//                if let displayName = channel.secondUser?.displayName {
-//                    username = displayName
-//                }
-//            } else {
-//                if let displayName = channel.firstUser?.displayName {
-//                    username = displayName
-//                }
-//            }
+            if MeUser.instance.email == currentChannel?.ownerID {
+                username = MeUser.instance.name
+            } else {
+                DAOManager.instance?.ckUsers.retrieve(authorFrom: currentChannel!.fromStory, completion: { (author, error) in
+                    if error == nil && author != nil {
+                        DAOManager.instance?.ckUsers.retrieve(nameFrom: author!, completion: { (retrievedUsername, error) in
+                            if error == nil && username != nil {
+                                username = retrievedUsername!
+                            }
+                        })
+                    }
+                })
+            }
             if username != nil {
                 let photo = UIImage.init(named: username!)
                 messagesCell.messageTableViewLabel.text = "username"

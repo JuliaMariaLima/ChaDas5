@@ -71,7 +71,7 @@ class UserManager {
     
     func isSave(meUser: MeUser, completionHandler: @escaping ((Bool) -> Void)) {
         let predicate = NSPredicate(format: "email = %@", meUser.email)
-        let query = CKQuery(recordType: "Users", predicate: predicate)
+        let query = CKQuery(recordType: "User", predicate: predicate)
         
         self.database.perform(query, inZoneWith: nil, completionHandler: {(results, error) in
             if let _ = error {
@@ -167,7 +167,7 @@ class UserManager {
     
     func block(_ user: User, requester: UserRequester) {
         let predicateMe = NSPredicate(format: "email = %@", MeUser.instance.email)
-        let queryMe = CKQuery(recordType: "Users", predicate: predicateMe)
+        let queryMe = CKQuery(recordType: "User", predicate: predicateMe)
         
         self.database.perform(queryMe, inZoneWith: nil) {(records, error) in
             if let error = error {
@@ -195,7 +195,7 @@ class UserManager {
     
     func get(blocksFrom me: MeUser, requester: UserRequester) {
         let predicate = NSPredicate(format: "email = %@", me.email)
-        let query = CKQuery(recordType: "Users", predicate: predicate)
+        let query = CKQuery(recordType: "User", predicate: predicate)
         
         self.database.perform(query, inZoneWith: nil) {(records, error) in
             if let error = error {
@@ -214,13 +214,57 @@ class UserManager {
         }
     }
     
+    func retrieve(authorFrom story: String, completion: @escaping (String?, String?) -> Void) {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Story", predicate: predicate)
+        
+        self.database.perform(query, inZoneWith: nil) {(records, error) in
+            if let error = error {
+                completion(nil, error.localizedDescription)
+                return
+            }
+            if let records = records {
+                for record in records {
+                    if record.recordID.recordName == story {
+                        guard let author = record["author"] as? String else {
+                            completion(nil, nil)
+                            return
+                        }
+                        completion(author, nil)
+                    }
+                }
+            }
+        }
+    }
+    
     func retrieve(authorFrom story: CKRecord, completion: @escaping (String?, String?) -> Void) {
-         guard let author = story["author"] as? String else {
+        guard let author = story["author"] as? String else {
             completion(nil, NSError().description)
             return
         }
         completion(author, nil)
-        return
     }
+    
+    func retrieve(nameFrom user: String, completion: @escaping (String?, String?) -> Void) {
+        let predicate = NSPredicate(format: "email = %@", user)
+        let query = CKQuery(recordType: "User", predicate: predicate)
+        
+        self.database.perform(query, inZoneWith: nil) {(records, error) in
+            if let error = error {
+                completion(nil, error.localizedDescription)
+                return
+            }
+            if let records = records,
+            records.count == 1 {
+                let record = records.first
+                guard let username = record!["name"] as? String else {
+                    completion(nil, nil)
+                    return
+                }
+                completion(username, nil)
+            }
+        }
+    }
+    
 }
 

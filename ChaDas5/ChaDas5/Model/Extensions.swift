@@ -29,11 +29,11 @@ extension Encodable {
             debugPrint("Save in", String(describing: url))
         } catch {
             debugPrint("Can not save in", String(describing: url))
-            throw FileManageError.canNotSaveInFile
             let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             alert.present(CreateNewAccount(), animated: true, completion: nil)
             alert.present(Login(), animated: true, completion: nil)
+            throw FileManageError.canNotSaveInFile
         }
     }
 }
@@ -53,11 +53,11 @@ extension Decodable {
             self = readedInstance
         } catch {
             print("Can not read from", String(describing: url))
-            throw FileManageError.canNotReadFile
             let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             alert.present(CreateNewAccount(), animated: true, completion: nil)
             alert.present(Login(), animated: true, completion: nil)
+            throw FileManageError.canNotReadFile
         }
     }
     

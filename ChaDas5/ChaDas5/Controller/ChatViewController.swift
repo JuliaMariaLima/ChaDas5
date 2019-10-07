@@ -47,9 +47,8 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
-        if self.messagesCollectionView.collectionViewLayout.collectionViewContentSize.height > 0 {
-            self.messagesCollectionView.scrollToBottom()
-        }
+        updateCollectionContentInset()
+        scrollToBottom()
         scrollsToBottomOnKeyboardBeginsEditing = true
         maintainPositionOnKeyboardFrameChanged = true
         configureNavigationBar()
@@ -108,9 +107,8 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
         if shouldScrollToBottom {
             DispatchQueue.main.async {
-                if self.messagesCollectionView.collectionViewLayout.collectionViewContentSize.height > 0 {
-                    self.messagesCollectionView.scrollToBottom(animated: true)
-                }
+                self.updateCollectionContentInset()
+                self.scrollToBottom()
             }
         }
         dao?.loadMessages(from: channel, requester: self)
@@ -122,9 +120,8 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
             DispatchQueue.main.sync {
                 self.messagesCollectionView.reloadData()
                 activityView.stopAnimating()
-                if self.messagesCollectionView.collectionViewLayout.collectionViewContentSize.height > 0 {
-                    self.messagesCollectionView.scrollToBottom(animated: true)
-                }
+                updateCollectionContentInset()
+                scrollToBottom()
             }
         }
     }
@@ -133,7 +130,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     // MARK: - Configure self layout
     
     func configureActivityView() {
-        activityView = UIActivityIndicatorView(style: .gray)
+        activityView = UIActivityIndicatorView(style: .medium)
         activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 300.0, height: 300.0)
         activityView.center = view.center
@@ -276,7 +273,25 @@ extension ChatViewController: MessagesLayoutDelegate {
         return CGSize(width: self.view.bounds.width, height: 120)
     }
     
+    func updateCollectionContentInset() {
+        let contentSize = messagesCollectionView.collectionViewLayout.collectionViewContentSize
+        var contentInsetTop = messagesCollectionView.bounds.size.height
+
+            contentInsetTop -= contentSize.height
+            if contentInsetTop <= 0 {
+                contentInsetTop = 0
+        }
+        messagesCollectionView.contentInset = UIEdgeInsets(top: contentInsetTop,left: 0,bottom: 0,right: 0)
+    }
     
+    func scrollToBottom() {
+        guard let dao = dao else { return }
+        guard !dao.messages.isEmpty else { return }
+
+        let lastIndex = dao.messages.count - 1
+
+        messagesCollectionView.scrollToItem(at: IndexPath(item: lastIndex, section: 0), at: .centeredVertically, animated: true)
+    }
 
 
 }

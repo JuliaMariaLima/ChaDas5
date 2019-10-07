@@ -23,7 +23,7 @@ class Channel {
     var lastMessageDate: String
   
     init(fromStory: Story, lastMessageDate: Date = Date.distantPast) {
-        self.ownerID = "" //user id
+        self.ownerID = MeUser.instance.email
         self.fromStory = fromStory.date + fromStory.author
         self.lastMessageDate = lastMessageDate.keyString
         self.id = nil

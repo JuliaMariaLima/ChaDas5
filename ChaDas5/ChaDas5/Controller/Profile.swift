@@ -92,7 +92,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         self.profileTableView.register(nib, forCellReuseIdentifier: "ProfileCell")
 
 
-        activityView = UIActivityIndicatorView(style: .gray)
+        activityView = UIActivityIndicatorView(style: .medium)
         activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 300.0, height: 300.0)
         activityView.center = profileTableView.center

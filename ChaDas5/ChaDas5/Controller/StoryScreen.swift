@@ -11,7 +11,7 @@ import CloudKit
 
 
 protocol ChannelCreationObserver {
-    func created(channel: Channel)
+    func created(channel: CKRecord)
 }
 
 
@@ -20,10 +20,12 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
     var selectedStory:CKRecord?
     
     let dao = DAOManager.instance?.ckChannels
+    var activityView:UIActivityIndicatorView!
 
     // Outlets
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var archiveButton: UIButton!
+    
 
     @IBAction func dismissButton(_ sender: Any) {
         dismiss(animated: true)
@@ -33,10 +35,9 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
 
     @IBAction func chatButton(_ sender: Any) {
         guard let channelStory = selectedStory else { return }
-        print(selectedStory?.description)
-        Story(from: channelStory) { (story, error) in
+        _ = Story(from: channelStory) { (story, error) in
             if error != nil {
-                debugPrint("error creating story", error)
+                debugPrint("error creating story")
                 return
             }
             guard let story = story else {
@@ -44,28 +45,34 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
                 return
             }
             let channel = Channel(fromStory: story)
-            print(channel.asCKRecord.description)
             self.dao?.createChannel(withChannel: channel.asCKRecord, completion: { (record, error) in
                 if error != nil {
                     debugPrint("error creating channel")
                     return
                 } else {
-                    guard let channelRecord = record else {
+                    guard record != nil else {
                         debugPrint("no channel created")
                         return
                     }
-                    self.created(channel: channel)
+                    
+                    self.created(channel: record!)
                 }
             })
         }
+        activityView.startAnimating()
     }
 
-    func created(channel: Channel) {
-        let vc = ChatViewController(channel: channel)
-
-        vc.modalPresentationStyle = .fullScreen
-      
-        self.present(vc, animated: true, completion: nil)
+    func created(channel: CKRecord) {
+        _ = Channel(from: channel) { (channel, error) in
+            if channel != nil {
+                DispatchQueue.main.sync {
+                    self.activityView.stopAnimating()
+                    let vc = ChatViewController(channel: channel!)
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true, completion: nil)
+                }
+            }
+        }
     }
 
     func readedChannels(channels: [Channel]?, error: Error?) {
@@ -143,5 +150,11 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
             archiveButton.isEnabled = false
         }
         storyTextView.isEditable = false
+        activityView = UIActivityIndicatorView(style: .medium)
+        activityView.color = UIColor.buttonOrange
+        activityView.frame = CGRect(x: 0, y: 0, width: 50.0, height: 50.0)
+        activityView.center = self.view.center
+
+        view.addSubview(activityView)
     }
 }

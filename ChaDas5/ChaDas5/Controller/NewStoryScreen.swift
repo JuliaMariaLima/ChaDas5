@@ -24,7 +24,7 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
     }
     @IBAction func sendButton(_ sender: Any) {
         
-        Story(conteudo: newStoryTextView.text)
+        _ = Story(conteudo: newStoryTextView.text)
         
         dismiss()
     }

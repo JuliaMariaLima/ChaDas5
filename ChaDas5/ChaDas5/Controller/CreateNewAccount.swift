@@ -99,7 +99,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         let nib = UINib.init(nibName: "ChooseYourTeaCollectionViewCell", bundle: nil)
         self.pickYourTeaCollectionView.register(nib, forCellWithReuseIdentifier: "PickYouTea")
 
-        activityView = UIActivityIndicatorView(style: .gray)
+        activityView = UIActivityIndicatorView(style: .medium)
         activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 50.0, height: 50.0)
         activityView.center = self.createNewAccountButton.center
