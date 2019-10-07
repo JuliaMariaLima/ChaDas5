@@ -76,7 +76,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         //segmented control customization
         segmentedControl = CustomSegmentedContrl.init(frame: CGRect.init(x: 0, y: 440, width: self.view.frame.width, height: 45))
         segmentedControl.backgroundColor = .white
-        segmentedControl.commaSeperatedButtonTitles = "Relatos passados, Relatos atuais"
+        segmentedControl.commaSeperatedButtonTitles = "Relatos atuais, Relatos passados"
         segmentedControl.addTarget(self, action: #selector(onChangeOfSegment(_:)), for: .valueChanged)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(segmentedControl)
@@ -188,9 +188,9 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     func label() {
         let labelsText = ["Você não possui relatos passados ainda.", "Você não possui relatos atuais ainda."]
         self.noStoryLabel.text = labelsText[self.currentSegment]
-        if currentSegment == 0 && dao?.nonActiveStories.count == 0 {
+        if currentSegment == 0 && dao?.activeStories.count == 0 {
             self.noStoryLabel.alpha = 1
-        } else if currentSegment == 1  && dao?.activeStories.count == 0 {
+        } else if currentSegment == 1  && dao?.nonActiveStories.count == 0 {
             self.noStoryLabel.alpha = 1
         }
         else {
@@ -207,9 +207,9 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     //table view setting
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if currentSegment == 0 {
-            return dao?.nonActiveStories.count ?? 0
-        } else {
             return dao?.activeStories.count ?? 0
+        } else {
+            return dao?.nonActiveStories.count ?? 0
         }
 
     }
@@ -222,9 +222,9 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
             return profileCell
         }
         if currentSegment == 0 {
-            story = dao.nonActiveStories[indexPath.row]
-        } else {
             story = dao.activeStories[indexPath.row]
+        } else {
+            story = dao.nonActiveStories[indexPath.row]
         }
         profileCell.profileCellTextField.text = story.content
         profileCell.isUserInteractionEnabled = true
@@ -242,9 +242,9 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
                     return
                 }
                 if currentSegment == 0 {
-                    destinationVC.selectedStory = dao?.nonActiveStories[selected].asCKRecord
-                } else {
                     destinationVC.selectedStory = dao?.activeStories[selected].asCKRecord
+                } else {
+                    destinationVC.selectedStory = dao?.nonActiveStories[selected].asCKRecord
                 }
 
             }
