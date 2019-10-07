@@ -281,14 +281,21 @@ extension CreateNewAccount: UserRequester {
                 goTo(identifier: "Feed")
                 print("salvouuuuuuuuuuuuu")
             } catch {
+                DispatchQueue.main.async {
                 let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                alert.view.tintColor = UIColor.buttonOrange
-                self.present(alert, animated: true, completion: nil)
-                print("erro ao salvar local nova conta")
-                self.setcreateNewAccountButton(enabled: true)
-                self.createNewAccountButton.setTitle("Criar Conta", for: .normal)
-                self.activityView.stopAnimating()
+                                   
+               let ok = UIAlertAction(title: "Ok", style: .default ) { (action) -> Void in
+                   self.resetForm()
+                   self.setcreateNewAccountButton(enabled: true)
+                   self.createNewAccountButton.setTitle("Criar Conta", for: .normal)
+                   self.activityView.stopAnimating()
+                       
+                }
+               alert.addAction(ok)
+               alert.view.tintColor = UIColor.buttonOrange
+               self.present(alert, animated: true, completion: nil)
+            }
+
             }
         }
     }
