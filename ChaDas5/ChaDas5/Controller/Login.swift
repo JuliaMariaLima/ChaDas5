@@ -44,6 +44,7 @@ class Login: UIViewController {
         MeUser.instance = self.meUser
         password = passwordTextField.text!
         loginButton.isEnabled = false
+
     }
 
     override func viewDidLoad() {
@@ -105,22 +106,8 @@ class Login: UIViewController {
 
     func resetForm() {
 
-        let tentarNovamente = UIAlertAction(title: "Tentar Novamente", style: .default, handler: { (action) -> Void in
-            self.emailTextField.text = ""
-            self.passwordTextField.text = ""
-        })
-
-        let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
-            self.dismiss()
-        }
-
-        let alert = UIAlertController(title: "Erro ao Logar", message: nil, preferredStyle: .alert)
-        alert.addAction(tentarNovamente)
-        alert.addAction(cancelar)
-        self.present(alert, animated: true, completion: nil)
-        alert.view.tintColor = UIColor.buttonOrange
-
-        setLoginButton(enabled: true)
+        emailTextField.text = ""
+        passwordTextField.text = ""
         loginButton.setTitle("Fazer Login", for: .normal)
         activityView.stopAnimating()
     }
@@ -168,33 +155,49 @@ extension Login: UserRequester {
                 do { try! MeUser.instance.save() }
 
                 print("sucesso login")
-                DispatchQueue.main.sync {
-                    activityView.stopAnimating()
+                DispatchQueue.main.async {
+                    self.activityView.stopAnimating()
                 }
                 goTo(identifier: "Feed")
                 
-            } else {
+            } else{
                 // erro
-                let alert = UIAlertController(title: "", message: "Sua senha ou email estão errados.", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                alert.view.tintColor = UIColor.buttonOrange
-                setLoginButton(enabled: true)
-                loginButton.setTitle("Criar Conta", for: .normal)
-                activityView.stopAnimating()
-                 
-                
-                DispatchQueue.main.sync {
-                    loginButton.isEnabled = true
+                print("deu ruim")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "", message: "Sua senha ou email estão errados.", preferredStyle: UIAlertController.Style.alert)
+                    let ok = UIAlertAction(title: "Ok", style: .default ) { (action) -> Void in
+                        self.resetForm()
+                        self.setLoginButton(enabled: true)
+                        self.loginButton.setTitle("Criar Conta", for: .normal)
+                        self.activityView.stopAnimating()
+                                
+                         }
+
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                    
+                    alert.view.tintColor = UIColor.buttonOrange
                 }
+                
+                
+    
             }
         } else if meUserError != nil {
             // nao tem cadastro
-
+            DispatchQueue.main.async {
                 let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                let ok = UIAlertAction(title: "Ok", style: .default ) { (action) -> Void in
+                    self.resetForm()
+                    self.setLoginButton(enabled: true)
+                    self.loginButton.setTitle("Criar Conta", for: .normal)
+                    self.activityView.stopAnimating()
+                        
+                 }
+                alert.addAction(ok)
                 alert.view.tintColor = UIColor.buttonOrange
                 self.present(alert, animated: true, completion: nil)
+                
+            }
 
         }
     }
