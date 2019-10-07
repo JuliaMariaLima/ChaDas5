@@ -11,8 +11,7 @@ import CloudKit
 
 
 class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryManagerProtocol {
-    
-    
+
 
     var activityView:UIActivityIndicatorView!
     var xibCell:FeedTableViewCell?
@@ -144,6 +143,10 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
         } else {
             debugPrint("error querying stories", error.debugDescription, #function)
         }
+    }
+    
+    func readedStories(stories: [Story]?, error: Error?) {
+        
     }
     
     func readedMyStories(stories: [[CKRecord]]) {

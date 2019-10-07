@@ -83,13 +83,14 @@ class StoryManager {
                     DAOManager.instance?.ckUsers.retrieve(authorFrom: result) { (author, error) in
                         if author != nil {
                             if !MeUser.instance.blocked.contains(author!) {
+                                self.stories = self.stories.sorted(by: { $0.creationDate! > $1.creationDate! })
                                 self.stories.append(result)
                             }
                         }
                     }
 
                 }
-                requester.readedStories(stories: results, error: nil)
+                requester.readedStories(stories: self.stories, error: nil)
                 return
             }
             requester.readedStories(stories: nil, error: nil)

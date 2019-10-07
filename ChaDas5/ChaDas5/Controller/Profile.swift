@@ -267,8 +267,9 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     }
 
     func readedStories(stories: [CKRecord]?, error: Error?) {
-
+        
     }
+    
 
     func readedMyStories(stories: [[CKRecord]]) {
         DispatchQueue.main.sync {

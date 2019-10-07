@@ -95,27 +95,42 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
         if dao?.channels.isEmpty ?? true {
             return messagesCell
         } else {
-            let currentChannel = dao?.channels[indexPath.row]
-
-            var username: String?
-            if MeUser.instance.email == currentChannel?.ownerID {
-                username = MeUser.instance.name
+            guard let currentChannel = dao?.channels[indexPath.row] else {
+                fatalError()
+            }
+            var username = ""
+            
+            if MeUser.instance.email == currentChannel.ownerID {
+                // username vem da story
+                let newString = currentChannel.fromStory.split(separator: "|")
+                DAOManager.instance?.ckUsers.retrieve(nameFrom: String(newString[1]), completion: { (retrievedUsername, error) in
+                    if error == nil && retrievedUsername != nil {
+                        username = retrievedUsername!
+                        DispatchQueue.main.sync {
+                            let photo = UIImage.init(named: username)
+                            messagesCell.messageTableViewLabel.text = username
+                            messagesCell.messageTableViewImage.image = photo
+                        }
+                    }
+                })
             } else {
-                DAOManager.instance?.ckUsers.retrieve(authorFrom: currentChannel!.fromStory, completion: { (author, error) in
-                    if error == nil && author != nil {
-                        DAOManager.instance?.ckUsers.retrieve(nameFrom: author!, completion: { (retrievedUsername, error) in
-                            if error == nil && username != nil {
-                                username = retrievedUsername!
-                            }
-                        })
+                // username vem do ownerID
+                DAOManager.instance?.ckUsers.retrieve(nameFrom: currentChannel.ownerID, completion: { (retrievedUsername, error) in
+                    if error == nil && retrievedUsername != nil {
+                        username = retrievedUsername!
+                        DispatchQueue.main.sync {
+                            let photo = UIImage.init(named: username)
+                            messagesCell.messageTableViewLabel.text = username
+                            messagesCell.messageTableViewImage.image = photo
+                        }
                     }
                 })
             }
-            if username != nil {
-                let photo = UIImage.init(named: username!)
-                messagesCell.messageTableViewLabel.text = "username"
-                messagesCell.messageTableViewImage.image = photo
-            }
+//            if username != "" {
+//                let photo = UIImage.init(named: username)
+//                messagesCell.messageTableViewLabel.text = username
+//                messagesCell.messageTableViewImage.image = photo
+//            }
         }
         return messagesCell
     }

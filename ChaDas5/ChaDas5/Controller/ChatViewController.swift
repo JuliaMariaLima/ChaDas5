@@ -116,7 +116,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     
     
     func readedMessagesFromChannel(messages: [Message]?, error: Error?) {
-        if error == nil && messages != nil {
+        if messages != nil {
             DispatchQueue.main.sync {
                 self.messagesCollectionView.reloadData()
                 activityView.stopAnimating()

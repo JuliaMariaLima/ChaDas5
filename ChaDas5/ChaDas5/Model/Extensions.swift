@@ -84,6 +84,10 @@ extension Date {
         dateFormatter.dateFormat = "yyyy-MM-dd_HH_mm_ss"
         return dateFormatter.string(from: self)
     }
+    
+    static func < (lhs: Date, rhs: Date) -> Bool {
+        return lhs.keyString < rhs.keyString
+    }
 }
 
 extension Message: Comparable {
