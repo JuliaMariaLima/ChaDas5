@@ -184,12 +184,12 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         
         //constraints
         NSLayoutConstraint.activate([
-            dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
+            dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
             dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -112.5),
             dismissButton.widthAnchor.constraint(equalToConstant: 65),
             dismissButton.heightAnchor.constraint(equalToConstant: 55),
             
-            complainButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
+            complainButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
             complainButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 112.5),
             complainButton.widthAnchor.constraint(equalToConstant: 65),
             complainButton.heightAnchor.constraint(equalToConstant: 55)
