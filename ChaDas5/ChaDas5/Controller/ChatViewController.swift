@@ -12,13 +12,11 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
 
 
     var activityView: UIActivityIndicatorView!
-//    private let user: User
     private let channel: Channel
     
     let dao = DAOManager.instance?.ckMessages
 
     init(channel: Channel) {
-//        self.user = nil
         self.channel = channel
         super.init(nibName: nil, bundle: nil)
     }
@@ -48,16 +46,21 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         updateCollectionContentInset()
-        scrollToBottom()
-        scrollsToBottomOnKeyboardBeginsEditing = true
+//        scrollToBottom()
+//        scrollsToBottomOnKeyboardBeginsEditing = true
         maintainPositionOnKeyboardFrameChanged = true
         configureNavigationBar()
         configureInputBar()
         configureActivityView()
-  }
 
+    }
+    
     @objc func buttonAction(sender: UIButton!) {
         self.dismiss(animated: false, completion: nil)
+    }
+    
+    @objc func runTimedCode() {
+        dao?.loadMessages(from: channel, requester: self)
     }
     
 
@@ -108,7 +111,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         if shouldScrollToBottom {
             DispatchQueue.main.async {
                 self.updateCollectionContentInset()
-                self.scrollToBottom()
+//                self.scrollToBottom()
             }
         }
         dao?.loadMessages(from: channel, requester: self)
@@ -121,8 +124,11 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
                 self.messagesCollectionView.reloadData()
                 activityView.stopAnimating()
                 updateCollectionContentInset()
-                scrollToBottom()
+//                scrollToBottom()
             }
+        }
+        DispatchQueue.main.sync {
+            activityView.stopAnimating()
         }
     }
     
@@ -315,7 +321,7 @@ extension ChatViewController: MessagesDataSource {
 
 
     func currentSender() -> SenderType {
-        return Sender(id: "no_user_logged" , displayName: "no_user_logged")
+        return Sender(id: MeUser.instance.email , displayName: MeUser.instance.name)
     }
 
     func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {

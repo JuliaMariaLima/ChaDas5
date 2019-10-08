@@ -27,7 +27,6 @@ class NotificationsManager: NSObject, UNUserNotificationCenterDelegate {
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             UIApplication.shared.registerUserNotificationSettings(settings)
         }
-
         UIApplication.shared.registerForRemoteNotifications()
     }
 

@@ -106,7 +106,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
                 DAOManager.instance?.ckUsers.retrieve(nameFrom: String(newString[1]), completion: { (retrievedUsername, error) in
                     if error == nil && retrievedUsername != nil {
                         username = retrievedUsername!
-                        DispatchQueue.main.sync {
+                        DispatchQueue.main.async {
                             let photo = UIImage.init(named: username)
                             messagesCell.messageTableViewLabel.text = username
                             messagesCell.messageTableViewImage.image = photo
@@ -118,7 +118,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
                 DAOManager.instance?.ckUsers.retrieve(nameFrom: currentChannel.ownerID, completion: { (retrievedUsername, error) in
                     if error == nil && retrievedUsername != nil {
                         username = retrievedUsername!
-                        DispatchQueue.main.sync {
+                        DispatchQueue.main.async {
                             let photo = UIImage.init(named: username)
                             messagesCell.messageTableViewLabel.text = username
                             messagesCell.messageTableViewImage.image = photo
@@ -126,11 +126,6 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
                     }
                 })
             }
-//            if username != "" {
-//                let photo = UIImage.init(named: username)
-//                messagesCell.messageTableViewLabel.text = username
-//                messagesCell.messageTableViewImage.image = photo
-//            }
         }
         return messagesCell
     }

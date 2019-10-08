@@ -25,7 +25,6 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
     @IBAction func sendButton(_ sender: Any) {
         
         _ = Story(conteudo: newStoryTextView.text)
-        
         dismiss()
     }
     @IBOutlet weak var newStoryTextView: UITextView!
@@ -50,7 +49,6 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
     
     @objc private func dismiss() {
         self.dismiss(animated: true, completion: nil)
-        
     }
     
 }

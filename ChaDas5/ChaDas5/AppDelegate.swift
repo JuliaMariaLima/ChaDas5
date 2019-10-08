@@ -45,10 +45,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let notificationManager = NotificationsManager()
         notificationManager.registerForLocalNotifications()
+        
         return true
     }
     
-
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        
+    }
+    
     
     func applicationWillResignActive(_ application: UIApplication) { }
 
