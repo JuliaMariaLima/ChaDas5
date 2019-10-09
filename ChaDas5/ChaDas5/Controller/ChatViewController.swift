@@ -227,6 +227,16 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         messageInputBar.inputTextView.layer.cornerRadius = 15
         messageInputBar.inputTextView.font = UIFont(name: "SFCompactDisplay-Ultralight", size: 18)
         messageInputBar.setLeftStackViewWidthConstant(to: 10, animated: false)
+        
+//        messageInputBar.translatesAutoresizingMaskIntoConstraints = false
+//        //constraints
+//             NSLayoutConstraint.activate([
+//                 messageInputBar.topAnchor.constraint(equalTo: messagesCollectionView.bottomAnchor, constant: 15),
+//                 messageInputBar.leftAnchor.constraint(equalTo: view.leftAnchor),
+//                 messageInputBar.rightAnchor.constraint(equalTo: view.rightAnchor),
+//                 messageInputBar.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//
+//                 ])
     }
 }
 
