@@ -42,6 +42,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
                 let predicate = NSPredicate(format: "onChannel = %@", channelID)
                 DaoPushNotifications.instance.createSubscription(recordType: "Thread", predicate: predicate, option: CKQuerySubscription.Options.firesOnRecordCreation, on: channelID)
             }
+            print(exists, channelID)
         }
     }
 

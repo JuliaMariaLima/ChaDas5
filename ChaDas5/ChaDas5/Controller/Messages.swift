@@ -102,8 +102,8 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
             
             if MeUser.instance.email == currentChannel.ownerID {
                 // username vem da story
-                let newString = currentChannel.fromStory.split(separator: "|")
-                DAOManager.instance?.ckUsers.retrieve(nameFrom: String(newString[1]), completion: { (retrievedUsername, error) in
+                let user = currentChannel.fromStory
+                DAOManager.instance?.ckUsers.retrieve(nameFrom: user, completion: { (retrievedUsername, error) in
                     if error == nil && retrievedUsername != nil {
                         username = retrievedUsername!
                         DispatchQueue.main.async {

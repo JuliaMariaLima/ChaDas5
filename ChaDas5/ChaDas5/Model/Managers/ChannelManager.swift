@@ -41,7 +41,7 @@ class ChannelManager {
     
     func getChannels(requester: ChannelManagerProtocol) {
         self.channels = []
-        let predicate = NSPredicate(value: true)
+        let predicate = NSPredicate(format: "owner = %@", MeUser.instance.email)
         let query = CKQuery(recordType: "Channel", predicate: predicate)
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             if error != nil {
@@ -52,17 +52,23 @@ class ChannelManager {
                 for result in results! {
                     _ = Channel(from: result) { (channel, error) in
                         if error == nil && channel != nil {
-                            var storyAuthor = ""
-                            print(channel!.ownerID)
-                            if channel?.ownerID == MeUser.instance.email {
-                                self.channels.append(channel!)
-                            }
-                            DAOManager.instance?.ckStories.retrieve(authorFrom: channel!.fromStory, completion: { (record, error) in
-                                storyAuthor = record?["author"] ?? ""
-                                })
-                            if storyAuthor == MeUser.instance.email {
-                                self.channels.append(channel!)
-                              }
+                            self.channels.append(channel!)
+                        }
+                    }
+                }
+            }
+            let predicate = NSPredicate(format: "fromStory = %@", MeUser.instance.email)
+            let query = CKQuery(recordType: "Channel", predicate: predicate)
+            self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            if error != nil {
+                requester.readedChannels(channels: self.channels, error: error)
+                return
+            }
+            if (results?.count)! > 0 {
+                for result in results! {
+                    _ = Channel(from: result) { (channel, error) in
+                        if error == nil && channel != nil {
+                            self.channels.append(channel!)
                         }
                     }
                 }
@@ -71,16 +77,20 @@ class ChannelManager {
             }
             requester.readedChannels(channels: nil, error: nil)
         })
+        })
     }
     
     func deleteChannel(channelID: CKRecord.ID, completion: @escaping (Bool) -> Void) {
         self.database.delete(withRecordID: channelID) { (record, error) in
             if error == nil && record != nil {
                 debugPrint("record deleted")
+                DaoPushNotifications.instance.deleteSubscriptionRecord(from: channelID.recordName)
                 completion(true)
             }
             completion(false)
         }
     }
+    
+    
     
 }
