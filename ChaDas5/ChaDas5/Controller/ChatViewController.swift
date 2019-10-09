@@ -70,14 +70,14 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         configureInputBar()
         configureActivityView()
         
-        let view = messagesCollectionView as UICollectionView
-        view.translatesAutoresizingMaskIntoConstraints = false
+        let myCollection = messagesCollectionView as UICollectionView
+        myCollection.translatesAutoresizingMaskIntoConstraints = false
         //constraints
          NSLayoutConstraint.activate([
-             view.topAnchor.constraint(equalTo: view.topAnchor, constant:110),
-             view.leftAnchor.constraint(equalTo: view.leftAnchor),
-             view.rightAnchor.constraint(equalTo: view.rightAnchor),
-             view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 100)
+             myCollection.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+             myCollection.leftAnchor.constraint(equalTo: view.leftAnchor),
+             myCollection.rightAnchor.constraint(equalTo: view.rightAnchor),
+             myCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90)
 
              ])
         customReloadData()
