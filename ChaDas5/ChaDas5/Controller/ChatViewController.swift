@@ -69,6 +69,18 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         configureNavigationBar()
         configureInputBar()
         configureActivityView()
+        
+        let view = messagesCollectionView as UICollectionView
+        view.translatesAutoresizingMaskIntoConstraints = false
+        //constraints
+         NSLayoutConstraint.activate([
+             view.topAnchor.constraint(equalTo: view.topAnchor, constant:110),
+             view.leftAnchor.constraint(equalTo: view.leftAnchor),
+             view.rightAnchor.constraint(equalTo: view.rightAnchor),
+             view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 100)
+
+             ])
+
 
         dao.loadMessages(from: self.channel, requester: self)
     }
@@ -219,6 +231,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         messageInputBar.leftStackView.alignment = .center
         messageInputBar.sendButton.title = "Enviar"
         messageInputBar.backgroundView.backgroundColor = UIColor.middleOrange
+      //  messageInputBar.backgroundView.frame = CGRect(x: 50, y: 50, width: view.frame.width, height: 10)
         messageInputBar.isTranslucent = true
         messageInputBar.inputTextView.placeholderLabel.text = "Nova mensagem"
         messageInputBar.inputTextView.placeholderLabel.font = UIFont(name: "SFCompactDisplay-Ultralight", size: 18)
@@ -227,16 +240,8 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         messageInputBar.inputTextView.layer.cornerRadius = 15
         messageInputBar.inputTextView.font = UIFont(name: "SFCompactDisplay-Ultralight", size: 18)
         messageInputBar.setLeftStackViewWidthConstant(to: 10, animated: false)
-        
-//        messageInputBar.translatesAutoresizingMaskIntoConstraints = false
-//        //constraints
-//             NSLayoutConstraint.activate([
-//                 messageInputBar.topAnchor.constraint(equalTo: messagesCollectionView.bottomAnchor, constant: 15),
-//                 messageInputBar.leftAnchor.constraint(equalTo: view.leftAnchor),
-//                 messageInputBar.rightAnchor.constraint(equalTo: view.rightAnchor),
-//                 messageInputBar.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-//
-//                 ])
+
+    
     }
 }
 
