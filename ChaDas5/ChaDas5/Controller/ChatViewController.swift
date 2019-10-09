@@ -108,6 +108,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         }
         let messageRep = Message(content: message, on: channelID)
         dao?.save(message: messageRep, to: self)
+        messagesCollectionView.reloadData()
     }
 
     private func insertNewMessage(_ message: Message) {
