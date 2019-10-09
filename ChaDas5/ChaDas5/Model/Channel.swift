@@ -24,7 +24,7 @@ class Channel {
   
     init(fromStory: Story, lastMessageDate: Date = Date.distantPast) {
         self.ownerID = MeUser.instance.email
-        self.fromStory = fromStory.date + "|" + fromStory.author
+        self.fromStory = fromStory.author
         self.lastMessageDate = lastMessageDate.keyString
         self.id = nil
     }

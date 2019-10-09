@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CloudKit
 
 class MeUser: Codable {
     static var instance: MeUser!
@@ -14,7 +15,6 @@ class MeUser: Codable {
     var name: String
     var email: String
     var blocked: [String] = []
-    var subscriptions: [String] = []
     var isEmpty:Bool {
         return email.isEmpty
     }
@@ -22,14 +22,12 @@ class MeUser: Codable {
     init(name: String = "",
          email: String = "",
          password: String = "",
-         blocked: [String] = [],
-         subscriptions: [String] = []) {
+         blocked: [String] = []) {
         
         self.password = password
         self.name = name
         self.email = email
         self.blocked = blocked
-        self.subscriptions = subscriptions
 
         // Quase um singleton, se criar uma nova instância, atualiza o .instance
         MeUser.instance = self

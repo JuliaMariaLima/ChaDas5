@@ -108,7 +108,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         }
         let messageRep = Message(content: message, on: channelID)
         dao?.save(message: messageRep, to: self)
-        messagesCollectionView.reloadData()
+        self.customReloadData()
     }
 
     private func insertNewMessage(_ message: Message) {
@@ -120,7 +120,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
         if shouldScrollToBottom {
             DispatchQueue.main.async {
-                self.messagesCollectionView.reloadData()
+                self.customReloadData()
             }
         }
     }
@@ -129,7 +129,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     func readedMessagesFromChannel(messages: [Message]?, error: Error?) {
         if messages != nil {
             DispatchQueue.main.async {
-                self.reloadData()
+                self.customReloadData()
                 self.activityView.stopAnimating()
             }
         }
@@ -325,7 +325,8 @@ extension ChatViewController: MessagesDataSource {
     }
     
     
-    func reloadData() {
+    func customReloadData() {
+        // FIXME: - Scroll to bottom not working
         messagesCollectionView.reloadData()
         let view = messagesCollectionView as UICollectionView
         

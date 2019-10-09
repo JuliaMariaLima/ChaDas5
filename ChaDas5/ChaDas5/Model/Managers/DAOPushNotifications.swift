@@ -129,4 +129,23 @@ class DaoPushNotifications: Codable {
         info.shouldSendContentAvailable = true
         return info
     }
+    
+    func registerChannelNotifications() {
+        let predicate = NSPredicate(format: "fromStory = %@", MeUser.instance.email)
+        let subscription = CKQuerySubscription(recordType: "Channel", predicate: predicate, options: .firesOnRecordCreation)
+        let info = CKSubscription.NotificationInfo()
+        info.title = "Você possui uma nova conversa!"
+        info.alertBody = "Alguém criou uma nova conversa com você."
+        info.shouldBadge = true
+        info.soundName = "default"
+
+        subscription.notificationInfo = info
+        DAOManager.instance?.database.save(subscription, completionHandler: { subscription, error in
+            if error == nil {
+                // Subscription saved successfully
+            } else {
+                // Error occurred
+            }
+        })
+    }
 }
