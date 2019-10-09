@@ -132,9 +132,9 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
     func readedStories(stories:[CKRecord]?, error: Error?) {
         if error == nil {
             debugPrint("got stories")
-            DispatchQueue.main.sync {
-                feedTableView.reloadData()
-                activityView.stopAnimating()
+            DispatchQueue.main.async {
+                self.feedTableView.reloadData()
+                self.activityView.stopAnimating()
             }
             if DAOManager.instance?.ckStories.stories.count == 0 {
                 self.noStoryLabel.alpha = 1

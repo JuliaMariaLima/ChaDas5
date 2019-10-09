@@ -68,17 +68,17 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
     }
     
     func readedChannels(channels: [Channel]?, error: Error?) {
-        DispatchQueue.main.sync {
-            messagesTableView.reloadData()
-            activityView.stopAnimating()
+        DispatchQueue.main.async {
+            self.messagesTableView.reloadData()
+            self.activityView.stopAnimating()
         }
         if dao?.channels.count == 0 {
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 self.noStoryLabel.alpha = 1
                 self.noStoryLabel.text = "Você não possui conversas ainda..."
             }
         } else {
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 self.noStoryLabel.alpha = 0
             }
         }

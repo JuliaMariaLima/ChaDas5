@@ -272,16 +272,16 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     
 
     func readedMyStories(stories: [[CKRecord]]) {
-        DispatchQueue.main.sync {
+        DispatchQueue.main.async {
             self.profileTableView.reloadData()
             self.activityView.stopAnimating()
-            label()
-            let storiesCount = dao!.activeStories.count + dao!.nonActiveStories.count
+            self.label()
+            let storiesCount = self.dao!.activeStories.count + self.dao!.nonActiveStories.count
              if storiesCount == 0 || storiesCount == 1{
-                 storiesAndChannelsLabel.text = "\(storiesCount) Relato"
+                 self.storiesAndChannelsLabel.text = "\(storiesCount) Relato"
              }else{
 
-                 storiesAndChannelsLabel.text = "\(storiesCount) Relatos"
+                 self.storiesAndChannelsLabel.text = "\(storiesCount) Relatos"
              }
         }
     }

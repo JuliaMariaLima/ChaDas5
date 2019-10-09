@@ -13,24 +13,20 @@ import UIKit
 class DaoPushNotifications: Codable {
     
     static var instance: DaoPushNotifications!
-    var subscriptionId: CKSubscription.ID
 
     
-    init(subscriptionId: CKSubscription.ID = "") {
-        self.subscriptionId = subscriptionId
+    init() {
         DaoPushNotifications.instance = self
     }
 
-    func createSubscription(recordType: String, predicate: NSPredicate, option: CKQuerySubscription.Options) {
+    func createSubscription(recordType: String, predicate: NSPredicate, option: CKQuerySubscription.Options, on channel: String) {
         let subscription = CKQuerySubscription(recordType: recordType, predicate: predicate, options: option)
-        let info = CKSubscription.NotificationInfo()
-        info.shouldBadge = true
-        info.shouldSendContentAvailable = true
+        let info = self.notificationInfo()
         subscription.notificationInfo = info
         DAOManager.instance?.database.save(subscription, completionHandler: { subs, error in
             if error == nil {
                 print("Subscription saved successfully")
-                self.subscriptionId = subscription.subscriptionID
+                self.saveSubscription(from: channel, with: subscription.subscriptionID)
                 do { try DaoPushNotifications.instance.save()
                 } catch {
                     print("error")
@@ -46,11 +42,28 @@ class DaoPushNotifications: Codable {
         })
     }
     
-    func deleteSubscription() {
-        DAOManager.instance?.database.delete(withSubscriptionID: self.subscriptionId, completionHandler: {(description, error) in
+    func saveSubscription(from channel: String, with subscriptionID: String) {
+        let record = CKRecord(recordType: "Subscriptions")
+        record.setValue(channel, forKey: "channel")
+        record.setValue(subscriptionID, forKey: "subscriptionID")
+        record.setValue(MeUser.instance.email, forKey: "user")
+        
+        DAOManager.instance?.database.save(record, completionHandler: { (record, error) in
+            if error != nil {
+                debugPrint("error saving subscription", error!.localizedDescription)
+                return
+            }
+            if record != nil {
+                debugPrint("subscription saved")
+            }
+        })
+        
+    }
+    
+    func deleteSubscription(subscription: String) {
+        DAOManager.instance?.database.delete(withSubscriptionID: subscription, completionHandler: {(description, error) in
             if error == nil {
                 print("Subscription deleted successfully")
-                self.subscriptionId = ""
                 do { try DaoPushNotifications.instance.save()
                 } catch {
                     print("error")
@@ -65,11 +78,58 @@ class DaoPushNotifications: Codable {
         })
     }
     
-    private func notification() -> CKSubscription.NotificationInfo {
+    func deleteSubscriptionRecord(from channel: String) {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Subscriptions", predicate: predicate)
+        DAOManager.instance?.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            if error != nil {
+               debugPrint("error fetching subscription", error!.localizedDescription)
+                return
+            }
+            if results != nil {
+                for result in results! {
+                    guard let resultChannel = result["channel"] as? String else { return }
+                    guard let subscriptionID = result["subscriptionID"] as? String else { return }
+                    if resultChannel == channel {
+                        DAOManager.instance?.database.delete(withRecordID: result.recordID, completionHandler: { (record, error) in
+                            if error != nil {
+                                debugPrint("deleted!")
+                            }
+                        })
+                        self.deleteSubscription(subscription: subscriptionID)
+                    }
+                }
+            }
+        })
+    }
+    
+    func retrieveSubscription(on channel:String, completion: @escaping (Bool?) -> Void) {
+        let predicate = NSPredicate(value: true)
+         let query = CKQuery(recordType: "Subscriptions", predicate: predicate)
+         DAOManager.instance?.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+             if error != nil {
+                debugPrint("error fetching subscription", error!.localizedDescription)
+                completion(nil)
+                return
+             }
+            if results != nil {
+                for result in results! {
+                    guard let resultChannel = result["channel"] as? String else { return }
+                    if resultChannel == channel {
+                        completion(true)
+                    }
+                }
+                completion(false)
+            }
+        })
+    }
+    
+    private func notificationInfo() -> CKSubscription.NotificationInfo {
         let info = CKSubscription.NotificationInfo()
         info.alertBody = "Você recebeu uma nova mensagem."
         info.shouldBadge = true
         info.soundName = "default"
+        info.shouldSendContentAvailable = true
         return info
     }
 }

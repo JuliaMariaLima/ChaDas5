@@ -27,7 +27,7 @@ class DAOManager {
         database = container.publicCloudDatabase
         container.accountStatus{(status, error) -> Void in
             if status == .noAccount {
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     print("Sem acesso ao iCloud")
                     let alert = UIAlertController(title: "", message: "Sem acesso ao iCloud. Por favor se conecte", preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))

@@ -8,6 +8,15 @@ import InputBarAccessoryView
 
 
 class ChatViewController: MessagesViewController, UINavigationBarDelegate, MessagesProtocol {
+    func messageSaved(with error: Error) {
+        debugPrint("deu erro porra", error)
+    }
+    
+    func messageSaved() {
+        // mudar status da msg
+        debugPrint("salvou bunitin")
+    }
+    
     
 
 
@@ -19,6 +28,18 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     init(channel: Channel) {
         self.channel = channel
         super.init(nibName: nil, bundle: nil)
+        
+        guard let channelID = channel.id else { return }
+        DaoPushNotifications.instance.retrieveSubscription(on: channelID) { (exists) in
+            if exists == nil {
+                debugPrint("error getting subscription")
+                return
+            }
+            else if !exists! {
+                let predicate = NSPredicate(format: "onChannel = %@", channelID)
+                DaoPushNotifications.instance.createSubscription(recordType: "Thread", predicate: predicate, option: CKQuerySubscription.Options.firesOnRecordCreation, on: channelID)
+            }
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -32,16 +53,12 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
         guard channel.id != nil else {
             self.dismiss(animated: true)
             return
         }
         guard let dao = dao else { return }
-
-        dao.messages = []
-        dao.loadMessages(from: self.channel, requester: self)
+ 
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
@@ -53,27 +70,26 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         configureInputBar()
         configureActivityView()
 
+        dao.loadMessages(from: self.channel, requester: self)
     }
     
     @objc func buttonAction(sender: UIButton!) {
         self.dismiss(animated: false, completion: nil)
     }
-    
-    @objc func runTimedCode() {
-        dao?.loadMessages(from: channel, requester: self)
-    }
-    
 
-    
     @objc func complainAction(sender: UIButton!) {
         
         let alert = UIAlertController(title: "Deseja mesmo bloquear esse usuário?", message: "Vocês não verão postagens um do outro mais! Esse usuário também será mandado para análise.", preferredStyle: .alert)
-//        let bloquear = UIAlertAction(title: "Bloquear Usuário", style: .default, handler: { (action) -> Void in
-//            var firstUser: String?
-//            var secondUser: String?
-//            guard let id = self.channel.id else { return }
-//            self.dismiss(animated: true)
-//        })
+        let bloquear = UIAlertAction(title: "Bloquear Usuário", style: .default, handler: { (action) -> Void in
+//            DAOManager.instance?.ckChannels.deleteChannel(channelID: , completion: { (completed) in
+//                if completed {
+//                    self.dismiss(animated: true)
+//                }
+//            })
+            
+            
+            self.dismiss(animated: true)
+        })
         let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
         }
@@ -84,22 +100,15 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     }
 
 
-  // MARK: - Helpers
+  // MARK: -  Database Helpers
 
     private func save(_ message: String) {
         guard let channelID = self.channel.id else {
             return
         }
         let messageRep = Message(content: message, on: channelID)
-        dao?.save(message: messageRep, completion: { (record, error) in
-            if record != nil {
-                self.insertNewMessage(messageRep)
-            }
-            if error != nil {
-                debugPrint(error.debugDescription, #function)
-            }
-        })
-  }
+        dao?.save(message: messageRep, to: self)
+    }
 
     private func insertNewMessage(_ message: Message) {
         
@@ -114,21 +123,22 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
 //                self.scrollToBottom()
             }
         }
-        dao?.loadMessages(from: channel, requester: self)
+        //dao?.loadMessages(from: channel, requester: self)
+        
     }
     
     
     func readedMessagesFromChannel(messages: [Message]?, error: Error?) {
         if messages != nil {
-            DispatchQueue.main.sync {
-                self.messagesCollectionView.reloadData()
-                activityView.stopAnimating()
-                updateCollectionContentInset()
+            DispatchQueue.main.async {
+                self.reloadData()
+                self.activityView.stopAnimating()
+                self.updateCollectionContentInset()
 //                scrollToBottom()
             }
         }
-        DispatchQueue.main.sync {
-            activityView.stopAnimating()
+        DispatchQueue.main.async {
+            self.activityView.stopAnimating()
         }
     }
     
@@ -336,6 +346,18 @@ extension ChatViewController: MessagesDataSource {
             fatalError()
         }
         return dao.messages[indexPath.row]
+    }
+    
+    
+    func reloadData() {
+        messagesCollectionView.reloadData()
+        let view = messagesCollectionView as UICollectionView
+        
+        let lastSection = view.numberOfSections - 1
+        let lastRow = view.numberOfItems(inSection: lastSection)
+        let indexPath = IndexPath(row: lastRow - 1, section: lastSection)
+        view.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.bottom, animated: true)
+
     }
 
 }

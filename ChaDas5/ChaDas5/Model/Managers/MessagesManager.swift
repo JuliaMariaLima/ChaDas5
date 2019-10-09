@@ -13,6 +13,8 @@ import CloudKit
 protocol MessagesProtocol {
     
     func readedMessagesFromChannel(messages:[Message]?, error:Error?)
+    func messageSaved(with:Error)
+    func messageSaved()
 }
 
 class MessagesManager {
@@ -55,19 +57,38 @@ class MessagesManager {
         })
     }
     
-    func save(message:Message, completion: @escaping (CKRecord?, Error?) -> Void) {
-        
+    func save(message:Message, to requester: MessagesProtocol) {
+        self.messages.append(message)
+//        self.messages = self.messages.sorted(by: { $0.sentDate.keyString < $1.sentDate.keyString })
+
         self.database.save(message.asCKRecord, completionHandler: {(record, error) in
             if let error = error {
-                completion(nil, error)
+                debugPrint("==========", error)
+                requester.messageSaved(with: error)
+                return
             }
-            if let record = record {
-                completion(record, nil)
-                self.messages.append(message)
-                self.messages = self.messages.sorted(by: { $0.sentDate.keyString < $1.sentDate.keyString })
+            if let _ = record {
+                requester.messageSaved()
+                return
             }
         })
     }
+    
+
+//    func save(message:Message, completion: @escaping (CKRecord?, Error?) -> Void) {
+//        self.database.save(message.asCKRecord, completionHandler: {(record, error) in
+//            if let error = error {
+//                debugPrint("==========", error)
+//                completion(nil, error)
+//            }
+//            if let record = record {
+//
+//                self.messages.append(message)
+//                self.messages = self.messages.sorted(by: { $0.sentDate.keyString < $1.sentDate.keyString })
+//                completion(record, nil)
+//            }
+//        })
+//    }
     
 
 }

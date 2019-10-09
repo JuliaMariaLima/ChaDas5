@@ -65,7 +65,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
     func created(channel: CKRecord) {
         _ = Channel(from: channel) { (channel, error) in
             if channel != nil {
-                DispatchQueue.main.sync {
+                DispatchQueue.main.async {
                     self.activityView.stopAnimating()
                     let vc = ChatViewController(channel: channel!)
                     vc.modalPresentationStyle = .fullScreen
