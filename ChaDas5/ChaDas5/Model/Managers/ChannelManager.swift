@@ -72,6 +72,7 @@ class ChannelManager {
                         }
                     }
                 }
+                self.channels = self.channels.sorted(by: { $0.lastMessageDate > $1.lastMessageDate })
                 requester.readedChannels(channels: self.channels, error: nil)
                 return
             }
@@ -89,6 +90,26 @@ class ChannelManager {
             }
             completion(false)
         }
+    }
+    
+    func updateLastMessageDate(with date:Date, on channel:String) {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Channel", predicate: predicate)
+        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            if error == nil && results != nil {
+                for result in results! {
+                    if result.recordID.recordName == channel {
+                        result.setValue(date.keyString, forKey: "lastMessageDate")
+                        print(result.description)
+                        self.database.save(result) { (record, error) in
+                            if error != nil {
+                                debugPrint(error.debugDescription)
+                            }
+                        }
+                    }
+                }
+            }
+        })
     }
     
     

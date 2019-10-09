@@ -107,7 +107,6 @@ class DaoPushNotifications: Codable {
         let predicate = NSPredicate(format: "channel = %@", channel)
          let query = CKQuery(recordType: "Subscriptions", predicate: predicate)
          DAOManager.instance?.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
-            print(results?.description)
              if error != nil {
                 debugPrint("error fetching subscription", error!.localizedDescription)
                 completion(nil)
@@ -119,7 +118,6 @@ class DaoPushNotifications: Codable {
                         completion(true)
                         return
                     }
-                    print("=============", results?.description)
                     completion(false)
                     return
                 }

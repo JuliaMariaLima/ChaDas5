@@ -42,7 +42,6 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
                 let predicate = NSPredicate(format: "onChannel = %@", channelID)
                 DaoPushNotifications.instance.createSubscription(recordType: "Thread", predicate: predicate, option: CKQuerySubscription.Options.firesOnRecordCreation, on: channelID)
             }
-            print(exists, channelID)
         }
     }
 
@@ -81,8 +80,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
              view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 100)
 
              ])
-
-
+        customReloadData()
         dao.loadMessages(from: self.channel, requester: self)
     }
     

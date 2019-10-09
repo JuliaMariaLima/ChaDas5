@@ -68,6 +68,7 @@ class MessagesManager {
                 return
             }
             if let _ = record {
+                DAOManager.instance?.ckChannels.updateLastMessageDate(with: message.sentDate, on: message.onChannel)
                 requester.messageSaved()
                 return
             }

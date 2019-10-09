@@ -91,7 +91,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
-    func applicationDidBecomeActive(_ application: UIApplication) { }
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        application.applicationIconBadgeNumber = 0
+    }
 
     func applicationWillTerminate(_ application: UIApplication) {
         UIApplication.shared.applicationIconBadgeNumber = 0
@@ -110,4 +112,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       // tell the app that we have finished processing the user’s action (eg: tap on notification banner) / response
       completionHandler()
     }
+    
+    
 }
