@@ -28,14 +28,17 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     init(channel: Channel) {
         self.channel = channel
         super.init(nibName: nil, bundle: nil)
-        
+        checkSubscription()
+    }
+    
+    func checkSubscription() {
         guard let channelID = channel.id else { return }
         DaoPushNotifications.instance.retrieveSubscription(on: channelID) { (exists) in
             if exists == nil {
                 debugPrint("error getting subscription")
                 return
             }
-            else if !exists! {
+            if exists! == false {
                 let predicate = NSPredicate(format: "onChannel = %@", channelID)
                 DaoPushNotifications.instance.createSubscription(recordType: "Thread", predicate: predicate, option: CKQuerySubscription.Options.firesOnRecordCreation, on: channelID)
             }
@@ -62,9 +65,6 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
-        updateCollectionContentInset()
-//        scrollToBottom()
-//        scrollsToBottomOnKeyboardBeginsEditing = true
         maintainPositionOnKeyboardFrameChanged = true
         configureNavigationBar()
         configureInputBar()
@@ -119,12 +119,9 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
         if shouldScrollToBottom {
             DispatchQueue.main.async {
-                self.updateCollectionContentInset()
-//                self.scrollToBottom()
+                self.messagesCollectionView.reloadData()
             }
         }
-        //dao?.loadMessages(from: channel, requester: self)
-        
     }
     
     
@@ -133,8 +130,6 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
             DispatchQueue.main.async {
                 self.reloadData()
                 self.activityView.stopAnimating()
-                self.updateCollectionContentInset()
-//                scrollToBottom()
             }
         }
         DispatchQueue.main.async {
@@ -287,26 +282,6 @@ extension ChatViewController: MessagesLayoutDelegate {
     
     func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
         return CGSize(width: self.view.bounds.width, height: 120)
-    }
-    
-    func updateCollectionContentInset() {
-        let contentSize = messagesCollectionView.collectionViewLayout.collectionViewContentSize
-        var contentInsetTop = messagesCollectionView.bounds.size.height
-
-            contentInsetTop -= contentSize.height
-            if contentInsetTop <= 0 {
-                contentInsetTop = 0
-        }
-        messagesCollectionView.contentInset = UIEdgeInsets(top: contentInsetTop,left: 0,bottom: 0,right: 0)
-    }
-    
-    func scrollToBottom() {
-        guard let dao = dao else { return }
-        guard !dao.messages.isEmpty else { return }
-
-        let lastIndex = dao.messages.count - 1
-
-        messagesCollectionView.scrollToItem(at: IndexPath(item: lastIndex, section: 0), at: .centeredVertically, animated: true)
     }
 
 

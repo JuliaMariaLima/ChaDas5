@@ -104,7 +104,7 @@ class DaoPushNotifications: Codable {
     }
     
     func retrieveSubscription(on channel:String, completion: @escaping (Bool?) -> Void) {
-        let predicate = NSPredicate(value: true)
+        let predicate = NSPredicate(format: "channel = %@", channel)
          let query = CKQuery(recordType: "Subscriptions", predicate: predicate)
          DAOManager.instance?.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
              if error != nil {
@@ -113,12 +113,9 @@ class DaoPushNotifications: Codable {
                 return
              }
             if results != nil {
-                for result in results! {
-                    guard let resultChannel = result["channel"] as? String else { return }
-                    if resultChannel == channel {
-                        completion(true)
-                    }
-                }
+                completion(true)
+                return
+            } else {
                 completion(false)
             }
         })
