@@ -41,6 +41,7 @@ open class InputBarAccessoryView: UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
+//        view.frame = CGRect(x: 0, y: 0, width: (view.window?.frame.width)!, height: 10.0)
         return view
     }()
     
@@ -432,6 +433,7 @@ open class InputBarAccessoryView: UIView {
             bottom: backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
             left: backgroundView.leftAnchor.constraint(equalTo: leftAnchor, constant: frameInsets.left),
             right: backgroundView.rightAnchor.constraint(equalTo: rightAnchor, constant: -frameInsets.right)
+           
         )
         
         topStackViewLayoutSet = NSLayoutConstraintSet(
