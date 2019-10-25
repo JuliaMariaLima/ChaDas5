@@ -120,10 +120,10 @@ class StoryManager {
         })
     }
     
-    func retrieve(contentFrom story: CKRecord, completion: @escaping ([String:String]?, Error?) -> Void) {
+    func retrieve(contentFrom story: CKRecord, completion: @escaping ([String:String]?, String?) -> Void) {
         guard let content = story["content"] as? String,
               let author = story["author"] as? String else {
-                completion(nil, NSError())
+                completion(nil, "Error")
                 return
         }
         completion(["author":author, "content":content], nil)

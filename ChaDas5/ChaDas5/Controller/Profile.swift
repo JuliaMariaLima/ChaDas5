@@ -92,7 +92,11 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         self.profileTableView.register(nib, forCellReuseIdentifier: "ProfileCell")
 
 
-        activityView = UIActivityIndicatorView(style: .medium)
+        if #available(iOS 13.0, *) {
+            activityView = UIActivityIndicatorView(style: .medium)
+        } else {
+            activityView = UIActivityIndicatorView(style: .gray)
+        }
         activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 300.0, height: 300.0)
         activityView.center = profileTableView.center

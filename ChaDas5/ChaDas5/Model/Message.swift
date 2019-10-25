@@ -45,7 +45,7 @@ struct Message: MessageType {
               let recordSenderDisplayName = record.object(forKey: "senderDisplayName") as? String,
               let recordChannel  = record.object(forKey: "onChannel") as? String
             else {
-                completion(nil, NSError().description)
+                completion(nil,"Error")
                 return nil
         }
         

@@ -150,7 +150,11 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
             archiveButton.isEnabled = false
         }
         storyTextView.isEditable = false
-        activityView = UIActivityIndicatorView(style: .medium)
+        if #available(iOS 13.0, *) {
+            activityView = UIActivityIndicatorView(style: .gray)
+        } else {
+            // Fallback on earlier versions
+        }
         activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 50.0, height: 50.0)
         activityView.center = self.view.center

@@ -46,6 +46,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     }
 
     required init?(coder aDecoder: NSCoder) {
+        debugPrint("error initializing chat")
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -153,7 +154,11 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     // MARK: - Configure self layout
     
     func configureActivityView() {
-        activityView = UIActivityIndicatorView(style: .medium)
+        if #available(iOS 13.0, *) {
+            activityView = UIActivityIndicatorView(style: .medium)
+        } else {
+            activityView = UIActivityIndicatorView(style: .gray)
+        }
         activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 300.0, height: 300.0)
         activityView.center = view.center
@@ -199,6 +204,8 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         complainButton.addTarget(self, action: #selector(complainAction), for: .touchUpInside)
         complainButton.contentMode = .center
         complainButton.imageView?.contentMode = .scaleAspectFit
+        complainButton.isEnabled = false
+
         
         self.view.addSubview(complainButton)
         

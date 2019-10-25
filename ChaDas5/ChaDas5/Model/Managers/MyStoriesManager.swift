@@ -140,7 +140,7 @@ class MyStoriesManager {
     
     func retrieve(statusFrom story: CKRecord, completion: @escaping (String?, String?) -> Void) {
         guard let status = story["status" ] as? String else {
-            completion(nil, NSError().description)
+            completion(nil, "Error")
             return
         }
         completion(status, nil)
@@ -148,7 +148,7 @@ class MyStoriesManager {
     
     func retrieve(avaliablilityFrom story: CKRecord, completion: @escaping (String?, String?) -> Void) {
         guard let status = story["isEnabled" ] as? String else {
-            completion(nil, NSError().description)
+            completion(nil, "Error")
             return
         }
         completion(status, nil)

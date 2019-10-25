@@ -37,7 +37,7 @@ class Story : Codable {
               let recordDate    = record["date"] as? String
 //              let recordStatus  = record["status"] as? String
         else {
-            completion(nil, NSError().description)
+            completion(nil, "Error")
             return nil
         }
         self.content = recordContent

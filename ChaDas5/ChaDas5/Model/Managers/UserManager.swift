@@ -239,7 +239,7 @@ class UserManager {
     
     func retrieve(authorFrom story: CKRecord, completion: @escaping (String?, String?) -> Void) {
         guard let author = story["author"] as? String else {
-            completion(nil, NSError().description)
+            completion(nil, "Error")
             return
         }
         completion(author, nil)

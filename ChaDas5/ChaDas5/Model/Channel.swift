@@ -34,7 +34,7 @@ class Channel {
               let recordFromStory  = record["fromStory"] as? String,
               let recordLastMessageDate    = record["lastMessageDate"] as? String
         else {
-            completion(nil, NSError().description)
+            completion(nil, "Error")
             return nil
         }
         ownerID = recordOwner

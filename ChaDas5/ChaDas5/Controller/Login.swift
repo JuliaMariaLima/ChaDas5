@@ -51,7 +51,11 @@ class Login: UIViewController {
         hideKeyboardWhenTappedAround()
         passwordTextField.isSecureTextEntry = true
 
-        activityView = UIActivityIndicatorView(style: .medium)
+        if #available(iOS 13.0, *) {
+            activityView = UIActivityIndicatorView(style: .medium)
+        } else {
+            activityView = UIActivityIndicatorView(style: .gray)
+        }
         activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 50.0, height: 50.0)
         activityView.center = loginButton.center
