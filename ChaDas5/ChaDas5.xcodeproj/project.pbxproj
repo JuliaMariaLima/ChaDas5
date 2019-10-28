@@ -245,7 +245,6 @@
 				9A4E543221B0065A0033FEBF /* CreateNewAccount.swift */,
 				9A4E543421B0066F0033FEBF /* Login.swift */,
 				9A4E543821B0069B0033FEBF /* Feed.swift */,
-				9A4E544021B0071F0033FEBF /* StoryScreen.swift */,
 				9A4E543E21B006E60033FEBF /* NewStoryScreen.swift */,
 				9A4E543621B006870033FEBF /* Profile.swift */,
 				9A82FD8621E5030400566AE1 /* ChooseYourTeaScreen.swift */,
@@ -316,6 +315,7 @@
 				155CF80D21DE89F400AFB04B /* Message.swift */,
 				155CF80721DE6E6800AFB04B /* Channel.swift */,
 				155CF80F21DE8A9000AFB04B /* AppSettings.swift */,
+				9A4E544021B0071F0033FEBF /* StoryScreen.swift */,
 				1580698F2332E00D00C458FE /* Extensions.swift */,
 			);
 			path = Model;

@@ -162,7 +162,18 @@ extension Login: UserRequester {
                 DispatchQueue.main.async {
                     self.activityView.stopAnimating()
                 }
-                goTo(identifier: "Feed")
+                
+                if meUser!.genderId == "Homem Cis"
+                {
+                    goTo(identifier: "cisMan")
+                    MeUser.instance.delete()
+                    DaoPushNotifications.instance.delete()
+                    
+                } else{
+                    
+                    goTo(identifier: "Feed")
+                }
+                
                 
             } else{
                 // erro
