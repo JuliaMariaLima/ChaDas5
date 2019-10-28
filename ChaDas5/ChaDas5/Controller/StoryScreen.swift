@@ -80,6 +80,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
     }
 
     @IBAction func archiveButton(_ sender: Any) {
+        guard let storyID = selectedStory?.recordID.recordName else { return }
         guard let status = selectedStory?.object(forKey: "status") as? String else {
             debugPrint("error retrieving story status", #function)
             return
@@ -88,8 +89,14 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
             let alert = UIAlertController(title: "Deseja mesmo desarquivar esse relato?", message: "Esse relato voltará a aparecer para outras pessoa no Feed.", preferredStyle: .alert)
 
             let desarquivar = UIAlertAction(title: "Desarquivar relato", style: .default, handler: { (action) -> Void in
-                    self.selectedStory?.setValue("active", forKey: "status")
-                    self.dismiss(animated: true)
+                DAOManager.instance?.ckMyStories.switchArchived(storyID: storyID, completion: { (record, error) in
+                    if error != nil {
+                        print(error!)
+                    }
+                     DispatchQueue.main.async {
+                        self.dismiss(animated: true)
+                    }
+                })
             })
             let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
                 alert.dismiss(animated: true, completion: nil)
@@ -109,8 +116,14 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
                 title: "Arquivar relato",
                 style: .default,
                 handler: { (action) -> Void in
-                    self.selectedStory?.setValue("archived", forKey: "status")
-                    self.dismiss(animated: true)
+                    DAOManager.instance?.ckMyStories.switchArchived(storyID: storyID, completion: { (record, error) in
+                        if error != nil {
+                            print(error!)
+                        }
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true)
+                        }
+                    })
             })
             let cancelar = UIAlertAction(
             title: "Cancelar",
@@ -151,9 +164,9 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
         }
         storyTextView.isEditable = false
         if #available(iOS 13.0, *) {
-            activityView = UIActivityIndicatorView(style: .gray)
+            activityView = UIActivityIndicatorView(style: .medium)
         } else {
-            // Fallback on earlier versions
+            activityView = UIActivityIndicatorView(style: .gray)
         }
         activityView.color = UIColor.buttonOrange
         activityView.frame = CGRect(x: 0, y: 0, width: 50.0, height: 50.0)

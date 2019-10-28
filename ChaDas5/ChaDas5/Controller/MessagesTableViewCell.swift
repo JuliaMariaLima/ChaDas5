@@ -33,21 +33,29 @@ class MessagesTableViewCell: UITableViewCell {
         }
 
         let channel = dao?.channels[selected]
+        guard let channelID = channel?.id else { return }
 
 
         let alert = UIAlertController(title: "Deseja mesmo excluir essa conversa?", message: "A conversa será excluída para todos e essa ação não poderá ser desfeita.", preferredStyle: .alert)
         
-        // missing delete action
+        let delete = UIAlertAction(title: "Excluir", style: .default ) { (action) -> Void in
+            DAOManager.instance?.ckChannels.deleteChannel(channelID: channelID, completion: { (completed) in
+                if completed == false {
+                    debugPrint("error deleting channel")
+                }
+                DispatchQueue.main.async {
+                    self.removeFromSuperview()
+                }
+            })
+        }
 
         let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
         }
-//        alert.addAction(excluir)
+        alert.addAction(delete)
         alert.addAction(cancelar)
-        myMessageView!.present(alert, animated: true, completion: nil)
+        myMessageView?.present(alert, animated: true, completion: nil)
         alert.view.tintColor = UIColor.buttonOrange
-
-
     }
 
 
@@ -81,7 +89,8 @@ class MessagesTableViewCell: UITableViewCell {
             debugPrint("superview is not a UITableView")
             return nil
         }
-        guard let messageView = superView.superview as? Messages else {
+        // fix
+        guard let messageView = superView.parentViewController as? Messages else {
             debugPrint("not a message descendant")
             return nil
 

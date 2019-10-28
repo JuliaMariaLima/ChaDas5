@@ -101,7 +101,7 @@ class MyStoriesManager {
     }
     
     func switchArchived(storyID: String, completion: @escaping (CKRecord?, Error?) -> Void) {
-        let predicate = NSPredicate(value: true)
+        let predicate = NSPredicate(format: "author = %@", MeUser.instance.email)
         let query = CKQuery(recordType: "Story", predicate: predicate)
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             // Erro ao executar query no CloudKit.
@@ -110,31 +110,25 @@ class MyStoriesManager {
                 completion(nil, nil)
                 return
             }
-            if (results?.count)! > 0 {
+            if results != nil && (results?.count)! > 0 {
                 for result in results! {
                     if result.recordID.recordName == storyID {
-                        self.retrieve(statusFrom: result) { (currentStatus, error) in
-                            if currentStatus != nil && currentStatus == "active" {
-                                result.setObject("archived" as CKRecordValue?, forKey: "status")
-                            }
-                            if currentStatus != nil && currentStatus == "archived" {
-                                result.setObject("active" as CKRecordValue?, forKey: "status")
-                            }
-                            self.database.save(result, completionHandler: {(record,error) -> Void in
-                                if let error = error {
-                                    print(#function, error)
-                                    completion(nil, error)
-                                    return
-                                }
-                                print("sucesso no upload")
+                        guard let status = result["status"] as? String else { return }
+                        if status == "archived" {
+                            result.setObject("active" as __CKRecordObjCValue, forKey: "status")
+                        } else if status == "active" {
+                            result.setObject("archived" as __CKRecordObjCValue, forKey: "status")
+                        }
+                        self.database.save(result) { (record, error) in
+                            if error == nil && record != nil {
                                 completion(record, nil)
-                                return
-                            })
+                            } else {
+                                completion(nil, error)
+                            }
                         }
                     }
                 }
             }
-            completion(nil, nil)
         })
     }
     

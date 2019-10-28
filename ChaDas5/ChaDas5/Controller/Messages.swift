@@ -72,6 +72,9 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
     }
     
     func readedChannels(channels: [Channel]?, error: Error?) {
+        if error != nil {
+            debugPrint(error!)
+        }
         DispatchQueue.main.async {
             self.messagesTableView.reloadData()
             self.activityView.stopAnimating()
@@ -99,8 +102,11 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
         if dao?.channels.isEmpty ?? true {
             return messagesCell
         } else {
+            if dao?.channels.count ?? 0 < indexPath.row {
+                return messagesCell
+            }
             guard let currentChannel = dao?.channels[indexPath.row] else {
-                fatalError()
+                return messagesCell
             }
             var username = ""
             
@@ -151,7 +157,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
     @objc private func refreshData(_ sender: Any) {
         dao?.getChannels(requester: self)
         self.refreshControl.endRefreshing()
-
+        self.messagesTableView.reloadData()
     }
 
 }

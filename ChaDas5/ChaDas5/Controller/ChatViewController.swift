@@ -8,6 +8,8 @@ import InputBarAccessoryView
 
 
 class ChatViewController: MessagesViewController, UINavigationBarDelegate, MessagesProtocol {
+
+    
     func messageSaved(with error: Error) {
         debugPrint("deu erro porra", error)
     }
@@ -17,6 +19,14 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         debugPrint("salvou bunitin")
     }
     
+    
+    func deleted() {
+        
+    }
+    
+    func deletedError(with: Error) {
+        
+    }
     
 
 
@@ -32,15 +42,15 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     }
     
     func checkSubscription() {
-        guard let channelID = channel.id else { return }
-        DaoPushNotifications.instance.retrieveSubscription(on: channelID) { (exists) in
+        guard let channelID = self.channel.id else { return }
+        DaoPushNotifications.instance.retrieveSubscription(on: channelID.recordName) { (exists) in
             if exists == nil {
                 debugPrint("error getting subscription")
                 return
             }
             if exists! == false {
-                let predicate = NSPredicate(format: "onChannel = %@", channelID)
-                DaoPushNotifications.instance.createSubscription(recordType: "Thread", predicate: predicate, option: CKQuerySubscription.Options.firesOnRecordCreation, on: channelID)
+                let predicate = NSPredicate(format: "onChannel = %@", channelID.recordName)
+                DaoPushNotifications.instance.createSubscription(recordType: "Thread", predicate: predicate, option: CKQuerySubscription.Options.firesOnRecordCreation, on: channelID.recordName)
             }
         }
     }
@@ -118,7 +128,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         guard let channelID = self.channel.id else {
             return
         }
-        let messageRep = Message(content: message, on: channelID)
+        let messageRep = Message(content: message, on: channelID.recordName)
         dao?.save(message: messageRep, to: self)
         self.customReloadData()
     }
