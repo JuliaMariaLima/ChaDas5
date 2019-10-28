@@ -155,7 +155,7 @@ extension Login: UserRequester {
             print("UHUL")
             if meUser!.password == password {
                 MeUser.instance = meUser
-                
+                print(meUser?.genderId)
                 do { try! MeUser.instance.save() }
 
                 print("sucesso login")

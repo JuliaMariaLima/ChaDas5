@@ -115,6 +115,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         createNewAccountButton.setTitle("", for: .normal)
         activityView.startAnimating()
         
+        
         if passwordTextField.text != passwordConfirmationTextField.text{
             let alert = UIAlertController(title: "", message: "Erro na Confirmação de Senha", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -131,8 +132,27 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         if checkPassword(password1: passwordTextField.text!, password2: passwordConfirmationTextField.text!) {
         
             print("Entrou")
-            meUser = MeUser(name: selected!.chooseYourTeaLabel.text!, email: emailTextField.text!, password: passwordTextField.text!,genderId: identification, blocked: [])
-            DAOManager.instance?.ckUsers.save(newUser: meUser, requester: newAccountUserResquester)
+            
+            
+            
+            if (emailTextField.text?.contains("@"))!{
+                meUser = MeUser(name: selected!.chooseYourTeaLabel.text!, email: emailTextField.text!, password: passwordTextField.text!, genderId: identification, blocked: [])
+                DAOManager.instance?.ckUsers.save(newUser: meUser, requester: newAccountUserResquester)
+                
+            }else{
+                let alert = UIAlertController(title: "", message: "O e-mail digitado não é válido", preferredStyle: UIAlertController.Style.alert)
+                           alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                           alert.view.tintColor = UIColor.buttonOrange
+                           
+                           self.present(alert, animated: true, completion: nil)
+                           emailTextField.text = ""
+                           setcreateNewAccountButton(enabled: true)
+                           createNewAccountButton.setTitle("Criar Conta", for: .normal)
+                           activityView.stopAnimating()
+
+            }
+                
+  
         } else {
             let alert = UIAlertController(title: "", message: "Reveja a sua senha, ela tem que ter no mínimo 8 caracteres", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -247,9 +267,9 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         let email = emailTextField.text
         let passwordConfirmed = passwordConfirmationTextField.text
         let password = passwordTextField.text
-        let id = identification
+      
 
-        let formFilled = email != nil && email != "" && passwordConfirmed != nil && passwordConfirmed != "" && password != nil && password != "" && id != "" && id != nil
+        let formFilled = email != nil && email != "" && passwordConfirmed != nil && passwordConfirmed != "" && password != nil && password != "" 
         setcreateNewAccountButton(enabled: formFilled)
     }
 
@@ -363,7 +383,7 @@ extension CreateNewAccount: UserRequester {
             do{
                 try meUser.save()
                 print("salvouuuuuuuuuuuuu")
-                activityView.stopAnimating()
+//                activityView.stopAnimating()
                 if identification  == "Homem Cis"
                 {
                     goTo(identifier: "cisMan")

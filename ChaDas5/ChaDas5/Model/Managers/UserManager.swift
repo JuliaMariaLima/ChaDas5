@@ -115,7 +115,8 @@ class UserManager {
         let name = meFromRecord["name"] as! String
         let email = meFromRecord["email"] as! String
         let password = meFromRecord["password"] as! String
-        let meUser = MeUser(name: name, email: email, password: password)
+        let genderId = meFromRecord["gender"] as! String
+        let meUser = MeUser(name: name, email: email, password: password, genderId: genderId)
         return meUser
     }
     
