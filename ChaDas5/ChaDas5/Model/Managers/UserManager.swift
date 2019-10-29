@@ -47,6 +47,7 @@ class UserManager {
                     let record = CKRecord(recordType: "User")
                     record.setObject(newUser.name as CKRecordValue?, forKey: "name")
                     record.setObject(newUser.email as CKRecordValue?, forKey: "email")
+                    record.setObject(newUser.genderId as CKRecordValue?, forKey: "gender")
                     record.setObject(newUser.password as CKRecordValue?, forKey: "password")
                     
                     // Salvar nome do CloudKit.
@@ -114,7 +115,8 @@ class UserManager {
         let name = meFromRecord["name"] as! String
         let email = meFromRecord["email"] as! String
         let password = meFromRecord["password"] as! String
-        let meUser = MeUser(name: name, email: email, password: password)
+        let genderId = meFromRecord["gender"] as! String
+        let meUser = MeUser(name: name, email: email, password: password, genderId: genderId)
         return meUser
     }
     

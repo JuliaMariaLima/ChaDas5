@@ -155,14 +155,25 @@ extension Login: UserRequester {
             print("UHUL")
             if meUser!.password == password {
                 MeUser.instance = meUser
-                
+                print(meUser?.genderId)
                 do { try! MeUser.instance.save() }
 
                 print("sucesso login")
                 DispatchQueue.main.async {
                     self.activityView.stopAnimating()
                 }
-                goTo(identifier: "Feed")
+                
+                if meUser!.genderId == "Homem Cis"
+                {
+                    goTo(identifier: "cisMan")
+                    MeUser.instance.delete()
+                    DaoPushNotifications.instance.delete()
+                    
+                } else{
+                    
+                    goTo(identifier: "Feed")
+                }
+                
                 
             } else{
                 // erro

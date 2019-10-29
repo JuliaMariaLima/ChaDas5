@@ -14,6 +14,7 @@ class MeUser: Codable {
     var password: String
     var name: String
     var email: String
+    var genderId: String
     var blocked: [String] = []
     var isEmpty:Bool {
         return email.isEmpty
@@ -22,11 +23,13 @@ class MeUser: Codable {
     init(name: String = "",
          email: String = "",
          password: String = "",
+         genderId: String = "",
          blocked: [String] = []) {
         
         self.password = password
         self.name = name
         self.email = email
+        self.genderId = genderId
         self.blocked = blocked
 
         // Quase um singleton, se criar uma nova instância, atualiza o .instance

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FdJ-g9-0s6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FdJ-g9-0s6">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -131,11 +131,57 @@
                         <outlet property="loginButton" destination="mTT-Oa-eTo" id="v1v-Pi-ocg"/>
                         <outlet property="passwordTextField" destination="8vj-HA-pqc" id="saZ-yT-gEs"/>
                         <segue destination="a8d-0r-HBW" kind="show" identifier="Feed" id="5O7-9n-hYD"/>
+                        <segue destination="zkN-og-VTP" kind="show" identifier="cisMan" id="qvp-3V-32i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qnn-f4-DXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-271.19999999999999" y="108.39580209895054"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="buA-yB-UBj">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="zkN-og-VTP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1du-lg-Lwv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cisManFeedback" translatesAutoresizingMaskIntoConstraints="NO" id="rbn-Ki-DgU">
+                                <rect key="frame" x="11" y="-32" width="392" height="928"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBP-Ma-3lw">
+                                <rect key="frame" x="27" y="52" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="dismissIcon"/>
+                                <connections>
+                                    <segue destination="fw5-8H-AAg" kind="show" id="VBm-VY-d30"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96493941549999995" green="0.79824143650000001" blue="0.60349696870000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Ra1-jA-xnO" firstAttribute="trailing" secondItem="rbn-Ki-DgU" secondAttribute="trailing" constant="11" id="67F-Ny-JII"/>
+                            <constraint firstItem="rbn-Ki-DgU" firstAttribute="top" secondItem="1du-lg-Lwv" secondAttribute="top" constant="-32" id="82J-yl-vMT"/>
+                            <constraint firstItem="Ra1-jA-xnO" firstAttribute="bottom" secondItem="rbn-Ki-DgU" secondAttribute="bottom" constant="-34" id="Qc0-MF-H7k"/>
+                            <constraint firstItem="rbn-Ki-DgU" firstAttribute="leading" secondItem="Ra1-jA-xnO" secondAttribute="leading" constant="11" id="pvC-vS-UQ4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ra1-jA-xnO"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Gda-gx-a4Q"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Sr-W5-IVq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="803" y="108"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="arh-qS-4r3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="fw5-8H-AAg" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="uPa-Hj-xJt"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gFa-J9-5W7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1316" y="-76"/>
         </scene>
         <!--Profile-->
         <scene sceneID="plr-W3-KyL">
@@ -143,10 +189,11 @@
                 <viewControllerPlaceholder storyboardName="Profile" id="a8d-0r-HBW" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9xk-e5-U8J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="648" y="113"/>
+            <point key="canvasLocation" x="246" y="-134"/>
         </scene>
     </scenes>
     <resources>
+        <image name="cisManFeedback" width="1125" height="2436"/>
         <image name="dismissIcon" width="640.33331298828125" height="640.33331298828125"/>
     </resources>
 </document>

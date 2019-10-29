@@ -18,18 +18,95 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
     var selected:ChooseYourTeaCollectionViewCell?
     var index: IndexPath?
 
+
     //outlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConfirmationTextField: UITextField!
     @IBOutlet weak var pickYourTeaCollectionView: UICollectionView!
     @IBOutlet weak var createNewAccountButton: UIButton!
-
+    
+    @IBOutlet weak var cisWomanButton: UIButton!
+    
+    @IBOutlet weak var transWomanButton: UIButton!
+    
+    @IBOutlet weak var cisManButton: UIButton!
+    
+    @IBOutlet weak var transManButton: UIButton!
+    
+    @IBOutlet weak var otherButton: UIButton!
+    
+    
     var activityView:UIActivityIndicatorView!
     var meUser: MeUser!
     var newAccountUserResquester: UserRequester!
+    var identification: String!
+    
 
     //actions
+    
+    @IBAction func cisWomanAction(_ sender: Any) {
+        cisWomanButton.backgroundColor = UIColor.middleOrange
+        transWomanButton.backgroundColor = UIColor.clear
+        cisManButton.backgroundColor = UIColor.clear
+        transManButton.backgroundColor = UIColor.clear
+        otherButton.backgroundColor = UIColor.clear
+
+        identification = "Mulher Cis"
+    }
+    
+    @IBAction func transWomanAction(_ sender: Any) {
+        
+        cisWomanButton.backgroundColor = UIColor.clear
+        transWomanButton.backgroundColor = UIColor.middleOrange
+        cisManButton.backgroundColor = UIColor.clear
+        transManButton.backgroundColor = UIColor.clear
+        otherButton.backgroundColor = UIColor.clear
+
+        identification = "Mulher Trans"
+  
+    }
+    
+    
+    @IBAction func cisManAction(_ sender: Any) {
+        
+      cisWomanButton.backgroundColor = UIColor.clear
+      transWomanButton.backgroundColor = UIColor.clear
+      cisManButton.backgroundColor = UIColor.middleOrange
+      transManButton.backgroundColor = UIColor.clear
+      otherButton.backgroundColor = UIColor.clear
+
+      identification = "Homem Cis"
+        
+    }
+    
+    
+    @IBAction func transManAction(_ sender: Any) {
+        
+        cisWomanButton.backgroundColor = UIColor.clear
+        transWomanButton.backgroundColor = UIColor.clear
+        cisManButton.backgroundColor = UIColor.clear
+        transManButton.backgroundColor = UIColor.middleOrange
+        otherButton.backgroundColor = UIColor.clear
+
+        identification = "Homem Trans"
+    }
+    
+    
+    
+    @IBAction func otherAction(_ sender: Any) {
+        
+        cisWomanButton.backgroundColor = UIColor.clear
+        transWomanButton.backgroundColor = UIColor.clear
+        cisManButton.backgroundColor = UIColor.clear
+        transManButton.backgroundColor = UIColor.clear
+        otherButton.backgroundColor = UIColor.middleOrange
+
+        identification = "Outro"
+
+    }
+    
+    
     @IBAction func createNewButton(_ sender: Any) {
         
         newAccountUserResquester = self
@@ -37,6 +114,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         activityView.center = self.createNewAccountButton.center
         createNewAccountButton.setTitle("", for: .normal)
         activityView.startAnimating()
+        
         
         if passwordTextField.text != passwordConfirmationTextField.text{
             let alert = UIAlertController(title: "", message: "Erro na Confirmação de Senha", preferredStyle: UIAlertController.Style.alert)
@@ -54,8 +132,27 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         if checkPassword(password1: passwordTextField.text!, password2: passwordConfirmationTextField.text!) {
         
             print("Entrou")
-            meUser = MeUser(name: selected!.chooseYourTeaLabel.text!, email: emailTextField.text!, password: passwordTextField.text!, blocked: [])
-            DAOManager.instance?.ckUsers.save(newUser: meUser, requester: newAccountUserResquester)
+            
+            
+            
+            if (emailTextField.text?.contains("@"))!{
+                meUser = MeUser(name: selected!.chooseYourTeaLabel.text!, email: emailTextField.text!, password: passwordTextField.text!, genderId: identification, blocked: [])
+                DAOManager.instance?.ckUsers.save(newUser: meUser, requester: newAccountUserResquester)
+                
+            }else{
+                let alert = UIAlertController(title: "", message: "O e-mail digitado não é válido", preferredStyle: UIAlertController.Style.alert)
+                           alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                           alert.view.tintColor = UIColor.buttonOrange
+                           
+                           self.present(alert, animated: true, completion: nil)
+                           emailTextField.text = ""
+                           setcreateNewAccountButton(enabled: true)
+                           createNewAccountButton.setTitle("Criar Conta", for: .normal)
+                           activityView.stopAnimating()
+
+            }
+                
+  
         } else {
             let alert = UIAlertController(title: "", message: "Reveja a sua senha, ela tem que ter no mínimo 8 caracteres", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -72,9 +169,6 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
 
 
     }
-    
-    
-    
     
 
     @IBAction func dismissButton(_ sender: Any) {
@@ -173,8 +267,9 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         let email = emailTextField.text
         let passwordConfirmed = passwordConfirmationTextField.text
         let password = passwordTextField.text
+      
 
-        let formFilled = email != nil && email != "" && passwordConfirmed != nil && passwordConfirmed != "" && password != nil && password != ""
+        let formFilled = email != nil && email != "" && passwordConfirmed != nil && passwordConfirmed != "" && password != nil && password != "" 
         setcreateNewAccountButton(enabled: formFilled)
     }
 
@@ -207,6 +302,12 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
             self.emailTextField.text = ""
             self.passwordConfirmationTextField.text = ""
             self.passwordTextField.text = ""
+            self.otherButton.backgroundColor = UIColor.clear
+            self.cisWomanButton.backgroundColor = UIColor.clear
+            self.cisManButton.backgroundColor = UIColor.clear
+            self.transWomanButton.backgroundColor = UIColor.clear
+            self.transManButton.backgroundColor = UIColor.clear
+            self.identification = ""
             self.pickYourTeaCollectionView.deselectItem(at: self.index!, animated: true)
         })
 
@@ -281,9 +382,20 @@ extension CreateNewAccount: UserRequester {
         if userRecord != nil {
             do{
                 try meUser.save()
-                activityView.stopAnimating()
-                goTo(identifier: "Feed")
                 print("salvouuuuuuuuuuuuu")
+//                activityView.stopAnimating()
+                if identification  == "Homem Cis"
+                {
+                    goTo(identifier: "cisMan")
+                    MeUser.instance.delete()
+                    DaoPushNotifications.instance.delete()
+                    
+                }else{
+                     
+                    goTo(identifier: "otherGroup")
+                    
+                }
+                
             } catch {
                 DispatchQueue.main.async {
                 let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
