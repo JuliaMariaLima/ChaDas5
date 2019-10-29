@@ -9,8 +9,9 @@
 import Foundation
 import CloudKit
 
-class Story : Codable {
+class Story {
     
+    var id: CKRecord.ID?
     var content:String
     var author:String
     var date:String
@@ -34,8 +35,8 @@ class Story : Codable {
     init?(from record:CKRecord, completion: @escaping (Story?, String?) -> Void) {
         guard let recordContent = record["content"] as? String,
               let recordAuthor  = record["author"] as? String,
-              let recordDate    = record["date"] as? String
-//              let recordStatus  = record["status"] as? String
+              let recordDate    = record["date"] as? String,
+              let recordStatus  = record["status"] as? String
         else {
             completion(nil, "Error")
             return nil
@@ -43,7 +44,8 @@ class Story : Codable {
         self.content = recordContent
         self.author = recordAuthor
         self.date = recordDate
-        self.status = "active"
+        self.status = recordStatus
+        self.id = record.recordID
         completion(self, nil)
     }
     

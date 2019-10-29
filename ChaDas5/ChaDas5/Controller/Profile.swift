@@ -221,7 +221,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let profileCell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as! ProfileTableViewCell
         profileCell.deleteButton.alpha = profileIsEditing ? 1 : 0
-        var story : Story
+        var story : CKRecord
         guard let dao = dao else {
             return profileCell
         }
@@ -230,7 +230,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         } else {
             story = dao.nonActiveStories[indexPath.row]
         }
-        profileCell.profileCellTextField.text = story.content
+        profileCell.profileCellTextField.text = story["content"] as? String ?? ""
         profileCell.isUserInteractionEnabled = true
         return profileCell
     }
@@ -246,9 +246,9 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
                     return
                 }
                 if currentSegment == 0 {
-                    destinationVC.selectedStory = dao?.activeStories[selected].asCKRecord
+                    destinationVC.selectedStory = dao?.activeStories[selected]
                 } else {
-                    destinationVC.selectedStory = dao?.nonActiveStories[selected].asCKRecord
+                    destinationVC.selectedStory = dao?.nonActiveStories[selected]
                 }
 
             }

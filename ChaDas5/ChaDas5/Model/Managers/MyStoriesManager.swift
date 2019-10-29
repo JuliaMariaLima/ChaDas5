@@ -20,8 +20,8 @@ class MyStoriesManager {
         self.database = database
     }
 
-    var nonActiveStories = [Story]()
-    var activeStories = [Story]()
+    var nonActiveStories = [CKRecord]()
+    var activeStories = [CKRecord]()
     
     func loadMyStories(requester:StoryManagerProtocol) {
         emptyArrays()
@@ -35,29 +35,21 @@ class MyStoriesManager {
             }
             if (results?.count)! > 0 {
                 for result in results! {
-                    _ = Story(from: result) { (story, error) in
-                        if error != nil {
-                            debugPrint(error!, #function)
-                            return
-                        }
-                        guard let story = story else {
-                            debugPrint("error creating story")
-                            return
-                        }
-                        if story.author == MeUser.instance.email {
-                            if story.status == "active" {
-                                self.activeStories.append(story)
+                    guard let author = result["author"] as? String else { return }
+                    guard let status = result["status"] as? String else { return }
+                    if author == MeUser.instance.email {
+                            if status == "active" {
+                                self.activeStories.append(result)
                             } else {
-                                self.nonActiveStories.append(story)
+                                self.nonActiveStories.append(result)
                             }
                         }
                     }
                 }
                 requester.readedMyStories(stories: [results!, []])
                 return
-            }
+            })
             requester.readedMyStories(stories: [[]])
-        })
 //        
 //        requester.readedMyStories(stories: [self.nonActiveStories, self.activeStories])
     }
@@ -112,8 +104,12 @@ class MyStoriesManager {
             }
             if results != nil && (results?.count)! > 0 {
                 for result in results! {
+                    print("====== record name i found",result.recordID.recordName)
+                    print("====== record im searching for:", storyID)
                     if result.recordID.recordName == storyID {
-                        guard let status = result["status"] as? String else { return }
+                        guard let status = result["status"] as? String else {
+                            print("saiu aqui")
+                            return }
                         if status == "archived" {
                             result.setObject("active" as __CKRecordObjCValue, forKey: "status")
                         } else if status == "active" {
