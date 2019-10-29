@@ -391,7 +391,7 @@
                         <outlet property="pickYourTeaCollectionView" destination="6Av-tV-KjB" id="qMH-zD-i9e"/>
                         <outlet property="transManButton" destination="ZgG-Qj-f7z" id="JHX-wh-wSD"/>
                         <outlet property="transWomanButton" destination="KoT-iz-DCV" id="EIe-6d-bL9"/>
-                        <segue destination="K9b-yg-Y4S" kind="show" identifier="cisMan" id="Cii-sD-UTP"/>
+                        <segue destination="K9b-yg-Y4S" kind="show" identifier="cisMan" animates="NO" id="Cii-sD-UTP"/>
                         <segue destination="i2j-RW-TK1" kind="show" identifier="otherGroup" id="l3N-CI-thh"/>
                     </connections>
                 </viewController>
@@ -415,7 +415,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="dismissIcon"/>
                                 <connections>
-                                    <segue destination="GLZ-sX-6XP" kind="show" id="dbl-2d-aFU"/>
+                                    <segue destination="GLZ-sX-6XP" kind="show" id="Uyq-f8-b86"/>
                                 </connections>
                             </button>
                         </subviews>
