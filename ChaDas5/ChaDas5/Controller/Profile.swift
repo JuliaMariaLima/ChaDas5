@@ -190,7 +190,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     }
 
     func label() {
-        let labelsText = ["Você não possui relatos passados ainda.", "Você não possui relatos atuais ainda."]
+        let labelsText = ["Você não possui relatos atuais ainda.", "Você não possui relatos passados ainda."]
         self.noStoryLabel.text = labelsText[self.currentSegment]
         if currentSegment == 0 && dao?.activeStories.count == 0 {
             self.noStoryLabel.alpha = 1
