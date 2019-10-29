@@ -154,7 +154,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="dismissIcon"/>
                                 <connections>
-                                    <segue destination="fw5-8H-AAg" kind="show" identifier="main" id="K7q-8L-SRb"/>
+                                    <segue destination="fw5-8H-AAg" kind="show" id="Slw-9n-gfY"/>
                                 </connections>
                             </button>
                         </subviews>
