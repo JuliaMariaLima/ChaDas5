@@ -70,7 +70,6 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
         
         feedTableView.reloadData()
         noStoryLabel.alpha = 0
-        
     }
     
     

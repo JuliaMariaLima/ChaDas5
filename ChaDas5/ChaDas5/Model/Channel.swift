@@ -17,7 +17,7 @@ struct ChannelUser {
 
 class Channel {
   
-    var id: String?
+    var id: CKRecord.ID?
     var ownerID: String
     var fromStory: String
     var lastMessageDate: String
@@ -40,7 +40,7 @@ class Channel {
         ownerID = recordOwner
         fromStory = recordFromStory
         lastMessageDate = recordLastMessageDate
-        id = record.recordID.recordName
+        id = record.recordID
         completion(self, nil)
     }
     

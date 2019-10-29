@@ -15,6 +15,8 @@ protocol MessagesProtocol {
     func readedMessagesFromChannel(messages:[Message]?, error:Error?)
     func messageSaved(with:Error)
     func messageSaved()
+    func deleted()
+    func deletedError(with:Error)
 }
 
 class MessagesManager {
@@ -32,7 +34,7 @@ class MessagesManager {
     var messages = [Message]()
     
     func loadMessages(from channel: Channel, requester: MessagesProtocol) {
-        let predicate = NSPredicate(format: "onChannel = %@", channel.id ?? "")
+        let predicate = NSPredicate(format: "onChannel = %@", channel.id?.recordName ?? "")
         let query = CKQuery(recordType: "Thread", predicate: predicate)
         self.messages = []
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
@@ -75,6 +77,43 @@ class MessagesManager {
         })
     }
     
+    func deleteAllFromChannel(from channel:String, requester: MessagesProtocol) {
+        let predicate = NSPredicate(format: "onChannel = %@", channel)
+        let query = CKQuery(recordType: "Thread", predicate: predicate)
+        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            if error != nil {
+                print(error!)
+                requester.deletedError(with: error!)
+                return
+            }
+            if results != nil && (results?.count)! > 0 {
+                for result in results! {
+                    self.database.delete(withRecordID: result.recordID) { (id, error) in
+                        if error != nil {
+                            requester.deletedError(with: error!)
+                        }
+                    }
+                }
+                requester.deleted()
+            }
+        })
+    }
+    
+    func deleteAll() {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Thread", predicate: predicate)
+        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            if results != nil && (results?.count)! > 0 {
+                for result in results! {
+                    self.database.delete(withRecordID: result.recordID) { (id, error) in
+                        if error != nil {
+                            print(error.debugDescription)
+                        }
+                    }
+                }
+            }
+        })
+    }
 
 //    func save(message:Message, completion: @escaping (CKRecord?, Error?) -> Void) {
 //        self.database.save(message.asCKRecord, completionHandler: {(record, error) in

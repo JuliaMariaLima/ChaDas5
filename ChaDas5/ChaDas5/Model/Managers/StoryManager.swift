@@ -57,7 +57,9 @@ class StoryManager {
             if (results?.count)! > 0 {
                 
                 for result in results! {
-                    self.stories.append(result)
+                    if result["status"] as? String == "active" {
+                        self.stories.append(result)
+                    }
                 }
                 requester.readedStories(stories: results, error: nil)
                 return
@@ -82,14 +84,14 @@ class StoryManager {
                 for result in results! {
                     DAOManager.instance?.ckUsers.retrieve(authorFrom: result) { (author, error) in
                         if author != nil {
-                            if !MeUser.instance.blocked.contains(author!) {
-                                self.stories = self.stories.sorted(by: { $0.creationDate! > $1.creationDate! })
+                            if !MeUser.instance.blocked.contains(author!) && result["status"] == "active" {
                                 self.stories.append(result)
                             }
                         }
                     }
 
                 }
+                self.stories = self.stories.sorted(by: { $0.creationDate! > $1.creationDate! })
                 requester.readedStories(stories: self.stories, error: nil)
                 return
             }

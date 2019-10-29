@@ -61,6 +61,7 @@ class ChannelManager {
             let query = CKQuery(recordType: "Channel", predicate: predicate)
             self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             if error != nil {
+                
                 requester.readedChannels(channels: self.channels, error: error)
                 return
             }
@@ -73,9 +74,11 @@ class ChannelManager {
                     }
                 }
                 self.channels = self.channels.sorted(by: { $0.lastMessageDate > $1.lastMessageDate })
+                
                 requester.readedChannels(channels: self.channels, error: nil)
                 return
             }
+            
             requester.readedChannels(channels: nil, error: nil)
         })
         })
@@ -87,8 +90,9 @@ class ChannelManager {
                 debugPrint("record deleted")
                 DaoPushNotifications.instance.deleteSubscriptionRecord(from: channelID.recordName)
                 completion(true)
+            } else {
+                completion(false)
             }
-            completion(false)
         }
     }
     

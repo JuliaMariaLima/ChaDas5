@@ -29,13 +29,21 @@ class ProfileTableViewCell: UITableViewCell {
 
         if myProfileView?.currentSegment == 0 {
 
-            self.selectedStory = dao?.nonActiveStories[selected]
+            self.selectedStory = Story(from: (dao?.nonActiveStories[selected])!, completion: { (story, error) in
+                if error == nil && story != nil {
+                    print("success")
+                }
+            })
 
         }
 
         else{
 
-            self.selectedStory = dao?.activeStories[selected]
+            self.selectedStory = Story(from: (dao?.activeStories[selected])!, completion: { (story, error) in
+                if error == nil && story != nil {
+                    print("success")
+                }
+            })
 
         }
 
