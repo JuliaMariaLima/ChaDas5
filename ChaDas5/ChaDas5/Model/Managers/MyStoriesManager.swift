@@ -92,6 +92,11 @@ class MyStoriesManager {
         })
     }
     
+    
+    
+
+
+    
     func switchArchived(storyID: String, completion: @escaping (CKRecord?, Error?) -> Void) {
         let predicate = NSPredicate(format: "author = %@", MeUser.instance.email)
         let query = CKQuery(recordType: "Story", predicate: predicate)

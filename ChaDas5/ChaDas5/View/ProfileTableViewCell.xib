@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -48,34 +48,17 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i5T-Bi-yJ5">
-                        <rect key="frame" x="9" y="8.5" width="30" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="30" id="gyo-fW-PLV"/>
-                            <constraint firstAttribute="height" constant="30" id="z7b-Mx-OSy"/>
-                        </constraints>
-                        <state key="normal" image="dismissIcon"/>
-                        <connections>
-                            <action selector="deleteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="QmK-Go-YgZ"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Vy3-t2-6Z2" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LzK-kk-v7q"/>
                     <constraint firstItem="Vy3-t2-6Z2" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Nff-JD-ny9"/>
-                    <constraint firstItem="i5T-Bi-yJ5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-51.75" id="k00-7p-mad"/>
-                    <constraint firstItem="i5T-Bi-yJ5" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-163.5" id="pJR-n2-RUp"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="deleteButton" destination="i5T-Bi-yJ5" id="Sgy-kZ-xuN"/>
                 <outlet property="profileCellTextField" destination="8gi-me-Hro" id="6dr-uR-fWm"/>
             </connections>
             <point key="canvasLocation" x="55.200000000000003" y="48.575712143928037"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="dismissIcon" width="640.5" height="640.5"/>
-    </resources>
 </document>

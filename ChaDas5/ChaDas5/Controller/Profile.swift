@@ -17,7 +17,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     var selectedIndex:Int?
     var currentSegment:Int = 0
     private let refreshControl = UIRefreshControl()
-    var profileIsEditing =  false
+
 
     var userRequester: UserRequester!
     var meUser: MeUser!
@@ -26,7 +26,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     let dao2 = DAOManager.instance?.ckChannels
 
     //outlets
-    @IBOutlet weak var editButton: UIButton!
+
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileTableView: UITableView!
@@ -37,37 +37,6 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     @IBOutlet weak var storiesAndChannelsLabel: UILabel!
     var activityView:UIActivityIndicatorView!
 
-
-    @IBAction func pickYourTeaButton(_ sender: Any) {
-        performSegue(withIdentifier: "toChooseYourTea", sender: nil)
-        imageCircle.alpha = 0.25
-        profileImage.alpha = 0.25
-        pickYouTeaButton.alpha = 1
-
-    }
-
-
-
-    //actions
-
-
-    @IBAction func editButton(_ sender: Any) {
-        if !profileIsEditing{
-        imageCircle.alpha = 0.25
-        profileImage.alpha = 0.25
-        pickYouTeaButton.alpha = 1
-        profileIsEditing = true
-
-        }
-        else{
-
-            imageCircle.alpha = 1
-            profileImage.alpha = 1
-            pickYouTeaButton.alpha = 0
-            profileIsEditing = false
-        }
-        profileTableView.reloadData()
-    }
 
 
 
@@ -136,8 +105,6 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         refreshControl.tintColor = UIColor.buttonOrange
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
 
-        profileIsEditing =  false
-
     }
 
     private func setUpSegmentedControlConstraints() {
@@ -178,14 +145,6 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
          }
         profileImage.image = UIImage(named: meUser.name )
         profileImage.contentMode =  UIView.ContentMode.scaleAspectFit
-        if profileIsEditing {
-
-            pickYouTeaButton.alpha = 1
-        }
-        else{
-
-           pickYouTeaButton.alpha = 0
-        }
 
     }
 
@@ -220,7 +179,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let profileCell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as! ProfileTableViewCell
-        profileCell.deleteButton.alpha = profileIsEditing ? 1 : 0
+ 
         var story : CKRecord
         guard let dao = dao else {
             return profileCell

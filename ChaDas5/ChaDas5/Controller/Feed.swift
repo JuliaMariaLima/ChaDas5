@@ -174,19 +174,6 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
     
     
     
-    @IBAction func configurationsButton(_ sender: Any) {
-        
-        if #available(iOS 13.0, *) {
-            let popOverVc = UIStoryboard(name: "Feed", bundle: nil).instantiateViewController(identifier: "popUpID") as! ConfigurationsPopUpViewController
-            self.addChild(popOverVc)
-            popOverVc.view.frame = self.view.frame
-            self.view.addSubview(popOverVc.view)
-            popOverVc.didMove(toParent: self)
-        } else {
-            // fix
-        }
-
-    }
     
     
     
