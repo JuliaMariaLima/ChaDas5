@@ -29,7 +29,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     }
     
 
-
+    var chatUserRequester: UserRequester!
     var activityView: UIActivityIndicatorView!
     private let channel: Channel
     
@@ -103,19 +103,34 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         
         let alert = UIAlertController(title: "Deseja mesmo bloquear esse usuário?", message: "Vocês não verão postagens um do outro mais! Esse usuário também será mandado para análise.", preferredStyle: .alert)
         let bloquear = UIAlertAction(title: "Bloquear Usuário", style: .default, handler: { (action) -> Void in
-//            DAOManager.instance?.ckChannels.deleteChannel(channelID: , completion: { (completed) in
-//                if completed {
-//                    self.dismiss(animated: true)
-//                }
-//            })
             
+        
             
-            self.dismiss(animated: true)
+            guard let channelID = self.channel.id else {
+                return
+            }
+            
+            if MeUser.instance.email == self.channel.ownerID {
+                DAOManager.instance?.ckUsers.block(self.channel.fromStory, requester: self)
+                DAOManager.instance?.ckUsers.blockAnother(self.channel.fromStory, requester: self)
+            }else{
+                DAOManager.instance?.ckUsers.block(self.channel.ownerID, requester: self)
+                        DAOManager.instance?.ckUsers.blockAnother(self.channel.ownerID, requester: self)
+            }
+            
+            self.dismiss(animated: false)
+            
+            DAOManager.instance?.ckChannels.deleteChannel(channelID: channelID, completion: { (completed) in
+                if completed {
+                   
+                }
+            })
+            
         })
         let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
         }
-//        alert.addAction(bloquear)
+        alert.addAction(bloquear)
         alert.addAction(cancelar)
         self.present(alert, animated: true, completion: nil)
         alert.view.tintColor = UIColor.buttonOrange
@@ -214,7 +229,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         complainButton.addTarget(self, action: #selector(complainAction), for: .touchUpInside)
         complainButton.contentMode = .center
         complainButton.imageView?.contentMode = .scaleAspectFit
-        complainButton.isEnabled = false
+        complainButton.isEnabled = true
 
         
         self.view.addSubview(complainButton)
@@ -379,6 +394,18 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         inputBar.inputTextView.text = ""
     }
     
+}
+extension ChatViewController: UserRequester {
+    func saved(userRecord: CKRecord?, userError: Error?) {}
+    
+    func retrieved(user: User?, userError: Error?) {}
+    
+    func retrieved(userArray: [User]?, userError: Error?) {}
+    
+    func retrieved(meUser: MeUser?, meUserError: Error?) {}
+    
+    func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
+     
 }
 
 

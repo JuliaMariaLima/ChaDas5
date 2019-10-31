@@ -171,13 +171,7 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
         self.refreshControl.endRefreshing()
 
     }
-    
-    
-    
-    
-    
-    
-    
+
     
     @IBAction func exitButton(_ sender: Any) {
         
