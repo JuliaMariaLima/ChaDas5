@@ -14,7 +14,7 @@
 		155CF81221DE926100AFB04B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF81121DE926100AFB04B /* ChatViewController.swift */; };
 		158069882332A94700C458FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158069872332A94700C458FE /* User.swift */; };
 		1580698A2332AA4100C458FE /* MeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158069892332AA4100C458FE /* MeUser.swift */; };
-		1580698E2332DF4400C458FE /* DAOPushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698D2332DF4400C458FE /* DAOPushNotifications.swift */; };
+		1580698E2332DF4400C458FE /* DAOSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698D2332DF4400C458FE /* DAOSubscription.swift */; };
 		158069902332E00D00C458FE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698F2332E00D00C458FE /* Extensions.swift */; };
 		1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588D7B121E7AEB000136083 /* MessagesManager.swift */; };
 		158DBDB721CAD40100C9888F /* StoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158DBDB621CAD40100C9888F /* StoryManager.swift */; };
@@ -89,7 +89,7 @@
 		15639B5C2314728900BDF79B /* ChaDas5.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChaDas5.entitlements; sourceTree = "<group>"; };
 		158069872332A94700C458FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		158069892332AA4100C458FE /* MeUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeUser.swift; sourceTree = "<group>"; };
-		1580698D2332DF4400C458FE /* DAOPushNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOPushNotifications.swift; sourceTree = "<group>"; };
+		1580698D2332DF4400C458FE /* DAOSubscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOSubscription.swift; sourceTree = "<group>"; };
 		1580698F2332E00D00C458FE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1588D7B121E7AEB000136083 /* MessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesManager.swift; sourceTree = "<group>"; };
 		158DBDB621CAD40100C9888F /* StoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 				9A76AF8C21C038D9003ED02C /* MyStoriesManager.swift */,
 				1588D7B121E7AEB000136083 /* MessagesManager.swift */,
 				15F34C98231850A60015FEFB /* NotificationsManager.swift */,
-				1580698D2332DF4400C458FE /* DAOPushNotifications.swift */,
+				1580698D2332DF4400C458FE /* DAOSubscription.swift */,
 				15F34CA4231F0B8C0015FEFB /* DAOManager.swift */,
 			);
 			path = Managers;
@@ -245,6 +245,7 @@
 				9A4E543221B0065A0033FEBF /* CreateNewAccount.swift */,
 				9A4E543421B0066F0033FEBF /* Login.swift */,
 				9A4E543821B0069B0033FEBF /* Feed.swift */,
+				9A4E544021B0071F0033FEBF /* StoryScreen.swift */,
 				9A4E543E21B006E60033FEBF /* NewStoryScreen.swift */,
 				9A4E543621B006870033FEBF /* Profile.swift */,
 				9A82FD8621E5030400566AE1 /* ChooseYourTeaScreen.swift */,
@@ -315,7 +316,6 @@
 				155CF80D21DE89F400AFB04B /* Message.swift */,
 				155CF80721DE6E6800AFB04B /* Channel.swift */,
 				155CF80F21DE8A9000AFB04B /* AppSettings.swift */,
-				9A4E544021B0071F0033FEBF /* StoryScreen.swift */,
 				1580698F2332E00D00C458FE /* Extensions.swift */,
 			);
 			path = Model;
@@ -524,7 +524,7 @@
 				E28284E42339719500137924 /* NavigationBar.swift in Sources */,
 				9A4E543B21B006B30033FEBF /* Messages.swift in Sources */,
 				158069882332A94700C458FE /* User.swift in Sources */,
-				1580698E2332DF4400C458FE /* DAOPushNotifications.swift in Sources */,
+				1580698E2332DF4400C458FE /* DAOSubscription.swift in Sources */,
 				9A1B11DB21C43B83006956B7 /* AppDelegate.swift in Sources */,
 				9A1B11D721C43B39006956B7 /* Story.swift in Sources */,
 				1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */,

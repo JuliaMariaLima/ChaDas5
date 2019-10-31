@@ -34,7 +34,8 @@ class MessagesManager {
     var messages = [Message]()
     
     func loadMessages(from channel: Channel, requester: MessagesProtocol) {
-        let predicate = NSPredicate(format: "onChannel = %@", channel.id?.recordName ?? "")
+        guard let id = channel.id?.recordName else { return }
+        let predicate = NSPredicate(format: "onChannel = %@", id)
         let query = CKQuery(recordType: "Thread", predicate: predicate)
         self.messages = []
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
@@ -52,6 +53,7 @@ class MessagesManager {
                     }
                 }
                 self.messages = self.messages.sorted(by: { $0.sentDate < $1.sentDate })
+                DAOManager.instance?.ckChannels.updateOpenedBy(with: Date.distantFuture, on: id)
                 requester.readedMessagesFromChannel(messages: self.messages, error: nil)
                 return
             }

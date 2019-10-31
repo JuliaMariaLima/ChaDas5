@@ -42,10 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // first responder login
         }
         
-            if DaoPushNotifications.instance == nil {
-            let dao = DaoPushNotifications.init()
+            if DAOSubscription.instance == nil {
+            let dao = DAOSubscription.init()
             debugPrint(dao)
-            do { try DaoPushNotifications.instance.save() }
+            do { try DAOSubscription.instance.save() }
             catch {
                 print("nao foi aqui")
                 let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         
-        do { try DaoPushNotifications.instance.load()
+        do { try DAOSubscription.instance.load()
             
         } catch {
             print("nao foi anyway")

@@ -167,24 +167,20 @@ class UserManager {
         })
     }
     
-    func block(_ user: User, requester: UserRequester) {
+    func block(_ user: String, requester: UserRequester) {
         let predicateMe = NSPredicate(format: "email = %@", MeUser.instance.email)
         let queryMe = CKQuery(recordType: "User", predicate: predicateMe)
-        
         self.database.perform(queryMe, inZoneWith: nil) {(records, error) in
             if let error = error {
                 requester.saved(userRecord: nil, userError: error)
                 return
             }
-            
             if let records = records,
                 records.count == 1 {
                 let record = records.first
                 var blocked = record!["blocked"] as? [String] ?? []
-                
-                blocked.append(user.email)
-                record!["blocked"] = blocked
-                
+                blocked.append(user)
+                record?.setValue(blocked, forKeyPath: "blocked")
                 self.database.save(record!, completionHandler: {(record, error) in
                     if let error = error {
                         requester.saved(userRecord: nil, userError: error)

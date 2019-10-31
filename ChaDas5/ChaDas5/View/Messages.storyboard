@@ -96,7 +96,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Xz-h8-fOq"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Mensagem" image="messageIcon" badgeValue="1" selectedImage="messageIcon" id="b51-d0-cxP">
+                    <tabBarItem key="tabBarItem" title="Mensagem" image="messageIcon" selectedImage="messageIcon" id="b51-d0-cxP">
                         <color key="badgeColor" red="0.94509803920000002" green="0.60784313729999995" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

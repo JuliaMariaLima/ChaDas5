@@ -63,19 +63,15 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
     }
 
     func created(channel: CKRecord) {
-        _ = Channel(from: channel) { (channel, error) in
-            if channel != nil {
-                DispatchQueue.main.async {
-                    self.activityView.stopAnimating()
-                    let vc = ChatViewController(channel: channel!)
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true, completion: nil)
-                }
-            }
+        DispatchQueue.main.async {
+            self.activityView.stopAnimating()
+            let vc = ChatViewController(channel: channel)
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
         }
     }
 
-    func readedChannels(channels: [Channel]?, error: Error?) {
+    func readedChannels(channels: [CKRecord]?, error: Error?) {
         
     }
 

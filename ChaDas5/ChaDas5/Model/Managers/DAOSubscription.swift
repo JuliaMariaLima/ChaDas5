@@ -10,13 +10,13 @@ import Foundation
 import CloudKit
 import UIKit
 
-class DaoPushNotifications: Codable {
+class DAOSubscription: Codable {
     
-    static var instance: DaoPushNotifications!
+    static var instance: DAOSubscription!
 
     
     init() {
-        DaoPushNotifications.instance = self
+        DAOSubscription.instance = self
     }
 
     func createSubscription(recordType: String, predicate: NSPredicate, option: CKQuerySubscription.Options, on channel: String) {
@@ -27,7 +27,7 @@ class DaoPushNotifications: Codable {
             if error == nil {
                 print("Subscription saved successfully")
                 self.saveSubscription(from: channel, with: subscription.subscriptionID)
-                do { try DaoPushNotifications.instance.save()
+                do { try DAOSubscription.instance.save()
                 } catch {
                     print("error")
                     let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
@@ -64,7 +64,7 @@ class DaoPushNotifications: Codable {
         DAOManager.instance?.database.delete(withSubscriptionID: subscription, completionHandler: {(description, error) in
             if error == nil {
                 print("Subscription deleted successfully")
-                do { try DaoPushNotifications.instance.save()
+                do { try DAOSubscription.instance.save()
                 } catch {
                     print("error")
                     let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
@@ -114,15 +114,15 @@ class DaoPushNotifications: Codable {
              }
             if results != nil  {
                 for result in results! {
-                    if result["user"] as? String == MeUser.instance.email {
+                    guard let user = result["user"] as? String else { return }
+                    if user == MeUser.instance.email {
                         completion(true)
                         return
                     }
-                    completion(false)
-                    return
                 }
-            }
+            } else {
             completion(false)
+            }
         })
     }
     
