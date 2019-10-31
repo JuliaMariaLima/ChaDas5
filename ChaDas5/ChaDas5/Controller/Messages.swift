@@ -98,6 +98,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let messagesCell = tableView.dequeueReusableCell(withIdentifier: "MessagesCell") as! MessagesTableViewCell
         messagesCell.deleteButton.alpha = messageIsEditing ? 1 : 0
+        messagesCell.nonReadMessages.isHidden = true
 
         if dao?.channels.isEmpty ?? true {
             return messagesCell
@@ -117,8 +118,6 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
                 guard let lastOpen = currentChannel["lastOpenByOwner"] as? String else { fatalError() }
                 if lastMessageDate > lastOpen {
                     messagesCell.nonReadMessages.isHidden = false
-                } else {
-                    messagesCell.nonReadMessages.isHidden = true
                 }
                 let user = currentChannel["fromStory"] as! String
                 DAOManager.instance?.ckUsers.retrieve(nameFrom: user, completion: { (retrievedUsername, error) in
@@ -136,8 +135,6 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
                 guard let lastOpen = currentChannel["lastOpenByStoryAuthor"] as? String else { fatalError() }
                 if lastMessageDate > lastOpen {
                     messagesCell.nonReadMessages.isHidden = false
-                } else {
-                    messagesCell.nonReadMessages.isHidden = true
                 }
                 DAOManager.instance?.ckUsers.retrieve(nameFrom: owner, completion: { (retrievedUsername, error) in
                     if error == nil && retrievedUsername != nil {
