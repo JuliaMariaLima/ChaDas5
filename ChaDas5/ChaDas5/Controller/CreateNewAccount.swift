@@ -12,18 +12,14 @@ import CloudKit
 
 
 
-class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource
+class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewDataSource
 {
-
-    var selected:ChooseYourTeaCollectionViewCell?
-    var index: IndexPath?
-
+   
 
     //outlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConfirmationTextField: UITextField!
-    @IBOutlet weak var pickYourTeaCollectionView: UICollectionView!
     @IBOutlet weak var createNewAccountButton: UIButton!
     
     @IBOutlet weak var cisWomanButton: UIButton!
@@ -37,13 +33,51 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
     @IBOutlet weak var otherButton: UIButton!
     
     
+    @IBOutlet weak var pickerTeas: AKPickerView!
+    
+    @IBOutlet weak var previousButton: UIButton!
+    
+    @IBOutlet weak var nextButton: UIButton!
+    
     var activityView:UIActivityIndicatorView!
     var meUser: MeUser!
     var newAccountUserResquester: UserRequester!
     var identification: String!
+    let allTeas = DAOManager.instance?.ckUsers.teas
+    var yourTea:String!
     
+    
+    func numberOfItemsInPickerView(_ pickerView: AKPickerView) -> Int {
+        return allTeas!.count
+           
+    }
+    
+    func pickerView(_ pickerView: AKPickerView, imageForItem item: Int) -> UIImage {
+        return UIImage(named: "picker_\(allTeas![item])")!.imageWithSize(CGSize(width: 120, height: 120))
+    }
+    
+    func pickerView(_ pickerView: AKPickerView, didSelectItem item: Int) {
+        yourTea = allTeas![item]
+        
+        previousButton.isHidden = (item == 0) ? true : false
+        nextButton.isHidden = (item == allTeas!.count - 1) ? true : false
+        
+    }
 
     //actions
+    
+    @IBAction func prevButton(_ sender: Any) {
+        
+        self.pickerTeas.selectItem(self.pickerTeas.selectedItem - 1, animated: true)
+    }
+    
+    
+    @IBAction func nextButton(_ sender: Any) {
+        self.pickerTeas.selectItem(self.pickerTeas.selectedItem + 1, animated: true)
+    }
+    
+    
+    
     
     @IBAction func cisWomanAction(_ sender: Any) {
         cisWomanButton.backgroundColor = UIColor.middleOrange
@@ -133,10 +167,13 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         
             print("Entrou")
             
-            
+            print(yourTea!)
             
             if (emailTextField.text?.contains("@"))!{
-                meUser = MeUser(name: selected!.chooseYourTeaLabel.text!, email: emailTextField.text!, password: passwordTextField.text!, genderId: identification, blocked: [])
+                meUser = MeUser(name: yourTea, email: emailTextField.text!, password: passwordTextField.text!, genderId: identification, blocked: [])
+                
+                print(self.meUser.name)
+                
                 DAOManager.instance?.ckUsers.save(newUser: meUser, requester: newAccountUserResquester)
                 
             }else{
@@ -184,14 +221,9 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
         passwordTextField.textContentType = .password
         passwordConfirmationTextField.textContentType = .password
         
-        //collection view settings
-        pickYourTeaCollectionView.allowsMultipleSelection = false
-        pickYourTeaCollectionView.dataSource = self
-        pickYourTeaCollectionView.delegate = self
-        pickYourTeaCollectionView.allowsSelection = true
-        pickYourTeaCollectionView.bounds.inset(by: pickYourTeaCollectionView.layoutMargins)
-        let nib = UINib.init(nibName: "ChooseYourTeaCollectionViewCell", bundle: nil)
-        self.pickYourTeaCollectionView.register(nib, forCellWithReuseIdentifier: "PickYouTea")
+        pickerTeas.delegate = self
+        pickerTeas.dataSource = self
+        previousButton.isHidden = true
 
         if #available(iOS 13.0, *) {
             activityView = UIActivityIndicatorView(style: .medium)
@@ -238,31 +270,6 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
     }
 
 
-    // MARK: - CollectionView Settings
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (DAOManager.instance?.ckUsers.teas.count)!
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let pickYouTeaCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PickYouTea", for: indexPath) as! ChooseYourTeaCollectionViewCell
-        pickYouTeaCell.chooseYourTeaLabel.text = DAOManager.instance?.ckUsers.teas[indexPath.item]
-        pickYouTeaCell.chooseYourteaImage.image = UIImage(named:  (DAOManager.instance?.ckUsers.teas[indexPath.item]) ?? "")
-        pickYouTeaCell.chooseYourteaImage.contentMode = UIView.ContentMode.scaleAspectFit
-        return pickYouTeaCell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedCell = collectionView.cellForItem(at: indexPath) as! ChooseYourTeaCollectionViewCell
-        selectedCell.contentView.backgroundColor = UIColor.baseOrange
-        self.selected = selectedCell
-        self.index = collectionView.indexPath(for: selected!)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let selectedCell = collectionView.cellForItem(at: indexPath) as? ChooseYourTeaCollectionViewCell
-        selectedCell?.contentView.backgroundColor = UIColor.white
-    }
-
     @objc func textFieldChanged(_ target:UITextField) {
         let email = emailTextField.text
         let passwordConfirmed = passwordConfirmationTextField.text
@@ -308,7 +315,7 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
             self.transWomanButton.backgroundColor = UIColor.clear
             self.transManButton.backgroundColor = UIColor.clear
             self.identification = ""
-            self.pickYourTeaCollectionView.deselectItem(at: self.index!, animated: true)
+           
         })
 
         let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
@@ -365,14 +372,6 @@ class CreateNewAccount: UIViewController, UICollectionViewDelegate, UICollection
     }
 
     
-}
-
-extension UICollectionView {
-
-    func deselectAllItems(animated: Bool) {
-        guard let selectedItems = indexPathsForSelectedItems else { return }
-        for indexPath in selectedItems { deselectItem(at: indexPath, animated: animated) }
-    }
 }
 
 
