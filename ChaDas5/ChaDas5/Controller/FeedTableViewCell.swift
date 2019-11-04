@@ -38,11 +38,4 @@ class FeedTableViewCell: UITableViewCell {
             feedTableViewTextField.backgroundColor = UIColor.baseOrange
         }
     }
-
-    
-
-    
-    
-    
-
 }
