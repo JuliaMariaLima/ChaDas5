@@ -50,14 +50,14 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     
     func checkSubscription() {
         let channelID = self.channelRecord.recordID.recordName
-        DAOSubscription.instance.retrieveSubscription(on: channelID) { (exists) in
+        DaoPushNotifications.instance.retrieveSubscription(on: channelID) { (exists) in
             if exists == nil {
                 debugPrint("error getting subscription")
                 return
             }
             if exists! == false {
                 let predicate = NSPredicate(format: "onChannel = %@", channelID)
-                DAOSubscription.instance.createSubscription(recordType: "Thread", predicate: predicate, option: CKQuerySubscription.Options.firesOnRecordCreation, on: channelID)
+                DaoPushNotifications.instance.createSubscription(recordType: "Thread", predicate: predicate, option: CKQuerySubscription.Options.firesOnRecordCreation, on: channelID)
             }
         }
     }
@@ -111,16 +111,15 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
             
         
             
-            guard let channelID = self.channel.id else {
-                return
-            }
+            let channelID = self.channelRecord.recordID
+            guard let channel = self.channel else { return }
             
-            if MeUser.instance.email == self.channel.ownerID {
-                DAOManager.instance?.ckUsers.block(self.channel.fromStory, requester: self)
-                DAOManager.instance?.ckUsers.blockAnother(self.channel.fromStory, requester: self)
+            if MeUser.instance.email == channel.ownerID {
+                DAOManager.instance?.ckUsers.block(channel.fromStory, requester: self)
+                DAOManager.instance?.ckUsers.blockAnother(channel.fromStory, requester: self)
             }else{
-                DAOManager.instance?.ckUsers.block(self.channel.ownerID, requester: self)
-                        DAOManager.instance?.ckUsers.blockAnother(self.channel.ownerID, requester: self)
+                DAOManager.instance?.ckUsers.block(channel.ownerID, requester: self)
+                        DAOManager.instance?.ckUsers.blockAnother(channel.ownerID, requester: self)
             }
             
             self.dismiss(animated: false)

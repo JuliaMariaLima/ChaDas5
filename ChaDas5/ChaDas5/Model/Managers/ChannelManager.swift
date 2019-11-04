@@ -80,7 +80,7 @@ class ChannelManager {
         self.database.delete(withRecordID: channelID) { (record, error) in
             if error == nil && record != nil {
                 debugPrint("record deleted")
-                DAOSubscription.instance.deleteSubscriptionRecord(from: channelID.recordName)
+                DaoPushNotifications.instance.deleteSubscriptionRecord(from: channelID.recordName)
                 completion(true)
             } else {
                 completion(false)

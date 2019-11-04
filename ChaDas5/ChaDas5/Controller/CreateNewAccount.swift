@@ -220,6 +220,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         emailTextField.textContentType = .emailAddress
         passwordTextField.textContentType = .password
         passwordConfirmationTextField.textContentType = .password
+        yourTea = allTeas![0]
         
         pickerTeas.delegate = self
         pickerTeas.dataSource = self
@@ -387,7 +388,7 @@ extension CreateNewAccount: UserRequester {
                 {
                     goTo(identifier: "cisMan")
                     MeUser.instance.delete()
-                    DAOSubscription.instance.delete()
+                    DaoPushNotifications.instance.delete()
                     
                 }else{
                      
