@@ -181,7 +181,7 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
         let ok = UIAlertAction(title: "Sim, desejo sair", style: .default, handler: { (action) -> Void in
                             
                 MeUser.instance.delete()
-                DaoPushNotifications.instance.delete()
+                DAOSubscription.instance.delete()
                 self.goTo(identifier: "main")
             
         })

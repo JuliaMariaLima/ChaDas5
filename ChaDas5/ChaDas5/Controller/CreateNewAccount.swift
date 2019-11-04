@@ -387,7 +387,7 @@ extension CreateNewAccount: UserRequester {
                 {
                     goTo(identifier: "cisMan")
                     MeUser.instance.delete()
-                    DaoPushNotifications.instance.delete()
+                    DAOSubscription.instance.delete()
                     
                 }else{
                      

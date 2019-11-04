@@ -10,7 +10,7 @@ import Foundation
 import CloudKit
 
 protocol ChannelManagerProtocol {
-    func readedChannels(channels: [Channel]?, error: Error?)
+    func readedChannels(channels: [CKRecord]?, error: Error?)
 }
 
 class ChannelManager {
@@ -24,7 +24,7 @@ class ChannelManager {
         self.database = database
     }
     
-    var channels = [Channel]()
+    var channels = [CKRecord]()
     var block = [String]()
 
 
@@ -50,11 +50,7 @@ class ChannelManager {
             }
             if (results?.count)! > 0 {
                 for result in results! {
-                    _ = Channel(from: result) { (channel, error) in
-                        if error == nil && channel != nil {
-                            self.channels.append(channel!)
-                        }
-                    }
+                    self.channels.append(result)
                 }
             }
             let predicate = NSPredicate(format: "fromStory = %@", MeUser.instance.email)
@@ -67,13 +63,9 @@ class ChannelManager {
             }
             if (results?.count)! > 0 {
                 for result in results! {
-                    _ = Channel(from: result) { (channel, error) in
-                        if error == nil && channel != nil {
-                            self.channels.append(channel!)
-                        }
-                    }
+                    self.channels.append(result)
                 }
-                self.channels = self.channels.sorted(by: { $0.lastMessageDate > $1.lastMessageDate })
+                self.channels = self.channels.sorted(by: { $0.modificationDate!.keyString > $1.modificationDate!.keyString })
                 
                 requester.readedChannels(channels: self.channels, error: nil)
                 return
@@ -88,7 +80,7 @@ class ChannelManager {
         self.database.delete(withRecordID: channelID) { (record, error) in
             if error == nil && record != nil {
                 debugPrint("record deleted")
-                DaoPushNotifications.instance.deleteSubscriptionRecord(from: channelID.recordName)
+                DAOSubscription.instance.deleteSubscriptionRecord(from: channelID.recordName)
                 completion(true)
             } else {
                 completion(false)
@@ -104,7 +96,30 @@ class ChannelManager {
                 for result in results! {
                     if result.recordID.recordName == channel {
                         result.setValue(date.keyString, forKey: "lastMessageDate")
-                        print(result.description)
+                        self.database.save(result) { (record, error) in
+                            if error != nil {
+                                debugPrint(error.debugDescription)
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
+    func updateOpenedBy(with date:Date, on channel:String) {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Channel", predicate: predicate)
+        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            if error == nil && results != nil {
+                for result in results! {
+                    if result.recordID.recordName == channel {
+                        guard let owner = result["owner"] as? String else { return }
+                        if MeUser.instance.email == owner {
+                            result.setValue(date.keyString, forKey: "lastOpenByOwner")
+                        } else {
+                            result.setValue(date.keyString, forKey: "lastOpenByStoryAuthor")
+                        }
                         self.database.save(result) { (record, error) in
                             if error != nil {
                                 debugPrint(error.debugDescription)

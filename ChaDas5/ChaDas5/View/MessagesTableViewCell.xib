@@ -24,7 +24,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPV-kT-USH">
                         <rect key="frame" x="16" y="11" width="343" height="128"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zf2-0H-peX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zf2-0H-peX">
                                 <rect key="frame" x="147" y="41.5" width="150" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="6eX-qP-tzQ"/>
@@ -113,6 +113,7 @@
                 <outlet property="deleteButton" destination="NQb-cN-k8y" id="Dap-Ut-xFH"/>
                 <outlet property="messageTableViewImage" destination="wUo-hc-2u1" id="I3m-Cb-n8K"/>
                 <outlet property="messageTableViewLabel" destination="zf2-0H-peX" id="GS8-dh-3Jg"/>
+                <outlet property="nonReadMessages" destination="Hy0-kj-rA5" id="OYo-LG-9vw"/>
             </connections>
             <point key="canvasLocation" x="55.200000000000003" y="48.575712143928037"/>
         </tableViewCell>

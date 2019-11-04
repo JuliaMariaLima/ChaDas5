@@ -31,26 +31,33 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
 
     var chatUserRequester: UserRequester!
     var activityView: UIActivityIndicatorView!
-    private let channel: Channel
+    private let channel: Channel?
+    var channelRecord: CKRecord
     
     let dao = DAOManager.instance?.ckMessages
+    var daoRef: Int?
 
-    init(channel: Channel) {
-        self.channel = channel
+    init(channel: CKRecord) {
+        self.channelRecord = channel
+        self.channel = Channel(from: channel, completion: { (channel, error) in
+            if error != nil {
+                debugPrint(#function, error)
+            }
+        })
         super.init(nibName: nil, bundle: nil)
         checkSubscription()
     }
     
     func checkSubscription() {
-        guard let channelID = self.channel.id else { return }
-        DaoPushNotifications.instance.retrieveSubscription(on: channelID.recordName) { (exists) in
+        let channelID = self.channelRecord.recordID.recordName
+        DAOSubscription.instance.retrieveSubscription(on: channelID) { (exists) in
             if exists == nil {
                 debugPrint("error getting subscription")
                 return
             }
             if exists! == false {
-                let predicate = NSPredicate(format: "onChannel = %@", channelID.recordName)
-                DaoPushNotifications.instance.createSubscription(recordType: "Thread", predicate: predicate, option: CKQuerySubscription.Options.firesOnRecordCreation, on: channelID.recordName)
+                let predicate = NSPredicate(format: "onChannel = %@", channelID)
+                DAOSubscription.instance.createSubscription(recordType: "Thread", predicate: predicate, option: CKQuerySubscription.Options.firesOnRecordCreation, on: channelID)
             }
         }
     }
@@ -67,10 +74,6 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard channel.id != nil else {
-            self.dismiss(animated: true)
-            return
-        }
         guard let dao = dao else { return }
  
         messagesCollectionView.messagesDataSource = self
@@ -92,10 +95,12 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
 
              ])
         customReloadData()
-        dao.loadMessages(from: self.channel, requester: self)
+        guard let currentChannel = self.channel else { return }
+        dao.loadMessages(from: currentChannel, requester: self)
     }
     
     @objc func buttonAction(sender: UIButton!) {
+        DAOManager.instance?.ckChannels.updateOpenedBy(with: Date(), on: self.channelRecord.recordID.recordName)
         self.dismiss(animated: false, completion: nil)
     }
 
@@ -140,10 +145,8 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
   // MARK: -  Database Helpers
 
     private func save(_ message: String) {
-        guard let channelID = self.channel.id else {
-            return
-        }
-        let messageRep = Message(content: message, on: channelID.recordName)
+        let channelID = self.channelRecord.recordID.recordName
+        let messageRep = Message(content: message, on: channelID)
         dao?.save(message: messageRep, to: self)
         self.customReloadData()
     }
@@ -367,6 +370,7 @@ extension ChatViewController: MessagesDataSource {
         guard let dao = dao else {
             fatalError()
         }
+        print("==========", indexPath.row)
         return dao.messages[indexPath.row]
     }
     

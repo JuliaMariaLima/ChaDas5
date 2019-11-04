@@ -71,7 +71,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
 
     }
     
-    func readedChannels(channels: [Channel]?, error: Error?) {
+    func readedChannels(channels: [CKRecord]?, error: Error?) {
         if error != nil {
             debugPrint(error!)
         }
@@ -98,6 +98,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let messagesCell = tableView.dequeueReusableCell(withIdentifier: "MessagesCell") as! MessagesTableViewCell
         messagesCell.deleteButton.alpha = messageIsEditing ? 1 : 0
+        messagesCell.nonReadMessages.isHidden = true
 
         if dao?.channels.isEmpty ?? true {
             return messagesCell
@@ -109,10 +110,16 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
                 return messagesCell
             }
             var username = ""
+            guard let owner = currentChannel["owner"] as? String else { fatalError() }
+            guard let lastMessageDate = currentChannel["lastMessageDate"] as? String else { fatalError() }
             
-            if MeUser.instance.email == currentChannel.ownerID {
+            if MeUser.instance.email == owner {
                 // username vem da story
-                let user = currentChannel.fromStory
+                guard let lastOpen = currentChannel["lastOpenByOwner"] as? String else { fatalError() }
+                if lastMessageDate > lastOpen {
+                    messagesCell.nonReadMessages.isHidden = false
+                }
+                let user = currentChannel["fromStory"] as! String
                 DAOManager.instance?.ckUsers.retrieve(nameFrom: user, completion: { (retrievedUsername, error) in
                     if error == nil && retrievedUsername != nil {
                         username = retrievedUsername!
@@ -125,7 +132,11 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
                 })
             } else {
                 // username vem do ownerID
-                DAOManager.instance?.ckUsers.retrieve(nameFrom: currentChannel.ownerID, completion: { (retrievedUsername, error) in
+                guard let lastOpen = currentChannel["lastOpenByStoryAuthor"] as? String else { fatalError() }
+                if lastMessageDate > lastOpen {
+                    messagesCell.nonReadMessages.isHidden = false
+                }
+                DAOManager.instance?.ckUsers.retrieve(nameFrom: owner, completion: { (retrievedUsername, error) in
                     if error == nil && retrievedUsername != nil {
                         username = retrievedUsername!
                         DispatchQueue.main.async {
