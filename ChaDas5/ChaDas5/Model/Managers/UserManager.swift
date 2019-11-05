@@ -184,8 +184,7 @@ class UserManager {
                 var blocked = record!["blocked"] as? [String] ?? []
                 
                 blocked.append(user)
-                print("========")
-                print(user)
+                MeUser.instance.blocked.append(user)
                 record?.setValue(blocked, forKeyPath: "blocked")
                 self.database.save(record!, completionHandler: {(record, error) in
                     if let error = error {
