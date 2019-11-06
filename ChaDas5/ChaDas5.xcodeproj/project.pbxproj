@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		154633002370BE19001DC7C1 /* StoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154632FF2370BE19001DC7C1 /* StoryScreen.swift */; };
 		154633022370BE96001DC7C1 /* DAOPushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154633012370BE96001DC7C1 /* DAOPushNotifications.swift */; };
 		155CF80821DE6E6800AFB04B /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80721DE6E6800AFB04B /* Channel.swift */; };
 		155CF80C21DE7D2B00AFB04B /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80B21DE7D2B00AFB04B /* ChannelManager.swift */; };
@@ -67,6 +66,7 @@
 		E28284E52339719500137924 /* UICollectionView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284E02339719500137924 /* UICollectionView+Additions.swift */; };
 		E28284E62339719500137924 /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284E12339719500137924 /* UIView+Additions.swift */; };
 		E28284E72339719500137924 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284E22339719500137924 /* UIImage+Additions.swift */; };
+		E287177E2370C58B00C6BB6F /* StoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287177D2370C58B00C6BB6F /* StoryScreen.swift */; };
 		E2C3A6B4236B4F63006A7D7D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3A6B3236B4F63006A7D7D /* UIImage+Resize.swift */; };
 		E2C3A6B6236B4F67006A7D7D /* AKPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3A6B5236B4F67006A7D7D /* AKPickerView.swift */; };
 /* End PBXBuildFile section */
@@ -83,7 +83,6 @@
 
 /* Begin PBXFileReference section */
 		13138019BAAD1FCD878B0713 /* Pods-ChaDas5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChaDas5.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5.release.xcconfig"; sourceTree = "<group>"; };
-		154632FF2370BE19001DC7C1 /* StoryScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoryScreen.swift; path = ../../../../../../Downloads/StoryScreen.swift; sourceTree = "<group>"; };
 		154633012370BE96001DC7C1 /* DAOPushNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOPushNotifications.swift; sourceTree = "<group>"; };
 		155CF80721DE6E6800AFB04B /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		155CF80B21DE7D2B00AFB04B /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
@@ -149,6 +148,7 @@
 		E28284E02339719500137924 /* UICollectionView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Additions.swift"; sourceTree = "<group>"; };
 		E28284E12339719500137924 /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
 		E28284E22339719500137924 /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
+		E287177D2370C58B00C6BB6F /* StoryScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryScreen.swift; sourceTree = "<group>"; };
 		E2C3A6B3236B4F63006A7D7D /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		E2C3A6B5236B4F67006A7D7D /* AKPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -247,7 +247,7 @@
 			children = (
 				E23901B421CADDA8006B3CF3 /* SplashScreen.swift */,
 				9A4E543221B0065A0033FEBF /* CreateNewAccount.swift */,
-				154632FF2370BE19001DC7C1 /* StoryScreen.swift */,
+				E287177D2370C58B00C6BB6F /* StoryScreen.swift */,
 				9A4E543421B0066F0033FEBF /* Login.swift */,
 				9A4E543821B0069B0033FEBF /* Feed.swift */,
 				9A4E543E21B006E60033FEBF /* NewStoryScreen.swift */,
@@ -520,6 +520,7 @@
 				9A76AF8321C02873003ED02C /* MessagesTableViewCell.swift in Sources */,
 				15F34C9A231850A60015FEFB /* NotificationsManager.swift in Sources */,
 				9A82FD8721E5030400566AE1 /* ChooseYourTeaScreen.swift in Sources */,
+				E287177E2370C58B00C6BB6F /* StoryScreen.swift in Sources */,
 				15F34CA5231F0B8C0015FEFB /* DAOManager.swift in Sources */,
 				155CF81021DE8A9000AFB04B /* AppSettings.swift in Sources */,
 				E2C3A6B4236B4F63006A7D7D /* UIImage+Resize.swift in Sources */,
@@ -536,7 +537,6 @@
 				1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */,
 				E2C3A6B6236B4F67006A7D7D /* AKPickerView.swift in Sources */,
 				E28284E62339719500137924 /* UIView+Additions.swift in Sources */,
-				154633002370BE19001DC7C1 /* StoryScreen.swift in Sources */,
 				9A1B11CE21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift in Sources */,
 				9A76AF9021C04B80003ED02C /* ProfileTableViewCell.swift in Sources */,
 				1580698A2332AA4100C458FE /* MeUser.swift in Sources */,
@@ -713,6 +713,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ChaDas5/ChaDas5.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 32H23754C8;
@@ -725,6 +726,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = appledeveloperacademy.ChadasCinco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -736,6 +738,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ChaDas5/ChaDas5.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 32H23754C8;
@@ -748,6 +751,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = appledeveloperacademy.ChadasCinco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

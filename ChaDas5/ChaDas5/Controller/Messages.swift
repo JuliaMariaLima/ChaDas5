@@ -99,7 +99,11 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
         let messagesCell = tableView.dequeueReusableCell(withIdentifier: "MessagesCell") as! MessagesTableViewCell
         messagesCell.deleteButton.alpha = messageIsEditing ? 1 : 0
         messagesCell.nonReadMessages.isHidden = true
-
+            
+        if messageIsEditing {
+            messagesCell.shake()
+        }
+        
         if dao?.channels.isEmpty ?? true {
             return messagesCell
         } else {
