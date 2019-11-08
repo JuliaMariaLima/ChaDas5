@@ -20,6 +20,7 @@ class MessagesTableViewCell: UITableViewCell {
     
 
     var selectedStory:Channel?
+ 
 
 
     //actions
@@ -105,6 +106,18 @@ class MessagesTableViewCell: UITableViewCell {
         }
         return messageView
     }
+
+    func shake(){
+        
+        let transformAnim  = CAKeyframeAnimation(keyPath:"transform")
+        transformAnim.values  = [NSValue(caTransform3D: CATransform3DMakeRotation(0.01, 0.0, 0.0, 1.0)),NSValue(caTransform3D: CATransform3DMakeRotation(-0.01 , 0, 0, 1))]
+          transformAnim.autoreverses = true
+        transformAnim.duration  =  0.2
+          transformAnim.repeatCount = Float.infinity
+        self.layer.add(transformAnim, forKey: "transform")
+    }
+    
+  
 
 }
 

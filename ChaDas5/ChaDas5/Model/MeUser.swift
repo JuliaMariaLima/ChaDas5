@@ -15,7 +15,7 @@ class MeUser: Codable {
     var name: String
     var email: String
     var genderId: String
-    var blocked: [String] = []
+    var blocked: [String]
     var isEmpty:Bool {
         return email.isEmpty
     }
@@ -24,7 +24,7 @@ class MeUser: Codable {
          email: String = "",
          password: String = "",
          genderId: String = "",
-         blocked: [String] = []) {
+         blocked: [String] ) {
         
         self.password = password
         self.name = name

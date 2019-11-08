@@ -140,8 +140,10 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
                 self.activityView.stopAnimating()
             }
             if DAOManager.instance?.ckStories.stories.count == 0 {
-                self.noStoryLabel.alpha = 1
-                self.noStoryLabel.text = "Ainda não temos relatos postados..."
+                DispatchQueue.main.async {
+                    self.noStoryLabel.alpha = 1
+                    self.noStoryLabel.text = "Ainda não temos relatos postados..."
+                }
             }
         } else {
             debugPrint("error querying stories", error.debugDescription, #function)

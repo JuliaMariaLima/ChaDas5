@@ -170,7 +170,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
             print(yourTea!)
             
             if (emailTextField.text?.contains("@"))!{
-                meUser = MeUser(name: yourTea, email: emailTextField.text!, password: passwordTextField.text!, genderId: identification, blocked: [])
+                meUser = MeUser(name: yourTea, email: emailTextField.text!, password: passwordTextField.text!, genderId: identification, blocked: [" "])
                 
                 print(self.meUser.name)
                 
