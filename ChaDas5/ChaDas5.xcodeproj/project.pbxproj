@@ -14,11 +14,14 @@
 		155CF80E21DE89F400AFB04B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80D21DE89F400AFB04B /* Message.swift */; };
 		155CF81021DE8A9000AFB04B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80F21DE8A9000AFB04B /* AppSettings.swift */; };
 		155CF81221DE926100AFB04B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF81121DE926100AFB04B /* ChatViewController.swift */; };
+		157E76DC23738FC400FFDC77 /* genders.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 157E76DB23738FC400FFDC77 /* genders.mlmodel */; };
+		157E76E02374511900FFDC77 /* emotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 157E76DF2374511900FFDC77 /* emotions.mlmodel */; };
 		158069882332A94700C458FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158069872332A94700C458FE /* User.swift */; };
 		1580698A2332AA4100C458FE /* MeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158069892332AA4100C458FE /* MeUser.swift */; };
 		158069902332E00D00C458FE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698F2332E00D00C458FE /* Extensions.swift */; };
 		1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588D7B121E7AEB000136083 /* MessagesManager.swift */; };
 		158DBDB721CAD40100C9888F /* StoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158DBDB621CAD40100C9888F /* StoryManager.swift */; };
+		1594F6AC237250FF005693DD /* sentiment_analysis.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1594F6AB237250FF005693DD /* sentiment_analysis.mlmodel */; };
 		15F34C9A231850A60015FEFB /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34C98231850A60015FEFB /* NotificationsManager.swift */; };
 		15F34C9F231D9FE10015FEFB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F34C9E231D9FE10015FEFB /* CloudKit.framework */; };
 		15F34CA3231DB7160015FEFB /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34CA2231DB7160015FEFB /* UserManager.swift */; };
@@ -91,11 +94,14 @@
 		155CF80F21DE8A9000AFB04B /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		155CF81121DE926100AFB04B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		15639B5C2314728900BDF79B /* ChaDas5.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChaDas5.entitlements; sourceTree = "<group>"; };
+		157E76DB23738FC400FFDC77 /* genders.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = genders.mlmodel; sourceTree = "<group>"; };
+		157E76DF2374511900FFDC77 /* emotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = emotions.mlmodel; path = ../../../../../emotions.mlmodel; sourceTree = "<group>"; };
 		158069872332A94700C458FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		158069892332AA4100C458FE /* MeUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeUser.swift; sourceTree = "<group>"; };
 		1580698F2332E00D00C458FE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1588D7B121E7AEB000136083 /* MessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesManager.swift; sourceTree = "<group>"; };
 		158DBDB621CAD40100C9888F /* StoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
+		1594F6AB237250FF005693DD /* sentiment_analysis.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = sentiment_analysis.mlmodel; sourceTree = "<group>"; };
 		15BC14A021C811D500768231 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15F34C98231850A60015FEFB /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		15F34C9E231D9FE10015FEFB /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -315,6 +321,9 @@
 		9A76AF8B21C038CB003ED02C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1594F6AB237250FF005693DD /* sentiment_analysis.mlmodel */,
+				157E76DB23738FC400FFDC77 /* genders.mlmodel */,
+				157E76DF2374511900FFDC77 /* emotions.mlmodel */,
 				1588D7B021E7A3C100136083 /* Managers */,
 				158069892332AA4100C458FE /* MeUser.swift */,
 				158069872332A94700C458FE /* User.swift */,
@@ -531,6 +540,7 @@
 				9A4E543B21B006B30033FEBF /* Messages.swift in Sources */,
 				158069882332A94700C458FE /* User.swift in Sources */,
 				154633022370BE96001DC7C1 /* DAOPushNotifications.swift in Sources */,
+				157E76E02374511900FFDC77 /* emotions.mlmodel in Sources */,
 				9A1B11DB21C43B83006956B7 /* AppDelegate.swift in Sources */,
 				9A1B11D721C43B39006956B7 /* Story.swift in Sources */,
 				1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */,
@@ -539,6 +549,7 @@
 				154633002370BE19001DC7C1 /* StoryScreen.swift in Sources */,
 				9A1B11CE21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift in Sources */,
 				9A76AF9021C04B80003ED02C /* ProfileTableViewCell.swift in Sources */,
+				1594F6AC237250FF005693DD /* sentiment_analysis.mlmodel in Sources */,
 				1580698A2332AA4100C458FE /* MeUser.swift in Sources */,
 				9A76AF8D21C038D9003ED02C /* MyStoriesManager.swift in Sources */,
 				E23901B521CADDA8006B3CF3 /* SplashScreen.swift in Sources */,
@@ -549,6 +560,7 @@
 				15F34CA3231DB7160015FEFB /* UserManager.swift in Sources */,
 				E28284E52339719500137924 /* UICollectionView+Additions.swift in Sources */,
 				9A4E543521B0066F0033FEBF /* Login.swift in Sources */,
+				157E76DC23738FC400FFDC77 /* genders.mlmodel in Sources */,
 				155CF81221DE926100AFB04B /* ChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
