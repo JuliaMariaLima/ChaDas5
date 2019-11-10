@@ -32,6 +32,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
     
     @IBOutlet weak var otherButton: UIButton!
     
+    @IBOutlet weak var noInfoButton: UIButton!
     
     @IBOutlet weak var pickerTeas: AKPickerView!
     
@@ -85,6 +86,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         cisManButton.backgroundColor = UIColor.clear
         transManButton.backgroundColor = UIColor.clear
         otherButton.backgroundColor = UIColor.clear
+        noInfoButton.backgroundColor = UIColor.clear
 
         identification = "Mulher Cis"
     }
@@ -96,6 +98,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         cisManButton.backgroundColor = UIColor.clear
         transManButton.backgroundColor = UIColor.clear
         otherButton.backgroundColor = UIColor.clear
+        noInfoButton.backgroundColor = UIColor.clear
 
         identification = "Mulher Trans"
   
@@ -109,6 +112,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
       cisManButton.backgroundColor = UIColor.middleOrange
       transManButton.backgroundColor = UIColor.clear
       otherButton.backgroundColor = UIColor.clear
+      noInfoButton.backgroundColor = UIColor.clear
 
       identification = "Homem Cis"
         
@@ -122,6 +126,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         cisManButton.backgroundColor = UIColor.clear
         transManButton.backgroundColor = UIColor.middleOrange
         otherButton.backgroundColor = UIColor.clear
+        noInfoButton.backgroundColor = UIColor.clear
 
         identification = "Homem Trans"
     }
@@ -135,12 +140,27 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         cisManButton.backgroundColor = UIColor.clear
         transManButton.backgroundColor = UIColor.clear
         otherButton.backgroundColor = UIColor.middleOrange
+        noInfoButton.backgroundColor = UIColor.clear
 
         identification = "Outro"
 
     }
     
+    @IBAction func noInfoButton(_ sender: Any) {
+        
+        cisWomanButton.backgroundColor = UIColor.clear
+        transWomanButton.backgroundColor = UIColor.clear
+        cisManButton.backgroundColor = UIColor.clear
+        transManButton.backgroundColor = UIColor.clear
+        otherButton.backgroundColor = UIColor.clear
+        noInfoButton.backgroundColor = UIColor.middleOrange
+
+        identification = "Prefiro não dizer"
+
+        
+    }
     
+
     @IBAction func createNewButton(_ sender: Any) {
         
         newAccountUserResquester = self
@@ -315,6 +335,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
             self.cisManButton.backgroundColor = UIColor.clear
             self.transWomanButton.backgroundColor = UIColor.clear
             self.transManButton.backgroundColor = UIColor.clear
+            self.noInfoButton.backgroundColor = UIColor.clear
             self.identification = ""
            
         })
