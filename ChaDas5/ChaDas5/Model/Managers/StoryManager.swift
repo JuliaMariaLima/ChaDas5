@@ -27,15 +27,15 @@ class StoryManager {
     var container: CKContainer
     var stories = [CKRecord]()
     
-    let classifier:NLModel?
+//    let classifier:NLModel?
 
     
     init(database: CKDatabase, container: CKContainer){
         self.container = container
         self.database = database
         
-        self.classifier = try? NLModel(mlModel:
-            emotions().model)
+//        self.classifier = try? NLModel(mlModel:
+//            emotions().model)
     }
     
     func save(story:Story, completion: @escaping (CKRecord?, Error?) -> Void) {
@@ -93,7 +93,7 @@ class StoryManager {
                         if author != nil {
                             if !MeUser.instance.blocked.contains(author!) && result["status"] == "active" {
                                 guard let content = result["content"] as? String else { return }
-                                print(self.classifier?.predictedLabel(for: content), content)
+//                                print(self.classifier?.predictedLabel(for: content), content)
                                 self.stories.append(result)
                             }
                         }
