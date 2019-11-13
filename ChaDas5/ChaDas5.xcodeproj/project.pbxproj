@@ -14,7 +14,6 @@
 		155CF81021DE8A9000AFB04B /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80F21DE8A9000AFB04B /* AppSettings.swift */; };
 		155CF81221DE926100AFB04B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF81121DE926100AFB04B /* ChatViewController.swift */; };
 		157E76DC23738FC400FFDC77 /* genders.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 157E76DB23738FC400FFDC77 /* genders.mlmodel */; };
-		157E76E02374511900FFDC77 /* emotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 157E76DF2374511900FFDC77 /* emotions.mlmodel */; };
 		158069882332A94700C458FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158069872332A94700C458FE /* User.swift */; };
 		1580698A2332AA4100C458FE /* MeUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158069892332AA4100C458FE /* MeUser.swift */; };
 		158069902332E00D00C458FE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698F2332E00D00C458FE /* Extensions.swift */; };
@@ -61,6 +60,7 @@
 		9A82FD8721E5030400566AE1 /* ChooseYourTeaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A82FD8621E5030400566AE1 /* ChooseYourTeaScreen.swift */; };
 		9AEAA57B21C84CF8001B490F /* SFCompactDisplay-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAA57A21C84CF5001B490F /* SFCompactDisplay-Ultralight.otf */; };
 		9AFBE59E21B1D2D90050AE3E /* CustomSegmentedContrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFBE59D21B1D2D90050AE3E /* CustomSegmentedContrl.swift */; };
+		E233AB8E237C7F4E00464E03 /* emotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E233AB8D237C7F4E00464E03 /* emotions.mlmodel */; };
 		E23901B321CADD94006B3CF3 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */; };
 		E23901B521CADDA8006B3CF3 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23901B421CADDA8006B3CF3 /* SplashScreen.swift */; };
 		E26F83C5236757B600681771 /* GenderInformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26F83C4236757B600681771 /* GenderInformations.swift */; };
@@ -94,7 +94,6 @@
 		155CF81121DE926100AFB04B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		15639B5C2314728900BDF79B /* ChaDas5.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChaDas5.entitlements; sourceTree = "<group>"; };
 		157E76DB23738FC400FFDC77 /* genders.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = genders.mlmodel; sourceTree = "<group>"; };
-		157E76DF2374511900FFDC77 /* emotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = emotions.mlmodel; path = ../../../../../emotions.mlmodel; sourceTree = "<group>"; };
 		158069872332A94700C458FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		158069892332AA4100C458FE /* MeUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeUser.swift; sourceTree = "<group>"; };
 		1580698F2332E00D00C458FE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -146,6 +145,7 @@
 		9AEAA57A21C84CF5001B490F /* SFCompactDisplay-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Ultralight.otf"; sourceTree = "<group>"; };
 		9AFBE59D21B1D2D90050AE3E /* CustomSegmentedContrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedContrl.swift; sourceTree = "<group>"; };
 		D71E81824C6FD27BB88A6028 /* Pods-ChaDas5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChaDas5.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5.debug.xcconfig"; sourceTree = "<group>"; };
+		E233AB8D237C7F4E00464E03 /* emotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = emotions.mlmodel; sourceTree = "<group>"; };
 		E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		E23901B421CADDA8006B3CF3 /* SplashScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		E26F83C4236757B600681771 /* GenderInformations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderInformations.swift; sourceTree = "<group>"; };
@@ -323,7 +323,7 @@
 			children = (
 				1594F6AB237250FF005693DD /* sentiment_analysis.mlmodel */,
 				157E76DB23738FC400FFDC77 /* genders.mlmodel */,
-				157E76DF2374511900FFDC77 /* emotions.mlmodel */,
+				E233AB8D237C7F4E00464E03 /* emotions.mlmodel */,
 				1588D7B021E7A3C100136083 /* Managers */,
 				158069892332AA4100C458FE /* MeUser.swift */,
 				158069872332A94700C458FE /* User.swift */,
@@ -519,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A4E543321B0065A0033FEBF /* CreateNewAccount.swift in Sources */,
+				E233AB8E237C7F4E00464E03 /* emotions.mlmodel in Sources */,
 				E26F83C5236757B600681771 /* GenderInformations.swift in Sources */,
 				9A4E543F21B006E60033FEBF /* NewStoryScreen.swift in Sources */,
 				9A1B11EF21C43EFB006956B7 /* FeedTableViewCell.swift in Sources */,
@@ -541,7 +542,6 @@
 				9A4E543B21B006B30033FEBF /* Messages.swift in Sources */,
 				158069882332A94700C458FE /* User.swift in Sources */,
 				154633022370BE96001DC7C1 /* DAOPushNotifications.swift in Sources */,
-				157E76E02374511900FFDC77 /* emotions.mlmodel in Sources */,
 				9A1B11DB21C43B83006956B7 /* AppDelegate.swift in Sources */,
 				9A1B11D721C43B39006956B7 /* Story.swift in Sources */,
 				1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */,
