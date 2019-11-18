@@ -82,58 +82,109 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
             debugPrint("error retrieving story status", #function)
             return
         }
-        if status == "archived" {
-            let alert = UIAlertController(title: "Deseja mesmo desarquivar esse relato?", message: "Esse relato voltará a aparecer para outras pessoa no Feed.", preferredStyle: .alert)
+        
+        guard let author = selectedStory?.object(forKey: "author") as? String else {
+             fatalError()
+        }
+        
+        guard let flag = selectedStory?.object(forKey: "flag") as? Int else {
+             fatalError()
+         }
 
-            let desarquivar = UIAlertAction(title: "Desarquivar relato", style: .default, handler: { (action) -> Void in
-                DAOManager.instance?.ckMyStories.switchArchived(storyID: storyID, completion: { (record, error) in
-                    if error != nil {
-                        print(error!)
-                    }
-                     DispatchQueue.main.async {
-                        self.dismiss(animated: true)
-                    }
-                })
-            })
-            let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
-                alert.dismiss(animated: true, completion: nil)
-            }
-            alert.addAction(desarquivar)
-            alert.addAction(cancelar)
-            self.present(alert, animated: true, completion: nil)
-            alert.view.tintColor = UIColor.buttonOrange
-        } else {
-            let alert = UIAlertController(
-                title: "Deseja mesmo arquivar esse relato?",
-                message: "Seus relatos arquivados só aparecem no seu perfil e não aparecerão mais para outras pessoas.",
-                preferredStyle: .alert
-            )
+        if MeUser.instance.email == author{
+            if status == "archived" {
+                let alert = UIAlertController(title: "Deseja mesmo desarquivar esse relato?", message: "Esse relato voltará a aparecer para outras pessoa no Feed.", preferredStyle: .alert)
 
-            let arquivar = UIAlertAction(
-                title: "Arquivar relato",
-                style: .default,
-                handler: { (action) -> Void in
+                let desarquivar = UIAlertAction(title: "Desarquivar relato", style: .default, handler: { (action) -> Void in
                     DAOManager.instance?.ckMyStories.switchArchived(storyID: storyID, completion: { (record, error) in
                         if error != nil {
                             print(error!)
                         }
-                        DispatchQueue.main.async {
+                         DispatchQueue.main.async {
                             self.dismiss(animated: true)
                         }
                     })
-            })
-            let cancelar = UIAlertAction(
-            title: "Cancelar",
-            style: .default) { (action) -> Void in
-                alert.dismiss(animated: true, completion: nil)
-            }
+                })
+                let cancelar = UIAlertAction(title: "Cancelar", style: .cancel ) { (action) -> Void in
+                    alert.dismiss(animated: true, completion: nil)
+                }
+                alert.addAction(desarquivar)
+                alert.addAction(cancelar)
+                self.present(alert, animated: true, completion: nil)
+                alert.view.tintColor = UIColor.buttonOrange
+            } else {
+                let alert = UIAlertController(
+                    title: "Deseja mesmo arquivar esse relato?",
+                    message: "Seus relatos arquivados só aparecem no seu perfil e não aparecerão mais para outras pessoas.",
+                    preferredStyle: .alert
+                )
 
-            alert.addAction(arquivar)
-            alert.addAction(cancelar)
-            self.present(alert, animated: true, completion: nil)
-            alert.view.tintColor = UIColor.buttonOrange
+                let arquivar = UIAlertAction(
+                    title: "Arquivar relato",
+                    style: .default,
+                    handler: { (action) -> Void in
+                        DAOManager.instance?.ckMyStories.switchArchived(storyID: storyID, completion: { (record, error) in
+                            if error != nil {
+                                print(error!)
+                            }
+                            DispatchQueue.main.async {
+                                self.dismiss(animated: true)
+                            }
+                        })
+                })
+                let cancelar = UIAlertAction(
+                title: "Cancelar",
+                style: .default) { (action) -> Void in
+                    alert.dismiss(animated: true, completion: nil)
+                }
+
+                alert.addAction(arquivar)
+                alert.addAction(cancelar)
+                self.present(alert, animated: true, completion: nil)
+                alert.view.tintColor = UIColor.buttonOrange
+
+            }
+        } else{
+            
+          let alert = UIAlertController(title: "Sinalizações", message: "Tem algum problema com esse relato?", preferredStyle: .actionSheet)
+          let reportStory = UIAlertAction(title: "Relato com conteúdo sensível", style: .default, handler: { (action) -> Void in
+              
+            DAOManager.instance?.ckStories.switchToFlag(storyID: storyID, completion: { (record, error) in
+                   if error != nil {
+                       print(error!)
+                   }
+           })
+              
+          })
+          
+          let reportUser = UIAlertAction(title: "Reportar usuário", style: .default, handler: { (action) -> Void in
+           
+           DAOManager.instance?.ckUsers.block(author, requester: self)
+           DAOManager.instance?.ckUsers.blockAnother(author, requester: self)
+           self.dismiss()
+
+           })
+          
+            let cancelar = UIAlertAction(title: "Cancelar", style: .cancel ) { (action) -> Void in
+              alert.dismiss(animated: true, completion: nil)
+          }
+   
+        if flag >= 5 {
+           alert.addAction(reportUser)
+           alert.addAction(cancelar)
+           
+       }else{
+           alert.addAction(reportStory)
+           alert.addAction(reportUser)
+           alert.addAction(cancelar)
+       }
+        
+         
+          self.present(alert, animated: true, completion: nil)
+          alert.view.tintColor = UIColor.buttonOrange
 
         }
+
     }
 
     @objc private func dismiss() {
@@ -142,6 +193,13 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
     }
 
     override func viewDidLoad() {
+        
+        //shadows to chatButton
+        chatButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+        chatButton.layer.shadowColor = UIColor.black.cgColor
+        chatButton.layer.shadowOpacity = 0.23
+        chatButton.layer.shadowRadius = 4
+        
         guard let story = selectedStory else {
             return
         }
@@ -155,9 +213,11 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
         })
         
         if author == MeUser.instance.email {
-            chatButton.isEnabled = false
+            chatButton.isHidden = true
+            archiveButton.setImage(UIImage(named: "archiveIcon"), for: .normal)
         } else {
-            archiveButton.isEnabled = false
+            //archiveButton.isEnabled = false
+            archiveButton.setImage(UIImage(named: "optionsIcon"), for: .normal)
         }
         storyTextView.isEditable = false
         if #available(iOS 13.0, *) {
@@ -172,3 +232,17 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
         view.addSubview(activityView)
     }
 }
+
+extension StoryScreen: UserRequester {
+    func saved(userRecord: CKRecord?, userError: Error?) {}
+    
+    func retrieved(user: User?, userError: Error?) {}
+    
+    func retrieved(userArray: [User]?, userError: Error?) {}
+    
+    func retrieved(meUser: MeUser?, meUserError: Error?) {}
+    
+    func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
+     
+}
+

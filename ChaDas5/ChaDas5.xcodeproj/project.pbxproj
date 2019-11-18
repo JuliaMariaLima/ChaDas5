@@ -38,7 +38,6 @@
 		9A1B11EF21C43EFB006956B7 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11EE21C43EFB006956B7 /* FeedTableViewCell.swift */; };
 		9A4E542021AEC8C30033FEBF /* CreateNewAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E541F21AEC8C30033FEBF /* CreateNewAccount.storyboard */; };
 		9A4E542521AF40790033FEBF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E542421AF40790033FEBF /* Login.storyboard */; };
-		9A4E542721AF43AF0033FEBF /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E542621AF43AF0033FEBF /* Profile.storyboard */; };
 		9A4E542921AF44FF0033FEBF /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E542821AF44FF0033FEBF /* Feed.storyboard */; };
 		9A4E542B21AF458A0033FEBF /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E542A21AF458A0033FEBF /* Messages.storyboard */; };
 		9A4E542D21AF46000033FEBF /* Informations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E542C21AF46000033FEBF /* Informations.storyboard */; };
@@ -72,6 +71,7 @@
 		E287177E2370C58B00C6BB6F /* StoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287177D2370C58B00C6BB6F /* StoryScreen.swift */; };
 		E2C3A6B4236B4F63006A7D7D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3A6B3236B4F63006A7D7D /* UIImage+Resize.swift */; };
 		E2C3A6B6236B4F67006A7D7D /* AKPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3A6B5236B4F67006A7D7D /* AKPickerView.swift */; };
+		E2F886A8237DA3CA004E5DD3 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2F886A7237DA3CA004E5DD3 /* Profile.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,7 +122,6 @@
 		9A1B11EE21C43EFB006956B7 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		9A4E541F21AEC8C30033FEBF /* CreateNewAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateNewAccount.storyboard; sourceTree = "<group>"; };
 		9A4E542421AF40790033FEBF /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		9A4E542621AF43AF0033FEBF /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		9A4E542821AF44FF0033FEBF /* Feed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		9A4E542A21AF458A0033FEBF /* Messages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
 		9A4E542C21AF46000033FEBF /* Informations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Informations.storyboard; sourceTree = "<group>"; };
@@ -146,6 +145,7 @@
 		9AFBE59D21B1D2D90050AE3E /* CustomSegmentedContrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedContrl.swift; sourceTree = "<group>"; };
 		D71E81824C6FD27BB88A6028 /* Pods-ChaDas5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChaDas5.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5.debug.xcconfig"; sourceTree = "<group>"; };
 		E233AB8D237C7F4E00464E03 /* emotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = emotions.mlmodel; sourceTree = "<group>"; };
+		E233AB8F237C861900464E03 /* SFCompactDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Regular.otf"; sourceTree = "<group>"; };
 		E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		E23901B421CADDA8006B3CF3 /* SplashScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		E26F83C4236757B600681771 /* GenderInformations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderInformations.swift; sourceTree = "<group>"; };
@@ -157,6 +157,7 @@
 		E287177D2370C58B00C6BB6F /* StoryScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryScreen.swift; sourceTree = "<group>"; };
 		E2C3A6B3236B4F63006A7D7D /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		E2C3A6B5236B4F67006A7D7D /* AKPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPickerView.swift; sourceTree = "<group>"; };
+		E2F886A7237DA3CA004E5DD3 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +229,7 @@
 			children = (
 				15639B5C2314728900BDF79B /* ChaDas5.entitlements */,
 				9AEAA57A21C84CF5001B490F /* SFCompactDisplay-Ultralight.otf */,
+				E233AB8F237C861900464E03 /* SFCompactDisplay-Regular.otf */,
 				9A1B11DA21C43B83006956B7 /* AppDelegate.swift */,
 				9A76AF8B21C038CB003ED02C /* Model */,
 				96451FF321AC79FC00C9C351 /* Controller */,
@@ -287,7 +289,7 @@
 				96451FDB21AC79F000C9C351 /* LaunchScreen.storyboard */,
 				9A4E541F21AEC8C30033FEBF /* CreateNewAccount.storyboard */,
 				9A4E542421AF40790033FEBF /* Login.storyboard */,
-				9A4E542621AF43AF0033FEBF /* Profile.storyboard */,
+				E2F886A7237DA3CA004E5DD3 /* Profile.storyboard */,
 				9A4E542821AF44FF0033FEBF /* Feed.storyboard */,
 				9A4E542A21AF458A0033FEBF /* Messages.storyboard */,
 				9A4E542C21AF46000033FEBF /* Informations.storyboard */,
@@ -441,7 +443,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A4E542721AF43AF0033FEBF /* Profile.storyboard in Resources */,
+				E2F886A8237DA3CA004E5DD3 /* Profile.storyboard in Resources */,
 				9A4E543121AF4C490033FEBF /* StoryScreen.storyboard in Resources */,
 				9A1B11CF21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.xib in Resources */,
 				9A4E542921AF44FF0033FEBF /* Feed.storyboard in Resources */,

@@ -18,15 +18,18 @@ class MessagesTableViewCell: UITableViewCell {
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var nonReadMessages: UIView!
     
-
+    @IBOutlet weak var lastMessage: UITextView!
+    
     var selectedStory:Channel?
- 
+    let messages: Messages? = nil
+    let dao = DAOManager.instance?.ckChannels
 
 
     //actions
     @IBAction func deleteButton(_ sender: Any) {
-
-
+        
+//        refreshData(self)
+        
         let dao = DAOManager.instance?.ckChannels
 
         guard let selected = myIndexPath?.row else {
@@ -49,7 +52,7 @@ class MessagesTableViewCell: UITableViewCell {
             })
         }
 
-        let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
+        let cancelar = UIAlertAction(title: "Cancelar", style: .cancel ) { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
         }
         alert.addAction(delete)
@@ -118,6 +121,11 @@ class MessagesTableViewCell: UITableViewCell {
     }
     
   
+//    @objc public func refreshData(_ sender: Any) {
+//        dao?.getChannels(requester: messages!)
+//        messages!.refreshControl.endRefreshing()
+//        messages!.messagesTableView.reloadData()
+//    }
 
 }
 

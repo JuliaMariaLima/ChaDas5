@@ -30,7 +30,9 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileTableView: UITableView!
-    @IBOutlet weak var noStoryLabel: UILabel!
+
+    @IBOutlet weak var noStoriesImage: UIImageView!
+    
     @IBOutlet weak var pickYouTeaButton: UIButton!
     @IBOutlet weak var imageCircle: UIButton!
 
@@ -44,7 +46,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
 
         //segmented control customization
         segmentedControl = CustomSegmentedContrl.init(frame: CGRect.init(x: 0, y: 440, width: self.view.frame.width, height: 45))
-        segmentedControl.backgroundColor = .white
+        segmentedControl.backgroundColor = .baseOrange
         segmentedControl.commaSeperatedButtonTitles = "Relatos atuais, Relatos passados"
         segmentedControl.addTarget(self, action: #selector(onChangeOfSegment(_:)), for: .valueChanged)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
@@ -71,7 +73,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         activityView.center = profileTableView.center
         activityView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
 
-        noStoryLabel.alpha = 0
+        noStoriesImage.alpha = 0
 
 
         view.addSubview(activityView)
@@ -109,10 +111,10 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
 
     private func setUpSegmentedControlConstraints() {
         NSLayoutConstraint.activate([
-            segmentedControl.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 40),
+            segmentedControl.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 90),
             segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor),
             segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            segmentedControl.bottomAnchor.constraint(equalTo: profileTableView.topAnchor, constant: -40),
+            segmentedControl.bottomAnchor.constraint(equalTo: profileTableView.topAnchor, constant: -60),
             segmentedControl.heightAnchor.constraint(greaterThanOrEqualToConstant: 45)
             ])
     }
@@ -121,7 +123,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     @objc func onChangeOfSegment(_ sender: CustomSegmentedContrl) {
         self.currentSegment = sender.selectedSegmentIndex
         profileTableView.reloadData()
-        label()
+        image()
 
     }
 
@@ -148,16 +150,16 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
 
     }
 
-    func label() {
-        let labelsText = ["Você não possui relatos atuais ainda.", "Você não possui relatos passados ainda."]
-        self.noStoryLabel.text = labelsText[self.currentSegment]
+    func image() {
+        let imagesNames = [UIImage(named: "noActiveStories"), UIImage(named: "noArchiveStories")]
+        self.noStoriesImage.image = imagesNames[self.currentSegment]
         if currentSegment == 0 && dao?.activeStories.count == 0 {
-            self.noStoryLabel.alpha = 1
+            self.noStoriesImage.alpha = 0.75
         } else if currentSegment == 1  && dao?.nonActiveStories.count == 0 {
-            self.noStoryLabel.alpha = 1
+            self.noStoriesImage.alpha = 0.75
         }
         else {
-            self.noStoryLabel.alpha = 0
+            self.noStoriesImage.alpha = 0
         }
     }
 
@@ -195,7 +197,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150.0
+        return 151.0
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -225,7 +227,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
              storiesAndChannelsLabel.text = "\(storiesCount) Relatos"
          }
         self.refreshControl.endRefreshing()
-        label()
+        image()
 
     }
 
@@ -238,7 +240,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         DispatchQueue.main.async {
             self.profileTableView.reloadData()
             self.activityView.stopAnimating()
-            self.label()
+            self.image()
             let storiesCount = self.dao!.activeStories.count + self.dao!.nonActiveStories.count
              if storiesCount == 0 || storiesCount == 1{
                  self.storiesAndChannelsLabel.text = "\(storiesCount) Relato"
