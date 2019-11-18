@@ -61,6 +61,7 @@ class MessagesManager {
         })
     }
     
+    // FIX 
     func save(message:Message, to requester: MessagesProtocol) {
         self.messages.append(message)
 //        self.messages = self.messages.sorted(by: { $0.sentDate.keyString < $1.sentDate.keyString })
@@ -71,9 +72,14 @@ class MessagesManager {
                 requester.messageSaved(with: error)
                 return
             }
+            // CHECK
             if let _ = record {
-                DAOManager.instance?.ckChannels.updateLastMessageDate(with: message.sentDate, on: message.onChannel)
-                requester.messageSaved()
+                let _ = Message(from: record!) { (message, error) in
+                    if error == nil && message != nil {
+                        DAOManager.instance?.ckChannels.updateLastMessageDate(with: message!, on: message!.onChannel)
+                        requester.messageSaved()
+                    }
+                }
                 return
             }
         })
@@ -101,6 +107,13 @@ class MessagesManager {
         })
     }
     
+    func getMessageData() {
+        
+    }
+    
+    
+    
+    // WARNING: THIS FUNCTION DELETED ALL MESSAGES FROM DATABASE
     func deleteAll() {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Thread", predicate: predicate)

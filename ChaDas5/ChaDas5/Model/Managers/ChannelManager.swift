@@ -53,7 +53,8 @@ class ChannelManager {
                     self.channels.append(result)
                 }
             }
-            let predicate = NSPredicate(format: "fromStory = %@", MeUser.instance.email)
+            // FIX
+            let predicate = NSPredicate(format: "storyAuthor = %@", MeUser.instance.email)
             let query = CKQuery(recordType: "Channel", predicate: predicate)
             self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             if error != nil {
@@ -88,14 +89,16 @@ class ChannelManager {
         }
     }
     
-    func updateLastMessageDate(with date:Date, on channel:String) {
+    // CHECK
+    func updateLastMessageDate(with message: Message, on channel:String) {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Channel", predicate: predicate)
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             if error == nil && results != nil {
                 for result in results! {
                     if result.recordID.recordName == channel {
-                        result.setValue(date.keyString, forKey: "lastMessageDate")
+                        result.setValue(message.messageId, forKey: "lastMessageID")
+                        result.setValue(message.sentDate.keyString, forKey: "lastMessageDate")
                         self.database.save(result) { (record, error) in
                             if error != nil {
                                 debugPrint(error.debugDescription)

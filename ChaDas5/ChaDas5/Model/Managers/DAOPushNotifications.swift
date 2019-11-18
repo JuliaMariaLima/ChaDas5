@@ -136,7 +136,7 @@ class DaoPushNotifications: Codable {
     }
     
     func registerChannelNotifications() {
-        let predicate = NSPredicate(format: "fromStory = %@", MeUser.instance.email)
+        let predicate = NSPredicate(format: "storyAuthor = %@", MeUser.instance.email)
         let subscription = CKQuerySubscription(recordType: "Channel", predicate: predicate, options: .firesOnRecordCreation)
         let info = CKSubscription.NotificationInfo()
         info.title = "Você possui uma nova conversa!"

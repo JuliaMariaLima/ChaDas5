@@ -369,7 +369,6 @@ extension ChatViewController: MessagesDataSource {
         guard let dao = dao else {
             fatalError()
         }
-        print("==========", indexPath.row)
         return dao.messages[indexPath.row]
     }
     

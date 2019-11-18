@@ -47,7 +47,8 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
             let channel = Channel(fromStory: story)
             self.dao?.createChannel(withChannel: channel.asCKRecord, completion: { (record, error) in
                 if error != nil {
-                    debugPrint("error creating channel")
+                    
+                    debugPrint("error creating channel", error)
                     return
                 } else {
                     guard record != nil else {

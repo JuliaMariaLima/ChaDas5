@@ -123,7 +123,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
                 if lastMessageDate > lastOpen {
                     messagesCell.nonReadMessages.isHidden = false
                 }
-                let user = currentChannel["fromStory"] as! String
+                let user = currentChannel["storyAuthor"] as! String
                 DAOManager.instance?.ckUsers.retrieve(nameFrom: user, completion: { (retrievedUsername, error) in
                     if error == nil && retrievedUsername != nil {
                         username = retrievedUsername!
