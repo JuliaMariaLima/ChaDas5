@@ -10,7 +10,7 @@ import UIKit
 import CloudKit
 
 
-class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryManagerProtocol {
+class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, StoryManagerProtocol {
 
 
     var activityView:UIActivityIndicatorView!
@@ -21,9 +21,30 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
     //outlets
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var feedTableView: UITableView!
-    @IBOutlet weak var noStoryLabel: UILabel!
+
+    @IBOutlet weak var noStoryImage: UIImageView!
+    @IBOutlet weak var searchLabel: UILabel!
+    @IBOutlet weak var searchField: UITextField!
+    var filterByName:Bool { return (searchField.text?.count ?? 0) > 3}
+    var filterByNameString:String {return searchField.text?.lowercased() ?? ""}
     
     let dao = DAOManager.instance?.ckStories
+    
+    
+//    var dataSource:[CKRecord] {
+//
+//        if filterByName {
+//            var filteredData = dao!.stories
+//            var content = filteredData.object(forKey: "content") as? String
+//            filteredData = filteredData.filter{ $0.content.lowercased().contains(filterByNameString) }
+//            return filteredData
+//        } // else
+//
+//        return dao!.stories
+//
+//    }
+//
+    
 
     
     
@@ -44,8 +65,20 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
         self.feedTableView.register(nib, forCellReuseIdentifier: "FeedCell")
         
         
-       
+        // add button shadows
+        addButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+        addButton.layer.shadowColor = UIColor.black.cgColor
+        addButton.layer.shadowOpacity = 0.23
+        addButton.layer.shadowRadius = 4
         
+    //search bar settings
+      searchField.addTarget(self, action: #selector(uptadeSearchBar), for: .editingChanged)
+      searchField.delegate = self
+      searchLabel.layer.cornerRadius = 20
+      searchLabel.clipsToBounds = true
+      searchLabel.layer.masksToBounds = true
+        
+ 
         if #available(iOS 13.0, *) {
             activityView = UIActivityIndicatorView(style: .medium)
         } else {
@@ -69,7 +102,8 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
         }
         
         feedTableView.reloadData()
-        noStoryLabel.alpha = 0
+        noStoryImage.alpha = 0
+        uptadeSearchBar()
     }
     
     
@@ -86,14 +120,66 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
             debugPrint("error reaching for Story Manager")
             return feedCell
         }
+        
+        
         if !dao.stories.isEmpty {
-            let doc = dao.stories[indexPath.row]
-            if let content = doc.object(forKey: "content") as? String {
-                feedCell.feedTableViewTextField.text = content
-            }
-//            if let date = doc.object(forKey: "date") as? String {
-//                feedCell.dateLabel.text = doc["date"]
+            
+        let doc = dao.stories[indexPath.row]
+            
+//            if filterByName {
+//
+//                if let content = doc.object(forKey: "content") as? String {
+//                    let filteredContent = content.contains(filterByNameString)
+//                    if filteredContent == true {
+//                        feedCell.feedTableViewTextField.text = content
+//                    } else {
+//                        print("nao tem")
+//                        //label
+//                    }
+//                }
+//                guard let author = doc.object(forKey: "author") as? String else {
+//                    fatalError()
+//                }
+//
+//                guard let flag = doc.object(forKey: "flag") as? Bool else {
+//                    fatalError()
+//                }
+//
+//                if flag == true{
+//
+//                    feedCell.sensitiveView.isHidden = false
+//
+//                }
+//
+//                if MeUser.instance.email == author {
+//
+//                          feedCell.optionsButton.isHidden = true
+//                      }
+//
+//
 //            }
+                if let content = doc.object(forKey: "content") as? String {
+                    feedCell.feedTableViewTextField.text = content
+                }
+                guard let author = doc.object(forKey: "author") as? String else {
+                    fatalError()
+                }
+            
+                guard let flag = doc.object(forKey: "flag") as? Int else {
+                     fatalError()
+                 }
+            
+                 if flag >= 5 {
+                    feedCell.sensitiveView.isHidden = false
+   
+                 }else if flag < 5 {
+                    feedCell.sensitiveView.isHidden = true
+                }
+            
+                if MeUser.instance.email == author {
+                    feedCell.sensitiveView.isHidden = true
+                }
+    
             feedCell.selectionStyle = .none
         }
         return feedCell
@@ -101,10 +187,15 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
     
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let selectedCell = tableView.cellForRow(at: indexPath) as! FeedTableViewCell
-        selectedCell.contentView.backgroundColor = UIColor.clear
-        self.selectedIndex = indexPath.row
-        self.performSegue(withIdentifier: "storyScreen", sender: nil)
+        if selectedCell.sensitiveView.isHidden == true{
+            selectedCell.contentView.backgroundColor = UIColor.clear
+            self.selectedIndex = indexPath.row
+            self.performSegue(withIdentifier: "storyScreen", sender: nil)
+        }
+        else{}
+
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -115,7 +206,7 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
     
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150.0
+        return 151.0
 
     }
     
@@ -130,8 +221,25 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
                 }
             }
         }
+ 
     }
 
+    @objc func uptadeSearchBar(){
+        if filterByName {
+            feedTableView.reloadData()
+            //emptyLabelStatus()
+        }
+    }
+    
+    ///Search Bar Clear Button
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        uptadeSearchBar()
+        //self.emptyLabel.alpha = 0
+        return true
+    }
+    
+    
+    
     func readedStories(stories:[CKRecord]?, error: Error?) {
         if error == nil {
             debugPrint("got stories")
@@ -141,8 +249,7 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
             }
             if DAOManager.instance?.ckStories.stories.count == 0 {
                 DispatchQueue.main.async {
-                    self.noStoryLabel.alpha = 1
-                    self.noStoryLabel.text = "Ainda não temos relatos postados..."
+                    self.noStoryImage.alpha = 0.5
                 }
             }
         } else {
@@ -188,7 +295,7 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, StoryM
             
         })
         
-        let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
+        let cancelar = UIAlertAction(title: "Cancelar", style: .cancel ) { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
         }
         

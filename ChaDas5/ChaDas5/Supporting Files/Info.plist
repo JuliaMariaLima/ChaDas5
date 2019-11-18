@@ -33,6 +33,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SFCompactDisplay-Regular.otf</string>
 		<string>SFCompactDisplay-Ultralight.otf</string>
 	</array>
 	<key>UIBackgroundModes</key>

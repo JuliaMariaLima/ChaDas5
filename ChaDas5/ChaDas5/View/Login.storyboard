@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FdJ-g9-0s6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="FdJ-g9-0s6">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SFCompactDisplay-Regular.otf">
+            <string>SFCompactDisplay-Regular</string>
+        </array>
         <array key="SFCompactDisplay-Ultralight.otf">
             <string>SFCompactDisplay-Ultralight</string>
         </array>
@@ -27,7 +29,7 @@
                                     <constraint firstAttribute="height" constant="45" id="UbC-WS-Wvu"/>
                                     <constraint firstAttribute="width" constant="255" id="UuC-jb-kMt"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -38,7 +40,7 @@
                                     <constraint firstAttribute="width" constant="255" id="3wh-9h-TFE"/>
                                     <constraint firstAttribute="height" constant="45" id="Y5q-XE-QmK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Senha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54r-C0-5Gi">
@@ -47,7 +49,7 @@
                                     <constraint firstAttribute="width" constant="255" id="esY-dz-yXE"/>
                                     <constraint firstAttribute="height" constant="45" id="pOs-tc-0hN"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -58,7 +60,7 @@
                                     <constraint firstAttribute="height" constant="45" id="5eR-S8-zCA"/>
                                     <constraint firstAttribute="width" constant="255" id="zaB-m4-h7N"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mTT-Oa-eTo">
@@ -68,9 +70,9 @@
                                     <constraint firstAttribute="width" constant="215" id="5gN-fA-mbl"/>
                                     <constraint firstAttribute="height" constant="70" id="HE6-Qu-6Tg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <state key="normal" title="Fazer Login">
-                                    <color key="titleColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -82,10 +84,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRL-PV-AOZ">
-                                <rect key="frame" x="70" y="94" width="50" height="50"/>
+                                <rect key="frame" x="70" y="94" width="40" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="i0W-Kb-B58"/>
-                                    <constraint firstAttribute="width" constant="50" id="udU-BA-Tw5"/>
+                                    <constraint firstAttribute="height" constant="40" id="i0W-Kb-B58"/>
+                                    <constraint firstAttribute="width" constant="40" id="udU-BA-Tw5"/>
                                 </constraints>
                                 <state key="normal" image="dismissIcon"/>
                                 <connections>
@@ -116,7 +118,7 @@
                             <constraint firstItem="HRL-PV-AOZ" firstAttribute="top" secondItem="DJx-MN-RT6" secondAttribute="top" constant="50" id="VIf-yV-eI8"/>
                             <constraint firstItem="k2G-Sy-b9v" firstAttribute="centerY" secondItem="V1b-9n-yvx" secondAttribute="centerY" constant="-107" id="XUj-DD-0zH"/>
                             <constraint firstItem="ZUx-kp-kTl" firstAttribute="centerY" secondItem="V1b-9n-yvx" secondAttribute="centerY" constant="239" id="bCM-UH-GJu"/>
-                            <constraint firstItem="HRL-PV-AOZ" firstAttribute="centerX" secondItem="V1b-9n-yvx" secondAttribute="centerX" constant="-112" id="fsu-rt-2KM"/>
+                            <constraint firstItem="HRL-PV-AOZ" firstAttribute="centerX" secondItem="V1b-9n-yvx" secondAttribute="centerX" constant="-117" id="fsu-rt-2KM"/>
                             <constraint firstItem="8vj-HA-pqc" firstAttribute="centerX" secondItem="V1b-9n-yvx" secondAttribute="centerX" id="gzE-dD-2Do"/>
                             <constraint firstItem="8vj-HA-pqc" firstAttribute="centerY" secondItem="V1b-9n-yvx" secondAttribute="centerY" constant="-7" id="hLa-Aw-SEu"/>
                             <constraint firstItem="mTT-Oa-eTo" firstAttribute="centerY" secondItem="V1b-9n-yvx" secondAttribute="centerY" constant="186" id="htu-R0-ogi"/>
@@ -150,7 +152,7 @@
                                 <rect key="frame" x="11" y="-32" width="392" height="928"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sBP-Ma-3lw">
-                                <rect key="frame" x="27" y="52" width="50" height="50"/>
+                                <rect key="frame" x="27" y="52" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="dismissIcon"/>
                                 <connections>

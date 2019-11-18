@@ -99,10 +99,22 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         dao.loadMessages(from: currentChannel, requester: self)
     }
     
+    
+//    @objc func teaAction(sender: UIButton!) {
+//        let page = StoryScreen()
+//        let user = channelRecord["fromStory"] as! String
+//        page.selectedStory = channelRecord.
+//        page.chatButton.isHidden = true
+//        present(page, animated: true, completion: nil)
+//
+//    }
+
+    
     @objc func buttonAction(sender: UIButton!) {
         DAOManager.instance?.ckChannels.updateOpenedBy(with: Date(), on: self.channelRecord.recordID.recordName)
         self.dismiss(animated: false, completion: nil)
     }
+
 
     @objc func complainAction(sender: UIButton!) {
         
@@ -119,7 +131,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
                 DAOManager.instance?.ckUsers.blockAnother(channel.fromStory, requester: self)
             }else{
                 DAOManager.instance?.ckUsers.block(channel.ownerID, requester: self)
-                        DAOManager.instance?.ckUsers.blockAnother(channel.ownerID, requester: self)
+                DAOManager.instance?.ckUsers.blockAnother(channel.ownerID, requester: self)
             }
             
             self.dismiss(animated: false)
@@ -131,7 +143,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
             })
             
         })
-        let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
+        let cancelar = UIAlertAction(title: "Cancelar", style: .cancel ) { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
         }
         alert.addAction(bloquear)
@@ -199,7 +211,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         bar.frame = CGRect(x: 0.5, y: 0.5, width: 375, height: 100)
         bar.barTintColor = UIColor.middleOrange
         bar.isTranslucent = true
-//        let navbarFont = UIFont(name: "SFCompactDisplay-Ultralight", size: 17) ?? UIFont.systemFont(ofSize: 17)
+//        let navbarFont = UIFont(name: "SFCompactDisplay-Regular", size: 17) ?? UIFont.systemFont(ofSize: 17)
         self.view.addSubview(bar)
         configureButtons()
         
@@ -215,9 +227,12 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         
     }
     
+    
+
+    
     func configureButtons() {
         let img = UIImage(named: "dismissIcon")
-        let dismissButton = UIButton(frame: CGRect(x: 30, y: 45, width: 45, height: 35))
+        let dismissButton = UIButton(frame: CGRect(x: 30, y: 45, width: 40, height: 40))
         dismissButton.setImage(img , for: .normal)
         dismissButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         dismissButton.contentMode = .center
@@ -225,31 +240,102 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         
         
         self.view.addSubview(dismissButton)
-        let complainButtonImg = UIImage(named: "complainIcon")
-        let complainButton = UIButton(frame: CGRect(x: 375 - dismissButton.frame.maxX, y: 45, width: 65, height: 55))
+        let complainButtonImg = UIImage(named: "blockIcon")
+        let complainButton = UIButton(frame: CGRect(x: 375 - dismissButton.frame.maxX, y: 45, width: 40, height: 40))
         complainButton.setImage(complainButtonImg , for: .normal)
         complainButton.addTarget(self, action: #selector(complainAction), for: .touchUpInside)
         complainButton.contentMode = .center
         complainButton.imageView?.contentMode = .scaleAspectFit
         complainButton.isEnabled = true
+        self.view.addSubview(complainButton)
+        
+        let backgroudCircle = UIImageView(frame: CGRect(x: 45, y:45, width: 45, height: 45))
+        backgroudCircle.image = UIImage(named: "backgroundCircle")
+        backgroudCircle.contentMode = .scaleAspectFill
+        self.view.addSubview(backgroudCircle)
+        
+        
+        let teaButton = UIButton(frame: CGRect(x: 30, y: 45, width: 45, height: 35))
+        let teaName = UILabel(frame: CGRect(x: 45, y:45, width: 45, height: 45))
+        teaName.contentMode = .center
+        teaName.textAlignment = .center
+        teaName.center.y = backgroudCircle.center.y
+        teaName.font = UIFont(name: "SFCompactDisplay-Regular", size: 17)
+        
+        self.view.addSubview(teaName)
+        
+        
+        var username = ""
+
+        if MeUser.instance.email == channel?.ownerID {
+            // username vem da story
+            let user = channelRecord["fromStory"] as! String
+            DAOManager.instance?.ckUsers.retrieve(nameFrom: user, completion: { (retrievedUsername, error) in
+                if error == nil && retrievedUsername != nil {
+                    username = retrievedUsername!
+                    DispatchQueue.main.async {
+                        let photo = UIImage.init(named: username)
+                        teaName.text = username
+                        teaButton.setImage(photo , for: .normal)
+                    }
+                }
+            })
+        } else {
+           // username vem do ownerID
+      
+            DAOManager.instance?.ckUsers.retrieve(nameFrom: channel!.ownerID, completion: { (retrievedUsername, error) in
+               if error == nil && retrievedUsername != nil {
+                   username = retrievedUsername!
+                   DispatchQueue.main.async {
+                       let photo = UIImage.init(named: username)
+                       teaName.text = username
+                       teaButton.setImage(photo , for: .normal)
+                   }
+               }
+           })
+       }
+        
+        
+       // teaButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        teaButton.contentMode = .center
+        teaButton.imageView?.contentMode = .scaleAspectFit
+        self.view.addSubview(teaButton)
 
         
-        self.view.addSubview(complainButton)
+       
         
         dismissButton.translatesAutoresizingMaskIntoConstraints = false
         complainButton.translatesAutoresizingMaskIntoConstraints = false
+        backgroudCircle.translatesAutoresizingMaskIntoConstraints = false
+        teaButton.translatesAutoresizingMaskIntoConstraints = false
+        teaName.translatesAutoresizingMaskIntoConstraints = false
         
         //constraints
         NSLayoutConstraint.activate([
             dismissButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 45),
-            dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -112.5),
-            dismissButton.widthAnchor.constraint(equalToConstant: 65),
-            dismissButton.heightAnchor.constraint(equalToConstant: 55),
+            dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -150),
+            dismissButton.widthAnchor.constraint(equalToConstant: 40),
+            dismissButton.heightAnchor.constraint(equalToConstant: 40),
             
             complainButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 45),
-            complainButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 112.5),
-            complainButton.widthAnchor.constraint(equalToConstant: 65),
-            complainButton.heightAnchor.constraint(equalToConstant: 55)
+            complainButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 150),
+            complainButton.widthAnchor.constraint(equalToConstant: 40),
+            complainButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            backgroudCircle.topAnchor.constraint(equalTo: view.topAnchor, constant: 45),
+            backgroudCircle.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 12),
+            backgroudCircle.widthAnchor.constraint(equalToConstant: 80),
+            backgroudCircle.heightAnchor.constraint(equalToConstant: 80),
+            
+            teaButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 47),
+            teaButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 14),
+            teaButton.widthAnchor.constraint(equalToConstant: 70),
+            teaButton.heightAnchor.constraint(equalToConstant: 70),
+            
+            teaName.topAnchor.constraint(equalTo: view.topAnchor, constant: 130),
+            teaName.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 12),
+            teaName.widthAnchor.constraint(equalToConstant: 100),
+            teaName.heightAnchor.constraint(equalToConstant: 30)
             ])
     
     }
@@ -267,11 +353,11 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
       //  messageInputBar.backgroundView.frame = CGRect(x: 50, y: 50, width: view.frame.width, height: 10)
         messageInputBar.isTranslucent = true
         messageInputBar.inputTextView.placeholderLabel.text = "Nova mensagem"
-        messageInputBar.inputTextView.placeholderLabel.font = UIFont(name: "SFCompactDisplay-Ultralight", size: 18)
+        messageInputBar.inputTextView.placeholderLabel.font = UIFont(name: "SFCompactDisplay-Regular", size: 18)
         messageInputBar.inputTextView.placeholderLabel.textColor = UIColor.gray
         messageInputBar.inputTextView.backgroundColor = UIColor.white
         messageInputBar.inputTextView.layer.cornerRadius = 15
-        messageInputBar.inputTextView.font = UIFont(name: "SFCompactDisplay-Ultralight", size: 18)
+        messageInputBar.inputTextView.font = UIFont(name: "SFCompactDisplay-Regular", size: 18)
         messageInputBar.setLeftStackViewWidthConstant(to: 10, animated: false)
 
     

@@ -75,6 +75,40 @@ class StoryManager {
         })
     }
     
+    
+    func switchToFlag (storyID: String, completion: @escaping (CKRecord?, Error?) -> Void) {
+        
+            let predicate = NSPredicate(value: true)
+            let query = CKQuery(recordType: "Story", predicate: predicate)
+            self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+                // Erro ao executar query no CloudKit.
+                if error != nil {
+                    print("erro no cloudkit")
+                    completion(nil, nil)
+                    return
+                }
+                if results != nil && (results?.count)! > 0 {
+                    for result in results! {
+                        if result.recordID.recordName == storyID {
+                            guard let flag = result["flag"] as? Int else {
+                                print("saiu aqui")
+                                return }
+                         
+                            result.setObject(flag+1 as __CKRecordObjCValue, forKey: "flag")
+                            
+                            self.database.save(result) { (record, error) in
+                                if error == nil && record != nil {
+                                    completion(record, nil)
+                                } else {
+                                    completion(nil, error)
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+    }
+    
     func getStories(requester:StoryManagerProtocol, blocks:[String]) {
         self.stories = []
         // TODO: Get list of stories from database and cross with blocked list

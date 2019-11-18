@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ckq-ex-yFr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ckq-ex-yFr">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SFCompactDisplay-Ultralight.otf">
-            <string>SFCompactDisplay-Ultralight</string>
+        <array key="SFCompactDisplay-Regular.otf">
+            <string>SFCompactDisplay-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -21,11 +21,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfV-bd-YQZ">
-                                <rect key="frame" x="50" y="94" width="50" height="50"/>
+                                <rect key="frame" x="50" y="94" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.60784313729999995" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="8H9-mE-DNw"/>
-                                    <constraint firstAttribute="height" constant="50" id="If8-UB-kut"/>
+                                    <constraint firstAttribute="width" constant="40" id="8H9-mE-DNw"/>
+                                    <constraint firstAttribute="height" constant="40" id="If8-UB-kut"/>
                                 </constraints>
                                 <state key="normal" title="/" image="dismissIcon">
                                     <color key="titleColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -40,11 +40,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxe-hF-FXi">
-                                <rect key="frame" x="275" y="94" width="50" height="50"/>
+                                <rect key="frame" x="290" y="94" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.60784313729999995" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Ati-Nl-G6F"/>
-                                    <constraint firstAttribute="height" constant="50" id="Mzj-Yq-vEy"/>
+                                    <constraint firstAttribute="width" constant="40" id="Ati-Nl-G6F"/>
+                                    <constraint firstAttribute="height" constant="40" id="Mzj-Yq-vEy"/>
                                 </constraints>
                                 <state key="normal" image="sendIcon">
                                     <color key="titleColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -68,7 +68,7 @@
                                             <constraint firstAttribute="height" constant="135" id="DdF-Bs-dbO"/>
                                         </constraints>
                                         <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -82,7 +82,7 @@
                                             <constraint firstAttribute="height" constant="61" id="Emk-wl-D3E"/>
                                             <constraint firstAttribute="width" constant="235" id="cAb-ZX-fyK"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -105,8 +105,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="dfV-bd-YQZ" firstAttribute="centerX" secondItem="btZ-HP-iCa" secondAttribute="centerX" constant="-112.5" id="OSr-Yx-6cy"/>
-                            <constraint firstItem="Oxe-hF-FXi" firstAttribute="centerX" secondItem="btZ-HP-iCa" secondAttribute="centerX" constant="112.5" id="TbG-Iw-TKr"/>
+                            <constraint firstItem="dfV-bd-YQZ" firstAttribute="centerX" secondItem="btZ-HP-iCa" secondAttribute="centerX" constant="-117.5" id="OSr-Yx-6cy"/>
+                            <constraint firstItem="Oxe-hF-FXi" firstAttribute="centerX" secondItem="btZ-HP-iCa" secondAttribute="centerX" constant="122.5" id="TbG-Iw-TKr"/>
                             <constraint firstItem="dvQ-fc-iJi" firstAttribute="centerX" secondItem="btZ-HP-iCa" secondAttribute="centerX" id="ZrH-CJ-hmm"/>
                             <constraint firstItem="dfV-bd-YQZ" firstAttribute="top" secondItem="CQl-Yn-OcT" secondAttribute="top" constant="50" id="fjw-79-vn9"/>
                             <constraint firstItem="dvQ-fc-iJi" firstAttribute="centerY" secondItem="btZ-HP-iCa" secondAttribute="centerY" constant="-94.5" id="siR-Gf-aNK"/>

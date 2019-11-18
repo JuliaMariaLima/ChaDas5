@@ -24,9 +24,30 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
     }
     @IBAction func sendButton(_ sender: Any) {
         
-        _ = Story(conteudo: newStoryTextView.text)
-        dismiss()
+        let alert = UIAlertController(title: "Seu relato possui conteúdo sensível?", message: "", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Sim", style: .default, handler: { (action) -> Void in
+            
+            _ = Story(conteudo: self.newStoryTextView.text, gatilho: 5)
+            self.dismiss()
+        })
+        
+        let no = UIAlertAction(title: "Não", style: .default, handler: { (action) -> Void in
+                
+            _ = Story(conteudo: self.newStoryTextView.text, gatilho: 0)
+            self.dismiss()
+            })
+        
+        let cancelar = UIAlertAction(title: "Cancelar", style: .cancel ) { (action) -> Void in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(yes)
+        alert.addAction(no)
+        alert.addAction(cancelar)
+        self.present(alert, animated: true, completion: nil)
+        alert.view.tintColor = UIColor.buttonOrange
+        
     }
+    
     @IBOutlet weak var newStoryTextView: UITextView!
     
     override func viewDidLoad() {

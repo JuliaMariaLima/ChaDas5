@@ -9,14 +9,17 @@
 import UIKit
 import CloudKit
 
-class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, ChannelManagerProtocol{
+class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, ChannelManagerProtocol{
     
 
     //outlets
+    @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var searchLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var messagesTableView: UITableView!
-    @IBOutlet weak var noStoryLabel: UILabel!
 
+    @IBOutlet weak var noMessagesImage: UIImageView!
+    
     var messageIsEditing =  false
     var activityView:UIActivityIndicatorView!
     private let refreshControl = UIRefreshControl()
@@ -25,16 +28,23 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
 
     //actions
     @IBAction func editButton(_ sender: Any) {
-
+        messagesTableView.reloadData()
         if !messageIsEditing {
             messageIsEditing = true
         } else {
             messageIsEditing = false
         }
-        messagesTableView.reloadData()
     }
 
     override func viewDidLoad() {
+        
+        //search bar settings
+        //      searchField.addTarget(self, action: #selector(uptadeSearchBar), for: .editingChanged)
+        searchField.delegate = self
+        searchLabel.layer.cornerRadius = 20
+        searchLabel.clipsToBounds = true
+        searchLabel.layer.masksToBounds = true
+
         //table view setting
         self.messagesTableView.separatorStyle = .none
         messagesTableView.dataSource = self
@@ -53,7 +63,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
         activityView.center = view.center
         activityView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
 
-        noStoryLabel.alpha = 0
+        noMessagesImage.alpha = 0
 
         view.addSubview(activityView)
 
@@ -67,6 +77,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
         messageIsEditing =  false
 
         dao?.getChannels(requester: self)
+        messagesTableView.reloadData()
 
 
     }
@@ -81,12 +92,11 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
         }
         if dao?.channels.count == 0 {
             DispatchQueue.main.async {
-                self.noStoryLabel.alpha = 1
-                self.noStoryLabel.text = "Você não possui conversas ainda..."
+                self.noMessagesImage.alpha = 0.75
             }
         } else {
             DispatchQueue.main.async {
-                self.noStoryLabel.alpha = 0
+                self.noMessagesImage.alpha = 0
             }
         }
     }
@@ -96,6 +106,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, Ch
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let messagesCell = tableView.dequeueReusableCell(withIdentifier: "MessagesCell") as! MessagesTableViewCell
         messagesCell.deleteButton.alpha = messageIsEditing ? 1 : 0
         messagesCell.nonReadMessages.isHidden = true

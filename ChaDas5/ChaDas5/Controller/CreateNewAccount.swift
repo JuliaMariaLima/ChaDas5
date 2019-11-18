@@ -340,7 +340,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
            
         })
 
-        let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
+        let cancelar = UIAlertAction(title: "Cancelar", style: .cancel ) { (action) -> Void in
             self.dismiss()
         }
 
