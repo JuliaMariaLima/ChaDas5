@@ -94,7 +94,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
 
         if MeUser.instance.email == author{
             if status == "archived" {
-                let alert = UIAlertController(title: "Deseja mesmo desarquivar esse relato?", message: "Esse relato voltará a aparecer para outras pessoa no Feed.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Deseja mesmo desarquivar esse relato?", message: "Esse relato voltará a aparecer para outras pessoa no Feed.", preferredStyle: .actionSheet)
 
                 let desarquivar = UIAlertAction(title: "Desarquivar relato", style: .default, handler: { (action) -> Void in
                     DAOManager.instance?.ckMyStories.switchArchived(storyID: storyID, completion: { (record, error) in
@@ -117,7 +117,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
                 let alert = UIAlertController(
                     title: "Deseja mesmo arquivar esse relato?",
                     message: "Seus relatos arquivados só aparecem no seu perfil e não aparecerão mais para outras pessoas.",
-                    preferredStyle: .alert
+                    preferredStyle: .actionSheet
                 )
 
                 let arquivar = UIAlertAction(
@@ -135,7 +135,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
                 })
                 let cancelar = UIAlertAction(
                 title: "Cancelar",
-                style: .default) { (action) -> Void in
+                style: .cancel) { (action) -> Void in
                     alert.dismiss(animated: true, completion: nil)
                 }
 

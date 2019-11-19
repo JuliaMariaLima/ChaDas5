@@ -143,7 +143,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xyl-jb-mIJ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Perfil" image="profileIcon" selectedImage="profileIcon" id="3oy-cj-eMt"/>
+                    <tabBarItem key="tabBarItem" title="Perfil" image="teaBagIcon" id="3oy-cj-eMt"/>
                     <connections>
                         <outlet property="nameLabel" destination="q88-IL-ICW" id="4CM-6M-GJA"/>
                         <outlet property="noStoriesImage" destination="iND-70-mBY" id="gPd-Ey-HL3"/>
@@ -214,9 +214,9 @@
                                     <constraint firstAttribute="width" constant="150" id="OFb-Xz-oS3"/>
                                     <constraint firstAttribute="height" constant="50" id="iZa-Os-1t2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <state key="normal" title="Salvar">
-                                    <color key="titleColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -304,6 +304,6 @@
     <resources>
         <image name="dismissIcon" width="640.33331298828125" height="640.33331298828125"/>
         <image name="editIcon" width="640.33331298828125" height="640.33331298828125"/>
-        <image name="profileIcon" width="28.666666030883789" height="28.666666030883789"/>
+        <image name="teaBagIcon" width="26.333333969116211" height="30.666666030883789"/>
     </resources>
 </document>
