@@ -107,8 +107,23 @@ class MessagesManager {
         })
     }
     
-    func getMessageData() {
-        
+    
+    func getMessageData(on messageID: String, completion: @escaping (Message?) -> Void) {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Thread", predicate: predicate)
+        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            if results != nil && (results?.count)! > 0 {
+                for result in results! {
+                    if result.recordID.recordName == messageID {
+                        _ = Message(from: result) { (message, error) in
+                            if message != nil && error == nil {
+                                completion(message)
+                            }
+                        }
+                    }
+                }
+            }
+        })
     }
     
     
