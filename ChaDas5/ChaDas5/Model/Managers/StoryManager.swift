@@ -142,6 +142,31 @@ class StoryManager {
         })
     }
     
+    
+    func get(storyFrom id:String, completion: @escaping (CKRecord?) -> Void) {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Story", predicate: predicate)
+        self.database.perform(query, inZoneWith: nil, completionHandler: {(results, error) in
+            if error != nil {
+                print("erro no cloudkit \(#function)", error.debugDescription)
+                completion(nil)
+                return
+            }
+            if (results?.count)! > 0 {
+                for result in results! {
+                    if result.recordID.recordName == id {
+                        completion(result)
+                    }
+                }
+            }
+            else {
+                // nao existe
+                completion(nil)
+            }
+        })
+    
+    }
+    
     func retrieve(authorFrom storyID: String, completion: @escaping (CKRecord?, Error?) -> Void) {
         let predicate = NSPredicate(format: "email = %@", "")
         let query = CKQuery(recordType: "User", predicate: predicate)
