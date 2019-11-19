@@ -102,8 +102,8 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     
 //    @objc func teaAction(sender: UIButton!) {
 //        let page = StoryScreen()
-//        let user = channelRecord["fromStory"] as! String
-//        page.selectedStory = channelRecord.
+//        let story = channelRecord["fromStory"] as! String
+//        page.selectedStory =
 //        page.chatButton.isHidden = true
 //        present(page, animated: true, completion: nil)
 //
@@ -127,8 +127,8 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
             guard let channel = self.channel else { return }
             
             if MeUser.instance.email == channel.ownerID {
-                DAOManager.instance?.ckUsers.block(channel.fromStory, requester: self)
-                DAOManager.instance?.ckUsers.blockAnother(channel.fromStory, requester: self)
+                DAOManager.instance?.ckUsers.block(channel.storyAuthor, requester: self)
+                DAOManager.instance?.ckUsers.blockAnother(channel.storyAuthor, requester: self)
             }else{
                 DAOManager.instance?.ckUsers.block(channel.ownerID, requester: self)
                 DAOManager.instance?.ckUsers.blockAnother(channel.ownerID, requester: self)
@@ -257,7 +257,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         
         let teaButton = UIButton(frame: CGRect(x: 30, y: 45, width: 45, height: 35))
         let teaName = UILabel(frame: CGRect(x: 45, y:45, width: 45, height: 45))
-        teaName.contentMode = .center
+        teaName.contentMode = .scaleAspectFill
         teaName.textAlignment = .center
         teaName.center.y = backgroudCircle.center.y
         teaName.font = UIFont(name: "SFCompactDisplay-Regular", size: 17)
@@ -269,7 +269,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
 
         if MeUser.instance.email == channel?.ownerID {
             // username vem da story
-            let user = channelRecord["fromStory"] as! String
+            let user = channelRecord["storyAuthor"] as! String
             DAOManager.instance?.ckUsers.retrieve(nameFrom: user, completion: { (retrievedUsername, error) in
                 if error == nil && retrievedUsername != nil {
                     username = retrievedUsername!
@@ -323,18 +323,18 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
             complainButton.heightAnchor.constraint(equalToConstant: 40),
             
             backgroudCircle.topAnchor.constraint(equalTo: view.topAnchor, constant: 45),
-            backgroudCircle.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 12),
+            backgroudCircle.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             backgroudCircle.widthAnchor.constraint(equalToConstant: 80),
             backgroudCircle.heightAnchor.constraint(equalToConstant: 80),
             
             teaButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 47),
-            teaButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 14),
+            teaButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             teaButton.widthAnchor.constraint(equalToConstant: 70),
             teaButton.heightAnchor.constraint(equalToConstant: 70),
             
             teaName.topAnchor.constraint(equalTo: view.topAnchor, constant: 130),
-            teaName.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 12),
-            teaName.widthAnchor.constraint(equalToConstant: 100),
+            teaName.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
+            teaName.widthAnchor.constraint(equalToConstant: 300),
             teaName.heightAnchor.constraint(equalToConstant: 30)
             ])
     
@@ -416,7 +416,7 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
     
     func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
-        return CGSize(width: self.view.bounds.width, height: 120)
+        return CGSize(width: self.view.bounds.width, height: 150)
     }
 
 

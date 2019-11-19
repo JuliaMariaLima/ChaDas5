@@ -24,51 +24,41 @@
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vy3-t2-6Z2">
                         <rect key="frame" x="20" y="11" width="335" height="129"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gi-me-Hro">
-                                <rect key="frame" x="13" y="4" width="275" height="125"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8gi-me-Hro">
+                                <rect key="frame" x="18" y="4" width="258" height="121"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="275" id="CEP-r1-yWf"/>
-                                    <constraint firstAttribute="height" constant="125" id="Nyk-2i-uwZ"/>
+                                    <constraint firstAttribute="width" constant="258" id="CEP-r1-yWf"/>
+                                    <constraint firstAttribute="height" constant="121" id="Nyk-2i-uwZ"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3WZ-HA-aA0">
-                                <rect key="frame" x="301" y="7" width="24" height="24"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowIcon" translatesAutoresizingMaskIntoConstraints="NO" id="iwo-jn-wCK">
+                                <rect key="frame" x="283" y="45" width="52" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="0tL-JC-cS6"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="optionsIcon"/>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowIcon" translatesAutoresizingMaskIntoConstraints="NO" id="y7B-tO-PpL">
-                                <rect key="frame" x="293" y="47" width="42" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="Fao-3x-Uaz"/>
+                                    <constraint firstAttribute="width" constant="52" id="we1-1Q-xkJ"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowIcon" translatesAutoresizingMaskIntoConstraints="NO" id="AXE-he-wnn">
-                                <rect key="frame" x="269" y="47" width="64" height="39"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowIcon" translatesAutoresizingMaskIntoConstraints="NO" id="VnN-bV-chk">
+                                <rect key="frame" x="253" y="45" width="82" height="48"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="Bnz-2f-wsJ"/>
+                                    <constraint firstAttribute="width" constant="82" id="Ode-YP-A5z"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.80784313730000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="y7B-tO-PpL" firstAttribute="trailing" secondItem="Vy3-t2-6Z2" secondAttribute="trailingMargin" constant="8" id="4rn-q3-nun"/>
-                            <constraint firstItem="8gi-me-Hro" firstAttribute="centerX" secondItem="Vy3-t2-6Z2" secondAttribute="centerX" constant="-17" id="512-x4-AVV"/>
-                            <constraint firstItem="3WZ-HA-aA0" firstAttribute="top" secondItem="Vy3-t2-6Z2" secondAttribute="top" constant="7" id="Bal-zc-Itt"/>
-                            <constraint firstItem="AXE-he-wnn" firstAttribute="bottom" secondItem="y7B-tO-PpL" secondAttribute="bottom" id="C6J-82-3Zl"/>
+                            <constraint firstItem="8gi-me-Hro" firstAttribute="centerX" secondItem="Vy3-t2-6Z2" secondAttribute="centerX" constant="-20.5" id="512-x4-AVV"/>
+                            <constraint firstItem="VnN-bV-chk" firstAttribute="top" secondItem="Vy3-t2-6Z2" secondAttribute="top" constant="45" id="7qk-tu-MVq"/>
                             <constraint firstAttribute="width" constant="335" id="Dck-9F-bsp"/>
+                            <constraint firstAttribute="bottom" secondItem="VnN-bV-chk" secondAttribute="bottom" constant="36" id="DfX-41-qBt"/>
                             <constraint firstAttribute="height" constant="129" id="Mfm-ai-6rn"/>
-                            <constraint firstItem="3WZ-HA-aA0" firstAttribute="leading" secondItem="8gi-me-Hro" secondAttribute="trailing" constant="13" id="T9S-7c-MwA"/>
-                            <constraint firstAttribute="bottom" secondItem="3WZ-HA-aA0" secondAttribute="bottom" constant="98" id="WhI-Id-QEO"/>
-                            <constraint firstItem="8gi-me-Hro" firstAttribute="centerY" secondItem="Vy3-t2-6Z2" secondAttribute="centerY" constant="2" id="h3b-mE-uOl"/>
-                            <constraint firstItem="AXE-he-wnn" firstAttribute="trailing" secondItem="3WZ-HA-aA0" secondAttribute="trailing" constant="8" id="lzl-0r-sHp"/>
-                            <constraint firstItem="AXE-he-wnn" firstAttribute="top" secondItem="3WZ-HA-aA0" secondAttribute="bottom" constant="16" id="og0-Kp-RH8"/>
-                            <constraint firstItem="AXE-he-wnn" firstAttribute="top" secondItem="y7B-tO-PpL" secondAttribute="top" id="q41-lZ-2tU"/>
-                            <constraint firstItem="AXE-he-wnn" firstAttribute="centerY" secondItem="8gi-me-Hro" secondAttribute="centerY" id="vjq-Hb-c9m"/>
+                            <constraint firstAttribute="trailing" secondItem="VnN-bV-chk" secondAttribute="trailing" id="Qi4-PD-11S"/>
+                            <constraint firstItem="8gi-me-Hro" firstAttribute="centerY" secondItem="Vy3-t2-6Z2" secondAttribute="centerY" id="h3b-mE-uOl"/>
+                            <constraint firstItem="VnN-bV-chk" firstAttribute="trailing" secondItem="iwo-jn-wCK" secondAttribute="trailing" id="l17-36-d0w"/>
+                            <constraint firstItem="VnN-bV-chk" firstAttribute="top" secondItem="iwo-jn-wCK" secondAttribute="top" id="mzP-39-DZj"/>
+                            <constraint firstItem="VnN-bV-chk" firstAttribute="bottom" secondItem="iwo-jn-wCK" secondAttribute="bottom" id="orn-xj-I3N"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -91,6 +81,5 @@
     </objects>
     <resources>
         <image name="arrowIcon" width="129" height="160.5"/>
-        <image name="optionsIcon" width="640" height="640.5"/>
     </resources>
 </document>
