@@ -13,8 +13,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
     
 
     //outlets
-    @IBOutlet weak var searchField: UITextField!
-    @IBOutlet weak var searchLabel: UILabel!
+
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var messagesTableView: UITableView!
 
@@ -36,14 +35,11 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
         }
     }
 
+
+
     override func viewDidLoad() {
         
-        //search bar settings
-        //      searchField.addTarget(self, action: #selector(uptadeSearchBar), for: .editingChanged)
-        searchField.delegate = self
-        searchLabel.layer.cornerRadius = 20
-        searchLabel.clipsToBounds = true
-        searchLabel.layer.masksToBounds = true
+
 
         //table view setting
         self.messagesTableView.separatorStyle = .none
@@ -162,6 +158,19 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
                     }
                 })
             }
+            let messageID = currentChannel["lastMessageID"] as? String ?? ""
+            DispatchQueue.main.async {
+            messagesCell.lastMessage.text = "Ainda não foram enviadas mensagens nessa conversa."
+            }
+            DAOManager.instance?.ckMessages.getMessageData(on: messageID, completion: { (message) in
+                print(message)
+                if message != nil {
+                    DispatchQueue.main.async {
+                    messagesCell.lastMessage.text = (message?.senderDisplayName ?? "") + ": " + (message?.content ?? "")
+                    }
+                } 
+            })
+            
         }
         return messagesCell
     }

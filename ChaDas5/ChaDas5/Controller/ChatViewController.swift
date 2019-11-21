@@ -100,14 +100,30 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     }
     
     
-//    @objc func teaAction(sender: UIButton!) {
-//        let page = StoryScreen()
-//        let story = channelRecord["fromStory"] as! String
-//        page.selectedStory =
-//        page.chatButton.isHidden = true
-//        present(page, animated: true, completion: nil)
-//
-//    }
+    @objc func teaAction(sender: UIButton!) {
+        goTo(identifier: "storyScreenFromChat")
+    }
+    
+    func goTo(identifier: String) {
+          DispatchQueue.main.async {
+              self.performSegue(withIdentifier: identifier, sender: self)
+          }
+      }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let story = channelRecord["fromStory"] as? String else { return }
+        if segue.identifier == "storyScreenFromChat" {
+            if let destinationVC = segue.destination as? StoryScreen {
+                DAOManager.instance?.ckStories.get(storyFrom: story, completion: { (record) in
+                    if record != nil {
+                       destinationVC.selectedStory = record
+                       destinationVC.chatButton.isHidden = true
+                   }
+               })
+           }
+       }
+    
+   }
 
     
     @objc func buttonAction(sender: UIButton!) {
@@ -256,6 +272,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         
         
         let teaButton = UIButton(frame: CGRect(x: 30, y: 45, width: 45, height: 35))
+        teaButton.addTarget(self, action: #selector(teaAction), for: .touchUpInside)
         let teaName = UILabel(frame: CGRect(x: 45, y:45, width: 45, height: 45))
         teaName.contentMode = .scaleAspectFill
         teaName.textAlignment = .center
@@ -357,7 +374,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         messageInputBar.inputTextView.placeholderLabel.textColor = UIColor.gray
         messageInputBar.inputTextView.backgroundColor = UIColor.white
         messageInputBar.inputTextView.layer.cornerRadius = 15
-        messageInputBar.inputTextView.font = UIFont(name: "SFCompactDisplay-Regular", size: 18)
+        messageInputBar.inputTextView.font = UIFont.systemFont(ofSize: 18)
         messageInputBar.setLeftStackViewWidthConstant(to: 10, animated: false)
 
     

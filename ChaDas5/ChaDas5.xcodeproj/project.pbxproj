@@ -57,6 +57,10 @@
 		9A82FD8721E5030400566AE1 /* ChooseYourTeaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A82FD8621E5030400566AE1 /* ChooseYourTeaScreen.swift */; };
 		9AEAA57B21C84CF8001B490F /* SFCompactDisplay-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAA57A21C84CF5001B490F /* SFCompactDisplay-Ultralight.otf */; };
 		9AFBE59E21B1D2D90050AE3E /* CustomSegmentedContrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFBE59D21B1D2D90050AE3E /* CustomSegmentedContrl.swift */; };
+		E200BFD9238474C70050247C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E200BFD8238474C70050247C /* Chat.storyboard */; };
+		E200BFDB2384B6EF0050247C /* TermsAndConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E200BFDA2384B6EF0050247C /* TermsAndConditions.swift */; };
+		E200BFDD2384B7F10050247C /* Termos de Serviço Chá das 5.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E200BFDC2384B7F00050247C /* Termos de Serviço Chá das 5.pdf */; };
+		E200BFE02384CC8A0050247C /* TermsAndConditions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E200BFDF2384CC8A0050247C /* TermsAndConditions.storyboard */; };
 		E233AB8E237C7F4E00464E03 /* emotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E233AB8D237C7F4E00464E03 /* emotions.mlmodel */; };
 		E23901B321CADD94006B3CF3 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */; };
 		E23901B521CADDA8006B3CF3 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23901B421CADDA8006B3CF3 /* SplashScreen.swift */; };
@@ -141,6 +145,10 @@
 		9AEAA57A21C84CF5001B490F /* SFCompactDisplay-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Ultralight.otf"; sourceTree = "<group>"; };
 		9AFBE59D21B1D2D90050AE3E /* CustomSegmentedContrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedContrl.swift; sourceTree = "<group>"; };
 		D71E81824C6FD27BB88A6028 /* Pods-ChaDas5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChaDas5.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5.debug.xcconfig"; sourceTree = "<group>"; };
+		E200BFD8238474C70050247C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
+		E200BFDA2384B6EF0050247C /* TermsAndConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditions.swift; sourceTree = "<group>"; };
+		E200BFDC2384B7F00050247C /* Termos de Serviço Chá das 5.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Termos de Serviço Chá das 5.pdf"; sourceTree = "<group>"; };
+		E200BFDF2384CC8A0050247C /* TermsAndConditions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TermsAndConditions.storyboard; sourceTree = "<group>"; };
 		E233AB8D237C7F4E00464E03 /* emotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = emotions.mlmodel; sourceTree = "<group>"; };
 		E233AB8F237C861900464E03 /* SFCompactDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Regular.otf"; sourceTree = "<group>"; };
 		E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
@@ -233,6 +241,7 @@
 				96451FF421AC7A0300C9C351 /* View */,
 				9A1B11E421C43CAF006956B7 /* View Controllers */,
 				96451FD921AC79F000C9C351 /* Assets.xcassets */,
+				E200BFDC2384B7F00050247C /* Termos de Serviço Chá das 5.pdf */,
 				9A1B11E721C43CC1006956B7 /* Supporting Files */,
 			);
 			path = ChaDas5;
@@ -267,6 +276,7 @@
 				9A1B11CC21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift */,
 				9AFBE59D21B1D2D90050AE3E /* CustomSegmentedContrl.swift */,
 				E26F83C4236757B600681771 /* GenderInformations.swift */,
+				E200BFDA2384B6EF0050247C /* TermsAndConditions.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -292,6 +302,8 @@
 				9A4E542C21AF46000033FEBF /* Informations.storyboard */,
 				9A4E542E21AF4B160033FEBF /* NewStoryScreen.storyboard */,
 				9A4E543021AF4C490033FEBF /* StoryScreen.storyboard */,
+				E200BFD8238474C70050247C /* Chat.storyboard */,
+				E200BFDF2384CC8A0050247C /* TermsAndConditions.storyboard */,
 				9A76AF8221C02873003ED02C /* MessagesTableViewCell.xib */,
 				9A76AF8821C034F8003ED02C /* FeedTableViewCell.xib */,
 				9A76AF8F21C04B80003ED02C /* ProfileTableViewCell.xib */,
@@ -443,6 +455,7 @@
 				9A4E543121AF4C490033FEBF /* StoryScreen.storyboard in Resources */,
 				9A1B11CF21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.xib in Resources */,
 				9A4E542921AF44FF0033FEBF /* Feed.storyboard in Resources */,
+				E200BFDD2384B7F10050247C /* Termos de Serviço Chá das 5.pdf in Resources */,
 				9A76AF9121C04B80003ED02C /* ProfileTableViewCell.xib in Resources */,
 				9A4E542D21AF46000033FEBF /* Informations.storyboard in Resources */,
 				9A1B11EB21C43CC1006956B7 /* Assets.xcassets in Resources */,
@@ -452,6 +465,8 @@
 				96451FDD21AC79F000C9C351 /* LaunchScreen.storyboard in Resources */,
 				E23901B321CADD94006B3CF3 /* SplashScreen.storyboard in Resources */,
 				9A4E542021AEC8C30033FEBF /* CreateNewAccount.storyboard in Resources */,
+				E200BFD9238474C70050247C /* Chat.storyboard in Resources */,
+				E200BFE02384CC8A0050247C /* TermsAndConditions.storyboard in Resources */,
 				96451FDA21AC79F000C9C351 /* Assets.xcassets in Resources */,
 				9A76AF8A21C034F8003ED02C /* FeedTableViewCell.xib in Resources */,
 				9A4E542F21AF4B160033FEBF /* NewStoryScreen.storyboard in Resources */,
@@ -518,6 +533,7 @@
 			files = (
 				9A4E543321B0065A0033FEBF /* CreateNewAccount.swift in Sources */,
 				E233AB8E237C7F4E00464E03 /* emotions.mlmodel in Sources */,
+				E200BFDB2384B6EF0050247C /* TermsAndConditions.swift in Sources */,
 				E26F83C5236757B600681771 /* GenderInformations.swift in Sources */,
 				9A4E543F21B006E60033FEBF /* NewStoryScreen.swift in Sources */,
 				9A1B11EF21C43EFB006956B7 /* FeedTableViewCell.swift in Sources */,

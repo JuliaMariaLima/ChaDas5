@@ -50,6 +50,8 @@ class UserManager {
                     record.setObject(newUser.genderId as CKRecordValue?, forKey: "gender")
                     record.setObject(newUser.password as CKRecordValue?, forKey: "password")
                     record.setObject(newUser.blocked as CKRecordValue?, forKey: "blocked")
+                    record.setObject(newUser.birthDate as CKRecordValue?, forKey: "birthDate")
+                    
                     
                     // Salvar nome do CloudKit.
                     self.database.save(record, completionHandler: {(record,error) -> Void in
@@ -112,13 +114,15 @@ class UserManager {
         })
     }
     
+    
     func get(meFromRecord: CKRecord) -> MeUser {
         guard let name = meFromRecord["name"] as? String,
               let email = meFromRecord["email"] as? String,
               let password = meFromRecord["password"] as? String,
               let genderId = meFromRecord["gender"] as? String,
+              let birthDate = meFromRecord["birthDate"] as? String,
               let blocked = meFromRecord["blocked"] as? [String] else { fatalError() }
-        let meUser = MeUser(name: name, email: email, password: password, genderId: genderId, blocked: blocked)
+        let meUser = MeUser(name: name, email: email, password: password, genderId: genderId, birthDate: birthDate, blocked: blocked)
         return meUser
     }
     

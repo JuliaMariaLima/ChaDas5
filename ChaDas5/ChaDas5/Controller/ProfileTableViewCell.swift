@@ -14,7 +14,8 @@ class ProfileTableViewCell: UITableViewCell {
     //outlets
     @IBOutlet weak var profileCellTextField: UITextView!
  
-
+    @IBOutlet weak var dots: UILabel!
+    
     var selectedStory:Story?
     
     var dao = DAOManager.instance?.ckMyStories

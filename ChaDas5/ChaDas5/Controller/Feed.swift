@@ -25,25 +25,32 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, UIText
     @IBOutlet weak var noStoryImage: UIImageView!
     @IBOutlet weak var searchLabel: UILabel!
     @IBOutlet weak var searchField: UITextField!
-    var filterByName:Bool { return (searchField.text?.count ?? 0) > 3}
+    var filterByName:Bool { return (searchField.text?.count ?? 0) > 2}
     var filterByNameString:String {return searchField.text?.lowercased() ?? ""}
     
     let dao = DAOManager.instance?.ckStories
     
-    
-//    var dataSource:[CKRecord] {
-//
-//        if filterByName {
-//            var filteredData = dao!.stories
-//            var content = filteredData.object(forKey: "content") as? String
-//            filteredData = filteredData.filter{ $0.content.lowercased().contains(filterByNameString) }
-//            return filteredData
-//        } // else
-//
-//        return dao!.stories
-//
-//    }
-//
+
+    var dataSource:[CKRecord] {
+
+        let doc = dao!.stories
+        
+        if filterByName {
+            var filteredData:[CKRecord] = []
+            for i in 0..<doc.count{
+                if let content = doc[i].object(forKey: "content") as? String {
+                    if content.lowercased().contains(filterByNameString){
+                        filteredData.append(doc[i])
+                    }
+                }
+            }
+            return filteredData
+        } // else
+
+        return doc
+
+    }
+
     
 
     
@@ -71,12 +78,12 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, UIText
         addButton.layer.shadowOpacity = 0.23
         addButton.layer.shadowRadius = 4
         
-    //search bar settings
-      searchField.addTarget(self, action: #selector(uptadeSearchBar), for: .editingChanged)
-      searchField.delegate = self
-      searchLabel.layer.cornerRadius = 20
-      searchLabel.clipsToBounds = true
-      searchLabel.layer.masksToBounds = true
+        //search bar settings
+        searchField.addTarget(self, action: #selector(uptadeSearchBar), for: .editingChanged)
+        searchField.delegate = self
+        searchLabel.layer.cornerRadius = 20
+        searchLabel.clipsToBounds = true
+          
         
  
         if #available(iOS 13.0, *) {
@@ -104,12 +111,15 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, UIText
         feedTableView.reloadData()
         noStoryImage.alpha = 0
         uptadeSearchBar()
+        hideKeyboardWhenTappedAround()
+        
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let dao = dao {
-            return dao.stories.count
+        
+        if dao != nil {
+             return dataSource.count
         }
         return 0
     }
@@ -124,40 +134,8 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, UIText
         
         if !dao.stories.isEmpty {
             
-        let doc = dao.stories[indexPath.row]
+        let doc = dataSource[indexPath.row]
             
-//            if filterByName {
-//
-//                if let content = doc.object(forKey: "content") as? String {
-//                    let filteredContent = content.contains(filterByNameString)
-//                    if filteredContent == true {
-//                        feedCell.feedTableViewTextField.text = content
-//                    } else {
-//                        print("nao tem")
-//                        //label
-//                    }
-//                }
-//                guard let author = doc.object(forKey: "author") as? String else {
-//                    fatalError()
-//                }
-//
-//                guard let flag = doc.object(forKey: "flag") as? Bool else {
-//                    fatalError()
-//                }
-//
-//                if flag == true{
-//
-//                    feedCell.sensitiveView.isHidden = false
-//
-//                }
-//
-//                if MeUser.instance.email == author {
-//
-//                          feedCell.optionsButton.isHidden = true
-//                      }
-//
-//
-//            }
                 if let content = doc.object(forKey: "content") as? String {
                     feedCell.feedTableViewTextField.text = content
                 }
@@ -179,7 +157,14 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, UIText
                 if MeUser.instance.email == author {
                     feedCell.sensitiveView.isHidden = true
                 }
-    
+            
+            if feedCell.feedTableViewTextField.text.count >= 149{
+                
+                feedCell.dots.isHidden = false
+            }else{
+                feedCell.dots.isHidden = true
+            }
+            
             feedCell.selectionStyle = .none
         }
         return feedCell
@@ -225,17 +210,24 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, UIText
     }
 
     @objc func uptadeSearchBar(){
-        if filterByName {
-            feedTableView.reloadData()
-            //emptyLabelStatus()
-        }
+        feedTableView.reloadData()
+        emptyLabelStatus()
     }
     
     ///Search Bar Clear Button
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         uptadeSearchBar()
-        //self.emptyLabel.alpha = 0
+        noStoryImage.alpha = 0
         return true
+    }
+    
+    func emptyLabelStatus() {
+        if filterByName && dataSource.count == 0{
+            self.noStoryImage.image = UIImage(named:"emptySearch")
+            self.noStoryImage.alpha = 0.5
+        }else{
+            self.noStoryImage.alpha = 0
+        }
     }
     
     
@@ -249,6 +241,7 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, UIText
             }
             if DAOManager.instance?.ckStories.stories.count == 0 {
                 DispatchQueue.main.async {
+                    self.noStoryImage.image = UIImage(named:"noStories")
                     self.noStoryImage.alpha = 0.5
                 }
             }

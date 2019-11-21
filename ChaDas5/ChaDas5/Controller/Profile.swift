@@ -111,10 +111,10 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
 
     private func setUpSegmentedControlConstraints() {
         NSLayoutConstraint.activate([
-            segmentedControl.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 90),
+            segmentedControl.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 70),
             segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor),
             segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            segmentedControl.bottomAnchor.constraint(equalTo: profileTableView.topAnchor, constant: -60),
+            segmentedControl.bottomAnchor.constraint(equalTo: profileTableView.topAnchor, constant: -40),
             segmentedControl.heightAnchor.constraint(greaterThanOrEqualToConstant: 45)
             ])
     }
@@ -193,6 +193,14 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         }
         profileCell.profileCellTextField.text = story["content"] as? String ?? ""
         profileCell.isUserInteractionEnabled = true
+        
+        if profileCell.profileCellTextField.text.count >= 149{
+            
+            profileCell.dots.isHidden = false
+        }else{
+            profileCell.dots.isHidden = true
+        }
+        
         return profileCell
     }
 

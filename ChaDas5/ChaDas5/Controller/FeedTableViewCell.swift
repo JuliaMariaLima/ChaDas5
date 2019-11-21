@@ -20,6 +20,7 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var sensitiveView: UIView!
     
+    @IBOutlet weak var dots: UILabel!
     
     
     enum CellType {
@@ -42,6 +43,7 @@ class FeedTableViewCell: UITableViewCell {
         sensitiveView.addSubview(sensitiveLabel)
         sensitiveView.addSubview(seeStoryButton)
         sensitiveView.alpha = 1
+        //dots.isHidden = true
 
     }
     

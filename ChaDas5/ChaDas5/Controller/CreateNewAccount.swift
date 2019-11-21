@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import CloudKit
+import WebKit
 
 
 
@@ -20,12 +21,15 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConfirmationTextField: UITextField!
+    @IBOutlet weak var dateBirthTextField: UITextField!
+    
     @IBOutlet weak var createNewAccountButton: UIButton!
     
     @IBOutlet weak var cisWomanButton: UIButton!
     
     @IBOutlet weak var transWomanButton: UIButton!
     
+    @IBOutlet weak var termsButton: UIButton!
     @IBOutlet weak var cisManButton: UIButton!
     
     @IBOutlet weak var transManButton: UIButton!
@@ -43,14 +47,50 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
     var activityView:UIActivityIndicatorView!
     var meUser: MeUser!
     var newAccountUserResquester: UserRequester!
-    var identification: String!
+    var identification = ""
     let allTeas = DAOManager.instance?.ckUsers.teas
     var yourTea:String!
+    var isAccepted = false
+    let pdfTitle = "Termos de Serviço Chá das 5"
+    let datePicker = UIDatePicker()
     
+    //Pickers
+    
+    func createDatePicker(){
+        
+        datePicker.datePickerMode = .date
+        let loc = Locale(identifier: "pt_BR")
+        datePicker.locale = loc
+        
+        dateBirthTextField.inputView = datePicker
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
+        doneButton.tintColor = .buttonOrange
+     
+        toolBar.setItems([doneButton], animated: true)
+        
+        dateBirthTextField.inputAccessoryView = toolBar
+    }
+    
+ @objc func doneClicked(){
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale =  Locale(identifier: "pt_BR")
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+    
+        dateBirthTextField.text = dateFormatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+        
+    }
     
     func numberOfItemsInPickerView(_ pickerView: AKPickerView) -> Int {
-        return allTeas!.count
-           
+           return allTeas!.count
+              
     }
     
     func pickerView(_ pickerView: AKPickerView, imageForItem item: Int) -> UIImage {
@@ -66,6 +106,20 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
     }
 
     //actions
+    @IBAction func termsAndConditions(_ sender: Any) {
+        
+        if isAccepted == false{
+            isAccepted = true
+            termsButton.backgroundColor = .middleOrange
+            
+        }else{
+             isAccepted = false
+             termsButton.backgroundColor = .clear
+        }
+        
+    }
+    
+
     
     @IBAction func prevButton(_ sender: Any) {
         
@@ -170,38 +224,55 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         activityView.startAnimating()
         
         
-        if passwordTextField.text != passwordConfirmationTextField.text{
-            let alert = UIAlertController(title: "", message: "Erro na Confirmação de Senha", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+        if isAccepted == false{
+            
+            let alert1 = UIAlertController(title: "Termos de Serviço", message: "Para acessar a plataforma precisa aceitar os termos de serviço.", preferredStyle: UIAlertController.Style.alert)
+            alert1.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert1, animated: true, completion: nil)
+            alert1.view.tintColor = UIColor.buttonOrange
+            setcreateNewAccountButton(enabled: true)
+            createNewAccountButton.setTitle("Criar Conta", for: .normal)
+            activityView.stopAnimating()
+        } else if passwordTextField.text != passwordConfirmationTextField.text{
+            let alert3 = UIAlertController(title: "", message: "Erro na Confirmação de Senha", preferredStyle: UIAlertController.Style.alert)
+            alert3.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert3, animated: true, completion: nil)
             passwordTextField.text = ""
-            alert.view.tintColor = UIColor.buttonOrange
+            alert3.view.tintColor = UIColor.buttonOrange
             passwordConfirmationTextField.text = ""
             setcreateNewAccountButton(enabled: true)
             createNewAccountButton.setTitle("Criar Conta", for: .normal)
             activityView.stopAnimating()
             
-        }
-    
-        if checkPassword(password1: passwordTextField.text!, password2: passwordConfirmationTextField.text!) {
+        } else if identification == nil || identification == "" {
+            
+            let alert2 = UIAlertController(title: "", message: "Por favor, selecione um dos campos de identificação.", preferredStyle: UIAlertController.Style.alert)
+            alert2.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert2, animated: true, completion: nil)
+            alert2.view.tintColor = UIColor.buttonOrange
+            setcreateNewAccountButton(enabled: true)
+            createNewAccountButton.setTitle("Criar Conta", for: .normal)
+            activityView.stopAnimating()
+        } else if checkPassword(password1: passwordTextField.text!, password2: passwordConfirmationTextField.text!) {
+            
+            print(identification)
+            
         
             print("Entrou")
             
             print(yourTea!)
             
             if (emailTextField.text?.contains("@"))!{
-                meUser = MeUser(name: yourTea, email: emailTextField.text!, password: passwordTextField.text!, genderId: identification, blocked: [" "])
-                
-                print(self.meUser.name)
-                
+                meUser = MeUser(name: yourTea, email: emailTextField.text!, password: passwordTextField.text!, genderId: identification, birthDate: dateBirthTextField.text!, blocked: [" "])
+     
                 DAOManager.instance?.ckUsers.save(newUser: meUser, requester: newAccountUserResquester)
                 
             }else{
-                let alert = UIAlertController(title: "", message: "O e-mail digitado não é válido", preferredStyle: UIAlertController.Style.alert)
-                           alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                           alert.view.tintColor = UIColor.buttonOrange
+                let alert4 = UIAlertController(title: "", message: "O e-mail digitado não é válido", preferredStyle: UIAlertController.Style.alert)
+                           alert4.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                           alert4.view.tintColor = UIColor.buttonOrange
                            
-                           self.present(alert, animated: true, completion: nil)
+                           self.present(alert4, animated: true, completion: nil)
                            emailTextField.text = ""
                            setcreateNewAccountButton(enabled: true)
                            createNewAccountButton.setTitle("Criar Conta", for: .normal)
@@ -211,11 +282,11 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
                 
   
         } else {
-            let alert = UIAlertController(title: "", message: "Reveja a sua senha, ela tem que ter no mínimo 8 caracteres", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            alert.view.tintColor = UIColor.buttonOrange
+            let alert5 = UIAlertController(title: "", message: "Reveja a sua senha, ela tem que ter no mínimo 8 caracteres", preferredStyle: UIAlertController.Style.alert)
+            alert5.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            alert5.view.tintColor = UIColor.buttonOrange
             
-            self.present(alert, animated: true, completion: nil)
+            self.present(alert5, animated: true, completion: nil)
             passwordTextField.text = ""
             passwordConfirmationTextField.text = ""
             setcreateNewAccountButton(enabled: true)
@@ -233,6 +304,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
     }
 
     override func viewDidLoad() {
+        
         hideKeyboardWhenTappedAround()
 
         passwordTextField?.isSecureTextEntry = true
@@ -260,8 +332,11 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         emailTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         passwordConfirmationTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        dateBirthTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
 
         setcreateNewAccountButton(enabled: false)
+        
+        createDatePicker()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -274,6 +349,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         passwordConfirmationTextField.resignFirstResponder()
+        dateBirthTextField.resignFirstResponder()
 
         NotificationCenter.default.removeObserver(self)
     }
@@ -295,9 +371,10 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         let email = emailTextField.text
         let passwordConfirmed = passwordConfirmationTextField.text
         let password = passwordTextField.text
+        let date = dateBirthTextField.text
       
 
-        let formFilled = email != nil && email != "" && passwordConfirmed != nil && passwordConfirmed != "" && password != nil && password != "" 
+        let formFilled = email != nil && email != "" && passwordConfirmed != nil && passwordConfirmed != "" && password != nil && password != "" && date != nil && date != ""
         setcreateNewAccountButton(enabled: formFilled)
     }
 
@@ -307,6 +384,10 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         switch textField {
         case emailTextField:
             emailTextField.resignFirstResponder()
+            dateBirthTextField.becomeFirstResponder()
+            break
+        case dateBirthTextField:
+            dateBirthTextField.resignFirstResponder()
             passwordTextField.becomeFirstResponder()
             break
         case passwordTextField:
@@ -330,12 +411,14 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
             self.emailTextField.text = ""
             self.passwordConfirmationTextField.text = ""
             self.passwordTextField.text = ""
+            self.dateBirthTextField.text = ""
             self.otherButton.backgroundColor = UIColor.clear
             self.cisWomanButton.backgroundColor = UIColor.clear
             self.cisManButton.backgroundColor = UIColor.clear
             self.transWomanButton.backgroundColor = UIColor.clear
             self.transManButton.backgroundColor = UIColor.clear
             self.noInfoButton.backgroundColor = UIColor.clear
+            self.termsButton.backgroundColor = UIColor.clear
             self.identification = ""
            
         })

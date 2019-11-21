@@ -46,6 +46,12 @@
                                     <constraint firstAttribute="width" constant="82" id="Ode-YP-A5z"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SiD-8l-vLf">
+                                <rect key="frame" x="139.5" y="101" width="14.5" height="24"/>
+                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="20"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.80784313730000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -54,7 +60,9 @@
                             <constraint firstAttribute="width" constant="335" id="Dck-9F-bsp"/>
                             <constraint firstAttribute="bottom" secondItem="VnN-bV-chk" secondAttribute="bottom" constant="36" id="DfX-41-qBt"/>
                             <constraint firstAttribute="height" constant="129" id="Mfm-ai-6rn"/>
+                            <constraint firstItem="SiD-8l-vLf" firstAttribute="bottom" secondItem="8gi-me-Hro" secondAttribute="bottom" id="PHd-fV-Rms"/>
                             <constraint firstAttribute="trailing" secondItem="VnN-bV-chk" secondAttribute="trailing" id="Qi4-PD-11S"/>
+                            <constraint firstItem="SiD-8l-vLf" firstAttribute="centerX" secondItem="8gi-me-Hro" secondAttribute="centerX" id="aBE-oh-wa7"/>
                             <constraint firstItem="8gi-me-Hro" firstAttribute="centerY" secondItem="Vy3-t2-6Z2" secondAttribute="centerY" id="h3b-mE-uOl"/>
                             <constraint firstItem="VnN-bV-chk" firstAttribute="trailing" secondItem="iwo-jn-wCK" secondAttribute="trailing" id="l17-36-d0w"/>
                             <constraint firstItem="VnN-bV-chk" firstAttribute="top" secondItem="iwo-jn-wCK" secondAttribute="top" id="mzP-39-DZj"/>
@@ -74,6 +82,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="dots" destination="SiD-8l-vLf" id="Y3j-iP-fU9"/>
                 <outlet property="profileCellTextField" destination="8gi-me-Hro" id="6dr-uR-fWm"/>
             </connections>
             <point key="canvasLocation" x="55.200000000000003" y="48.575712143928037"/>
