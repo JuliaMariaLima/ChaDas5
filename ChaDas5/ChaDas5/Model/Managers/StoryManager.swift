@@ -126,7 +126,7 @@ class StoryManager {
                     DAOManager.instance?.ckUsers.retrieve(authorFrom: result) { (author, error) in
                         if author != nil {
                             if !MeUser.instance.blocked.contains(author!) && result["status"] == "active" {
-                                guard let content = result["content"] as? String else { return }
+//                                guard let content = result["content"] as? String else { return }
 //                                print(self.classifier?.predictedLabel(for: content), content)
                                 self.stories.append(result)
                             }

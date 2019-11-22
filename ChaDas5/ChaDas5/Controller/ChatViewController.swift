@@ -41,7 +41,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         self.channelRecord = channel
         self.channel = Channel(from: channel, completion: { (channel, error) in
             if error != nil {
-                debugPrint(#function, error)
+                debugPrint(#function, error!.description)
             }
         })
         super.init(nibName: nil, bundle: nil)

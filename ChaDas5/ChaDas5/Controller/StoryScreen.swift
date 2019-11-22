@@ -48,7 +48,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
             self.dao?.createChannel(withChannel: channel.asCKRecord, completion: { (record, error) in
                 if error != nil {
                     
-                    debugPrint("error creating channel", error)
+                    debugPrint("error creating channel", error!.localizedDescription)
                     return
                 } else {
                     guard record != nil else {
@@ -78,7 +78,6 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
 
     @IBAction func archiveButton(_ sender: Any) {
         guard let storyID = selectedStory?.recordID.recordName else { return }
-        print(selectedStory?.recordID)
         guard let status = selectedStory?.object(forKey: "status") as? String else {
             debugPrint("error retrieving story status", #function)
             return

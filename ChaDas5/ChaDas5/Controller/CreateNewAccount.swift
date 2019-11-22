@@ -244,7 +244,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
             createNewAccountButton.setTitle("Criar Conta", for: .normal)
             activityView.stopAnimating()
             
-        } else if identification == nil || identification == "" {
+        } else if identification == "" {
             
             let alert2 = UIAlertController(title: "", message: "Por favor, selecione um dos campos de identificação.", preferredStyle: UIAlertController.Style.alert)
             alert2.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
