@@ -147,6 +147,7 @@ class DaoPushNotifications: Codable {
         subscription.notificationInfo = info
         DAOManager.instance?.database.save(subscription, completionHandler: { subscription, error in
             if error == nil {
+                print("subscription saved!")
                 // Subscription saved successfully
             } else {
                 // Error occurred

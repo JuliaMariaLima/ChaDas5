@@ -472,7 +472,10 @@ extension ChatViewController: MessagesDataSource {
         guard let dao = dao else {
             fatalError()
         }
-        return dao.messages[indexPath.row]
+        if !dao.messages.isEmpty {
+            return dao.messages[indexPath.row]
+        }
+        return Message(content: "0", on: "0")
     }
 
 
