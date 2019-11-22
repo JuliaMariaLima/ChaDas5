@@ -17,7 +17,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     var selectedIndex:Int?
     var currentSegment:Int = 0
     private let refreshControl = UIRefreshControl()
-    var profileIsEditing =  false
+
 
     var userRequester: UserRequester!
     var meUser: MeUser!
@@ -26,11 +26,13 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     let dao2 = DAOManager.instance?.ckChannels
 
     //outlets
-    @IBOutlet weak var editButton: UIButton!
+
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profileTableView: UITableView!
-    @IBOutlet weak var noStoryLabel: UILabel!
+
+    @IBOutlet weak var noStoriesImage: UIImageView!
+    
     @IBOutlet weak var pickYouTeaButton: UIButton!
     @IBOutlet weak var imageCircle: UIButton!
 
@@ -38,44 +40,13 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     var activityView:UIActivityIndicatorView!
 
 
-    @IBAction func pickYourTeaButton(_ sender: Any) {
-        performSegue(withIdentifier: "toChooseYourTea", sender: nil)
-        imageCircle.alpha = 0.25
-        profileImage.alpha = 0.25
-        pickYouTeaButton.alpha = 1
-
-    }
-
-
-
-    //actions
-
-
-    @IBAction func editButton(_ sender: Any) {
-        if !profileIsEditing{
-        imageCircle.alpha = 0.25
-        profileImage.alpha = 0.25
-        pickYouTeaButton.alpha = 1
-        profileIsEditing = true
-
-        }
-        else{
-
-            imageCircle.alpha = 1
-            profileImage.alpha = 1
-            pickYouTeaButton.alpha = 0
-            profileIsEditing = false
-        }
-        profileTableView.reloadData()
-    }
-
 
 
     override func viewDidLoad() {
 
         //segmented control customization
         segmentedControl = CustomSegmentedContrl.init(frame: CGRect.init(x: 0, y: 440, width: self.view.frame.width, height: 45))
-        segmentedControl.backgroundColor = .white
+        segmentedControl.backgroundColor = .baseOrange
         segmentedControl.commaSeperatedButtonTitles = "Relatos atuais, Relatos passados"
         segmentedControl.addTarget(self, action: #selector(onChangeOfSegment(_:)), for: .valueChanged)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
@@ -102,7 +73,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         activityView.center = profileTableView.center
         activityView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
 
-        noStoryLabel.alpha = 0
+        noStoriesImage.alpha = 0
 
 
         view.addSubview(activityView)
@@ -136,13 +107,11 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         refreshControl.tintColor = UIColor.buttonOrange
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
 
-        profileIsEditing =  false
-
     }
 
     private func setUpSegmentedControlConstraints() {
         NSLayoutConstraint.activate([
-            segmentedControl.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 40),
+            segmentedControl.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 70),
             segmentedControl.widthAnchor.constraint(equalTo: view.widthAnchor),
             segmentedControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             segmentedControl.bottomAnchor.constraint(equalTo: profileTableView.topAnchor, constant: -40),
@@ -154,7 +123,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
     @objc func onChangeOfSegment(_ sender: CustomSegmentedContrl) {
         self.currentSegment = sender.selectedSegmentIndex
         profileTableView.reloadData()
-        label()
+        image()
 
     }
 
@@ -178,27 +147,19 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
          }
         profileImage.image = UIImage(named: meUser.name )
         profileImage.contentMode =  UIView.ContentMode.scaleAspectFit
-        if profileIsEditing {
-
-            pickYouTeaButton.alpha = 1
-        }
-        else{
-
-           pickYouTeaButton.alpha = 0
-        }
 
     }
 
-    func label() {
-        let labelsText = ["Você não possui relatos atuais ainda.", "Você não possui relatos passados ainda."]
-        self.noStoryLabel.text = labelsText[self.currentSegment]
+    func image() {
+        let imagesNames = [UIImage(named: "noActiveStories"), UIImage(named: "noArchiveStories")]
+        self.noStoriesImage.image = imagesNames[self.currentSegment]
         if currentSegment == 0 && dao?.activeStories.count == 0 {
-            self.noStoryLabel.alpha = 1
+            self.noStoriesImage.alpha = 0.75
         } else if currentSegment == 1  && dao?.nonActiveStories.count == 0 {
-            self.noStoryLabel.alpha = 1
+            self.noStoriesImage.alpha = 0.75
         }
         else {
-            self.noStoryLabel.alpha = 0
+            self.noStoriesImage.alpha = 0
         }
     }
 
@@ -220,7 +181,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let profileCell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as! ProfileTableViewCell
-        profileCell.deleteButton.alpha = profileIsEditing ? 1 : 0
+ 
         var story : CKRecord
         guard let dao = dao else {
             return profileCell
@@ -232,11 +193,19 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         }
         profileCell.profileCellTextField.text = story["content"] as? String ?? ""
         profileCell.isUserInteractionEnabled = true
+        
+        if profileCell.profileCellTextField.text.count >= 149{
+            
+            profileCell.dots.isHidden = false
+        }else{
+            profileCell.dots.isHidden = true
+        }
+        
         return profileCell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150.0
+        return 151.0
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -266,7 +235,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
              storiesAndChannelsLabel.text = "\(storiesCount) Relatos"
          }
         self.refreshControl.endRefreshing()
-        label()
+        image()
 
     }
 
@@ -279,7 +248,7 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         DispatchQueue.main.async {
             self.profileTableView.reloadData()
             self.activityView.stopAnimating()
-            self.label()
+            self.image()
             let storiesCount = self.dao!.activeStories.count + self.dao!.nonActiveStories.count
              if storiesCount == 0 || storiesCount == 1{
                  self.storiesAndChannelsLabel.text = "\(storiesCount) Relato"

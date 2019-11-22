@@ -13,52 +13,14 @@ class ProfileTableViewCell: UITableViewCell {
 
     //outlets
     @IBOutlet weak var profileCellTextField: UITextView!
-    @IBOutlet weak var deleteButton: UIButton!
-
+ 
+    @IBOutlet weak var dots: UILabel!
+    
     var selectedStory:Story?
     
     var dao = DAOManager.instance?.ckMyStories
 
 
-    //actions
-    @IBAction func deleteButton(_ sender: Any) {
-
-        guard let selected = myIndexPath?.row else {
-            return
-        }
-
-        if myProfileView?.currentSegment == 0 {
-
-            self.selectedStory = Story(from: (dao?.nonActiveStories[selected])!, completion: { (story, error) in
-                if error == nil && story != nil {
-                    print("success")
-                }
-            })
-
-        }
-
-        else{
-
-            self.selectedStory = Story(from: (dao?.activeStories[selected])!, completion: { (story, error) in
-                if error == nil && story != nil {
-                    print("success")
-                }
-            })
-
-        }
-
-        let alert = UIAlertController(title: "Deseja mesmo excluir esse relato?", message: "Essa ação não poderá ser desfeita.", preferredStyle: .alert)
-
-        let cancelar = UIAlertAction(title: "Cancelar", style: .default ) { (action) -> Void in
-            alert.dismiss(animated: true, completion: nil)
-        }
-//        alert.addAction(excluir)
-        alert.addAction(cancelar)
-        myProfileView!.present(alert, animated: true, completion: nil)
-        alert.view.tintColor = UIColor.buttonOrange
-
-
-}
 
     override func awakeFromNib() {
         super.awakeFromNib()

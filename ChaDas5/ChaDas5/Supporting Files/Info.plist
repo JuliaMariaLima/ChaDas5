@@ -33,6 +33,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SFCompactDisplay-Regular.otf</string>
 		<string>SFCompactDisplay-Ultralight.otf</string>
 	</array>
 	<key>UIBackgroundModes</key>
@@ -41,7 +42,7 @@
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>CreateNewAccount</string>
+	<string>SplashScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>SplashScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -59,7 +59,7 @@ class MyStoriesManager {
         self.nonActiveStories = []
     }
     
-    
+
     func switchToNonAvaliable(storyID: String, completion: @escaping (CKRecord?, Error?) -> Void) {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Story", predicate: predicate)
@@ -92,6 +92,11 @@ class MyStoriesManager {
         })
     }
     
+    
+    
+
+
+    
     func switchArchived(storyID: String, completion: @escaping (CKRecord?, Error?) -> Void) {
         let predicate = NSPredicate(format: "author = %@", MeUser.instance.email)
         let query = CKQuery(recordType: "Story", predicate: predicate)
@@ -104,8 +109,6 @@ class MyStoriesManager {
             }
             if results != nil && (results?.count)! > 0 {
                 for result in results! {
-                    print("====== record name i found",result.recordID.recordName)
-                    print("====== record im searching for:", storyID)
                     if result.recordID.recordName == storyID {
                         guard let status = result["status"] as? String else {
                             print("saiu aqui")

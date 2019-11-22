@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DY3-Pf-arH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DY3-Pf-arH">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SFCompactDisplay-Ultralight.otf">
-            <string>SFCompactDisplay-Ultralight</string>
+        <array key="SFCompactDisplay-Regular.otf">
+            <string>SFCompactDisplay-Regular</string>
         </array>
     </customFonts>
     <scenes>
         <!--Story Screen-->
         <scene sceneID="WZA-Zh-nDQ">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="DY3-Pf-arH" customClass="StoryScreen" customModule="ChaDas5" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="StoryScreen" storyboardIdentifier="StoryScreen" modalPresentationStyle="fullScreen" id="DY3-Pf-arH" customClass="StoryScreen" customModule="ChaDas5" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4XW-lM-QjK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tde-1a-ZNZ">
-                                <rect key="frame" x="50" y="35" width="50" height="50"/>
+                                <rect key="frame" x="50" y="35" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.60784313729999995" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="l8f-y9-be3"/>
-                                    <constraint firstAttribute="height" constant="50" id="tw9-sd-tM4"/>
+                                    <constraint firstAttribute="width" constant="40" id="l8f-y9-be3"/>
+                                    <constraint firstAttribute="height" constant="40" id="tw9-sd-tM4"/>
                                 </constraints>
                                 <state key="normal" title="X" image="dismissIcon">
                                     <color key="titleColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -40,38 +40,25 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rUa-cf-VJh">
-                                <rect key="frame" x="50" y="126" width="275" height="484"/>
+                                <rect key="frame" x="50" y="148" width="275" height="466"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FMQ-7Z-TuW">
-                                        <rect key="frame" x="25.5" y="30" width="224" height="386"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMQ-7Z-TuW">
+                                        <rect key="frame" x="25.5" y="12" width="224" height="419"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="224" id="0mv-0r-58l"/>
-                                            <constraint firstAttribute="height" constant="386" id="jQG-GC-bAX"/>
+                                            <constraint firstAttribute="height" constant="419" id="jQG-GC-bAX"/>
                                         </constraints>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dD1-BE-gBN">
-                                        <rect key="frame" x="210" y="429" width="40" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="pz2-8a-JWw"/>
-                                            <constraint firstAttribute="width" constant="40" id="xJL-gd-jKa"/>
-                                        </constraints>
-                                        <state key="normal" image="chat"/>
-                                        <connections>
-                                            <action selector="chatButton:" destination="DY3-Pf-arH" eventType="touchUpInside" id="90o-s6-uIc"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97254901959999995" green="0.80784313730000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="484" id="HE8-94-EXk"/>
-                                    <constraint firstItem="dD1-BE-gBN" firstAttribute="centerX" secondItem="rUa-cf-VJh" secondAttribute="centerX" constant="92.5" id="LIx-8c-KJ9"/>
-                                    <constraint firstItem="FMQ-7Z-TuW" firstAttribute="centerY" secondItem="rUa-cf-VJh" secondAttribute="centerY" constant="-19" id="Obf-sD-j5k"/>
+                                    <constraint firstAttribute="height" constant="466" id="HE8-94-EXk"/>
+                                    <constraint firstItem="FMQ-7Z-TuW" firstAttribute="centerY" secondItem="rUa-cf-VJh" secondAttribute="centerY" constant="-11.5" id="Obf-sD-j5k"/>
                                     <constraint firstAttribute="width" constant="275" id="ZPq-nt-yX8"/>
                                     <constraint firstItem="FMQ-7Z-TuW" firstAttribute="centerX" secondItem="rUa-cf-VJh" secondAttribute="centerX" id="b4s-3o-UFg"/>
-                                    <constraint firstItem="dD1-BE-gBN" firstAttribute="centerY" secondItem="rUa-cf-VJh" secondAttribute="centerY" constant="204.5" id="nQq-SZ-deZ"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -80,13 +67,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svz-Z4-Yhg">
-                                <rect key="frame" x="270" y="35" width="50" height="50"/>
+                                <rect key="frame" x="285" y="35" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.60784313729999995" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="VqK-Ar-tHN"/>
-                                    <constraint firstAttribute="height" constant="50" id="dJo-Cd-kDw"/>
+                                    <constraint firstAttribute="width" constant="40" id="VqK-Ar-tHN"/>
+                                    <constraint firstAttribute="height" constant="40" id="dJo-Cd-kDw"/>
                                 </constraints>
-                                <state key="normal" image="archive"/>
+                                <state key="normal" image="archiveIcon"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="25"/>
@@ -100,15 +87,28 @@
                                 <rect key="frame" x="195" y="90" width="0.0" height="83"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dD1-BE-gBN">
+                                <rect key="frame" x="285" y="577" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="pz2-8a-JWw"/>
+                                    <constraint firstAttribute="width" constant="60" id="xJL-gd-jKa"/>
+                                </constraints>
+                                <state key="normal" image="chatIcon"/>
+                                <connections>
+                                    <action selector="chatButton:" destination="DY3-Pf-arH" eventType="touchUpInside" id="90o-s6-uIc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="tde-1a-ZNZ" firstAttribute="top" secondItem="hw4-sL-ogr" secondAttribute="top" constant="35" id="3vS-13-Pn6"/>
-                            <constraint firstItem="rUa-cf-VJh" firstAttribute="centerY" secondItem="4XW-lM-QjK" secondAttribute="centerY" constant="34.5" id="HIX-ou-p1c"/>
+                            <constraint firstItem="rUa-cf-VJh" firstAttribute="centerY" secondItem="4XW-lM-QjK" secondAttribute="centerY" constant="47.5" id="HIX-ou-p1c"/>
                             <constraint firstItem="svz-Z4-Yhg" firstAttribute="top" secondItem="hw4-sL-ogr" secondAttribute="top" constant="35" id="RNa-I1-Ydm"/>
-                            <constraint firstItem="tde-1a-ZNZ" firstAttribute="centerX" secondItem="4XW-lM-QjK" secondAttribute="centerX" constant="-112.5" id="fPr-M6-d6B"/>
-                            <constraint firstItem="svz-Z4-Yhg" firstAttribute="centerX" secondItem="4XW-lM-QjK" secondAttribute="centerX" constant="107.66666666666663" id="jjA-vQ-d1Y"/>
+                            <constraint firstItem="dD1-BE-gBN" firstAttribute="top" secondItem="rUa-cf-VJh" secondAttribute="bottom" constant="-37" id="WFI-yD-2Fg"/>
+                            <constraint firstItem="tde-1a-ZNZ" firstAttribute="centerX" secondItem="4XW-lM-QjK" secondAttribute="centerX" constant="-117.5" id="fPr-M6-d6B"/>
+                            <constraint firstItem="svz-Z4-Yhg" firstAttribute="centerX" secondItem="4XW-lM-QjK" secondAttribute="centerX" constant="117.5" id="jjA-vQ-d1Y"/>
                             <constraint firstItem="rUa-cf-VJh" firstAttribute="centerX" secondItem="4XW-lM-QjK" secondAttribute="centerX" id="muI-ah-odS"/>
+                            <constraint firstItem="dD1-BE-gBN" firstAttribute="centerX" secondItem="rUa-cf-VJh" secondAttribute="centerX" constant="127.5" id="z3a-Ys-hSn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hw4-sL-ogr"/>
                     </view>
@@ -124,8 +124,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="archive" width="641" height="640.5"/>
-        <image name="chat" width="704" height="630"/>
+        <image name="archiveIcon" width="641" height="640.5"/>
+        <image name="chatIcon" width="640.5" height="640.5"/>
         <image name="dismissIcon" width="640.5" height="640.5"/>
     </resources>
 </document>

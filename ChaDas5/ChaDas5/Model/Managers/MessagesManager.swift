@@ -34,7 +34,8 @@ class MessagesManager {
     var messages = [Message]()
     
     func loadMessages(from channel: Channel, requester: MessagesProtocol) {
-        let predicate = NSPredicate(format: "onChannel = %@", channel.id?.recordName ?? "")
+        guard let id = channel.id?.recordName else { return }
+        let predicate = NSPredicate(format: "onChannel = %@", id)
         let query = CKQuery(recordType: "Thread", predicate: predicate)
         self.messages = []
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
@@ -52,6 +53,7 @@ class MessagesManager {
                     }
                 }
                 self.messages = self.messages.sorted(by: { $0.sentDate < $1.sentDate })
+                DAOManager.instance?.ckChannels.updateOpenedBy(with: Date.distantFuture, on: id)
                 requester.readedMessagesFromChannel(messages: self.messages, error: nil)
                 return
             }
@@ -59,6 +61,7 @@ class MessagesManager {
         })
     }
     
+    // FIX 
     func save(message:Message, to requester: MessagesProtocol) {
         self.messages.append(message)
 //        self.messages = self.messages.sorted(by: { $0.sentDate.keyString < $1.sentDate.keyString })
@@ -69,9 +72,14 @@ class MessagesManager {
                 requester.messageSaved(with: error)
                 return
             }
+            // CHECK
             if let _ = record {
-                DAOManager.instance?.ckChannels.updateLastMessageDate(with: message.sentDate, on: message.onChannel)
-                requester.messageSaved()
+                let _ = Message(from: record!) { (message, error) in
+                    if error == nil && message != nil {
+                        DAOManager.instance?.ckChannels.updateLastMessageDate(with: message!, on: message!.onChannel)
+                        requester.messageSaved()
+                    }
+                }
                 return
             }
         })
@@ -99,6 +107,28 @@ class MessagesManager {
         })
     }
     
+    
+    func getMessageData(on messageID: String, completion: @escaping (Message?) -> Void) {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Thread", predicate: predicate)
+        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            if results != nil && (results?.count)! > 0 {
+                for result in results! {
+                    if result.recordID.recordName == messageID {
+                        _ = Message(from: result) { (message, error) in
+                            if message != nil && error == nil {
+                                completion(message)
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
+    
+    
+    // WARNING: THIS FUNCTION DELETED ALL MESSAGES FROM DATABASE
     func deleteAll() {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Thread", predicate: predicate)

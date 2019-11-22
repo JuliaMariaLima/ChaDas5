@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import NaturalLanguage
+import CoreML
 import CloudKit
 
 protocol StoryManagerProtocol {
@@ -24,11 +26,16 @@ class StoryManager {
     var database: CKDatabase
     var container: CKContainer
     var stories = [CKRecord]()
+    
+//    let classifier:NLModel?
 
     
     init(database: CKDatabase, container: CKContainer){
         self.container = container
         self.database = database
+        
+//        self.classifier = try? NLModel(mlModel:
+//            emotions().model)
     }
     
     func save(story:Story, completion: @escaping (CKRecord?, Error?) -> Void) {
@@ -68,6 +75,40 @@ class StoryManager {
         })
     }
     
+    
+    func switchToFlag (storyID: String, completion: @escaping (CKRecord?, Error?) -> Void) {
+        
+            let predicate = NSPredicate(value: true)
+            let query = CKQuery(recordType: "Story", predicate: predicate)
+            self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+                // Erro ao executar query no CloudKit.
+                if error != nil {
+                    print("erro no cloudkit")
+                    completion(nil, nil)
+                    return
+                }
+                if results != nil && (results?.count)! > 0 {
+                    for result in results! {
+                        if result.recordID.recordName == storyID {
+                            guard let flag = result["flag"] as? Int else {
+                                print("saiu aqui")
+                                return }
+                         
+                            result.setObject(flag+1 as __CKRecordObjCValue, forKey: "flag")
+                            
+                            self.database.save(result) { (record, error) in
+                                if error == nil && record != nil {
+                                    completion(record, nil)
+                                } else {
+                                    completion(nil, error)
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+    }
+    
     func getStories(requester:StoryManagerProtocol, blocks:[String]) {
         self.stories = []
         // TODO: Get list of stories from database and cross with blocked list
@@ -85,6 +126,8 @@ class StoryManager {
                     DAOManager.instance?.ckUsers.retrieve(authorFrom: result) { (author, error) in
                         if author != nil {
                             if !MeUser.instance.blocked.contains(author!) && result["status"] == "active" {
+                                guard let content = result["content"] as? String else { return }
+//                                print(self.classifier?.predictedLabel(for: content), content)
                                 self.stories.append(result)
                             }
                         }
@@ -97,6 +140,31 @@ class StoryManager {
             }
             requester.readedStories(stories: nil, error: nil)
         })
+    }
+    
+    
+    func get(storyFrom id:String, completion: @escaping (CKRecord?) -> Void) {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "Story", predicate: predicate)
+        self.database.perform(query, inZoneWith: nil, completionHandler: {(results, error) in
+            if error != nil {
+                print("erro no cloudkit \(#function)", error.debugDescription)
+                completion(nil)
+                return
+            }
+            if (results?.count)! > 0 {
+                for result in results! {
+                    if result.recordID.recordName == id {
+                        completion(result)
+                    }
+                }
+            }
+            else {
+                // nao existe
+                completion(nil)
+            }
+        })
+    
     }
     
     func retrieve(authorFrom storyID: String, completion: @escaping (CKRecord?, Error?) -> Void) {

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hjw-Iy-37R">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hjw-Iy-37R">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SFCompactDisplay-Ultralight.otf">
-            <string>SFCompactDisplay-Ultralight</string>
+        <array key="SFCompactDisplay-Regular.otf">
+            <string>SFCompactDisplay-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -17,20 +17,20 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="hjw-Iy-37R" customClass="Informations" customModule="ChaDas5" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x8T-Hy-M0R">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqs-IF-1Jj">
-                                <rect key="frame" x="0.0" y="74" width="375" height="943"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x3u-E2-5D8" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="19" width="375" height="904"/>
+                                        <rect key="frame" x="0.0" y="19" width="414" height="759"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1I-g8-gz0">
-                                                <rect key="frame" x="87" y="23" width="200" height="200"/>
+                                                <rect key="frame" x="131.66666666666666" y="33" width="149.99999999999997" height="150"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="RcH-3g-Ahs"/>
-                                                    <constraint firstAttribute="height" constant="200" id="jDr-ea-MLK"/>
+                                                    <constraint firstAttribute="width" constant="150" id="RcH-3g-Ahs"/>
+                                                    <constraint firstAttribute="height" constant="150" id="jDr-ea-MLK"/>
                                                 </constraints>
                                                 <state key="normal" image="whatToDo">
                                                     <color key="titleColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -40,19 +40,19 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O que fazer em caso de assédio?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auk-Xp-CXR">
-                                                <rect key="frame" x="61" y="231" width="253" height="45"/>
+                                                <rect key="frame" x="38" y="196" width="336" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="DUM-Le-o7G"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q04-fT-Lpb">
-                                                <rect key="frame" x="87" y="327" width="200" height="200"/>
+                                                <rect key="frame" x="131.66666666666666" y="287" width="149.99999999999997" height="150"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="XY3-Uh-Aey"/>
-                                                    <constraint firstAttribute="height" constant="200" id="YRK-lu-kar"/>
+                                                    <constraint firstAttribute="width" constant="150" id="XY3-Uh-Aey"/>
+                                                    <constraint firstAttribute="height" constant="150" id="YRK-lu-kar"/>
                                                 </constraints>
                                                 <state key="normal" image="whoToCall">
                                                     <color key="titleColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -62,28 +62,28 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Números para denúncia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JyL-pN-Acz">
-                                                <rect key="frame" x="95" y="535" width="183" height="45"/>
+                                                <rect key="frame" x="95" y="450" width="222" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="bZa-a1-WER"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dúvidas e informações" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBE-2R-LdL">
-                                                <rect key="frame" x="99" y="839" width="175" height="45"/>
+                                                <rect key="frame" x="99" y="694" width="214" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="fRE-Jg-qQa"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJd-8t-EQ6">
-                                                <rect key="frame" x="87" y="631" width="200" height="200"/>
+                                                <rect key="frame" x="131.66666666666666" y="536" width="149.99999999999997" height="150"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="Yo2-fw-Fbd"/>
-                                                    <constraint firstAttribute="width" constant="200" id="zps-xP-JVl"/>
+                                                    <constraint firstAttribute="height" constant="150" id="Yo2-fw-Fbd"/>
+                                                    <constraint firstAttribute="width" constant="150" id="zps-xP-JVl"/>
                                                 </constraints>
                                                 <state key="normal" image="informations">
                                                     <color key="titleColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -95,22 +95,22 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="auk-Xp-CXR" secondAttribute="trailing" constant="61" id="1WY-cl-LOc"/>
-                                            <constraint firstItem="JyL-pN-Acz" firstAttribute="top" secondItem="q04-fT-Lpb" secondAttribute="bottom" constant="8" id="1hg-F4-ly6"/>
+                                            <constraint firstAttribute="trailing" secondItem="auk-Xp-CXR" secondAttribute="trailing" constant="40" id="1WY-cl-LOc"/>
+                                            <constraint firstItem="JyL-pN-Acz" firstAttribute="top" secondItem="q04-fT-Lpb" secondAttribute="bottom" constant="13" id="1hg-F4-ly6"/>
                                             <constraint firstItem="JyL-pN-Acz" firstAttribute="centerX" secondItem="x3u-E2-5D8" secondAttribute="centerX" constant="-1" id="3L6-Zu-Nes"/>
-                                            <constraint firstItem="auk-Xp-CXR" firstAttribute="top" secondItem="a1I-g8-gz0" secondAttribute="bottom" constant="8" id="7Nl-7T-Fgk"/>
+                                            <constraint firstItem="auk-Xp-CXR" firstAttribute="top" secondItem="a1I-g8-gz0" secondAttribute="bottom" constant="13" id="7Nl-7T-Fgk"/>
                                             <constraint firstItem="q04-fT-Lpb" firstAttribute="centerX" secondItem="x3u-E2-5D8" secondAttribute="centerX" constant="-0.5" id="7mD-1L-VZY"/>
                                             <constraint firstItem="UBE-2R-LdL" firstAttribute="leading" secondItem="x3u-E2-5D8" secondAttribute="leading" constant="99" id="9GJ-M3-2NC"/>
-                                            <constraint firstItem="AJd-8t-EQ6" firstAttribute="top" secondItem="JyL-pN-Acz" secondAttribute="bottom" constant="51" id="BIg-qp-TsI"/>
+                                            <constraint firstItem="AJd-8t-EQ6" firstAttribute="top" secondItem="JyL-pN-Acz" secondAttribute="bottom" constant="41" id="BIg-qp-TsI"/>
                                             <constraint firstItem="a1I-g8-gz0" firstAttribute="centerX" secondItem="x3u-E2-5D8" secondAttribute="centerX" constant="-0.5" id="CBt-dy-wK6"/>
                                             <constraint firstItem="JyL-pN-Acz" firstAttribute="leading" secondItem="x3u-E2-5D8" secondAttribute="leading" constant="95" id="GSx-QB-ubk"/>
-                                            <constraint firstItem="a1I-g8-gz0" firstAttribute="top" secondItem="x3u-E2-5D8" secondAttribute="top" constant="23" id="NM4-gH-esj"/>
-                                            <constraint firstItem="auk-Xp-CXR" firstAttribute="centerX" secondItem="x3u-E2-5D8" secondAttribute="centerX" id="U3T-pJ-UCt"/>
+                                            <constraint firstItem="a1I-g8-gz0" firstAttribute="top" secondItem="x3u-E2-5D8" secondAttribute="top" constant="33" id="NM4-gH-esj"/>
+                                            <constraint firstItem="auk-Xp-CXR" firstAttribute="centerX" secondItem="x3u-E2-5D8" secondAttribute="centerX" constant="-1" id="U3T-pJ-UCt"/>
                                             <constraint firstAttribute="trailing" secondItem="UBE-2R-LdL" secondAttribute="trailing" constant="101" id="XZG-Up-3In"/>
                                             <constraint firstItem="AJd-8t-EQ6" firstAttribute="centerX" secondItem="x3u-E2-5D8" secondAttribute="centerX" constant="-0.5" id="arV-ss-Huk"/>
-                                            <constraint firstItem="auk-Xp-CXR" firstAttribute="leading" secondItem="x3u-E2-5D8" secondAttribute="leading" constant="61" id="dYj-vw-Rcn"/>
+                                            <constraint firstItem="auk-Xp-CXR" firstAttribute="leading" secondItem="x3u-E2-5D8" secondAttribute="leading" constant="38" id="dYj-vw-Rcn"/>
                                             <constraint firstItem="UBE-2R-LdL" firstAttribute="top" secondItem="AJd-8t-EQ6" secondAttribute="bottom" constant="8" id="gtf-Dh-MM1"/>
-                                            <constraint firstItem="q04-fT-Lpb" firstAttribute="top" secondItem="auk-Xp-CXR" secondAttribute="bottom" constant="51" id="m1E-91-2Mx"/>
+                                            <constraint firstItem="q04-fT-Lpb" firstAttribute="top" secondItem="auk-Xp-CXR" secondAttribute="bottom" constant="46" id="m1E-91-2Mx"/>
                                             <constraint firstAttribute="bottom" secondItem="UBE-2R-LdL" secondAttribute="bottom" constant="20" id="rep-7p-QYH"/>
                                             <constraint firstItem="UBE-2R-LdL" firstAttribute="centerX" secondItem="x3u-E2-5D8" secondAttribute="centerX" constant="-1" id="txS-Cv-hgm"/>
                                             <constraint firstAttribute="trailing" secondItem="JyL-pN-Acz" secondAttribute="trailing" constant="97" id="vPv-Qx-iBI"/>
@@ -119,38 +119,24 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="x3u-E2-5D8" firstAttribute="leading" secondItem="fqs-IF-1Jj" secondAttribute="leading" id="Ihq-Ur-fbb"/>
-                                    <constraint firstAttribute="bottom" secondItem="x3u-E2-5D8" secondAttribute="bottom" constant="20" id="bUN-Py-Tz4"/>
+                                    <constraint firstAttribute="bottom" secondItem="x3u-E2-5D8" secondAttribute="bottom" constant="35" id="bUN-Py-Tz4"/>
                                     <constraint firstAttribute="trailing" secondItem="x3u-E2-5D8" secondAttribute="trailing" id="sgm-3o-K1Z"/>
                                     <constraint firstItem="x3u-E2-5D8" firstAttribute="top" secondItem="fqs-IF-1Jj" secondAttribute="top" constant="19" id="tsP-Du-eNP"/>
                                 </constraints>
                             </scrollView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfg-ZD-pIT">
-                                <rect key="frame" x="0.0" y="30" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="Pjg-cO-ZDA"/>
-                                    <constraint firstAttribute="height" constant="44" id="Srk-QM-zAl"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Informações" id="tXu-92-NI2"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="DHG-pF-tSx" firstAttribute="bottom" secondItem="fqs-IF-1Jj" secondAttribute="bottom" id="A7g-vH-0Aj"/>
                             <constraint firstItem="x3u-E2-5D8" firstAttribute="width" secondItem="x8T-Hy-M0R" secondAttribute="width" id="Ii6-aW-uGD"/>
                             <constraint firstItem="fqs-IF-1Jj" firstAttribute="leading" secondItem="DHG-pF-tSx" secondAttribute="leading" id="Xct-9P-yhC"/>
-                            <constraint firstItem="fqs-IF-1Jj" firstAttribute="top" secondItem="DHG-pF-tSx" secondAttribute="top" constant="30" id="fwy-nj-R4r"/>
-                            <constraint firstItem="kfg-ZD-pIT" firstAttribute="top" secondItem="x8T-Hy-M0R" secondAttribute="top" constant="30" id="g8c-rg-ktL"/>
-                            <constraint firstItem="kfg-ZD-pIT" firstAttribute="leading" secondItem="fqs-IF-1Jj" secondAttribute="leading" id="jpO-Yx-Z8R"/>
-                            <constraint firstItem="kfg-ZD-pIT" firstAttribute="trailing" secondItem="fqs-IF-1Jj" secondAttribute="trailing" id="pZf-p4-fa2"/>
+                            <constraint firstItem="fqs-IF-1Jj" firstAttribute="top" secondItem="DHG-pF-tSx" secondAttribute="top" constant="-44" id="fwy-nj-R4r"/>
                             <constraint firstItem="DHG-pF-tSx" firstAttribute="trailing" secondItem="fqs-IF-1Jj" secondAttribute="trailing" id="tmF-bP-QFd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DHG-pF-tSx"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Informação" image="informationIcon" selectedImage="informationIcon" id="cpz-sc-Ig3"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <size key="freeformSize" width="375" height="1100"/>
                     <connections>
                         <outlet property="informationsButton" destination="AJd-8t-EQ6" id="gGu-oi-sXC"/>
                         <outlet property="numbersButton" destination="q04-fT-Lpb" id="g4I-Kg-7rg"/>
@@ -159,7 +145,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="azN-i6-rfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="144.80000000000001" y="172.16748768472908"/>
+            <point key="canvasLocation" x="143.47826086956522" y="172.09821428571428"/>
         </scene>
         <!--Informations-->
         <scene sceneID="fZ2-KD-tFa">
@@ -173,7 +159,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdO-sI-Iqf" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="3748"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="3776.6666666666665"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O que é assédio sexual?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="962-QG-J6V">
                                                 <rect key="frame" x="54" y="159" width="306" height="71.666666666666686"/>
@@ -181,11 +167,11 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4y-ia-hTu">
-                                                <rect key="frame" x="50" y="50" width="50" height="50"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4y-ia-hTu">
+                                                <rect key="frame" x="15" y="35" width="70" height="70"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="GbS-BN-rs2"/>
-                                                    <constraint firstAttribute="height" constant="50" id="hM3-Ua-9Bl"/>
+                                                    <constraint firstAttribute="width" constant="70" id="GbS-BN-rs2"/>
+                                                    <constraint firstAttribute="height" constant="70" id="hM3-Ua-9Bl"/>
                                                 </constraints>
                                                 <state key="normal" image="informationDismissIcon"/>
                                                 <connections>
@@ -193,146 +179,146 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJB-qu-tc4">
-                                                <rect key="frame" x="54" y="238.66666666666669" width="306" height="244.33333333333331"/>
+                                                <rect key="frame" x="54" y="238.66666666666669" width="306" height="241.33333333333331"/>
                                                 <string key="text">É uma manifestação sensual ou sexual, sem o consentimento da pessoa a quem se dirige. Geralmente, são abordagens grosseiras, ofensas e propostas inadequadas que constrangem, humilham e amedrontam.</string>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uma cantada pode ser considerada assédio?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hrd-ZG-bUY">
-                                                <rect key="frame" x="54" y="513.66666666666663" width="306" height="107.33333333333337"/>
+                                                <rect key="frame" x="54" y="510.66666666666657" width="306" height="107.33333333333331"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LB7-Od-70z">
-                                                <rect key="frame" x="54" y="629" width="306" height="298.66666666666674"/>
+                                                <rect key="frame" x="54" y="626" width="306" height="295"/>
                                                 <string key="text">Qualquer investida precisa ter o consentimento da outra parte. Muitas mulheres afirmam ter medo de sofrer violências piores se reagirem negativamente a uma abordagem. Dizer coisas desagradáveis ou invasivas é crime, classificado como importunação ofensiva ao pudor.</string>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Passar a mão&quot; em alguém é considerado crime?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yca-Gr-pjv">
-                                                <rect key="frame" x="54" y="957.66666666666663" width="306" height="107.33333333333337"/>
+                                                <rect key="frame" x="54" y="951" width="306" height="107.33333333333326"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sim, tocar as partes íntimas de qualquer pessoa sem que haja consentimento pode ser enquadrado como estupro." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuK-04-zXd">
-                                                <rect key="frame" x="54" y="1073" width="306" height="108.66666666666674"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="54" y="1066.3333333333333" width="306" height="107.33333333333326"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qual é a diferença entre paquera e assédio?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3z-fb-aJk">
-                                                <rect key="frame" x="54" y="1212" width="306" height="107.33333333333326"/>
+                                                <rect key="frame" x="54" y="1204" width="306" height="107.33333333333326"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUt-FN-fw5">
-                                                <rect key="frame" x="54" y="1327.3333333333333" width="306" height="244.33333333333326"/>
+                                                <rect key="frame" x="54" y="1319.3333333333333" width="306" height="241.33333333333326"/>
                                                 <string key="text">Uma paquera acontece com consentimento das duas partes. É legítima, cria uma conexão com outra pessoa, não causa medo nem angústia e aceita "não" como resposta. O assédio é uma imposição e não aproxima as duas pessoas.</string>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="É aceitável praticar assédios em ambientes mais descontraídos, como casas noturnas ou durante o carnaval?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lQn-AY-znE">
-                                                <rect key="frame" x="54" y="1579.6666666666667" width="306" height="214.66666666666674"/>
+                                                <rect key="frame" x="54" y="1578.6666666666667" width="306" height="214.66666666666674"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJR-cq-Gec">
-                                                <rect key="frame" x="54" y="1802.3333333333333" width="306" height="136"/>
+                                                <rect key="frame" x="54" y="1801.3333333333333" width="306" height="161"/>
                                                 <string key="text">Não, o consentimento deve ser dado por livre e espontânea vontade. Ausência de "não" ou o silêncio também não significam consentimento.</string>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O que fazer em caso de assédio sexual?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfY-pW-GtE">
-                                                <rect key="frame" x="54" y="1968.3333333333333" width="306" height="71.666666666666742"/>
+                                                <rect key="frame" x="54" y="1982.3333333333333" width="306" height="71.666666666666742"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOq-5c-ess">
-                                                <rect key="frame" x="54" y="2048" width="306" height="163"/>
+                                                <rect key="frame" x="54" y="2062" width="306" height="161"/>
                                                 <string key="text">A vítima precisa agir e denunciar imediatamente. Ela deve procurar um policial militar mais próximo ou, se estiver em ambiente privado, o segurança do local.</string>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Como identificar o agressor?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erp-yo-iw7">
-                                                <rect key="frame" x="54" y="2241" width="306" height="71.666666666666515"/>
+                                                <rect key="frame" x="54" y="2253" width="306" height="71.666666666666515"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A vítima deve tentar memorizar características físicas e trajes. Fotos também ajudam autoridades a identificar o agressor." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3L6-1o-wKS">
-                                                <rect key="frame" x="54" y="2320.6666666666665" width="306" height="136"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="54" y="2332.6666666666665" width="306" height="134"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Por que é importante denunciar?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KCN-BK-gtb">
-                                                <rect key="frame" x="54" y="2486.6666666666665" width="306" height="71.666666666666515"/>
+                                                <rect key="frame" x="54" y="2496.6666666666665" width="306" height="71.666666666666515"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfP-BZ-tvx">
-                                                <rect key="frame" x="54" y="2566.3333333333335" width="306" height="163"/>
+                                                <rect key="frame" x="54" y="2576.3333333333335" width="306" height="161"/>
                                                 <string key="text">As denúncias evitam que mulheres sejam tratadas como objetos sexuais, sem controle sobre a própria sexualidade e submissas a papéis sociais tradicionais.</string>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qual o impacto do assédio sexual para a vítima?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inu-M6-Ewf">
-                                                <rect key="frame" x="54" y="2759.3333333333335" width="306" height="107.33333333333348"/>
+                                                <rect key="frame" x="54" y="2767.3333333333335" width="306" height="107.33333333333348"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLg-0k-jNt">
-                                                <rect key="frame" x="54" y="2874.6666666666665" width="306" height="163"/>
+                                                <rect key="frame" x="54" y="2882.6666666666665" width="306" height="187.66666666666652"/>
                                                 <string key="text">Os assédios podem prejudicar a saúde física e mental, provocando ansiedade, depressão, perda ou ganho de peso, dores de cabeça, estresse e distúrbios do sono.</string>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chamar uma desconhecida de &quot;gostosa&quot;, &quot;delícia&quot;, &quot;linda&quot;, &quot;princesa&quot; é elogio?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4g-6I-ATE">
-                                                <rect key="frame" x="54" y="3067.6666666666665" width="306" height="179"/>
+                                                <rect key="frame" x="54" y="3100.3333333333335" width="306" height="179"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Não, o que está por trás do assédio não é a vontade de elogiar, mas uma tentativa de mostrar poder e intimidar a mulher." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRx-QD-74V">
-                                                <rect key="frame" x="54" y="3254.6666666666665" width="306" height="136"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="54" y="3287.3333333333335" width="306" height="134"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ao usar decote ou saia, a mulher está pedindo para ser abordada?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8a-9d-rem">
-                                                <rect key="frame" x="54" y="3420.6666666666665" width="306" height="143.33333333333348"/>
+                                                <rect key="frame" x="54" y="3451.3333333333335" width="306" height="143.33333333333348"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Não, uma mulher tem o direito de se vestir como quiser. A responsabilidade é sempre do assediador, nunca da assediada." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83p-ep-Yix">
-                                                <rect key="frame" x="54" y="3572" width="306" height="136"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="54" y="3602.6666666666665" width="306" height="134"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94509803920000002" green="0.60784313729999995" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="qfY-pW-GtE" firstAttribute="top" secondItem="LJR-cq-Gec" secondAttribute="bottom" constant="30" id="2ca-QG-UTh"/>
+                                            <constraint firstItem="qfY-pW-GtE" firstAttribute="top" secondItem="LJR-cq-Gec" secondAttribute="bottom" constant="20" id="2ca-QG-UTh"/>
                                             <constraint firstItem="cfP-BZ-tvx" firstAttribute="leading" secondItem="sdO-sI-Iqf" secondAttribute="leading" constant="54" id="4Vd-6E-5dF"/>
                                             <constraint firstAttribute="trailing" secondItem="dUt-FN-fw5" secondAttribute="trailing" constant="54" id="4sE-v1-eMk"/>
                                             <constraint firstItem="dUt-FN-fw5" firstAttribute="leading" secondItem="sdO-sI-Iqf" secondAttribute="leading" constant="54" id="5tg-1P-O0g"/>
-                                            <constraint firstItem="962-QG-J6V" firstAttribute="top" secondItem="q4y-ia-hTu" secondAttribute="bottom" constant="59" id="6oc-MT-UBa"/>
+                                            <constraint firstItem="962-QG-J6V" firstAttribute="top" secondItem="q4y-ia-hTu" secondAttribute="bottom" constant="54" id="6oc-MT-UBa"/>
                                             <constraint firstAttribute="trailing" secondItem="c3z-fb-aJk" secondAttribute="trailing" constant="54" id="6to-JZ-tEu"/>
                                             <constraint firstAttribute="trailing" secondItem="EOq-5c-ess" secondAttribute="trailing" constant="54" id="7Cg-yK-z0B"/>
                                             <constraint firstItem="83p-ep-Yix" firstAttribute="leading" secondItem="sdO-sI-Iqf" secondAttribute="leading" constant="54" id="7LY-U4-GxP"/>
@@ -375,7 +361,7 @@
                                             <constraint firstItem="LB7-Od-70z" firstAttribute="top" secondItem="Hrd-ZG-bUY" secondAttribute="bottom" constant="8" id="edm-Nl-jht"/>
                                             <constraint firstItem="H8a-9d-rem" firstAttribute="top" secondItem="hRx-QD-74V" secondAttribute="bottom" constant="30" id="ege-NP-16w"/>
                                             <constraint firstItem="VuK-04-zXd" firstAttribute="leading" secondItem="sdO-sI-Iqf" secondAttribute="leading" constant="54" id="gBH-ou-Yzn"/>
-                                            <constraint firstItem="q4y-ia-hTu" firstAttribute="top" secondItem="sdO-sI-Iqf" secondAttribute="top" constant="50" id="gJG-48-59v"/>
+                                            <constraint firstItem="q4y-ia-hTu" firstAttribute="top" secondItem="sdO-sI-Iqf" secondAttribute="top" constant="35" id="gJG-48-59v"/>
                                             <constraint firstItem="3L6-1o-wKS" firstAttribute="leading" secondItem="sdO-sI-Iqf" secondAttribute="leading" constant="54" id="ggj-7K-3gx"/>
                                             <constraint firstItem="KCN-BK-gtb" firstAttribute="leading" secondItem="sdO-sI-Iqf" secondAttribute="leading" constant="54" id="hLA-5a-hnT"/>
                                             <constraint firstAttribute="trailing" secondItem="lQn-AY-znE" secondAttribute="trailing" constant="54" id="hVW-jD-y4b"/>
@@ -386,14 +372,14 @@
                                             <constraint firstItem="FJB-qu-tc4" firstAttribute="leading" secondItem="sdO-sI-Iqf" secondAttribute="leading" constant="54" id="oZu-Fl-cNf"/>
                                             <constraint firstItem="inu-M6-Ewf" firstAttribute="leading" secondItem="sdO-sI-Iqf" secondAttribute="leading" constant="54" id="ou7-To-WYj"/>
                                             <constraint firstItem="H8a-9d-rem" firstAttribute="leading" secondItem="sdO-sI-Iqf" secondAttribute="leading" constant="54" id="ppc-iW-vUJ"/>
-                                            <constraint firstItem="lQn-AY-znE" firstAttribute="top" secondItem="dUt-FN-fw5" secondAttribute="bottom" constant="8" id="qfl-ZC-slA"/>
+                                            <constraint firstItem="lQn-AY-znE" firstAttribute="top" secondItem="dUt-FN-fw5" secondAttribute="bottom" constant="18.000000000000227" id="qfl-ZC-slA"/>
                                             <constraint firstAttribute="trailing" secondItem="cfP-BZ-tvx" secondAttribute="trailing" constant="54" id="s3C-5v-KZ6"/>
                                             <constraint firstItem="hRx-QD-74V" firstAttribute="top" secondItem="f4g-6I-ATE" secondAttribute="bottom" constant="8" id="tHu-Sl-llh"/>
                                             <constraint firstItem="f4g-6I-ATE" firstAttribute="top" secondItem="HLg-0k-jNt" secondAttribute="bottom" constant="30" id="tdU-2c-efp"/>
                                             <constraint firstItem="83p-ep-Yix" firstAttribute="top" secondItem="H8a-9d-rem" secondAttribute="bottom" constant="8" id="v7P-Ci-wzs"/>
                                             <constraint firstItem="Hrd-ZG-bUY" firstAttribute="top" secondItem="FJB-qu-tc4" secondAttribute="bottom" constant="30.5" id="vL5-0d-4vT"/>
                                             <constraint firstAttribute="trailing" secondItem="Hrd-ZG-bUY" secondAttribute="trailing" constant="54" id="vm2-DA-x8V"/>
-                                            <constraint firstItem="q4y-ia-hTu" firstAttribute="leading" secondItem="sdO-sI-Iqf" secondAttribute="leading" constant="50" id="wnR-YN-kbH"/>
+                                            <constraint firstItem="q4y-ia-hTu" firstAttribute="leading" secondItem="sdO-sI-Iqf" secondAttribute="leading" constant="15" id="wnR-YN-kbH"/>
                                             <constraint firstItem="VuK-04-zXd" firstAttribute="top" secondItem="yca-Gr-pjv" secondAttribute="bottom" constant="8" id="wvc-jz-6r3"/>
                                             <constraint firstItem="erp-yo-iw7" firstAttribute="top" secondItem="EOq-5c-ess" secondAttribute="bottom" constant="30" id="x1M-yr-a5p"/>
                                             <constraint firstAttribute="trailing" secondItem="f4g-6I-ATE" secondAttribute="trailing" constant="54" id="xVT-TF-Xoh"/>
@@ -436,133 +422,151 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLL-6H-AZL" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1099"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1121"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X99-J8-4or">
-                                                <rect key="frame" x="50" y="50" width="50" height="50"/>
+                                                <rect key="frame" x="15" y="35" width="70" height="70"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="g5z-cj-vwk"/>
-                                                    <constraint firstAttribute="width" constant="50" id="gpb-xi-TkK"/>
+                                                    <constraint firstAttribute="height" constant="70" id="g5z-cj-vwk"/>
+                                                    <constraint firstAttribute="width" constant="70" id="gpb-xi-TkK"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="informationDismissIcon"/>
                                                 <connections>
                                                     <action selector="numbersDismissButton:" destination="RH6-GL-wwF" eventType="touchUpInside" id="rzP-Oq-aEa"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="180" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwl-DK-qGu">
-                                                <rect key="frame" x="50" y="137" width="156" height="84"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delegacia especializada de atendimento à mulher" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plh-BU-OCO">
-                                                <rect key="frame" x="50" y="229.00000000000003" width="328" height="54.333333333333343"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="50" y="229" width="328" height="53.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="190" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECF-rg-qR7">
-                                                <rect key="frame" x="50" y="313.33333333333331" width="156" height="84"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Polícia Militar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOr-Nc-ktf">
-                                                <rect key="frame" x="50" y="405.33333333333331" width="167" height="28"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="50" y="404.66666666666669" width="328" height="27"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="181" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCQ-pq-724">
-                                                <rect key="frame" x="50" y="463.33333333333331" width="156" height="83.999999999999943"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disque-denúncia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9f-op-nLm">
-                                                <rect key="frame" x="50" y="555.33333333333337" width="207" height="28"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="50" y="553.66666666666663" width="328" height="27"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XiF-Dz-ymC">
-                                                <rect key="frame" x="50" y="613.33333333333337" width="156" height="84"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secretaria dos Direitos Humanos" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luL-dn-saV">
-                                                <rect key="frame" x="50" y="705.33333333333337" width="328" height="27.333333333333371"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="50" y="702.66666666666663" width="328" height="53.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="192" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFt-gd-Ocf">
-                                                <rect key="frame" x="50" y="762.66666666666663" width="156" height="84"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serviço público de remoção de doentes (ambulância)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xv1-JO-3g8">
-                                                <rect key="frame" x="50" y="854.66666666666663" width="328" height="54.333333333333371"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="50" y="878.33333333333337" width="328" height="53.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="193" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlt-JX-Ao5">
-                                                <rect key="frame" x="50" y="939" width="156" height="84"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Corpo de bombeiros" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3P4-3R-70m">
-                                                <rect key="frame" x="50" y="1031" width="245" height="28"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="50" y="1054" width="328" height="27"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JmL-9g-6F6">
+                                                <rect key="frame" x="49" y="129" width="117" height="96"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
+                                                <state key="normal" title="180">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="call1:" destination="RH6-GL-wwF" eventType="touchUpInside" id="Dra-t0-Kk2"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tMt-7w-mut">
+                                                <rect key="frame" x="49" y="306" width="117" height="96"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
+                                                <state key="normal" title="190">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="call2:" destination="RH6-GL-wwF" eventType="touchUpInside" id="U8e-Fu-WFb"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBc-Uv-mey">
+                                                <rect key="frame" x="49" y="455" width="117" height="96"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
+                                                <state key="normal" title="181">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="call3:" destination="RH6-GL-wwF" eventType="touchUpInside" id="mMJ-eE-Aal"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cdz-xc-rCs">
+                                                <rect key="frame" x="50" y="604" width="117" height="96"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
+                                                <state key="normal" title="100">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="call4:" destination="RH6-GL-wwF" eventType="touchUpInside" id="cOq-9J-UEy"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bm-Tw-VLG">
+                                                <rect key="frame" x="50" y="780" width="117" height="96"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
+                                                <state key="normal" title="192">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="call5:" destination="RH6-GL-wwF" eventType="touchUpInside" id="uBZ-bX-Aa1"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfZ-lt-awo">
+                                                <rect key="frame" x="50" y="956" width="117" height="96"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
+                                                <state key="normal" title="193">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="call6:" destination="RH6-GL-wwF" eventType="touchUpInside" id="nm6-jt-XJ0"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94509803920000002" green="0.60784313729999995" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="cdz-xc-rCs" firstAttribute="leading" secondItem="D9f-op-nLm" secondAttribute="leading" id="0hZ-ps-l1c"/>
                                             <constraint firstItem="plh-BU-OCO" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="50" id="223-if-qZy"/>
-                                            <constraint firstAttribute="trailing" secondItem="hwl-DK-qGu" secondAttribute="trailing" constant="208" id="2JS-ka-eAe"/>
-                                            <constraint firstAttribute="trailing" secondItem="KFt-gd-Ocf" secondAttribute="trailing" constant="208" id="4H1-ip-zk4"/>
                                             <constraint firstItem="D9f-op-nLm" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="50" id="4nG-dc-d3W"/>
-                                            <constraint firstItem="KFt-gd-Ocf" firstAttribute="top" secondItem="luL-dn-saV" secondAttribute="bottom" constant="30" id="6Lk-0A-29y"/>
+                                            <constraint firstItem="0Bm-Tw-VLG" firstAttribute="top" secondItem="luL-dn-saV" secondAttribute="bottom" constant="23.666666666666629" id="5xM-xC-bjV"/>
+                                            <constraint firstItem="JmL-9g-6F6" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="49" id="6hE-pm-CDr"/>
+                                            <constraint firstItem="tMt-7w-mut" firstAttribute="top" secondItem="plh-BU-OCO" secondAttribute="bottom" constant="23.333333333333314" id="6nu-ee-0BI"/>
                                             <constraint firstItem="OOr-Nc-ktf" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="50" id="8dF-I9-Sc7"/>
-                                            <constraint firstItem="xv1-JO-3g8" firstAttribute="top" secondItem="KFt-gd-Ocf" secondAttribute="bottom" constant="8" id="Bzs-Ev-MDR"/>
                                             <constraint firstItem="3P4-3R-70m" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="50" id="E6Y-i9-FVc"/>
                                             <constraint firstAttribute="trailing" secondItem="plh-BU-OCO" secondAttribute="trailing" constant="36" id="Gew-9B-ARe"/>
-                                            <constraint firstItem="3P4-3R-70m" firstAttribute="top" secondItem="Hlt-JX-Ao5" secondAttribute="bottom" constant="8" id="HNC-oY-Hea"/>
-                                            <constraint firstItem="D9f-op-nLm" firstAttribute="top" secondItem="oCQ-pq-724" secondAttribute="bottom" constant="8" id="IAP-Hc-uVY"/>
                                             <constraint firstAttribute="bottom" secondItem="3P4-3R-70m" secondAttribute="bottom" constant="40" id="IWr-vv-Hlp"/>
-                                            <constraint firstItem="ECF-rg-qR7" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="50" id="LSi-bK-lqq"/>
-                                            <constraint firstItem="hwl-DK-qGu" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="50" id="Lva-ii-gq9"/>
-                                            <constraint firstItem="plh-BU-OCO" firstAttribute="top" secondItem="hwl-DK-qGu" secondAttribute="bottom" constant="8" id="MTH-Xh-IA6"/>
-                                            <constraint firstItem="OOr-Nc-ktf" firstAttribute="top" secondItem="ECF-rg-qR7" secondAttribute="bottom" constant="8" id="S5N-xL-cEV"/>
-                                            <constraint firstItem="luL-dn-saV" firstAttribute="top" secondItem="XiF-Dz-ymC" secondAttribute="bottom" constant="8" id="Tig-vk-cRd"/>
-                                            <constraint firstAttribute="trailing" secondItem="ECF-rg-qR7" secondAttribute="trailing" constant="208" id="V6V-8Q-yqP"/>
+                                            <constraint firstItem="NBc-Uv-mey" firstAttribute="leading" secondItem="tMt-7w-mut" secondAttribute="leading" id="JJH-or-Ggp"/>
+                                            <constraint firstItem="JmL-9g-6F6" firstAttribute="top" secondItem="X99-J8-4or" secondAttribute="bottom" constant="24" id="KhC-5r-SXS"/>
+                                            <constraint firstItem="xv1-JO-3g8" firstAttribute="top" secondItem="0Bm-Tw-VLG" secondAttribute="bottom" constant="2.3333333333334849" id="NRc-sE-Lhh"/>
+                                            <constraint firstItem="NBc-Uv-mey" firstAttribute="top" secondItem="OOr-Nc-ktf" secondAttribute="bottom" constant="23.333333333333314" id="QjB-gV-NCL"/>
                                             <constraint firstAttribute="trailing" secondItem="luL-dn-saV" secondAttribute="trailing" constant="36" id="WKy-AM-qVR"/>
-                                            <constraint firstItem="X99-J8-4or" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="50" id="YHq-zl-mCl"/>
+                                            <constraint firstItem="X99-J8-4or" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="15" id="YHq-zl-mCl"/>
                                             <constraint firstAttribute="trailing" secondItem="xv1-JO-3g8" secondAttribute="trailing" constant="36" id="a5q-Dm-Xvh"/>
-                                            <constraint firstItem="Hlt-JX-Ao5" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="50" id="bBN-Tu-Ywf"/>
+                                            <constraint firstItem="OOr-Nc-ktf" firstAttribute="top" secondItem="tMt-7w-mut" secondAttribute="bottom" constant="2.6666666666666856" id="b25-y9-q3D"/>
+                                            <constraint firstItem="3P4-3R-70m" firstAttribute="top" secondItem="jfZ-lt-awo" secondAttribute="bottom" constant="2" id="dOV-8C-tzS"/>
                                             <constraint firstItem="xv1-JO-3g8" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="50" id="eVf-8T-9A5"/>
-                                            <constraint firstAttribute="trailing" secondItem="D9f-op-nLm" secondAttribute="trailing" constant="157" id="ezJ-Gk-ya2"/>
-                                            <constraint firstItem="oCQ-pq-724" firstAttribute="top" secondItem="OOr-Nc-ktf" secondAttribute="bottom" constant="30" id="fxB-H5-XX6"/>
-                                            <constraint firstItem="ECF-rg-qR7" firstAttribute="top" secondItem="plh-BU-OCO" secondAttribute="bottom" constant="30" id="gdn-xw-K5D"/>
-                                            <constraint firstAttribute="trailing" secondItem="oCQ-pq-724" secondAttribute="trailing" constant="208" id="i79-i8-8TY"/>
-                                            <constraint firstAttribute="trailing" secondItem="3P4-3R-70m" secondAttribute="trailing" constant="119" id="mvB-rc-Bb3"/>
-                                            <constraint firstAttribute="trailing" secondItem="OOr-Nc-ktf" secondAttribute="trailing" constant="197" id="nuS-EQ-mAB"/>
-                                            <constraint firstItem="Hlt-JX-Ao5" firstAttribute="top" secondItem="xv1-JO-3g8" secondAttribute="bottom" constant="30" id="qf6-r1-fby"/>
-                                            <constraint firstItem="XiF-Dz-ymC" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="50" id="qiy-Ma-Q0n"/>
-                                            <constraint firstAttribute="trailing" secondItem="Hlt-JX-Ao5" secondAttribute="trailing" constant="208" id="qlf-Jb-xqL"/>
-                                            <constraint firstItem="KFt-gd-Ocf" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="50" id="rSK-t4-vDk"/>
+                                            <constraint firstAttribute="trailing" secondItem="D9f-op-nLm" secondAttribute="trailing" constant="36" id="ezJ-Gk-ya2"/>
+                                            <constraint firstItem="plh-BU-OCO" firstAttribute="top" secondItem="JmL-9g-6F6" secondAttribute="bottom" constant="4" id="i1t-NZ-cbl"/>
+                                            <constraint firstItem="D9f-op-nLm" firstAttribute="top" secondItem="NBc-Uv-mey" secondAttribute="bottom" constant="2.6666666666666288" id="iQf-w3-ixO"/>
+                                            <constraint firstItem="cdz-xc-rCs" firstAttribute="top" secondItem="D9f-op-nLm" secondAttribute="bottom" constant="23.333333333333371" id="ly5-n4-b3a"/>
+                                            <constraint firstAttribute="trailing" secondItem="3P4-3R-70m" secondAttribute="trailing" constant="36" id="mvB-rc-Bb3"/>
+                                            <constraint firstAttribute="trailing" secondItem="OOr-Nc-ktf" secondAttribute="trailing" constant="36" id="nuS-EQ-mAB"/>
+                                            <constraint firstItem="jfZ-lt-awo" firstAttribute="top" secondItem="xv1-JO-3g8" secondAttribute="bottom" constant="23.999999999999886" id="puZ-tj-uVl"/>
                                             <constraint firstItem="luL-dn-saV" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="50" id="s2d-wW-mlS"/>
-                                            <constraint firstAttribute="trailing" secondItem="XiF-Dz-ymC" secondAttribute="trailing" constant="208" id="ueX-uD-k7t"/>
-                                            <constraint firstItem="oCQ-pq-724" firstAttribute="leading" secondItem="DLL-6H-AZL" secondAttribute="leading" constant="50" id="wLL-ji-l5t"/>
-                                            <constraint firstItem="hwl-DK-qGu" firstAttribute="top" secondItem="X99-J8-4or" secondAttribute="bottom" constant="37" id="wzD-s3-w9k"/>
-                                            <constraint firstItem="X99-J8-4or" firstAttribute="top" secondItem="DLL-6H-AZL" secondAttribute="top" constant="50" id="yaf-JL-8nV"/>
-                                            <constraint firstItem="XiF-Dz-ymC" firstAttribute="top" secondItem="D9f-op-nLm" secondAttribute="bottom" constant="30" id="zJ9-9A-Ke0"/>
+                                            <constraint firstItem="tMt-7w-mut" firstAttribute="leading" secondItem="JmL-9g-6F6" secondAttribute="leading" id="sZP-N4-JnD"/>
+                                            <constraint firstItem="0Bm-Tw-VLG" firstAttribute="leading" secondItem="xv1-JO-3g8" secondAttribute="leading" id="uoI-u2-YQc"/>
+                                            <constraint firstItem="jfZ-lt-awo" firstAttribute="leading" secondItem="3P4-3R-70m" secondAttribute="leading" id="wMf-gv-NUq"/>
+                                            <constraint firstItem="luL-dn-saV" firstAttribute="top" secondItem="cdz-xc-rCs" secondAttribute="bottom" constant="2.6666666666667425" id="wQd-cN-HZW"/>
+                                            <constraint firstItem="X99-J8-4or" firstAttribute="top" secondItem="DLL-6H-AZL" secondAttribute="top" constant="35" id="yaf-JL-8nV"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -588,7 +592,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MEU-yE-JHN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1586" y="-483"/>
+            <point key="canvasLocation" x="1585.5072463768117" y="-483.48214285714283"/>
         </scene>
         <!--Informations-->
         <scene sceneID="a2d-9C-G24">
@@ -602,7 +606,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3i-4K-YT5" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1161.6666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1155.6666666666667"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QiZ-2Q-6sQ">
                                                 <rect key="frame" x="50" y="132" width="78" height="84"/>
@@ -611,64 +615,64 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1e-qK-uHI">
-                                                <rect key="frame" x="50" y="308" width="78" height="84"/>
+                                                <rect key="frame" x="50" y="307.33333333333331" width="78" height="84"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogB-8T-lOj">
-                                                <rect key="frame" x="50" y="484" width="78" height="84"/>
+                                                <rect key="frame" x="50" y="482.33333333333337" width="78" height="84"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peça ajuda a quem estiver por perto e acione policiais." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYO-Z3-IT5">
-                                                <rect key="frame" x="50" y="216" width="327" height="54.333333333333314"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="50" y="216" width="327" height="53.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registre um boletim de ocorrência na delegacia mais próxima." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCz-s7-chf">
-                                                <rect key="frame" x="50" y="392" width="327" height="81.666666666666686"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="50" y="391.33333333333331" width="327" height="80.666666666666686"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXB-2C-cFt">
-                                                <rect key="frame" x="50" y="720" width="78" height="84"/>
+                                                <rect key="frame" x="50" y="716.66666666666663" width="78" height="84"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhg-KG-YGd">
-                                                <rect key="frame" x="50" y="895.66666666666663" width="78" height="84"/>
+                                                <rect key="frame" x="50" y="891.33333333333337" width="78" height="84"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="70"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guarde todas as informações que conseguir referentes ao assédio." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BU-8j-9pE">
-                                                <rect key="frame" x="50" y="568" width="327" height="81.666666666666629"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="50" y="566.33333333333337" width="327" height="80.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Faça uma denúncia pelos telefones da Policia Militar (190) e do Disque-Mulher (180)." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vej-iA-eqy">
-                                                <rect key="frame" x="50" y="804" width="327" height="81.666666666666629"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="50" y="800.66666666666663" width="327" height="80.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A autoridade policial não pode se recusar a registrar a ocorrência." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGy-ou-x6w">
-                                                <rect key="frame" x="50" y="979.66666666666663" width="327" height="81.666666666666629"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="23"/>
+                                                <rect key="frame" x="50" y="975.33333333333337" width="327" height="80.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6MD-SK-dZd">
-                                                <rect key="frame" x="50" y="50" width="50" height="50"/>
+                                                <rect key="frame" x="15" y="35" width="70" height="70"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="DvC-NE-cpa"/>
-                                                    <constraint firstAttribute="height" constant="50" id="GfB-tA-lZk"/>
+                                                    <constraint firstAttribute="width" constant="70" id="DvC-NE-cpa"/>
+                                                    <constraint firstAttribute="height" constant="70" id="GfB-tA-lZk"/>
                                                 </constraints>
                                                 <state key="normal" image="informationDismissIcon"/>
                                                 <connections>
@@ -676,21 +680,21 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anote o dia, horário e local, nome e contato de testemunhas, características do agressor, tire fotos, filme etc." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZsM-0U-dVJ">
-                                                <rect key="frame" x="50" y="649.66666666666663" width="327" height="60.333333333333371"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="50" y="647" width="327" height="59.666666666666629"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mas, caso isso aconteça, registre uma reclamação na ouvidoria do órgão em que ocorreu a recusa." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BuW-1d-qvB">
-                                                <rect key="frame" x="50" y="1061.3333333333333" width="327" height="60.333333333333258"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="50" y="1056" width="327" height="59.666666666666742"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94509803920000002" green="0.60784313729999995" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="6MD-SK-dZd" firstAttribute="leading" secondItem="i3i-4K-YT5" secondAttribute="leading" constant="50" id="0Cs-5D-gIV"/>
+                                            <constraint firstItem="6MD-SK-dZd" firstAttribute="leading" secondItem="i3i-4K-YT5" secondAttribute="leading" constant="15" id="0Cs-5D-gIV"/>
                                             <constraint firstAttribute="trailing" secondItem="1BU-8j-9pE" secondAttribute="trailing" constant="37" id="2nS-79-Gyu"/>
                                             <constraint firstItem="ogB-8T-lOj" firstAttribute="top" secondItem="ZCz-s7-chf" secondAttribute="bottom" constant="10.5" id="3Cq-bq-Bgw"/>
                                             <constraint firstAttribute="trailing" secondItem="ZsM-0U-dVJ" secondAttribute="trailing" constant="37" id="41G-Pw-V7w"/>
@@ -703,7 +707,7 @@
                                             <constraint firstItem="ZsM-0U-dVJ" firstAttribute="leading" secondItem="i3i-4K-YT5" secondAttribute="leading" constant="50" id="9I1-aJ-cex"/>
                                             <constraint firstAttribute="trailing" secondItem="ogB-8T-lOj" secondAttribute="trailing" constant="286" id="9cP-f0-tAM"/>
                                             <constraint firstItem="1BU-8j-9pE" firstAttribute="leading" secondItem="i3i-4K-YT5" secondAttribute="leading" constant="50" id="GA8-vJ-Nv0"/>
-                                            <constraint firstItem="QiZ-2Q-6sQ" firstAttribute="top" secondItem="6MD-SK-dZd" secondAttribute="bottom" constant="32" id="L7N-dv-vRg"/>
+                                            <constraint firstItem="QiZ-2Q-6sQ" firstAttribute="top" secondItem="6MD-SK-dZd" secondAttribute="bottom" constant="27" id="L7N-dv-vRg"/>
                                             <constraint firstItem="FGy-ou-x6w" firstAttribute="leading" secondItem="i3i-4K-YT5" secondAttribute="leading" constant="50" id="Ppc-gd-JNE"/>
                                             <constraint firstAttribute="trailing" secondItem="g1e-qK-uHI" secondAttribute="trailing" constant="286" id="R0n-B7-StX"/>
                                             <constraint firstItem="BuW-1d-qvB" firstAttribute="top" secondItem="FGy-ou-x6w" secondAttribute="bottom" id="RtN-He-EI9"/>
@@ -722,7 +726,7 @@
                                             <constraint firstItem="vej-iA-eqy" firstAttribute="top" secondItem="AXB-2C-cFt" secondAttribute="bottom" id="lf3-vo-VLa"/>
                                             <constraint firstItem="BuW-1d-qvB" firstAttribute="leading" secondItem="i3i-4K-YT5" secondAttribute="leading" constant="50" id="nbA-uv-fSQ"/>
                                             <constraint firstItem="FYO-Z3-IT5" firstAttribute="leading" secondItem="i3i-4K-YT5" secondAttribute="leading" constant="50" id="pEX-w8-jc7"/>
-                                            <constraint firstItem="6MD-SK-dZd" firstAttribute="top" secondItem="i3i-4K-YT5" secondAttribute="top" constant="50" id="q4b-PB-nOQ"/>
+                                            <constraint firstItem="6MD-SK-dZd" firstAttribute="top" secondItem="i3i-4K-YT5" secondAttribute="top" constant="35" id="q4b-PB-nOQ"/>
                                             <constraint firstItem="QiZ-2Q-6sQ" firstAttribute="leading" secondItem="i3i-4K-YT5" secondAttribute="leading" constant="50" id="toX-MM-S1l"/>
                                             <constraint firstAttribute="trailing" secondItem="uhg-KG-YGd" secondAttribute="trailing" constant="286" id="tx9-E2-w0z"/>
                                             <constraint firstItem="AXB-2C-cFt" firstAttribute="leading" secondItem="i3i-4K-YT5" secondAttribute="leading" constant="50" id="v8g-M4-Oh9"/>
@@ -754,7 +758,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pHv-4T-FgB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1628" y="-1266"/>
+            <point key="canvasLocation" x="1627.536231884058" y="-1266.2946428571429"/>
         </scene>
     </scenes>
     <resources>

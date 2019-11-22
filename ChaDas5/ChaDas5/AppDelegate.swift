@@ -91,10 +91,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        application.applicationIconBadgeNumber = 0
-    }
-
     func applicationWillTerminate(_ application: UIApplication) {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
@@ -113,5 +109,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       completionHandler()
     }
     
-    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        let operation = CKModifyBadgeOperation(badgeValue: 0)
+        operation.modifyBadgeCompletionBlock = {(error) in
+            if let error = error{
+                print("\(error)")
+                return
+            }
+            DispatchQueue.main.async {
+                application.applicationIconBadgeNumber = 0
+            }
+        }
+        CKContainer.default().add(operation)
+    }
 }

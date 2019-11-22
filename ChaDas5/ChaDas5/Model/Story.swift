@@ -16,10 +16,12 @@ class Story {
     var author:String
     var date:String
     var status:String
+    var flag: Int
     var isEnabled:Bool = true
 
-    init(conteudo:String) {
+    init(conteudo:String, gatilho:Int) {
         self.content = conteudo
+        self.flag = gatilho
         self.author = MeUser.instance.email
         self.date = Date().keyString
         self.status = "active"
@@ -36,7 +38,8 @@ class Story {
         guard let recordContent = record["content"] as? String,
               let recordAuthor  = record["author"] as? String,
               let recordDate    = record["date"] as? String,
-              let recordStatus  = record["status"] as? String
+              let recordStatus  = record["status"] as? String,
+              let recordFlag    = record["flag"] as? Int
         else {
             completion(nil, "Error")
             return nil
@@ -46,6 +49,7 @@ class Story {
         self.date = recordDate
         self.status = recordStatus
         self.id = record.recordID
+        self.flag = recordFlag
         completion(self, nil)
     }
     
@@ -56,6 +60,7 @@ class Story {
         record.setObject(self.date as __CKRecordObjCValue, forKey: "date")
         record.setObject(self.status as __CKRecordObjCValue, forKey: "status")
         record.setObject(self.isEnabled as __CKRecordObjCValue, forKey: "isEnabled")
+        record.setObject(self.flag as __CKRecordObjCValue, forKey: "flag")
         return record
     }
     

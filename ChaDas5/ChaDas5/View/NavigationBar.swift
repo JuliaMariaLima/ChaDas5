@@ -23,7 +23,7 @@ class CustomNavigationBar: UINavigationBar {
     // NavigationBar height
     var customHeight : CGFloat {
         if #available(iOS 13.0, *) {
-            return (superview?.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0) + 100
+            return (superview?.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0) + 150
         } else {
             return 300
         }

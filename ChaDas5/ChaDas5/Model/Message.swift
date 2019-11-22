@@ -13,7 +13,7 @@ import MessageKit
 struct Message: MessageType {
     
 
-    let id: String?
+    var id: String?
     var content: String
     var sentDate: Date
     var senderID: String
@@ -48,7 +48,6 @@ struct Message: MessageType {
                 completion(nil,"Error")
                 return nil
         }
-        
         content = recordContent
         senderID = recordSenderID
         senderDisplayName = recordSenderDisplayName

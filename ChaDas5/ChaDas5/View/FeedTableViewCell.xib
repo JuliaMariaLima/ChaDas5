@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SFCompactDisplay-Regular.otf">
+            <string>SFCompactDisplay-Regular</string>
+        </array>
         <array key="SFCompactDisplay-Ultralight.otf">
             <string>SFCompactDisplay-Ultralight</string>
         </array>
@@ -16,33 +17,118 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="FeedTableViewCell" customModule="ChaDas5" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="151" id="KGk-i7-Jjw" customClass="FeedTableViewCell" customModule="ChaDas5" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="363" height="151"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="363" height="151"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ov1-Sr-NYs">
-                        <rect key="frame" x="16" y="11" width="343" height="128"/>
+                        <rect key="frame" x="15" y="11" width="335" height="129"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Skk-8h-Mnk">
-                                <rect key="frame" x="25" y="17.5" width="293" height="93"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Skk-8h-Mnk">
+                                <rect key="frame" x="18" y="4" width="258" height="121"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="293" id="DBI-ym-n1F"/>
-                                    <constraint firstAttribute="height" constant="93" id="P64-uG-dBv"/>
+                                    <constraint firstAttribute="width" constant="258" id="DBI-ym-n1F"/>
+                                    <constraint firstAttribute="height" constant="121" id="P64-uG-dBv"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zIH-JM-Cx5">
+                                <rect key="frame" x="283" y="40" width="52" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="52" id="USJ-ow-kWl"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowIcon" translatesAutoresizingMaskIntoConstraints="NO" id="tXU-ek-DpT">
+                                <rect key="frame" x="253" y="40" width="82" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="82" id="Jdt-ZF-6hS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nji-02-5dk">
+                                <rect key="frame" x="139.5" y="101" width="14.5" height="24"/>
+                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="20"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.80784313730000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="343" id="0uQ-UF-Uf0"/>
-                            <constraint firstAttribute="height" constant="128" id="3Qe-Mc-7Ca"/>
+                            <constraint firstAttribute="width" constant="335" id="0uQ-UF-Uf0"/>
+                            <constraint firstAttribute="bottom" secondItem="tXU-ek-DpT" secondAttribute="bottom" constant="41" id="2Ph-Aj-nvy"/>
+                            <constraint firstAttribute="height" constant="129" id="3Qe-Mc-7Ca"/>
+                            <constraint firstItem="zIH-JM-Cx5" firstAttribute="leading" secondItem="ov1-Sr-NYs" secondAttribute="leading" constant="283" id="6sA-lB-Ad5"/>
                             <constraint firstItem="Skk-8h-Mnk" firstAttribute="centerY" secondItem="ov1-Sr-NYs" secondAttribute="centerY" id="DX1-cy-cs5"/>
-                            <constraint firstItem="Skk-8h-Mnk" firstAttribute="centerX" secondItem="ov1-Sr-NYs" secondAttribute="centerX" id="kIm-SQ-5B3"/>
+                            <constraint firstItem="tXU-ek-DpT" firstAttribute="top" secondItem="zIH-JM-Cx5" secondAttribute="top" id="JYa-87-z8r"/>
+                            <constraint firstItem="tXU-ek-DpT" firstAttribute="bottom" secondItem="zIH-JM-Cx5" secondAttribute="bottom" id="XA8-RJ-5ft"/>
+                            <constraint firstAttribute="trailing" secondItem="Nji-02-5dk" secondAttribute="trailing" constant="181" id="hN1-pT-Qmf"/>
+                            <constraint firstItem="Skk-8h-Mnk" firstAttribute="centerX" secondItem="ov1-Sr-NYs" secondAttribute="centerX" constant="-20.5" id="kIm-SQ-5B3"/>
+                            <constraint firstItem="tXU-ek-DpT" firstAttribute="leading" secondItem="ov1-Sr-NYs" secondAttribute="leading" constant="253" id="uSR-Op-a2n"/>
+                            <constraint firstItem="Nji-02-5dk" firstAttribute="top" secondItem="tXU-ek-DpT" secondAttribute="bottom" constant="13" id="xbF-6n-jxq"/>
+                            <constraint firstItem="tXU-ek-DpT" firstAttribute="top" secondItem="ov1-Sr-NYs" secondAttribute="top" constant="40" id="y1c-tN-iQB"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ofv-l1-8qu">
+                        <rect key="frame" x="15" y="11" width="335" height="129"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conteúdo Sensível" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aM9-5p-LAc">
+                                <rect key="frame" x="102" y="14" width="137.5" height="20.5"/>
+                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Esse relato possui conteúdo que algumas pessoas podem achar desconfortável." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbZ-IU-l3U">
+                                <rect key="frame" x="26" y="41" width="289" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="U0L-5E-SDk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFCompactDisplay-Ultralight" family="SF Compact Display" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HKg-k2-1YM">
+                                <rect key="frame" x="93" y="89" width="155" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="Lmj-4N-scc"/>
+                                    <constraint firstAttribute="width" constant="155" id="uPx-cQ-Nb0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
+                                <state key="normal" title="Ver Relato">
+                                    <color key="titleColor" red="0.92549019610000005" green="0.45882352939999999" blue="0.42352941179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="seeStory:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Wld-2n-y3o"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sensitiveContentIcon" translatesAutoresizingMaskIntoConstraints="NO" id="m5b-c5-RQg">
+                                <rect key="frame" x="290.5" y="7" width="29" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="29" id="lPq-Mh-B50"/>
+                                    <constraint firstAttribute="height" constant="25" id="s6C-L0-7Wt"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97254901959999995" green="0.80784313730000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="m5b-c5-RQg" firstAttribute="top" secondItem="Ofv-l1-8qu" secondAttribute="topMargin" constant="-1" id="DZk-Wt-xXa"/>
+                            <constraint firstItem="m5b-c5-RQg" firstAttribute="centerX" secondItem="Ofv-l1-8qu" secondAttribute="centerX" constant="137.5" id="L3y-v6-PsH"/>
+                            <constraint firstItem="KbZ-IU-l3U" firstAttribute="top" secondItem="aM9-5p-LAc" secondAttribute="bottom" constant="6.5" id="QKa-Na-ctW"/>
+                            <constraint firstItem="m5b-c5-RQg" firstAttribute="centerX" secondItem="KbZ-IU-l3U" secondAttribute="centerX" constant="134.5" id="QNG-2l-0bc"/>
+                            <constraint firstItem="HKg-k2-1YM" firstAttribute="leading" secondItem="Ofv-l1-8qu" secondAttribute="leading" constant="93" id="cSx-Ve-RLE"/>
+                            <constraint firstAttribute="trailing" secondItem="HKg-k2-1YM" secondAttribute="trailing" constant="87" id="cWX-LN-jFC"/>
+                            <constraint firstAttribute="bottom" secondItem="HKg-k2-1YM" secondAttribute="bottom" constant="13" id="dmR-MZ-PMF"/>
+                            <constraint firstItem="KbZ-IU-l3U" firstAttribute="leading" secondItem="Ofv-l1-8qu" secondAttribute="leading" constant="26" id="q8M-fw-5dY"/>
+                            <constraint firstItem="m5b-c5-RQg" firstAttribute="centerX" secondItem="aM9-5p-LAc" secondAttribute="centerX" constant="134.25" id="sVS-a3-tGb"/>
+                            <constraint firstItem="aM9-5p-LAc" firstAttribute="top" secondItem="m5b-c5-RQg" secondAttribute="bottom" constant="-18" id="yNb-Sf-OIm"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -53,14 +139,29 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="ov1-Sr-NYs" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3SV-Yt-0nx"/>
-                    <constraint firstItem="ov1-Sr-NYs" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="MDo-n2-JIv"/>
+                    <constraint firstItem="Ofv-l1-8qu" firstAttribute="bottom" secondItem="ov1-Sr-NYs" secondAttribute="bottom" id="3vo-XY-5JO"/>
+                    <constraint firstItem="ov1-Sr-NYs" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-4" id="MDo-n2-JIv"/>
+                    <constraint firstItem="Ofv-l1-8qu" firstAttribute="top" secondItem="ov1-Sr-NYs" secondAttribute="top" id="U8q-Ah-5Dp"/>
+                    <constraint firstItem="Ofv-l1-8qu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="cdy-U9-ls7"/>
+                    <constraint firstItem="Ofv-l1-8qu" firstAttribute="centerX" secondItem="ov1-Sr-NYs" secondAttribute="centerX" id="nqk-be-3Vp"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="dots" destination="Nji-02-5dk" id="c2V-cd-6c5"/>
                 <outlet property="feedTableViewTextField" destination="Skk-8h-Mnk" id="y0S-aa-BLl"/>
+                <outlet property="seeStoryButton" destination="HKg-k2-1YM" id="Wkj-xm-Qw9"/>
+                <outlet property="sensitiveContentLabel" destination="aM9-5p-LAc" id="s0s-A2-gX2"/>
+                <outlet property="sensitiveImage" destination="m5b-c5-RQg" id="bCt-uC-Xzb"/>
+                <outlet property="sensitiveLabel" destination="KbZ-IU-l3U" id="hXw-M3-jXN"/>
+                <outlet property="sensitiveView" destination="Ofv-l1-8qu" id="IbM-Lc-u0B"/>
+                <outlet property="view" destination="ov1-Sr-NYs" id="4Mf-rW-aLU"/>
             </connections>
-            <point key="canvasLocation" x="55.200000000000003" y="48.575712143928037"/>
+            <point key="canvasLocation" x="-148" y="71.514242878560722"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="arrowIcon" width="129" height="160.5"/>
+        <image name="sensitiveContentIcon" width="638.5" height="495"/>
+    </resources>
 </document>
