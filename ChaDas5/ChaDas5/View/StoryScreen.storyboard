@@ -40,13 +40,13 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rUa-cf-VJh">
-                                <rect key="frame" x="50" y="101" width="275" height="513"/>
+                                <rect key="frame" x="50" y="148" width="275" height="466"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMQ-7Z-TuW">
-                                        <rect key="frame" x="25.5" y="17" width="224" height="460"/>
+                                        <rect key="frame" x="25.5" y="12" width="224" height="419"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="224" id="0mv-0r-58l"/>
-                                            <constraint firstAttribute="height" constant="460" id="jQG-GC-bAX"/>
+                                            <constraint firstAttribute="height" constant="419" id="jQG-GC-bAX"/>
                                         </constraints>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
@@ -55,8 +55,8 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.97254901959999995" green="0.80784313730000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="513" id="HE8-94-EXk"/>
-                                    <constraint firstItem="FMQ-7Z-TuW" firstAttribute="centerY" secondItem="rUa-cf-VJh" secondAttribute="centerY" constant="-9.5" id="Obf-sD-j5k"/>
+                                    <constraint firstAttribute="height" constant="466" id="HE8-94-EXk"/>
+                                    <constraint firstItem="FMQ-7Z-TuW" firstAttribute="centerY" secondItem="rUa-cf-VJh" secondAttribute="centerY" constant="-11.5" id="Obf-sD-j5k"/>
                                     <constraint firstAttribute="width" constant="275" id="ZPq-nt-yX8"/>
                                     <constraint firstItem="FMQ-7Z-TuW" firstAttribute="centerX" secondItem="rUa-cf-VJh" secondAttribute="centerX" id="b4s-3o-UFg"/>
                                 </constraints>
@@ -102,7 +102,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="tde-1a-ZNZ" firstAttribute="top" secondItem="hw4-sL-ogr" secondAttribute="top" constant="35" id="3vS-13-Pn6"/>
-                            <constraint firstItem="rUa-cf-VJh" firstAttribute="centerY" secondItem="4XW-lM-QjK" secondAttribute="centerY" constant="24" id="HIX-ou-p1c"/>
+                            <constraint firstItem="rUa-cf-VJh" firstAttribute="centerY" secondItem="4XW-lM-QjK" secondAttribute="centerY" constant="47.5" id="HIX-ou-p1c"/>
                             <constraint firstItem="svz-Z4-Yhg" firstAttribute="top" secondItem="hw4-sL-ogr" secondAttribute="top" constant="35" id="RNa-I1-Ydm"/>
                             <constraint firstItem="dD1-BE-gBN" firstAttribute="top" secondItem="rUa-cf-VJh" secondAttribute="bottom" constant="-37" id="WFI-yD-2Fg"/>
                             <constraint firstItem="tde-1a-ZNZ" firstAttribute="centerX" secondItem="4XW-lM-QjK" secondAttribute="centerX" constant="-117.5" id="fPr-M6-d6B"/>

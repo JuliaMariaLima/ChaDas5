@@ -16,11 +16,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QN9-CE-dox">
-                                <rect key="frame" x="0.0" y="138" width="375" height="579"/>
+                                <rect key="frame" x="0.0" y="96" width="375" height="522"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="579" id="2Ct-VM-Fwy"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MessagesCell" rowHeight="148" id="BrL-2g-i2Z">
                                         <rect key="frame" x="0.0" y="28" width="375" height="148"/>
@@ -33,13 +30,11 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dah-py-wwN">
-                                <rect key="frame" x="315" y="59" width="40" height="40"/>
+                                <rect key="frame" x="315" y="14" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.60784313729999995" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="3dR-dT-LBr"/>
-                                    <constraint firstAttribute="width" constant="40" id="7WA-Bo-pdR"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="7dv-UG-fVX"/>
-                                    <constraint firstAttribute="height" constant="40" id="Rld-GT-LAt"/>
+                                    <constraint firstAttribute="height" constant="40" id="m4l-ei-a33"/>
+                                    <constraint firstAttribute="width" constant="40" id="qG5-um-wAa"/>
                                 </constraints>
                                 <state key="normal" title="/" image="trashIcon">
                                     <color key="titleColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -54,22 +49,21 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noMessages" translatesAutoresizingMaskIntoConstraints="NO" id="LcX-Yv-eYf">
-                                <rect key="frame" x="35" y="282.5" width="304" height="290"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="290" id="X2Y-lx-hNp"/>
-                                </constraints>
+                                <rect key="frame" x="35" y="217.5" width="305" height="288"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="3Xz-h8-fOq" firstAttribute="trailing" secondItem="LcX-Yv-eYf" secondAttribute="trailing" constant="36" id="6mb-o3-apQ"/>
-                            <constraint firstItem="LcX-Yv-eYf" firstAttribute="centerY" secondItem="QN9-CE-dox" secondAttribute="centerY" id="9PW-i3-RJ3"/>
-                            <constraint firstItem="3Xz-h8-fOq" firstAttribute="trailing" secondItem="dah-py-wwN" secondAttribute="trailing" constant="20" id="9de-pO-la2"/>
-                            <constraint firstItem="QN9-CE-dox" firstAttribute="leading" secondItem="3Xz-h8-fOq" secondAttribute="leading" id="JC9-Me-amW"/>
-                            <constraint firstItem="QN9-CE-dox" firstAttribute="top" secondItem="dah-py-wwN" secondAttribute="bottom" constant="39" id="LdY-g1-jMD"/>
-                            <constraint firstItem="dah-py-wwN" firstAttribute="top" secondItem="kRd-i1-Ia0" secondAttribute="top" constant="59" id="Zn2-f3-sb5"/>
-                            <constraint firstItem="LcX-Yv-eYf" firstAttribute="leading" secondItem="3Xz-h8-fOq" secondAttribute="leading" constant="35" id="n4I-1p-AXi"/>
-                            <constraint firstItem="QN9-CE-dox" firstAttribute="trailing" secondItem="3Xz-h8-fOq" secondAttribute="trailing" id="pMe-JW-OQ1"/>
+                            <constraint firstItem="QN9-CE-dox" firstAttribute="centerX" secondItem="kRd-i1-Ia0" secondAttribute="centerX" id="3jB-Lb-bF8"/>
+                            <constraint firstItem="QN9-CE-dox" firstAttribute="top" secondItem="dah-py-wwN" secondAttribute="bottom" constant="42" id="46k-fM-IeI"/>
+                            <constraint firstItem="dah-py-wwN" firstAttribute="top" secondItem="3Xz-h8-fOq" secondAttribute="top" constant="14" id="ECz-1D-LUx"/>
+                            <constraint firstItem="QN9-CE-dox" firstAttribute="leading" secondItem="3Xz-h8-fOq" secondAttribute="leading" id="KHd-3a-jh9"/>
+                            <constraint firstItem="QN9-CE-dox" firstAttribute="bottom" secondItem="3Xz-h8-fOq" secondAttribute="bottom" id="LZD-eE-6fn"/>
+                            <constraint firstItem="QN9-CE-dox" firstAttribute="centerX" secondItem="LcX-Yv-eYf" secondAttribute="centerX" id="MhV-Ge-EjC"/>
+                            <constraint firstItem="LcX-Yv-eYf" firstAttribute="leading" secondItem="3Xz-h8-fOq" secondAttribute="leading" constant="35" id="SdN-9l-4Yd"/>
+                            <constraint firstItem="3Xz-h8-fOq" firstAttribute="trailing" secondItem="dah-py-wwN" secondAttribute="trailing" constant="20" id="cPy-Gz-epy"/>
+                            <constraint firstItem="LcX-Yv-eYf" firstAttribute="centerY" secondItem="kRd-i1-Ia0" secondAttribute="centerY" constant="28" id="rMa-Ff-dAF"/>
+                            <constraint firstItem="3Xz-h8-fOq" firstAttribute="bottom" secondItem="LcX-Yv-eYf" secondAttribute="bottom" constant="112.33333333333337" id="xAY-w7-daM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Xz-h8-fOq"/>
                     </view>
@@ -85,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="viX-r6-w4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-42.028985507246382" y="128.57142857142856"/>
+            <point key="canvasLocation" x="-43.478260869565219" y="127.90178571428571"/>
         </scene>
     </scenes>
     <resources>

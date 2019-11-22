@@ -101,7 +101,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     
     
     @objc func teaAction(sender: UIButton!) {
-        goTo(identifier: "storyScreenFromChat")
+        //goTo(identifier: "storyScreenFromChat")
     }
     
     func goTo(identifier: String) {
