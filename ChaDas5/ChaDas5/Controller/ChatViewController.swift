@@ -433,7 +433,7 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
     
     func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
-        return CGSize(width: self.view.bounds.width, height: 150)
+        return CGSize(width: self.view.bounds.width, height: 170)
     }
 
 
