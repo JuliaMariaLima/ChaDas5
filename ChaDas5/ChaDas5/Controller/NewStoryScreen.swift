@@ -27,13 +27,15 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
         let alert = UIAlertController(title: "Seu relato possui conteúdo sensível?", message: "", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Sim", style: .default, handler: { (action) -> Void in
             
-            _ = Story(conteudo: self.newStoryTextView.text, gatilho: 5)
+            let story = Story(conteudo: self.newStoryTextView.text, gatilho: 5)
+            self.sendForAnalysis(input: story)
             self.dismiss()
         })
         
         let no = UIAlertAction(title: "Não", style: .default, handler: { (action) -> Void in
                 
-            _ = Story(conteudo: self.newStoryTextView.text, gatilho: 0)
+            let story = Story(conteudo: self.newStoryTextView.text, gatilho: 0)
+            self.sendForAnalysis(input: story)
             self.dismiss()
             })
         
@@ -46,6 +48,10 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
         self.present(alert, animated: true, completion: nil)
         alert.view.tintColor = UIColor.buttonOrange
         
+    }
+    
+    func sendForAnalysis(input: Story) {
+        DAOManager.instance?.ckAnalysisLog.classifyInput(with: input.content, on: input.date, with: self)
     }
     
     @IBOutlet weak var newStoryTextView: UITextView!
@@ -71,5 +77,34 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
     @objc private func dismiss() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+}
+
+extension NewStoryScreen: AnalysisLogProtocol {
+    
+    func createdAnalysisLog() {
+        
+    }
+    
+    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
+        
+    }
+    
+    func updatedAnalysisLog() {
+        debugPrint("successfully updated")
+    }
+    
+    func createdAnalysisLog(with error: Error) {
+        
+    }
+    
+    func retrievedAnalysisLog(with error: Error) {
+        
+    }
+    
+    func updatedAnalysisLog(with error: Error) {
+        debugPrint(error)
+    }
+    
     
 }

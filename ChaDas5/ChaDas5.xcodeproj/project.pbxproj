@@ -18,6 +18,9 @@
 		158069902332E00D00C458FE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698F2332E00D00C458FE /* Extensions.swift */; };
 		1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588D7B121E7AEB000136083 /* MessagesManager.swift */; };
 		158DBDB721CAD40100C9888F /* StoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158DBDB621CAD40100C9888F /* StoryManager.swift */; };
+		15E402312388758600A50D70 /* AnalysisLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E402302388758600A50D70 /* AnalysisLogManager.swift */; };
+		15E402352388786200A50D70 /* AnalysisLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E402342388786200A50D70 /* AnalysisLog.swift */; };
+		15E4023723887DC500A50D70 /* AnalysisStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E4023623887DC500A50D70 /* AnalysisStatus.swift */; };
 		15F34C9A231850A60015FEFB /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34C98231850A60015FEFB /* NotificationsManager.swift */; };
 		15F34C9F231D9FE10015FEFB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F34C9E231D9FE10015FEFB /* CloudKit.framework */; };
 		15F34CA3231DB7160015FEFB /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34CA2231DB7160015FEFB /* UserManager.swift */; };
@@ -102,6 +105,9 @@
 		1588D7B121E7AEB000136083 /* MessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesManager.swift; sourceTree = "<group>"; };
 		158DBDB621CAD40100C9888F /* StoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
 		15BC14A021C811D500768231 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15E402302388758600A50D70 /* AnalysisLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisLogManager.swift; sourceTree = "<group>"; };
+		15E402342388786200A50D70 /* AnalysisLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisLog.swift; sourceTree = "<group>"; };
+		15E4023623887DC500A50D70 /* AnalysisStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisStatus.swift; sourceTree = "<group>"; };
 		15F34C98231850A60015FEFB /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		15F34C9E231D9FE10015FEFB /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		15F34CA2231DB7160015FEFB /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -189,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				158DBDB621CAD40100C9888F /* StoryManager.swift */,
+				15E402302388758600A50D70 /* AnalysisLogManager.swift */,
 				15F34CA2231DB7160015FEFB /* UserManager.swift */,
 				155CF80B21DE7D2B00AFB04B /* ChannelManager.swift */,
 				9A76AF8C21C038D9003ED02C /* MyStoriesManager.swift */,
@@ -337,6 +344,8 @@
 				1588D7B021E7A3C100136083 /* Managers */,
 				158069892332AA4100C458FE /* MeUser.swift */,
 				158069872332A94700C458FE /* User.swift */,
+				15E402342388786200A50D70 /* AnalysisLog.swift */,
+				15E4023623887DC500A50D70 /* AnalysisStatus.swift */,
 				9A1B11D221C43B39006956B7 /* Story.swift */,
 				155CF80D21DE89F400AFB04B /* Message.swift */,
 				155CF80721DE6E6800AFB04B /* Channel.swift */,
@@ -535,8 +544,10 @@
 				E233AB8E237C7F4E00464E03 /* emotions.mlmodel in Sources */,
 				E200BFDB2384B6EF0050247C /* TermsAndConditions.swift in Sources */,
 				E26F83C5236757B600681771 /* GenderInformations.swift in Sources */,
+				15E402312388758600A50D70 /* AnalysisLogManager.swift in Sources */,
 				9A4E543F21B006E60033FEBF /* NewStoryScreen.swift in Sources */,
 				9A1B11EF21C43EFB006956B7 /* FeedTableViewCell.swift in Sources */,
+				15E4023723887DC500A50D70 /* AnalysisStatus.swift in Sources */,
 				158069902332E00D00C458FE /* Extensions.swift in Sources */,
 				155CF80821DE6E6800AFB04B /* Channel.swift in Sources */,
 				155CF80E21DE89F400AFB04B /* Message.swift in Sources */,
@@ -571,6 +582,7 @@
 				9AFBE59E21B1D2D90050AE3E /* CustomSegmentedContrl.swift in Sources */,
 				E28284E72339719500137924 /* UIImage+Additions.swift in Sources */,
 				15F34CA3231DB7160015FEFB /* UserManager.swift in Sources */,
+				15E402352388786200A50D70 /* AnalysisLog.swift in Sources */,
 				E28284E52339719500137924 /* UICollectionView+Additions.swift in Sources */,
 				9A4E543521B0066F0033FEBF /* Login.swift in Sources */,
 				155CF81221DE926100AFB04B /* ChatViewController.swift in Sources */,

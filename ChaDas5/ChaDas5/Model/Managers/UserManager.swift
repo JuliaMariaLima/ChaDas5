@@ -304,5 +304,28 @@ class UserManager {
         }
     }
     
+    func retrieveDateOfEntry(from user: String, completion: @escaping (String?) -> Void) {
+        let predicate = NSPredicate(value: true)
+        let query = CKQuery(recordType: "User", predicate: predicate)
+        
+        self.database.perform(query, inZoneWith: nil) {(records, error) in
+            if error != nil {
+                debugPrint(error!.localizedDescription)
+                completion(nil)
+                return
+            }
+            if let records = records {
+                for record in records {
+                    guard let author = record["email"] as? String else { return }
+                    if author == user {
+                        let date = record.creationDate?.keyString
+                        completion(date)
+                    }
+                }
+                completion(nil)
+            }
+        }
+    }
+    
 }
 

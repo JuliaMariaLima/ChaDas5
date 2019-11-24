@@ -142,7 +142,7 @@ class Login: UIViewController {
     
 }
 
-extension Login: UserRequester {
+extension Login: UserRequester, AnalysisLogProtocol {
     
     func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
     
@@ -157,7 +157,6 @@ extension Login: UserRequester {
                 MeUser.instance = meUser
                 do { try! MeUser.instance.save() }
                 DaoPushNotifications.instance.registerChannelNotifications()
-
                 print("sucesso login")
                 DispatchQueue.main.async {
                     self.activityView.stopAnimating()
@@ -172,6 +171,8 @@ extension Login: UserRequester {
                 } else{
                     
                     goTo(identifier: "Feed")
+                    setUpAnalysis()
+                    
                 }
                 
                 
@@ -218,6 +219,37 @@ extension Login: UserRequester {
     }
     
     func retrieved(userArray: [User]?, userError: Error?) {}
+    
+    func setUpAnalysis() {
+        DAOManager.instance?.ckAnalysisLog.checkAnalysisLog(completion: { (exists) in
+            if !exists! {
+                DAOManager.instance?.ckAnalysisLog.setUpAnalysisLog(with: self)
+            }
+        })
+    }
+    
+    
+    // - MARK: Analysis Log Protocol Stubs
+    
+    func createdAnalysisLog() {
+        debugPrint("successfully created")
+    }
+    
+    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
+    }
+    
+    func updatedAnalysisLog() {
+    }
+    
+    func createdAnalysisLog(with error: Error) {
+    }
+    
+    func retrievedAnalysisLog(with error: Error) {
+    }
+    
+    func updatedAnalysisLog(with error: Error) {
+    }
+    
 }
 
 
