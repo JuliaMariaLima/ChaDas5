@@ -24,9 +24,9 @@ class AnalysisLog {
     init() {
         self.user = MeUser.instance.email
         self.status = .inAnalysis
-        self.empathyResult = 0.0
+        self.empathyResult = -1
         self.empathyAnswers = []
-        self.inputs = 0
+        self.inputs = -1
         self.dateOfEntry = ""
         self.dateOfLastInteraction = ""
         self.questionableInputs = []

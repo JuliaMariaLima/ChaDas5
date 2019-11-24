@@ -133,11 +133,10 @@ class AnalysisLogManager {
     }
     
     func updateInputs(on log:CKRecord, with manager: AnalysisLogProtocol, hasCompletion: Bool) {
-        guard let input = log["inputs"] as? Int else {
-            debugPrint("error getting inputs")
-            return
+        var inputs = 1
+        if let input = log["inputs"] as? Int {
+            inputs += input
         }
-        let inputs = input + 1
         log.setObject(inputs as __CKRecordObjCValue, forKey: "inputs")
         debugPrint("updated inputs")
         if hasCompletion {
