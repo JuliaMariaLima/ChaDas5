@@ -23,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // first responder default
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
-            let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+            // Change to Profile
+            let storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
             
             let initialViewController = storyboard.instantiateInitialViewController()
             
@@ -32,7 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         } catch {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
-            let storyboard = UIStoryboard(name: "SplashScreen", bundle: nil)
+            // Change to SplashScreen
+            let storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
             
             let initialViewController = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = initialViewController
