@@ -497,6 +497,9 @@ extension CreateNewAccount: UserRequester {
                 }else{
                      
                     goTo(identifier: "otherGroup")
+                    DaoPushNotifications.instance.registerChannelNotifications()
+                    // check
+                    setUpAnalysis()
                     
                 }
                 
@@ -527,6 +530,43 @@ extension CreateNewAccount: UserRequester {
     func retrieved(meUser: MeUser?, meUserError: Error?) {}
 
     func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
+    
+    func setUpAnalysis() {
+        DAOManager.instance?.ckAnalysisLog.checkAnalysisLog(completion: { (exists) in
+            if !exists! {
+                DAOManager.instance?.ckAnalysisLog.setUpAnalysisLog(with: self)
+            }
+        })
+    }
+}
+
+extension CreateNewAccount: AnalysisLogProtocol {
+    func createdAnalysisLog() {
+        
+    }
+    
+    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
+        
+    }
+    
+    func updatedAnalysisLog() {
+        
+    }
+    
+    func createdAnalysisLog(with error: Error) {
+        
+    }
+    
+    func retrievedAnalysisLog(with error: Error) {
+        
+    }
+    
+    func updatedAnalysisLog(with error: Error) {
+        
+    }
+    
+    
+    
 }
 
 

@@ -120,9 +120,10 @@ class UserManager {
               let email = meFromRecord["email"] as? String,
               let password = meFromRecord["password"] as? String,
               let genderId = meFromRecord["gender"] as? String,
-              let birthDate = meFromRecord["birthDate"] as? String,
-              let blocked = meFromRecord["blocked"] as? [String] else { fatalError() }
-        let meUser = MeUser(name: name, email: email, password: password, genderId: genderId, birthDate: birthDate, blocked: blocked)
+              let birthDate = meFromRecord["birthDate"] as? String
+//              let blocked = meFromRecord["blocked"] as? [String]
+            else { fatalError() }
+        let meUser = MeUser(name: name, email: email, password: password, genderId: genderId, birthDate: birthDate, blocked: [])
         return meUser
     }
     
