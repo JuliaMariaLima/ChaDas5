@@ -75,8 +75,30 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
         dao?.getChannels(requester: self)
         messagesTableView.reloadData()
 
-
     }
+    
+    
+
+    var timer = Timer()
+    
+    func scheduledTimerWithTimeInterval() {
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+
+    @objc func updateCounting() {
+        guard let dao = dao else { return }
+        dao.getChannels(requester: self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        scheduledTimerWithTimeInterval()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer.invalidate()
+    }
+    
     
     func readedChannels(channels: [CKRecord]?, error: Error?) {
         if error != nil {
@@ -158,18 +180,22 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
                     }
                 })
             }
-            let messageID = currentChannel["lastMessageID"] as? String ?? ""
-            DispatchQueue.main.async {
-            messagesCell.lastMessage.text = "Ainda não foram enviadas mensagens nessa conversa."
-            }
-            DAOManager.instance?.ckMessages.getMessageData(on: messageID, completion: { (message) in
-                if message != nil {
+            if let messageID = currentChannel["lastMessageID"] as? String {
+                DAOManager.instance?.ckMessages.getMessageData(on: messageID, completion: { (message) in
+                    
                     DispatchQueue.main.async {
-                    messagesCell.lastMessage.text = (message?.senderDisplayName ?? "") + ": " + (message?.content ?? "")
+                        
+                        if let senderDisplayName = message?.senderDisplayName,
+                            let content           = message?.content {
+                            
+                            messagesCell.lastMessage.text = senderDisplayName + ": " + content
+                        } else {
+                            messagesCell.lastMessage.text = "Ainda não foram enviadas mensagens nessa conversa."
+                        }
                     }
-                } 
-            })
-            
+                })
+                
+            }
         }
         return messagesCell
     }
@@ -195,3 +221,4 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
     }
 
 }
+

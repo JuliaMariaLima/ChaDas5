@@ -119,8 +119,6 @@ class AnalysisLogManager {
     
     func updateStatus(new status: Status, on log:CKRecord, with manager: AnalysisLogProtocol, hasCompletion: Bool) {
         log.setObject(status.rawValue as __CKRecordObjCValue, forKey: "status")
-        debugPrint("updated status")
-        
         if hasCompletion {
             updateAnalysisLog(on: log, with: manager)
         }
@@ -128,7 +126,6 @@ class AnalysisLogManager {
     
     func updateEmpathyResult(new result: Double, on log:CKRecord, with manager: AnalysisLogProtocol, hasCompletion: Bool) {
         log.setObject(result as __CKRecordObjCValue, forKey: "empathyResult")
-        debugPrint("updated empathy result")
         updateAnalysisLog(on: log, with: manager)
     }
     
@@ -138,7 +135,6 @@ class AnalysisLogManager {
             inputs += input
         }
         log.setObject(inputs as __CKRecordObjCValue, forKey: "inputs")
-        debugPrint("updated inputs")
         if hasCompletion {
             updateAnalysisLog(on: log, with: manager)
         }
@@ -146,7 +142,6 @@ class AnalysisLogManager {
     
     func updateDateOfLastInput(new date: String, on log:CKRecord, with manager: AnalysisLogProtocol, hasCompletion: Bool ) {
         log.setObject(date as __CKRecordObjCValue, forKey: "dateOfLastInteraction")
-        debugPrint("updated date of last interaction")
         if hasCompletion {
             updateAnalysisLog(on: log, with: manager)
         }
@@ -156,7 +151,6 @@ class AnalysisLogManager {
     func updateEmpathyAnswers(new answers: [Int], on log:CKRecord, with manager: AnalysisLogProtocol, hasCompletion: Bool ) {
         // check if empty
         guard let currentAnswers = log["empathyAnswers"] as? [Int] else {
-            debugPrint("error getting current answers")
             return
             
         }
@@ -168,7 +162,6 @@ class AnalysisLogManager {
             debugPrint("more answers than expected")
         }
         log.setObject(newAnswers as __CKRecordObjCValue, forKey: "empathyAnswers")
-        debugPrint("updated empathy answers")
         if hasCompletion {
             updateAnalysisLog(on: log, with: manager)
         }
@@ -182,7 +175,6 @@ class AnalysisLogManager {
         var newInputs = questinableInputs
         newInputs.append(questionableInput)
         log.setObject(newInputs as __CKRecordObjCValue, forKey: "questionableInputs")
-        debugPrint("updated questionable inputs")
         if hasCompletion {
             updateAnalysisLog(on: log, with: manager)
         }
@@ -201,7 +193,6 @@ class AnalysisLogManager {
     func classifyInput(with input:String, on date:String, with manager: AnalysisLogProtocol) {
         let questionable = ["hate", "anger"]
         let classification = self.classifier?.predictedLabel(for: input)
-        debugPrint(input, classification!)
         let stringLog = input + " - " + classification!
         getLog { (record) in
             if record != nil {

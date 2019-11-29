@@ -41,6 +41,17 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
 
 
 
+    var timer = Timer()
+    
+    func scheduledTimerWithTimeInterval() {
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+
+    @objc func updateCounting() {
+        guard let dao = dao else { return }
+        dao.loadMyStories(requester: self)
+    }
 
     override func viewDidLoad() {
 
@@ -106,8 +117,14 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         profileTableView.refreshControl = refreshControl
         refreshControl.tintColor = UIColor.buttonOrange
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
+        
 
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer.invalidate()
+    }
+    
 
     private func setUpSegmentedControlConstraints() {
         NSLayoutConstraint.activate([
@@ -147,6 +164,8 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
          }
         profileImage.image = UIImage(named: meUser.name )
         profileImage.contentMode =  UIView.ContentMode.scaleAspectFit
+        
+        scheduledTimerWithTimeInterval()
 
     }
 

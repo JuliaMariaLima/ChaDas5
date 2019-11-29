@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import CloudKit
 
 
@@ -53,7 +54,7 @@ class MessagesManager {
                     }
                 }
                 self.messages = self.messages.sorted(by: { $0.sentDate < $1.sentDate })
-                DAOManager.instance?.ckChannels.updateOpenedBy(with: Date.distantFuture, on: id)
+//                DAOManager.instance?.ckChannels.updateOpenedBy(with: Date.distantFuture, on: id)
                 requester.readedMessagesFromChannel(messages: self.messages, error: nil)
                 return
             }
@@ -61,18 +62,18 @@ class MessagesManager {
         })
     }
     
+    
     // FIX 
     func save(message:Message, to requester: MessagesProtocol) {
         self.messages.append(message)
-//        self.messages = self.messages.sorted(by: { $0.sentDate.keyString < $1.sentDate.keyString })
+        self.messages = self.messages.sorted(by: { $0.sentDate.keyString < $1.sentDate.keyString })
 
         self.database.save(message.asCKRecord, completionHandler: {(record, error) in
             if let error = error {
-                debugPrint("==========", error)
+                debugPrint(#function, error)
                 requester.messageSaved(with: error)
                 return
             }
-            // CHECK
             if let _ = record {
                 let _ = Message(from: record!) { (message, error) in
                     if error == nil && message != nil {

@@ -9,6 +9,7 @@
 import UIKit
 import UserNotifications
 import CloudKit
+import ApiAI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -18,13 +19,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        let configuration = AIDefaultConfiguration()
+        configuration.clientAccessToken = "504f38a4a1294b3eb4fa95d9966cffb9"
+        
+        let apiai = ApiAI.shared()
+        apiai?.configuration = configuration
+        apiai?.lang = "pt-BR"
+        
+        
         do {
             try MeUser.instance.load()
             // first responder default
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
             // Change to Profile
-            let storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
+            let storyboard = UIStoryboard(name: "Profile", bundle: nil)
             
             let initialViewController = storyboard.instantiateInitialViewController()
             
@@ -34,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
             // Change to SplashScreen
-            let storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
+            let storyboard = UIStoryboard(name: "SplashScreen", bundle: nil)
             
             let initialViewController = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = initialViewController

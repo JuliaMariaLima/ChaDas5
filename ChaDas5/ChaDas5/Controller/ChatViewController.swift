@@ -36,12 +36,14 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
 
     let dao = DAOManager.instance?.ckMessages
     var daoRef: Int?
+    
+    var timer = Timer()
 
     init(channel: CKRecord) {
         self.channelRecord = channel
         self.channel = Channel(from: channel, completion: { (channel, error) in
             if error != nil {
-                debugPrint(#function, error)
+                debugPrint(#function, error!)
             }
         })
         super.init(nibName: nil, bundle: nil)
@@ -97,6 +99,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         customReloadData()
         guard let currentChannel = self.channel else { return }
         dao.loadMessages(from: currentChannel, requester: self)
+        scheduledTimerWithTimeInterval()
     }
 
 
@@ -475,15 +478,24 @@ extension ChatViewController: MessagesDataSource {
         if !dao.messages.isEmpty {
             return dao.messages[indexPath.row]
         }
-        return Message(content: "0", on: "0")
+        return Message(content: "", on: "0")
+    }
+    
+    func scheduledTimerWithTimeInterval() {
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
     }
 
-
+    @objc func updateCounting() {
+        guard let dao = dao else { return }
+        guard let currentChannel = self.channel else { return }
+        dao.loadMessages(from: currentChannel, requester: self)
+    }
+    
     func customReloadData() {
         // FIXME: - Scroll to bottom not working
-        messagesCollectionView.reloadData()
+        messagesCollectionView.reloadDataAndKeepOffset()
         let view = messagesCollectionView as UICollectionView
-
         let lastSection = view.numberOfSections - 1
         let lastRow = view.numberOfItems(inSection: lastSection)
         let indexPath = IndexPath(row: lastRow - 1, section: lastSection)

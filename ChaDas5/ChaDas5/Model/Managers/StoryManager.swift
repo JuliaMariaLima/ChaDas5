@@ -105,9 +105,8 @@ class StoryManager {
     }
     
     func getStories(requester:StoryManagerProtocol, blocks:[String]) {
-        self.stories = []
-        // TODO: Get list of stories from database and cross with blocked list
-        let predicate = NSPredicate(value: true)
+        var stories:[CKRecord] = []
+        let predicate = NSPredicate(format: "status = %@", "active")
         let query = CKQuery(recordType: "Story", predicate: predicate)
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             if error != nil {
@@ -120,14 +119,15 @@ class StoryManager {
                 for result in results! {
                     DAOManager.instance?.ckUsers.retrieve(authorFrom: result) { (author, error) in
                         if author != nil {
-                            if !MeUser.instance.blocked.contains(author!) && result["status"] == "active" {
-                                self.stories.append(result)
+                            if !MeUser.instance.blocked.contains(author!) {
+                                stories.append(result)
                             }
                         }
                     }
 
                 }
-                self.stories = self.stories.sorted(by: { $0.creationDate! > $1.creationDate! })
+                stories.sort(by: { $0.creationDate! > $1.creationDate! })
+                self.stories = stories
                 requester.readedStories(stories: self.stories, error: nil)
                 return
             }

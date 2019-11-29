@@ -52,6 +52,18 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, UIText
     }
 
     
+    var timer = Timer()
+    
+    func scheduledTimerWithTimeInterval() {
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+
+    @objc func updateCounting() {
+        guard let dao = dao else { return }
+        dao.getStories(requester: self, blocks: [])
+    }
+    
 
     
     
@@ -113,6 +125,15 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, UIText
         uptadeSearchBar()
         hideKeyboardWhenTappedAround()
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        scheduledTimerWithTimeInterval()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer.invalidate()
     }
     
     
@@ -234,7 +255,7 @@ class Feed: UIViewController, UITableViewDataSource, UITableViewDelegate, UIText
     
     func readedStories(stories:[CKRecord]?, error: Error?) {
         if error == nil {
-            debugPrint("got stories")
+//            debugPrint("got stories")
             DispatchQueue.main.async {
                 self.feedTableView.reloadData()
                 self.activityView.stopAnimating()

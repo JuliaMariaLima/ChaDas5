@@ -14,6 +14,20 @@ import ApiAI
 class ChatBotViewController: UIViewController {
     
     
+    
+    
+    @IBOutlet weak var insertText: UITextField!
+    
+    
+    @IBOutlet weak var sendForAPI: UIButton!
+    
+    @IBOutlet weak var reponseLabel: UILabel!
+    
+    @IBAction func sendForAPI(_ sender: Any) {
+        sendText(with: insertText.text ?? "")
+    }
+    
+    
     func sendText(with text:String) {
         
         let request = ApiAI.shared().textRequest()
@@ -25,14 +39,16 @@ class ChatBotViewController: UIViewController {
             
             // check
             if let textResponse = response.result.fulfillment.messages.first {
-             print(textResponse)
-            // print resposta
+//             print(textResponse)
+                self.reponseLabel.text = textResponse["speech"] as? String
+                
          }
          }, failure: { (request, error) in
              print(error!)
          })
          ApiAI.shared().enqueue(request)
         // esvaziar caixa de resposta
+        insertText.text = ""
     }
     
 }
