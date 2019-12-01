@@ -34,7 +34,6 @@ class MyStoriesManager {
                 requester.readedMyStories(stories: [[]])
                 return
             }
-        
             for result in results ?? [] {
                 guard let status = result["status"] as? String else { return }
                 if status == "active" {
@@ -43,16 +42,14 @@ class MyStoriesManager {
                     nonActiveStories.append(result)
                 }
             }
-            
-
             activeStories.sort(by: { $0.creationDate! > $1.creationDate! })
             nonActiveStories.sort(by: { $0.creationDate! > $1.creationDate! })
             self.activeStories = activeStories
             self.nonActiveStories = nonActiveStories
             requester.readedMyStories(stories: [results!, []])
             return
-            })
-            requester.readedMyStories(stories: [[]])
+        })
+        requester.readedMyStories(stories: [[]])
     }
     
     

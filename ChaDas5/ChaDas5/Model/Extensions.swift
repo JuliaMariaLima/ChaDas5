@@ -16,7 +16,7 @@ enum FileManageError:Error {
 
 extension Encodable {
     func save(in file:String? = nil) throws {
-
+        
         // generates URL for documentDir/file.json
         let documentDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
         let fileName = file ?? String(describing: type(of: self))
@@ -40,12 +40,12 @@ extension Encodable {
 
 extension Decodable {
     mutating func load(from file:String? = nil) throws {
-
+        
         // generates URL for documentDir/file.json
         let documentDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
         let fileName = file ?? String(describing: type(of: self))
         let url = URL(fileURLWithPath: documentDir.appendingPathComponent(fileName+".json"))
-
+        
         // Try to read
         do {
             let readedData = try Data(contentsOf: url)

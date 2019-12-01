@@ -42,7 +42,7 @@
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>SplashScreen</string>
+	<string>TestingChatBot</string>
 	<key>UIMainStoryboardFile</key>
 	<string>SplashScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

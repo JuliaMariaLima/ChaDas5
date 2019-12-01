@@ -8,17 +8,17 @@
 
 import UIKit
 
-
+// MARK: -  Declaration
 class SplashScreen: UIViewController {
     
-    //outlets
+    // MARK: -  Outlets
     @IBOutlet weak var splashView: UIView!
     @IBOutlet weak var splashImage: UIImageView!
     var window: UIWindow?
     
+    
+    // MARK: -  View Configurations
     override func viewDidLoad() {
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -27,16 +27,15 @@ class SplashScreen: UIViewController {
         
     }
     
+    // MARK: -  Animation
     func animate() {
         UIView.animate(withDuration: 1, animations: {
-        
         self.splashView.frame.size.height = 434
         self.splashImage.frame.origin.y = 117
-        
-        
         }, completion: nil)
     }
     
+    // MARK: -  Segue
     @objc func passScreen() {
         self.performSegue(withIdentifier: "goToMain", sender: self)
     }

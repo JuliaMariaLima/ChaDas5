@@ -8,14 +8,14 @@
 
 import UIKit
 
+// MARK: -  Declaration
 class ChooseYourTeaCollectionViewCell: UICollectionViewCell {
     
-    static let shared = ChooseYourTeaCollectionViewCell()
-    
-    //outlets
+    // MARK: -  Outlets
     @IBOutlet weak var chooseYourteaImage: UIImageView!
     @IBOutlet weak var chooseYourTeaLabel: UILabel!
     
+    static let shared = ChooseYourTeaCollectionViewCell()
     
     override func awakeFromNib() {
         super.awakeFromNib()

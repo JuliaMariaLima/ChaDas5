@@ -56,23 +56,22 @@ class ChannelManager {
             let predicate = NSPredicate(format: "storyAuthor = %@", MeUser.instance.email)
             let query = CKQuery(recordType: "Channel", predicate: predicate)
             self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
-            if let error = error {
-                
-                self.channels = self.channels.sorted(by: { $0.modificationDate!.keyString > $1.modificationDate!.keyString })
-                requester.readedChannels(channels: self.channels, error: error)
-                return
-            }
-            if (results?.count)! > 0 {
-                for result in results! {
-                    channels.append(result)
+                if let error = error {
+                    self.channels = self.channels.sorted(by: { $0.modificationDate!.keyString > $1.modificationDate!.keyString })
+                    requester.readedChannels(channels: self.channels, error: error)
+                    return
                 }
-                channels.sort(by: { $0.modificationDate!.keyString > $1.modificationDate!.keyString })
-                self.channels = channels
-                requester.readedChannels(channels: self.channels, error: nil)
-                return
-            }
-            requester.readedChannels(channels: nil, error: nil)
-        })
+                if (results?.count)! > 0 {
+                    for result in results! {
+                        channels.append(result)
+                    }
+                    channels.sort(by: { $0.modificationDate!.keyString > $1.modificationDate!.keyString })
+                    self.channels = channels
+                    requester.readedChannels(channels: self.channels, error: nil)
+                    return
+                }
+                requester.readedChannels(channels: nil, error: nil)
+            })
         })
     }
     
@@ -96,7 +95,6 @@ class ChannelManager {
             if error == nil && results != nil {
                 for result in results! {
                     if result.recordID.recordName == channel {
-                        debugPrint("=======", message.messageId, message.sentDate)
                         result.setValue(message.messageId, forKey: "lastMessageID")
                         result.setValue(message.sentDate.keyString, forKey: "lastMessageDate")
                         self.database.save(result) { (record, error) in
@@ -124,25 +122,15 @@ class ChannelManager {
                         if MeUser.instance.email == owner {
                             result.setValue(date.keyString, forKey: "lastOpenByOwner")
                             self.database.save(result) { (record, error) in
-                                debugPrint("agora aqui")
-
                                 if error != nil {
                                     debugPrint(#function, error.debugDescription)
-                                } else {
-                                    debugPrint("foi")
-            //                        debugPrint("saved record")
                                 }
                             }
                         } else {
                             result.setValue(date.keyString, forKey: "lastOpenByStoryAuthor")
                             self.database.save(result) { (record, error) in
-                                debugPrint("agora aqui")
-
                                 if error != nil {
                                     debugPrint(#function, error.debugDescription)
-                                } else {
-                                    debugPrint("foi")
-            //                        debugPrint("saved record")
                                 }
                             }
                         }

@@ -9,9 +9,10 @@
 import UIKit
 import CloudKit
 
+// MARK: -  Declaration
 class FeedTableViewCell: UITableViewCell {
     
-    
+    // MARK: -  Outlets
     @IBOutlet weak var feedTableViewTextField: UITextView!
     @IBOutlet weak var sensitiveImage: UIImageView!
     @IBOutlet weak var sensitiveContentLabel: UILabel!
@@ -19,14 +20,7 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var seeStoryButton: UIButton!
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var sensitiveView: UIView!
-    
     @IBOutlet weak var dots: UILabel!
-    
-    
-    enum CellType {
-        case yourStory
-        case otherStory
-    }
     
     
     var user: User? = nil
@@ -36,7 +30,12 @@ class FeedTableViewCell: UITableViewCell {
     var storyID:String?
     var myAuthor:String?
     
+    enum CellType {
+        case yourStory
+        case otherStory
+    }
     
+    // MARK: -  View configurations
     override func layoutSubviews() {
         sensitiveView.addSubview(sensitiveContentLabel)
         sensitiveView.addSubview(sensitiveImage)
@@ -63,8 +62,7 @@ class FeedTableViewCell: UITableViewCell {
         }
     }
     
-    
-    
+    // MARK: -  Actions
     @IBAction func seeStory(_ sender: Any) {
         
         sensitiveView.isHidden = true

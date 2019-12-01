@@ -206,4 +206,26 @@ class AnalysisLogManager {
     }
     
     
+    func calculateEmpathy(on log: CKRecord, with manager: AnalysisLogProtocol) {
+        guard let answers = log["empathyAnswers"] as? [Int] else { return }
+        // fix order
+        let invertAnswersFor = [3, 4, 5, 7, 11, 22]
+        var sum = 0.0
+        for i in answers {
+            if invertAnswersFor.contains(i+1) {
+                sum = sum + invert(value: answers[i])
+            } else {
+                sum = sum + Double(answers[i])
+            }
+        }
+        self.updateEmpathyResult(new: sum/22, on: log, with: manager, hasCompletion: true)
+        
+    }
+    
+    func invert(value:Int) -> Double {
+        let invert = [4, 3, 2, 1]
+        return Double(invert[value - 1])
+    }
+    
+    
 }

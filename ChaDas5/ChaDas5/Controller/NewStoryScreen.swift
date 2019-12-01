@@ -8,17 +8,25 @@
 
 import UIKit
 
+// MARK: -  Declaration
 class NewStoryScreen: UIViewController, UITextViewDelegate {
     
-    //outlets
-    
+    // MARK: -  Outlets
     @IBOutlet weak var newStoryLabel: UILabel!
     @IBOutlet weak var sendButton: UIButton!
     
+    // MARK: -  View Configurations
+    override func viewDidLoad() {
+        
+        hideKeyboardWhenTappedAround()
+        
+        newStoryTextView.delegate = self
+        
+        newStoryLabel.textColor = UIColor.gray
+        
+    }
     
-    
-    
-    //actions
+    // MARK: -  Actions
     @IBAction func dismissButton(_ sender: Any) {
         dismiss()
     }
@@ -56,16 +64,7 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var newStoryTextView: UITextView!
     
-    override func viewDidLoad() {
-        
-        hideKeyboardWhenTappedAround()
-        
-        newStoryTextView.delegate = self
-        
-        newStoryLabel.textColor = UIColor.gray
-        
-    }
-    
+    // MARK: -  Text Field
     func textViewDidBeginEditing(_ textView: UITextView) {
         newStoryLabel.text = ""
         newStoryTextView.text = String()
@@ -73,13 +72,15 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
     }
 
     
-    
     @objc private func dismiss() {
         self.dismiss(animated: true, completion: nil)
     }
     
 }
 
+// MARK: -  Extentions
+
+// MARK: -  AnalysisLogProtocol extention
 extension NewStoryScreen: AnalysisLogProtocol {
     
     func createdAnalysisLog() {

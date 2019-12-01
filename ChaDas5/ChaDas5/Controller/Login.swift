@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 import CloudKit
 
-
+// MARK: -  Declaration
 class Login: UIViewController {
 
-    //outlets
+    // MARK: -  Outlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -21,32 +21,9 @@ class Login: UIViewController {
     var loginUserRequester: UserRequester!
     var password: String!
     var meUser: MeUser!
-
-
     var activityView:UIActivityIndicatorView!
-
-    //action
-    @IBAction func dismissButton(_ sender: Any) {
-        dismiss()
-    }
     
-    
-    @IBAction func loginButton(_ sender: Any) {
-        
-        setLoginButton(enabled: false)
-        activityView.center = loginButton.center
-        loginButton.setTitle("", for: .normal)
-        activityView.startAnimating()
-        
-         
-        loginUserRequester = self as UserRequester
-        DAOManager.instance?.ckUsers.get(meFromEmail: emailTextField.text!, requester: loginUserRequester)
-        MeUser.instance = self.meUser
-        password = passwordTextField.text!
-        loginButton.isEnabled = false
-
-    }
-
+    // MARK: -  View Configurations
     override func viewDidLoad() {
         hideKeyboardWhenTappedAround()
         passwordTextField.isSecureTextEntry = true
@@ -83,13 +60,34 @@ class Login: UIViewController {
         passwordTextField.resignFirstResponder()
         NotificationCenter.default.removeObserver(self)
     }
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         get {
             return .lightContent
         }
     }
 
+    // MARK: -  Actions
+    @IBAction func dismissButton(_ sender: Any) {
+        dismiss()
+    }
+    
+    
+    @IBAction func loginButton(_ sender: Any) {
+        setLoginButton(enabled: false)
+        activityView.center = loginButton.center
+        loginButton.setTitle("", for: .normal)
+        activityView.startAnimating()
+        loginUserRequester = self as UserRequester
+        DAOManager.instance?.ckUsers.get(meFromEmail: emailTextField.text!, requester: loginUserRequester)
+        MeUser.instance = self.meUser
+        password = passwordTextField.text!
+        loginButton.isEnabled = false
+
+    }
+
+
+    // MARK: -  Text Fields
     @objc func keyboardWillAppear(notification: NSNotification){
 
         let info = notification.userInfo!
@@ -142,6 +140,9 @@ class Login: UIViewController {
     
 }
 
+// MARK: -  Extentions
+
+// MARK: -  UserRequester and AnalysisLogProtocol extentions
 extension Login: UserRequester, AnalysisLogProtocol {
     
     func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
@@ -152,33 +153,27 @@ extension Login: UserRequester, AnalysisLogProtocol {
     
     func retrieved(meUser: MeUser?, meUserError: Error?) {
         if meUser != nil {
-            print("UHUL")
             if meUser!.password == password {
                 MeUser.instance = meUser
                 do { try! MeUser.instance.save() }
                 DaoPushNotifications.instance.registerChannelNotifications()
-                print("sucesso login")
                 DispatchQueue.main.async {
                     self.activityView.stopAnimating()
                 }
                 
-                if meUser!.genderId == "Homem Cis"
-                {
+                if meUser!.genderId == "Homem Cis" {
                     goTo(identifier: "cisMan")
                     MeUser.instance.delete()
                     DaoPushNotifications.instance.delete()
                     
-                } else{
+                } else {
                     
                     goTo(identifier: "Feed")
                     setUpAnalysis()
                     
                 }
-                
-                
-            } else{
+            } else {
                 // erro
-                print("deu ruim")
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "", message: "Sua senha ou email estão errados.", preferredStyle: UIAlertController.Style.alert)
                     let ok = UIAlertAction(title: "Ok", style: .default ) { (action) -> Void in
@@ -186,17 +181,12 @@ extension Login: UserRequester, AnalysisLogProtocol {
                         self.setLoginButton(enabled: true)
                         self.loginButton.setTitle("Criar Conta", for: .normal)
                         self.activityView.stopAnimating()
-                                
-                         }
-
+                        
+                    }
                     alert.addAction(ok)
                     self.present(alert, animated: true, completion: nil)
-                    
                     alert.view.tintColor = UIColor.buttonOrange
                 }
-                
-                
-    
             }
         } else if meUserError != nil {
             // nao tem cadastro
@@ -207,19 +197,17 @@ extension Login: UserRequester, AnalysisLogProtocol {
                     self.setLoginButton(enabled: true)
                     self.loginButton.setTitle("Criar Conta", for: .normal)
                     self.activityView.stopAnimating()
-                        
-                 }
+                }
                 alert.addAction(ok)
                 alert.view.tintColor = UIColor.buttonOrange
                 self.present(alert, animated: true, completion: nil)
-                
             }
-
         }
     }
     
     func retrieved(userArray: [User]?, userError: Error?) {}
     
+    // MARK: -  Analysis Log Protocol Stubs
     func setUpAnalysis() {
         DAOManager.instance?.ckAnalysisLog.checkAnalysisLog(completion: { (exists) in
             if !exists! {
@@ -227,9 +215,6 @@ extension Login: UserRequester, AnalysisLogProtocol {
             }
         })
     }
-    
-    
-    // - MARK: Analysis Log Protocol Stubs
     
     func createdAnalysisLog() {
         debugPrint("successfully created")

@@ -8,14 +8,15 @@
 
 import UIKit
 
+// MARK: -  Declaration
 class Informations: UIViewController {
     
-    //main pages outlets
+    // MARK: -  Outlets
     @IBOutlet weak var whatToDoButton: UIButton!
     @IBOutlet weak var numbersButton: UIButton!
     @IBOutlet weak var informationsButton: UIButton!
     
-    //what to do
+    // MARK: -  Action
     @IBAction func whatToDoDismissButton(_ sender: Any) {
         self.dismiss()
     }
@@ -66,10 +67,6 @@ class Informations: UIViewController {
         UIApplication.shared.open(number)
     }
     
-    
-    
-    
-    //dismiss func
     @objc private func dismiss() {
         self.dismiss(animated: true, completion: nil)
     }

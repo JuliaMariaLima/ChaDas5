@@ -9,38 +9,22 @@
 import UIKit
 import CloudKit
 
-class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, ChannelManagerProtocol{
+// MARK: -  Declaration
+class Messages: UIViewController, UITextFieldDelegate, ChannelManagerProtocol{
     
-
-    //outlets
-
+    // MARK: -  Outlets
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var messagesTableView: UITableView!
-
     @IBOutlet weak var noMessagesImage: UIImageView!
     
     var messageIsEditing =  false
     var activityView:UIActivityIndicatorView!
     private let refreshControl = UIRefreshControl()
-    
     let dao = DAOManager.instance?.ckChannels
-
-    //actions
-    @IBAction func editButton(_ sender: Any) {
-        messagesTableView.reloadData()
-        if !messageIsEditing {
-            messageIsEditing = true
-        } else {
-            messageIsEditing = false
-        }
-    }
-
-
-
+    var timer = Timer()
+    
+    // MARK: -  View configurations
     override func viewDidLoad() {
-        
-
-
         //table view setting
         self.messagesTableView.separatorStyle = .none
         messagesTableView.dataSource = self
@@ -48,7 +32,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
         messagesTableView.allowsSelection = true
         let nib = UINib.init(nibName: "MessagesTableViewCell", bundle: nil)
         self.messagesTableView.register(nib, forCellReuseIdentifier: "MessagesCell")
-
+        
         if #available(iOS 13.0, *) {
             activityView = UIActivityIndicatorView(style: .medium)
         } else {
@@ -58,37 +42,16 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
         activityView.frame = CGRect(x: 0, y: 0, width: 300.0, height: 300.0)
         activityView.center = view.center
         activityView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-
         noMessagesImage.alpha = 0
-
         view.addSubview(activityView)
-
         activityView.startAnimating()
-
         messagesTableView.refreshControl = refreshControl
         refreshControl.tintColor = UIColor.buttonOrange
-
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
-
         messageIsEditing =  false
-
         dao?.getChannels(requester: self)
         messagesTableView.reloadData()
-
-    }
-    
-    
-
-    var timer = Timer()
-    
-    func scheduledTimerWithTimeInterval() {
-        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
-    }
-
-    @objc func updateCounting() {
-        guard let dao = dao else { return }
-        dao.getChannels(requester: self)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,6 +62,32 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
         timer.invalidate()
     }
     
+    // MARK: -  Actions
+    @IBAction func editButton(_ sender: Any) {
+        messagesTableView.reloadData()
+        if !messageIsEditing {
+            messageIsEditing = true
+        } else {
+            messageIsEditing = false
+        }
+    }
+
+    func scheduledTimerWithTimeInterval() {
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateCounting() {
+        guard let dao = dao else { return }
+        dao.getChannels(requester: self)
+    }
+    
+    
+    @objc private func refreshData(_ sender: Any) {
+        dao?.getChannels(requester: self)
+        self.refreshControl.endRefreshing()
+        self.messagesTableView.reloadData()
+    }
     
     func readedChannels(channels: [CKRecord]?, error: Error?) {
         if error != nil {
@@ -118,17 +107,23 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
             }
         }
     }
+}
 
+// MARK: -  Extension
+
+// MARK: -  UITableViewDataSource and UITableViewDelegate extension
+extension Messages: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dao?.channels.count ?? 0
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let messagesCell = tableView.dequeueReusableCell(withIdentifier: "MessagesCell") as! MessagesTableViewCell
         messagesCell.deleteButton.alpha = messageIsEditing ? 1 : 0
         messagesCell.nonReadMessages.isHidden = true
-            
+        
         if messageIsEditing {
             messagesCell.shake()
         }
@@ -199,7 +194,7 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
         }
         return messagesCell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell = tableView.cellForRow(at: indexPath) as! MessagesTableViewCell
         selectedCell.contentView.backgroundColor = UIColor.clear
@@ -207,18 +202,12 @@ class Messages: UIViewController, UITableViewDataSource, UITableViewDelegate, UI
         let vc = ChatViewController(channel: channel)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true, completion: nil)
-
+        
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150.0
     }
-
-    @objc private func refreshData(_ sender: Any) {
-        dao?.getChannels(requester: self)
-        self.refreshControl.endRefreshing()
-        self.messagesTableView.reloadData()
-    }
-
+    
 }
 

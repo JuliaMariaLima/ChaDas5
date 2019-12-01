@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
             // Change to Profile
-            let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+            let storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
             
             let initialViewController = storyboard.instantiateInitialViewController()
             
@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
             // Change to SplashScreen
-            let storyboard = UIStoryboard(name: "SplashScreen", bundle: nil)
+            let storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
             
             let initialViewController = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = initialViewController
