@@ -17,7 +17,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
     // MARK: -  Outlets
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var archiveButton: UIButton!
-    
+
     var selectedStory:CKRecord?
     let dao = DAOManager.instance?.ckChannels
     var activityView:UIActivityIndicatorView!
@@ -29,7 +29,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
         chatButton.layer.shadowColor = UIColor.black.cgColor
         chatButton.layer.shadowOpacity = 0.23
         chatButton.layer.shadowRadius = 4
-        
+
         guard let story = selectedStory else {
             return
         }
@@ -41,7 +41,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
                 self.storyTextView.text = storyContent!["content"]
             }
         })
-        
+
         if author == MeUser.instance.email {
             chatButton.isHidden = true
             archiveButton.setImage(UIImage(named: "archiveIcon"), for: .normal)
@@ -61,8 +61,8 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
 
         view.addSubview(activityView)
     }
-    
-    
+
+
     // MARK: -  Actions
     @IBAction func dismissButton(_ sender: Any) {
         dismiss(animated: true)
@@ -84,7 +84,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
             let channel = Channel(fromStory: story)
             self.dao?.createChannel(withChannel: channel.asCKRecord, completion: { (record, error) in
                 if error != nil {
-                    
+
                     debugPrint("error creating channel", error!)
                     return
                 } else {
@@ -92,7 +92,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
                         debugPrint("no channel created")
                         return
                     }
-                    
+
                     self.created(channel: record!)
                 }
             })
@@ -156,40 +156,40 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
                     style: .cancel) { (action) -> Void in
                         alert.dismiss(animated: true, completion: nil)
                 }
-                
+
                 alert.addAction(arquivar)
                 alert.addAction(cancelar)
                 self.present(alert, animated: true, completion: nil)
                 alert.view.tintColor = UIColor.buttonOrange
-                
+
             }
         } else {
-            
+
             let alert = UIAlertController(title: "Sinalizações", message: "Tem algum problema com esse relato?", preferredStyle: .actionSheet)
             let reportStory = UIAlertAction(title: "Relato com conteúdo sensível", style: .default, handler: { (action) -> Void in
-                
+
                 DAOManager.instance?.ckStories.switchToFlag(storyID: storyID, completion: { (record, error) in
                     if error != nil {
                         print(error!)
                     }
                 })
-                
+
             })
             let reportUser = UIAlertAction(title: "Reportar usuário", style: .default, handler: { (action) -> Void in
-                
+
                 DAOManager.instance?.ckUsers.block(author, requester: self)
                 DAOManager.instance?.ckUsers.blockAnother(author, requester: self)
                 self.dismiss()
-                
+
             })
             let cancelar = UIAlertAction(title: "Cancelar", style: .cancel ) { (action) -> Void in
                 alert.dismiss(animated: true, completion: nil)
             }
-            
+
             if flag >= 5 {
                 alert.addAction(reportUser)
                 alert.addAction(cancelar)
-                
+
             } else{
                 alert.addAction(reportStory)
                 alert.addAction(reportUser)
@@ -197,12 +197,12 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
             }
             self.present(alert, animated: true, completion: nil)
             alert.view.tintColor = UIColor.buttonOrange
-            
+
         }
-        
+
     }
 
-    
+
     // MARK: -  Create Channel
     func created(channel: CKRecord) {
         DispatchQueue.main.async {
@@ -214,9 +214,9 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
     }
 
     func readedChannels(channels: [CKRecord]?, error: Error?) {
-        
+
     }
-    
+
     @objc private func dismiss() {
         self.dismiss(animated: true, completion: nil)
 
@@ -228,23 +228,32 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
 
 // MARK: -  UserRequester Extention
 extension StoryScreen: UserRequester {
-    
-    func saved(userRecord: CKRecord?, userError: Error?) {}
-    
-    func retrieved(user: User?, userError: Error?) {}
-    
-    func retrieved(userArray: [User]?, userError: Error?) {}
-    
-    func retrieved(meUser: MeUser?, meUserError: Error?) {}
-    
-    func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
-     
-}
 
+    func saved(userRecord: CKRecord?, userError: Error?) {}
+
+    func retrieved(user: User?, userError: Error?) {}
+
+    func retrieved(userArray: [User]?, userError: Error?) {}
+
+    func retrieved(meUser: MeUser?, meUserError: Error?) {}
+
+    func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
+
+}
 // MARK: -  Protocol
 protocol ChannelCreationObserver {
-    
+
     func created(channel: CKRecord)
-    
+
 }
 
+extension StoryScreen: StoryboardInitializable{
+
+    static var storyboardName: String {
+        "StoryScreen"
+    }
+
+    static var storyboardID: String {
+        "StoryScreen"
+    }
+}

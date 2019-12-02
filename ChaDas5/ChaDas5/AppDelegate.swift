@@ -15,44 +15,50 @@ import ApiAI
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+
         let configuration = AIDefaultConfiguration()
         configuration.clientAccessToken = "504f38a4a1294b3eb4fa95d9966cffb9"
-        
+
         let apiai = ApiAI.shared()
         apiai?.configuration = configuration
         apiai?.lang = "pt-BR"
-        
-        
+
+
         do {
             try MeUser.instance.load()
             // first responder default
             self.window = UIWindow(frame: UIScreen.main.bounds)
-            
+
             // Change to Profile
             let storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
-            
-            let initialViewController = storyboard.instantiateInitialViewController()
-            
+
+            if MeUser.instance.tutorial == "Done"{
+                  storyboard = UIStoryboard(name: "Profile", bundle: nil)
+            }else{
+                  storyboard = UIStoryboard(name: "Tutorial", bundle: nil)
+            }
+
+            let initialViewController = storyboard!.instantiateInitialViewController()
+
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         } catch {
             self.window = UIWindow(frame: UIScreen.main.bounds)
-            
+
             // Change to SplashScreen
             let storyboard = UIStoryboard(name: "SplashScreen", bundle: nil)
-            
+
             let initialViewController = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = initialViewController
                   self.window?.makeKeyAndVisible()
-            
+
             print("Se cadastra, porra!")
             // first responder login
         }
-        
+
             if DaoPushNotifications.instance == nil {
             let dao = DaoPushNotifications.init()
             debugPrint(dao)
@@ -65,9 +71,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 alert.present(Login(), animated: true, completion: nil)
             }
         }
-        
+
         do { try DaoPushNotifications.instance.load()
-            
+
         } catch {
             print("nao foi anyway")
             let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
@@ -75,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             alert.present(CreateNewAccount(), animated: true, completion: nil)
             alert.present(Login(), animated: true, completion: nil)
         }
-          
+
           // set self (AppDelegate) to handle notification
           UNUserNotificationCenter.current().delegate = self
 
@@ -87,12 +93,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
               })
             }
           })
-          
+
           return true
     }
-    
+
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
-        
+
     }
     func applicationWillResignActive(_ application: UIApplication) { }
 
@@ -105,21 +111,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillTerminate(_ application: UIApplication) {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
-    
+
     // This function will be called when the app receive notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-      
+
       // show the notification alert (banner), and with sound
       completionHandler([.alert, .sound])
     }
-    
+
     // This function will be called right after user tap on the notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-      
+
       // tell the app that we have finished processing the user’s action (eg: tap on notification banner) / response
       completionHandler()
     }
-    
+
     func applicationDidBecomeActive(_ application: UIApplication) {
         UIApplication.shared.applicationIconBadgeNumber = 0
         let operation = CKModifyBadgeOperation(badgeValue: 0)

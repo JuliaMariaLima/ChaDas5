@@ -99,7 +99,8 @@ class Messages: UIViewController, UITextFieldDelegate, ChannelManagerProtocol{
         }
         if dao?.channels.count == 0 {
             DispatchQueue.main.async {
-                self.noMessagesImage.alpha = 0.75
+                self.noMessagesImage.image = UIImage(named:"noMessages")
+                self.noMessagesImage.alpha = 0.5
             }
         } else {
             DispatchQueue.main.async {

@@ -12,9 +12,9 @@ import CloudKit
 import WebKit
 
 
-// MARK: -  Declaration
-class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewDataSource {
-   
+
+class CreateNewAccount: UIViewController{
+
 
     // MARK: -  Outlets
     @IBOutlet weak var emailTextField: UITextField!
@@ -29,20 +29,21 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
     @IBOutlet weak var transManButton: UIButton!
     @IBOutlet weak var otherButton: UIButton!
     @IBOutlet weak var noInfoButton: UIButton!
-    @IBOutlet weak var pickerTeas: AKPickerView!
-    @IBOutlet weak var previousButton: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
-    
+
+
+
     var activityView:UIActivityIndicatorView!
     var meUser: MeUser!
     var newAccountUserResquester: UserRequester!
     var identification = ""
-    let allTeas = DAOManager.instance?.ckUsers.teas
-    var yourTea:String!
+
+//    let allTeas = DAOManager.instance?.ckUsers.teas
+//    var yourTea:String!
+
     var isAccepted = false
     let pdfTitle = "Termos de Serviço Chá das 5"
     let datePicker = UIDatePicker()
-    
+
     // MARK: -  View Configurations
     override func viewDidLoad() {
         hideKeyboardWhenTappedAround()
@@ -73,7 +74,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         dateBirthTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
 
         setcreateNewAccountButton(enabled: false)
-        
+
         createDatePicker()
     }
 
@@ -91,91 +92,76 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
 
         NotificationCenter.default.removeObserver(self)
     }
-    
-    
+
+
 
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         get { return .lightContent }
     }
-    
+
     // MARK: -  Pickers
     func createDatePicker(){
-        
+
         datePicker.datePickerMode = .date
         let loc = Locale(identifier: "pt_BR")
         datePicker.locale = loc
-        
+
         dateBirthTextField.inputView = datePicker
-        
+
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
-        
+
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
         doneButton.tintColor = .buttonOrange
-     
+
         toolBar.setItems([doneButton], animated: true)
-        
+
         dateBirthTextField.inputAccessoryView = toolBar
     }
-    
-    
+
+
     func pickerView(_ pickerView: AKPickerView, imageForItem item: Int) -> UIImage {
         return UIImage(named: "picker_\(allTeas![item])")!.imageWithSize(CGSize(width: 120, height: 120))
     }
-    
+
     func pickerView(_ pickerView: AKPickerView, didSelectItem item: Int) {
         yourTea = allTeas![item]
-        
+
         previousButton.isHidden = (item == 0) ? true : false
         nextButton.isHidden = (item == allTeas!.count - 1) ? true : false
-        
+
     }
-    
+
     @objc func doneClicked(){
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .long
         dateFormatter.timeStyle = .none
         dateFormatter.locale =  Locale(identifier: "pt_BR")
         dateFormatter.dateFormat = "dd/MM/yyyy"
-        
+
         dateBirthTextField.text = dateFormatter.string(from: datePicker.date)
         self.view.endEditing(true)
-        
+
     }
-    
-    func numberOfItemsInPickerView(_ pickerView: AKPickerView) -> Int {
-           return allTeas!.count
-    }
-    
+
 
     // MARK: -  Actions
     @IBAction func termsAndConditions(_ sender: Any) {
-        
+
         if isAccepted == false{
             isAccepted = true
             termsButton.backgroundColor = .middleOrange
-            
+
         }else{
              isAccepted = false
              termsButton.backgroundColor = .clear
         }
-        
+
     }
-    
-    @IBAction func prevButton(_ sender: Any) {
-        
-        self.pickerTeas.selectItem(self.pickerTeas.selectedItem - 1, animated: true)
-    }
-    
-    
-    @IBAction func nextButton(_ sender: Any) {
-        self.pickerTeas.selectItem(self.pickerTeas.selectedItem + 1, animated: true)
-    }
-    
-    
-    
-    
+
+
+
     @IBAction func cisWomanAction(_ sender: Any) {
         cisWomanButton.backgroundColor = UIColor.middleOrange
         transWomanButton.backgroundColor = UIColor.clear
@@ -186,9 +172,9 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
 
         identification = "Mulher Cis"
     }
-    
+
     @IBAction func transWomanAction(_ sender: Any) {
-        
+
         cisWomanButton.backgroundColor = UIColor.clear
         transWomanButton.backgroundColor = UIColor.middleOrange
         cisManButton.backgroundColor = UIColor.clear
@@ -197,12 +183,12 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         noInfoButton.backgroundColor = UIColor.clear
 
         identification = "Mulher Trans"
-  
+
     }
-    
-    
+
+
     @IBAction func cisManAction(_ sender: Any) {
-        
+
       cisWomanButton.backgroundColor = UIColor.clear
       transWomanButton.backgroundColor = UIColor.clear
       cisManButton.backgroundColor = UIColor.middleOrange
@@ -211,12 +197,12 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
       noInfoButton.backgroundColor = UIColor.clear
 
       identification = "Homem Cis"
-        
+
     }
-    
-    
+
+
     @IBAction func transManAction(_ sender: Any) {
-        
+
         cisWomanButton.backgroundColor = UIColor.clear
         transWomanButton.backgroundColor = UIColor.clear
         cisManButton.backgroundColor = UIColor.clear
@@ -226,11 +212,11 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
 
         identification = "Homem Trans"
     }
-    
-    
-    
+
+
+
     @IBAction func otherAction(_ sender: Any) {
-        
+
         cisWomanButton.backgroundColor = UIColor.clear
         transWomanButton.backgroundColor = UIColor.clear
         cisManButton.backgroundColor = UIColor.clear
@@ -241,9 +227,9 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         identification = "Outro"
 
     }
-    
+
     @IBAction func noInfoButton(_ sender: Any) {
-        
+
         cisWomanButton.backgroundColor = UIColor.clear
         transWomanButton.backgroundColor = UIColor.clear
         cisManButton.backgroundColor = UIColor.clear
@@ -253,19 +239,19 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
 
         identification = "Prefiro não dizer"
 
-        
+
     }
-    
+
 
     @IBAction func createNewButton(_ sender: Any) {
-        
+
         newAccountUserResquester = self
         setcreateNewAccountButton(enabled: false)
         activityView.center = self.createNewAccountButton.center
         createNewAccountButton.setTitle("", for: .normal)
         activityView.startAnimating()
         if isAccepted == false {
-            
+
             let alert1 = UIAlertController(title: "Termos de Serviço", message: "Para acessar a plataforma precisa aceitar os termos de serviço.", preferredStyle: UIAlertController.Style.alert)
             alert1.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert1, animated: true, completion: nil)
@@ -273,9 +259,9 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
             setcreateNewAccountButton(enabled: true)
             createNewAccountButton.setTitle("Criar Conta", for: .normal)
             activityView.stopAnimating()
-            
+
         } else if passwordTextField.text != passwordConfirmationTextField.text {
-            
+
             let alert3 = UIAlertController(title: "", message: "Erro na Confirmação de Senha", preferredStyle: UIAlertController.Style.alert)
             alert3.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert3, animated: true, completion: nil)
@@ -285,9 +271,9 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
             setcreateNewAccountButton(enabled: true)
             createNewAccountButton.setTitle("Criar Conta", for: .normal)
             activityView.stopAnimating()
-            
+
         } else if identification == "" {
-            
+
             let alert2 = UIAlertController(title: "", message: "Por favor, selecione um dos campos de identificação.", preferredStyle: UIAlertController.Style.alert)
             alert2.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert2, animated: true, completion: nil)
@@ -295,19 +281,21 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
             setcreateNewAccountButton(enabled: true)
             createNewAccountButton.setTitle("Criar Conta", for: .normal)
             activityView.stopAnimating()
-            
-        } else if checkPassword(password1: passwordTextField.text!, password2: passwordConfirmationTextField.text!) {
-            
-            if (emailTextField.text?.contains("@"))! {
-                
-                meUser = MeUser(name: yourTea, email: emailTextField.text!, password: passwordTextField.text!, genderId: identification, birthDate: dateBirthTextField.text!, blocked: [" "])
+
+
+            print("Entrou")
+
+
+            if (emailTextField.text?.contains("@"))!{
+                meUser = MeUser(name: "Default", email: emailTextField.text!, password: passwordTextField.text!, genderId: identification, tutorial: "Not done", birthDate: dateBirthTextField.text!, blocked: [" "])
+
                 DAOManager.instance?.ckUsers.save(newUser: meUser, requester: newAccountUserResquester)
-                
+
             } else {
                 let alert4 = UIAlertController(title: "", message: "O e-mail digitado não é válido", preferredStyle: UIAlertController.Style.alert)
                            alert4.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                            alert4.view.tintColor = UIColor.buttonOrange
-                           
+
                            self.present(alert4, animated: true, completion: nil)
                            emailTextField.text = ""
                            setcreateNewAccountButton(enabled: true)
@@ -316,7 +304,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
 
             }
         } else {
-            
+
             let alert5 = UIAlertController(title: "", message: "Reveja a sua senha, ela tem que ter no mínimo 8 caracteres", preferredStyle: UIAlertController.Style.alert)
             alert5.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             alert5.view.tintColor = UIColor.buttonOrange
@@ -326,17 +314,67 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
             setcreateNewAccountButton(enabled: true)
             createNewAccountButton.setTitle("Criar Conta", for: .normal)
             activityView.stopAnimating()
-            
+
         }
 
 
     }
-    
+
 
     @IBAction func dismissButton(_ sender: Any) {
         dismiss()
     }
 
+    override func viewDidLoad() {
+
+        hideKeyboardWhenTappedAround()
+
+        passwordTextField?.isSecureTextEntry = true
+        passwordConfirmationTextField.isSecureTextEntry = true
+        emailTextField.textContentType = .emailAddress
+        passwordTextField.textContentType = .password
+        passwordConfirmationTextField.textContentType = .password
+
+
+        if #available(iOS 13.0, *) {
+            activityView = UIActivityIndicatorView(style: .medium)
+        } else {
+           activityView = UIActivityIndicatorView(style: .gray)
+        }
+        activityView.color = UIColor.buttonOrange
+        activityView.frame = CGRect(x: 0, y: 0, width: 50.0, height: 50.0)
+        activityView.center = self.createNewAccountButton.center
+
+        view.addSubview(activityView)
+
+        emailTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        passwordConfirmationTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        dateBirthTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+
+        setcreateNewAccountButton(enabled: false)
+
+        createDatePicker()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        emailTextField.becomeFirstResponder()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        passwordConfirmationTextField.resignFirstResponder()
+        dateBirthTextField.resignFirstResponder()
+
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        get { return .lightContent }
+    }
 
     @objc func keyboardWillAppear(notification: NSNotification){
         let info = notification.userInfo!
@@ -353,7 +391,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         let passwordConfirmed = passwordConfirmationTextField.text
         let password = passwordTextField.text
         let date = dateBirthTextField.text
-      
+
 
         let formFilled = email != nil && email != "" && passwordConfirmed != nil && passwordConfirmed != "" && password != nil && password != "" && date != nil && date != ""
         setcreateNewAccountButton(enabled: formFilled)
@@ -401,7 +439,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
             self.noInfoButton.backgroundColor = UIColor.clear
             self.termsButton.backgroundColor = UIColor.clear
             self.identification = ""
-           
+
         })
 
         let cancelar = UIAlertAction(title: "Cancelar", style: .cancel ) { (action) -> Void in
@@ -435,7 +473,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         return password1 == password2 ? true : false
     }
 
-    
+
     func setcreateNewAccountButton(enabled:Bool) {
         activityView.center = self.createNewAccountButton.center
         if enabled {
@@ -446,22 +484,22 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
             createNewAccountButton.isEnabled = false
         }
     }
-    
-    
+
+
     func goTo(identifier: String) {
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: identifier, sender: self)
         }
     }
 
-    
+
 }
 
 // MARK: -  Extentions
 
 // MARK: -  UserRequester Extention
 extension CreateNewAccount: UserRequester {
-    
+
     func saved(userRecord: CKRecord?, userError: Error?){
         if let _ = userRecord {
             do {
@@ -471,7 +509,7 @@ extension CreateNewAccount: UserRequester {
                     goTo(identifier: "cisMan")
                     MeUser.instance.delete()
                     DaoPushNotifications.instance.delete()
-                    
+
                 } else{
                     goTo(identifier: "otherGroup")
                     DaoPushNotifications.instance.registerChannelNotifications()
@@ -491,19 +529,19 @@ extension CreateNewAccount: UserRequester {
                     alert.view.tintColor = UIColor.buttonOrange
                     self.present(alert, animated: true, completion: nil)
                 }
-                
+
             }
         }
     }
-    
+
     func retrieved(user: User?, userError: Error?) {}
-    
+
     func retrieved(userArray: [User]?, userError: Error?) {}
-    
+
     func retrieved(meUser: MeUser?, meUserError: Error?) {}
 
     func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
-    
+
     func setUpAnalysis() {
         DAOManager.instance?.ckAnalysisLog.checkAnalysisLog(completion: { (exists) in
             if !exists! {
@@ -515,33 +553,31 @@ extension CreateNewAccount: UserRequester {
 
 // MARK: -  AnalysisLogProtocol Extention
 extension CreateNewAccount: AnalysisLogProtocol {
-    
+
     func createdAnalysisLog() {
-        
+
     }
-    
+
     func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
-        
+
     }
-    
+
     func updatedAnalysisLog() {
-        
+
     }
-    
+
     func createdAnalysisLog(with error: Error) {
-        
+
     }
-    
+
     func retrievedAnalysisLog(with error: Error) {
-        
+
     }
-    
+
     func updatedAnalysisLog(with error: Error) {
-        
+
     }
-    
-    
-    
+
+
+
 }
-
-
