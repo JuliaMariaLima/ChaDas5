@@ -37,8 +37,7 @@ class CreateNewAccount: UIViewController{
     var newAccountUserResquester: UserRequester!
     var identification = ""
 
-//    let allTeas = DAOManager.instance?.ckUsers.teas
-//    var yourTea:String!
+
 
     var isAccepted = false
     let pdfTitle = "Termos de Serviço Chá das 5"
@@ -52,10 +51,6 @@ class CreateNewAccount: UIViewController{
         emailTextField.textContentType = .emailAddress
         passwordTextField.textContentType = .password
         passwordConfirmationTextField.textContentType = .password
-        yourTea = allTeas![0]
-        pickerTeas.delegate = self
-        pickerTeas.dataSource = self
-        previousButton.isHidden = true
 
         if #available(iOS 13.0, *) {
             activityView = UIActivityIndicatorView(style: .medium)
@@ -120,18 +115,6 @@ class CreateNewAccount: UIViewController{
         dateBirthTextField.inputAccessoryView = toolBar
     }
 
-
-    func pickerView(_ pickerView: AKPickerView, imageForItem item: Int) -> UIImage {
-        return UIImage(named: "picker_\(allTeas![item])")!.imageWithSize(CGSize(width: 120, height: 120))
-    }
-
-    func pickerView(_ pickerView: AKPickerView, didSelectItem item: Int) {
-        yourTea = allTeas![item]
-
-        previousButton.isHidden = (item == 0) ? true : false
-        nextButton.isHidden = (item == allTeas!.count - 1) ? true : false
-
-    }
 
     @objc func doneClicked(){
         let dateFormatter = DateFormatter()
@@ -323,57 +306,6 @@ class CreateNewAccount: UIViewController{
 
     @IBAction func dismissButton(_ sender: Any) {
         dismiss()
-    }
-
-    override func viewDidLoad() {
-
-        hideKeyboardWhenTappedAround()
-
-        passwordTextField?.isSecureTextEntry = true
-        passwordConfirmationTextField.isSecureTextEntry = true
-        emailTextField.textContentType = .emailAddress
-        passwordTextField.textContentType = .password
-        passwordConfirmationTextField.textContentType = .password
-
-
-        if #available(iOS 13.0, *) {
-            activityView = UIActivityIndicatorView(style: .medium)
-        } else {
-           activityView = UIActivityIndicatorView(style: .gray)
-        }
-        activityView.color = UIColor.buttonOrange
-        activityView.frame = CGRect(x: 0, y: 0, width: 50.0, height: 50.0)
-        activityView.center = self.createNewAccountButton.center
-
-        view.addSubview(activityView)
-
-        emailTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-        passwordConfirmationTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-        dateBirthTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-
-        setcreateNewAccountButton(enabled: false)
-
-        createDatePicker()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        emailTextField.becomeFirstResponder()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        passwordConfirmationTextField.resignFirstResponder()
-        dateBirthTextField.resignFirstResponder()
-
-        NotificationCenter.default.removeObserver(self)
-    }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        get { return .lightContent }
     }
 
     @objc func keyboardWillAppear(notification: NSNotification){

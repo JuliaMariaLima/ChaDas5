@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.window = UIWindow(frame: UIScreen.main.bounds)
 
             // Change to Profile
-            let storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
+            var storyboard:UIStoryboard?
 
             if MeUser.instance.tutorial == "Done"{
                   storyboard = UIStoryboard(name: "Profile", bundle: nil)

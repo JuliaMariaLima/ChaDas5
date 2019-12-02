@@ -35,10 +35,10 @@ class MessagesManager {
     var messages = [Message]()
     
     func loadMessages(from channel: Channel, requester: MessagesProtocol) {
+        var messages:[Message] = []
         guard let id = channel.id?.recordName else { return }
         let predicate = NSPredicate(format: "onChannel = %@", id)
         let query = CKQuery(recordType: "Thread", predicate: predicate)
-        self.messages = []
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             if error != nil {
                 print(error!)
@@ -49,11 +49,12 @@ class MessagesManager {
                 for result in results! {
                     _ = Message(from: result) { (message, error) in
                         if error == nil && message != nil {
-                            self.messages.append(message!)
+                            messages.append(message!)
                         }
                     }
                 }
-                self.messages = self.messages.sorted(by: { $0.sentDate < $1.sentDate })
+                messages.sort(by: { $0.sentDate < $1.sentDate })
+                self.messages = messages
                 requester.readedMessagesFromChannel(messages: self.messages, error: nil)
                 return
             }

@@ -142,6 +142,9 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate {
         scheduledTimerWithTimeInterval()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        dao?.messages = []
+    }
 
     func checkSubscription() {
         let channelID = self.channelRecord.recordID.recordName
@@ -313,148 +316,6 @@ extension ChatViewController: MessagesProtocol {
     func deletedError(with: Error) {
     }
 
-
-}
-
-// MARK: -  MessagesProtocol extension
-extension ChatViewController: MessagesDisplayDelegate {
-
-    func backgroundColor(
-        for message: MessageType,
-        at indexPath: IndexPath,
-        in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? UIColor.middleOrange : UIColor.lightGray.withAlphaComponent(0.25)
-    }
-
-    func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Bool {
-        return true
-    }
-
-    func messageStyle(
-        for message: MessageType,
-        at indexPath: IndexPath,
-        in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
-        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
-        return .bubbleTail(corner, .curved)
-    }
-
-    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-        avatarView.removeFromSuperview()
-    }
-
-}
-
-// MARK: - MessagesLayoutDelegate extension
-extension ChatViewController: MessagesLayoutDelegate {
-
-    func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
-        return .zero
-    }
-
-    func footerViewSize(
-        for message: MessageType,
-        at indexPath: IndexPath,
-        in messagesCollectionView: MessagesCollectionView) -> CGSize {
-        return CGSize(width: 0, height: 8)
-    }
-
-    func textColor(
-        for message: MessageType,
-        at indexPath: IndexPath,
-        in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? UIColor.black : UIColor.black
-    }
-
-    func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
-        return CGSize(width: self.view.bounds.width, height: 170)
-    }
-
-
-}
-
-// MARK: - MessagesDataSource extension
-extension ChatViewController: MessagesDataSource {
-
-
-
-    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return 1
-    }
-
-    func numberOfItems(inSection section: Int, in messagesCollectionView: MessagesCollectionView) -> Int {
-        guard let dao = dao else {
-            fatalError()
-        }
-        return dao.messages.count
-    }
-
-
-    func currentSender() -> SenderType {
-        return Sender(id: MeUser.instance.email , displayName: MeUser.instance.name)
-    }
-
-    func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
-        guard let dao = dao else {
-            fatalError()
-        }
-        return dao.messages.count
-    }
-
-    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        guard let dao = dao else {
-            fatalError()
-        }
-        if !dao.messages.isEmpty {
-            return dao.messages[indexPath.row]
-        }
-        return Message(content: "", on: "0")
-    }
-
-    func scheduledTimerWithTimeInterval() {
-        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
-    }
-
-    @objc func updateCounting() {
-        guard let dao = dao else { return }
-        guard let currentChannel = self.channel else { return }
-        dao.loadMessages(from: currentChannel, requester: self)
-    }
-
-    func customReloadData() {
-        // FIXME: - Scroll to bottom not working
-        messagesCollectionView.reloadDataAndKeepOffset()
-        let view = messagesCollectionView as UICollectionView
-        let lastSection = view.numberOfSections - 1
-        let lastRow = view.numberOfItems(inSection: lastSection)
-        let indexPath = IndexPath(row: lastRow - 1, section: lastSection)
-        view.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.bottom, animated: true)
-
-    }
-
-}
-
-// MARK: - MessageInputBarDelegate extension
-extension ChatViewController: InputBarAccessoryViewDelegate {
-
-    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        save(text)
-        inputBar.inputTextView.text = ""
-    }
-
-}
-
-// MARK: -  UserRequester extension
-extension ChatViewController: UserRequester {
-    func saved(userRecord: CKRecord?, userError: Error?) {}
-
-    func retrieved(user: User?, userError: Error?) {}
-
-    func retrieved(userArray: [User]?, userError: Error?) {}
-
-    func retrieved(meUser: MeUser?, meUserError: Error?) {}
-
-    func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
 
 }
 
@@ -732,6 +593,17 @@ extension ChatViewController: MessagesDataSource {
         return Message(content: "", on: "0")
     }
 
+    func scheduledTimerWithTimeInterval() {
+            // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+        }
+    
+        @objc func updateCounting() {
+            guard let dao = dao else { return }
+            guard let currentChannel = self.channel else { return }
+            dao.loadMessages(from: currentChannel, requester: self)
+        }
+    
 
     func customReloadData() {
         // FIXME: - Scroll to bottom not working
@@ -757,6 +629,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     }
 
 }
+
 extension ChatViewController: UserRequester {
     func saved(userRecord: CKRecord?, userError: Error?) {}
 
@@ -769,7 +642,7 @@ extension ChatViewController: UserRequester {
     func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
 }
 
-extension ChatViewController: StoryboardInitializable{
+extension ChatViewController: StoryboardInitializable {
     static var storyboardName: String {
         "Chat"
     }
