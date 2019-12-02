@@ -22,6 +22,7 @@
 		1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588D7B121E7AEB000136083 /* MessagesManager.swift */; };
 		158DBDB721CAD40100C9888F /* StoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158DBDB621CAD40100C9888F /* StoryManager.swift */; };
 		15AEA6162393AAC70047D0B9 /* PreChatBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AEA6152393AAC70047D0B9 /* PreChatBot.swift */; };
+		15DBC6E42395805D008241F4 /* EmpathyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DBC6E32395805D008241F4 /* EmpathyTest.swift */; };
 		15E402312388758600A50D70 /* AnalysisLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E402302388758600A50D70 /* AnalysisLogManager.swift */; };
 		15E402352388786200A50D70 /* AnalysisLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E402342388786200A50D70 /* AnalysisLog.swift */; };
 		15E4023723887DC500A50D70 /* AnalysisStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E4023623887DC500A50D70 /* AnalysisStatus.swift */; };
@@ -119,6 +120,7 @@
 		158DBDB621CAD40100C9888F /* StoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
 		15AEA6152393AAC70047D0B9 /* PreChatBot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreChatBot.swift; sourceTree = "<group>"; };
 		15BC14A021C811D500768231 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15DBC6E32395805D008241F4 /* EmpathyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpathyTest.swift; sourceTree = "<group>"; };
 		15E402302388758600A50D70 /* AnalysisLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisLogManager.swift; sourceTree = "<group>"; };
 		15E402342388786200A50D70 /* AnalysisLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisLog.swift; sourceTree = "<group>"; };
 		15E4023623887DC500A50D70 /* AnalysisStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisStatus.swift; sourceTree = "<group>"; };
@@ -375,11 +377,12 @@
 				158069892332AA4100C458FE /* MeUser.swift */,
 				158069872332A94700C458FE /* User.swift */,
 				15E402342388786200A50D70 /* AnalysisLog.swift */,
-				15E4023623887DC500A50D70 /* AnalysisStatus.swift */,
 				9A1B11D221C43B39006956B7 /* Story.swift */,
 				155CF80D21DE89F400AFB04B /* Message.swift */,
 				155CF80721DE6E6800AFB04B /* Channel.swift */,
 				155CF80F21DE8A9000AFB04B /* AppSettings.swift */,
+				15E4023623887DC500A50D70 /* AnalysisStatus.swift */,
+				15DBC6E32395805D008241F4 /* EmpathyTest.swift */,
 				1580698F2332E00D00C458FE /* Extensions.swift */,
 			);
 			path = Model;
@@ -515,8 +518,6 @@
 				1559C96B238F2D500003A9EE /* ChatBot.storyboard in Resources */,
 				E23901B321CADD94006B3CF3 /* SplashScreen.storyboard in Resources */,
 				1559C96D238F2D770003A9EE /* TestingChatBot.storyboard in Resources */,
-				9A4E542021AEC8C30033FEBF /* CreateNewAccount.storyboard in Resources */,
-				E200BFD9238474C70050247C /* Chat.storyboard in Resources */,
 				E200BFE02384CC8A0050247C /* TermsAndConditions.storyboard in Resources */,
 				96451FDA21AC79F000C9C351 /* Assets.xcassets in Resources */,
 				9A76AF8A21C034F8003ED02C /* FeedTableViewCell.xib in Resources */,
@@ -631,6 +632,7 @@
 				9A4E543D21B006CC0033FEBF /* Informations.swift in Sources */,
 				E22F5F6623886B0A0026FC79 /* FeedTutorial.swift in Sources */,
 				9AFBE59E21B1D2D90050AE3E /* CustomSegmentedContrl.swift in Sources */,
+				15DBC6E42395805D008241F4 /* EmpathyTest.swift in Sources */,
 				E28284E72339719500137924 /* UIImage+Additions.swift in Sources */,
 				E2A8587B238F6C6E003C26F3 /* TeaQuiz.swift in Sources */,
 				15F34CA3231DB7160015FEFB /* UserManager.swift in Sources */,

@@ -23,8 +23,10 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     
     var teaName:String = "Default"
     var answers = ["---","Discordo fortemente","Discordo", "Concordo", "Concordo Fortemente"]
+    var usersAnswers:[Int] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    var currentQuestion = 18
+    var finished = false
     
-   
     @objc func answersLabelTarget1(textField: UITextField) {
         pickerView.isHidden = false
         pickerView.autoresizingMask = .flexibleWidth
@@ -38,7 +40,7 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
         } else {
             setNextButton(enabled: false)
         }
-
+        
     }
     
     
@@ -46,9 +48,9 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
         
         answerField.endEditing(true)
         answerField.text = oldText
-   
+        
     }
-
+    
     // - MARK: Picker
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -63,7 +65,6 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-      
         answerField.text = answers[row]
     }
     
@@ -80,10 +81,11 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
         
         pickerView.delegate = self
         pickerView.dataSource = self
- 
+        
         answerField.addTarget(self, action: #selector(answersLabelTarget1), for: .allTouchEvents)
         answerField.allowsEditingTextAttributes = false
         
+        questionField.text = getQuestionContent(on: currentQuestion)
         
         toolBar.barStyle = UIBarStyle.default
         toolBar.isTranslucent = true
@@ -103,8 +105,8 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
         answerField.inputAccessoryView = toolBar
         
         setNextButton(enabled: false)
-         nextButton.setTitle("Próxima", for: .normal)
-     
+        nextButton.setTitle("Próxima", for: .normal)
+        
     }
     
     func calculate(){
@@ -114,18 +116,43 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
         
     }
     
-
     
+    // TODO: - Check if all answered
     @IBAction func nextButtonAction(_ sender: Any) {
-        setNextButton(enabled: false)
-        nextButton.setTitle("", for: .normal)
-        calculate()
-        //mandar o cha pra outra tela e fazer o segue
-
+        self.usersAnswers[currentQuestion - 1] = getAnswer(with: answerField.text ?? "")
+        if finished {
+            calculate()
+            //mandar o cha pra outra tela e fazer o segue
+        } else {
+            print(currentQuestion)
+            setNextButton(enabled: false)
+            nextButton.setTitle("Próxima", for: .normal)
+            handleQuestions()
+            print(usersAnswers)
+            print(currentQuestion)
+        }
+        
+        
+        
+        
     }
     
-
-
+    func handleQuestions() {
+        
+        currentQuestion += 1
+        self.questionField.text = getQuestionContent(on: currentQuestion)
+        if currentQuestion == questions.count {
+            nextButton.setTitle("Pronto", for: .normal)
+            self.finished = true
+        }
+        answerField.endEditing(true)
+        answerField.text = oldText
+        print(currentQuestion)
+        
+    }
+    
+    
+    
     
     func setNextButton(enabled:Bool) {
         if enabled {
@@ -137,4 +164,44 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
         }
     }
     
+    func getQuestionContent(on index:Int) -> String {
+        return questions[index - 1]
+    }
+    
+    func getAnswer(with string:String) -> Int {
+        switch string {
+        case "Discordo fortemente":
+            return 1
+        case "Discordo":
+            return 2
+        case "Concordo":
+            return 3
+        case "Concordo fortemente":
+            return 4
+        default:
+            return 0
+        }
+    }
+    
+    let questions = [
+        "Eu consigo perceber facilmente se alguém está querendo entrar em uma conversa.",
+        "Eu realmente gosto de cuidar de outras pessoas.",
+        "Eu acho difícil saber o que fazer em uma situação/evento social.",
+        "Frequentemente, eu tenho dificuldades em julgar se alguma coisa é grosseira ou educada.",
+        "Em uma conversa, eu tendo a me focar em meus próprios pensamentos em vez de me focar no que a outra pessoa possa estar pensando.",
+        "Eu consigo perceber rapidamente quando alguém fala uma coisa, mas quer dizer outra.",
+        "Para mim, é difícil perceber porque algumas coisas incomodam tanto as pessoas.",
+        "Eu tenho facilidade de me colocar no lugar dos outros.",
+        "Eu sou bom em antecipar como as pessoas irão se sentir.",
+        "Eu percebo rapidamente quando alguém em um grupo está se sentindo envergonhado ou desconfortável.",
+        "Eu não costumo achar confusas as situações sociais.",
+        "As pessoas me dizem que sou bom em entender como elas se sentem e o que elas estão pensando.",
+        "Eu consigo perceber se estou incomodando, mesmo que a outra pessoa não me fale.",
+        "Frequentemente, as pessoas me dizem que sou insensível, embora nem sempre eu saiba o porquê.",
+        "Eu consigo me sintonizar, de modo rápido e intuitivo, com o que os outros sentem.",
+        "Eu consigo me dar conta facilmente sobre o que uma pessoa possa estar querendo falar.",
+        "Eu consigo dizer se alguém está disfarçando seus verdadeiros sentimentos.",
+        "Eu sou bom em antecipar o que alguém irá fazer.",
+        "Eu costumo me envolver emocionalmente com os problemas dos meus amigos."
+    ]
 }

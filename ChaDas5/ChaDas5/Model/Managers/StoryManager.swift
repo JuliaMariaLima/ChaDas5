@@ -47,7 +47,7 @@ class StoryManager {
     
     func preLoadStories(requester:StoryManagerProtocol) {
         self.stories = []
-        // TODO: Get list of stories from database and cross with blocked list
+        // TODO: - Get list of stories from database and cross with blocked list
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Story", predicate: predicate)
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
