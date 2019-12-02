@@ -98,7 +98,7 @@ class Profile: UIViewController {
                   try MeUser.instance.load()
                   meUser = MeUser.instance
               } catch {
-                  print("nao carregou mesmo nao")
+                  debugPrint("nao carregou mesmo nao")
               }
 
 
@@ -277,15 +277,13 @@ extension Profile: UserRequester {
     // pra editar
     func saved(userRecord: CKRecord?, userError: Error?) {
         if userRecord != nil {
-            print("user novo salvou")
             do{
                 try meUser.save()
-                print("salvouuuuuuuuuuuuu")
             } catch {
                 let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-                print("erro ao salvar local nova conta")
+                debugPrint("erro ao salvar local nova conta")
             }
         }
     }

@@ -139,11 +139,16 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate {
         customReloadData()
         guard let currentChannel = self.channel else { return }
         dao.loadMessages(from: currentChannel, requester: self)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         scheduledTimerWithTimeInterval()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         dao?.messages = []
+        timer.invalidate()
     }
 
     func checkSubscription() {

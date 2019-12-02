@@ -67,7 +67,6 @@ class MessagesManager {
     func save(message:Message, to requester: MessagesProtocol) {
         self.messages.append(message)
         self.messages = self.messages.sorted(by: { $0.sentDate.keyString < $1.sentDate.keyString })
-
         self.database.save(message.asCKRecord, completionHandler: {(record, error) in
             if let error = error {
                 debugPrint(#function, error)
