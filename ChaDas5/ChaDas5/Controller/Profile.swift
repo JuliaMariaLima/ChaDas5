@@ -154,9 +154,9 @@ class Profile: UIViewController, UITableViewDataSource, UITableViewDelegate, Sto
         let imagesNames = [UIImage(named: "noActiveStories"), UIImage(named: "noArchiveStories")]
         self.noStoriesImage.image = imagesNames[self.currentSegment]
         if currentSegment == 0 && dao?.activeStories.count == 0 {
-            self.noStoriesImage.alpha = 0.75
+            self.noStoriesImage.alpha = 0.5
         } else if currentSegment == 1  && dao?.nonActiveStories.count == 0 {
-            self.noStoriesImage.alpha = 0.75
+            self.noStoriesImage.alpha = 0.5
         }
         else {
             self.noStoriesImage.alpha = 0

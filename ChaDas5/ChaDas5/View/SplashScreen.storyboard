@@ -44,11 +44,22 @@
                         <outlet property="splashView" destination="AyU-iS-QKU" id="AVF-Z2-uJJ"/>
                         <segue destination="1N6-5B-4yK" kind="presentation" identifier="goToMain" animates="NO" id="hLT-xv-pwa"/>
                         <segue destination="wdW-MZ-UaU" kind="show" identifier="profile" id="SqH-k1-aDk"/>
+                        <segue destination="Nxo-Os-bPE" kind="show" identifier="tutorial" id="heI-87-irR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UlL-W6-xUi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-288.40579710144931" y="162.72321428571428"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="N2p-ey-8wp">
+            <objects>
+                <viewControllerPlaceholder id="Nxo-Os-bPE" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="0Lk-hw-vUW"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ua2-ME-ixF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="328" y="-117"/>
         </scene>
         <!--Profile-->
         <scene sceneID="cFy-O5-PVB">

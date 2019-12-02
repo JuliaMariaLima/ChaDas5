@@ -78,7 +78,7 @@ class StoryScreen: UIViewController, ChannelManagerProtocol, ChannelCreationObse
 
     @IBAction func archiveButton(_ sender: Any) {
         guard let storyID = selectedStory?.recordID.recordName else { return }
-        print(selectedStory?.recordID)
+      //  print(selectedStory?.recordID)
         guard let status = selectedStory?.object(forKey: "status") as? String else {
             debugPrint("error retrieving story status", #function)
             return
@@ -247,3 +247,13 @@ extension StoryScreen: UserRequester {
      
 }
 
+extension StoryScreen: StoryboardInitializable{
+    
+    static var storyboardName: String {
+        "StoryScreen"
+    }
+    
+    static var storyboardID: String {
+        "StoryScreen"
+    }
+}

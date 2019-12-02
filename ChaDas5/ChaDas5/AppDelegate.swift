@@ -23,9 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // first responder default
             self.window = UIWindow(frame: UIScreen.main.bounds)
             
-            let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+            let storyboard:UIStoryboard?
             
-            let initialViewController = storyboard.instantiateInitialViewController()
+            if MeUser.instance.tutorial == "Done"{
+                  storyboard = UIStoryboard(name: "Profile", bundle: nil)
+            }else{
+                  storyboard = UIStoryboard(name: "Tutorial", bundle: nil)
+            }
+
+            let initialViewController = storyboard!.instantiateInitialViewController()
             
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()

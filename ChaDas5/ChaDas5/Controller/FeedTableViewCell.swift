@@ -47,6 +47,9 @@ class FeedTableViewCell: UITableViewCell {
 
     }
     
+    
+    
+    
     func myStory() {
         if let _ = user,
             type == .yourStory {

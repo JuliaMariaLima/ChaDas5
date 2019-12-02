@@ -9,7 +9,6 @@ import InputBarAccessoryView
 
 class ChatViewController: MessagesViewController, UINavigationBarDelegate, MessagesProtocol {
 
-
     func messageSaved(with error: Error) {
         debugPrint("deu erro porra", error)
     }
@@ -33,6 +32,13 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     var activityView: UIActivityIndicatorView!
     private let channel: Channel?
     var channelRecord: CKRecord
+
+    let spinner = UIActivityIndicatorView()
+    let storyView = UIView()
+    let blurView = UIView()
+    let contentText = UITextView()
+
+
 
     let dao = DAOManager.instance?.ckMessages
     var daoRef: Int?
@@ -74,15 +80,84 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         guard let dao = dao else { return }
+
+        spinner.color = .buttonOrange
+
+        storyView.frame.size = CGSize(width: 100, height: 200)
+        storyView.backgroundColor = .middleOrange
+        storyView.layer.cornerRadius = 20
+        storyView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        storyView.layer.shadowColor = UIColor.black.cgColor
+        storyView.layer.shadowOpacity = 0.23
+        storyView.layer.shadowRadius = 4
+
+        blurView.backgroundColor = .white
+        blurView.alpha = 0.2
+
+        let dismissButton = UIButton(frame: CGRect(x: 30, y: 45, width: 40, height: 40))
+        dismissButton.setImage(UIImage(named: "dismissIcon") , for: .normal)
+        dismissButton.addTarget(self, action: #selector(self.dismissAction), for: .touchUpInside)
+        dismissButton.contentMode = .center
+        dismissButton.imageView?.contentMode = .scaleAspectFit
+
+        contentText.font =  UIFont.systemFont(ofSize: 17)
+        contentText.backgroundColor = .clear
+
+        storyView.addSubview(dismissButton)
+        storyView.addSubview(contentText)
+        storyView.addSubview(spinner)
+        storyView.isHidden = true
+        blurView.isHidden = true
+
+        self.view.addSubview(blurView)
+        self.view.addSubview(storyView)
+
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
+        storyView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        contentText.translatesAutoresizingMaskIntoConstraints = false
+
+       NSLayoutConstraint.activate([
+           spinner.centerXAnchor.constraint(equalTo: storyView.centerXAnchor),
+           spinner.centerYAnchor.constraint(equalTo: storyView.centerYAnchor),
+           spinner.widthAnchor.constraint(equalToConstant: 500),
+           spinner.heightAnchor.constraint(equalToConstant: 500),
+           blurView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+           blurView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+           blurView.widthAnchor.constraint(equalToConstant: self.view.frame.width),
+           blurView.heightAnchor.constraint(equalToConstant: self.view.frame.height),
+           storyView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+           storyView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+           storyView.widthAnchor.constraint(equalToConstant: 300),
+           storyView.heightAnchor.constraint(equalToConstant: 300),
+           dismissButton.centerXAnchor.constraint(equalTo: storyView.centerXAnchor, constant: -140),
+           dismissButton.centerYAnchor.constraint(equalTo:  storyView.centerYAnchor, constant: -140),
+           dismissButton.widthAnchor.constraint(equalToConstant: 40),
+           dismissButton.heightAnchor.constraint(equalToConstant: 40),
+           contentText.centerXAnchor.constraint(equalTo: storyView.centerXAnchor),
+           contentText.centerYAnchor.constraint(equalTo: storyView.centerYAnchor),
+           contentText.widthAnchor.constraint(equalToConstant: 240),
+           contentText.heightAnchor.constraint(equalToConstant: 252)
+       ])
+
+
 
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         maintainPositionOnKeyboardFrameChanged = true
+
         configureNavigationBar()
         configureInputBar()
         configureActivityView()
+
+
+        hideKeyboardWhenTappedAround()
+
+
 
         let myCollection = messagesCollectionView as UICollectionView
         myCollection.translatesAutoresizingMaskIntoConstraints = false
@@ -126,9 +201,42 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
    }
 
 
+
+
+        storyView.isHidden = false
+        blurView.isHidden = false
+        messageInputBar.isUserInteractionEnabled = false
+        guard let story = channelRecord["fromStory"] as? String else { return }
+
+        //let vc = try! StoryScreen.initializeFromStoryboard()
+
+        self.spinner.startAnimating()
+        DAOManager.instance?.ckStories.get(storyFrom: story, completion: { (record) in
+            DispatchQueue.main.async {
+                self.spinner.stopAnimating()
+                self.spinner.removeFromSuperview()
+                if record != nil {
+                    guard let content = record!["content"] as? String  else {return}
+                    self.contentText.text = "Relato dessa conversa:\n\n" + content
+                }
+
+
+            }
+        })
+
+    }
+
+
     @objc func buttonAction(sender: UIButton!) {
         DAOManager.instance?.ckChannels.updateOpenedBy(with: Date(), on: self.channelRecord.recordID.recordName)
         self.dismiss(animated: false, completion: nil)
+    }
+
+    @objc func dismissAction(sender: UIButton!) {
+        storyView.isHidden = true
+        blurView.isHidden = true
+        messageInputBar.isUserInteractionEnabled = true
+
     }
 
 
@@ -378,6 +486,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         messageInputBar.setLeftStackViewWidthConstant(to: 10, animated: false)
 
 
+
     }
 }
 
@@ -472,7 +581,10 @@ extension ChatViewController: MessagesDataSource {
         guard let dao = dao else {
             fatalError()
         }
-        return dao.messages[indexPath.row]
+        if !dao.messages.isEmpty {
+            return dao.messages[indexPath.row]
+        }
+        return Message(content: "", on: "0")
     }
 
 
@@ -510,5 +622,14 @@ extension ChatViewController: UserRequester {
     func retrieved(meUser: MeUser?, meUserError: Error?) {}
 
     func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
+
+extension ChatViewController: StoryboardInitializable{
+    static var storyboardName: String {
+        "Chat"
+    }
+
+    static var storyboardID: String {
+        "ChatViewController"
+    }
 
 }

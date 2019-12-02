@@ -23,10 +23,6 @@ class UserManager {
     var container: CKContainer
     
     let teas = ["Gengibre", "Frutas Vermelhas", "Erva Doce", "Camomila", "Capim Limão", "Chá Preto", "Hibisco", "Hortelã"]
-//    
-//    var currentUser:String {
-//        
-//    }
     
     init(database: CKDatabase, container: CKContainer) {
         self.container = container
@@ -51,6 +47,7 @@ class UserManager {
                     record.setObject(newUser.password as CKRecordValue?, forKey: "password")
                     record.setObject(newUser.blocked as CKRecordValue?, forKey: "blocked")
                     record.setObject(newUser.birthDate as CKRecordValue?, forKey: "birthDate")
+                    record.setObject(newUser.tutorial as CKRecordValue?, forKey: "tutorial")
                     
                     
                     // Salvar nome do CloudKit.
@@ -120,9 +117,10 @@ class UserManager {
               let email = meFromRecord["email"] as? String,
               let password = meFromRecord["password"] as? String,
               let genderId = meFromRecord["gender"] as? String,
+              let tutorial = meFromRecord["tutorial"] as? String,
               let birthDate = meFromRecord["birthDate"] as? String,
               let blocked = meFromRecord["blocked"] as? [String] else { fatalError() }
-        let meUser = MeUser(name: name, email: email, password: password, genderId: genderId, birthDate: birthDate, blocked: blocked)
+        let meUser = MeUser(name: name, email: email, password: password, genderId: genderId, tutorial: tutorial, birthDate: birthDate, blocked: blocked)
         return meUser
     }
     

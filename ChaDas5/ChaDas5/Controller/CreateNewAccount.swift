@@ -13,8 +13,7 @@ import WebKit
 
 
 
-class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewDataSource
-{
+class CreateNewAccount: UIViewController{
    
 
     //outlets
@@ -38,18 +37,16 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
     
     @IBOutlet weak var noInfoButton: UIButton!
     
-    @IBOutlet weak var pickerTeas: AKPickerView!
-    
-    @IBOutlet weak var previousButton: UIButton!
-    
-    @IBOutlet weak var nextButton: UIButton!
+
     
     var activityView:UIActivityIndicatorView!
     var meUser: MeUser!
     var newAccountUserResquester: UserRequester!
     var identification = ""
-    let allTeas = DAOManager.instance?.ckUsers.teas
-    var yourTea:String!
+    
+//    let allTeas = DAOManager.instance?.ckUsers.teas
+//    var yourTea:String!
+    
     var isAccepted = false
     let pdfTitle = "Termos de Serviço Chá das 5"
     let datePicker = UIDatePicker()
@@ -88,22 +85,6 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         
     }
     
-    func numberOfItemsInPickerView(_ pickerView: AKPickerView) -> Int {
-           return allTeas!.count
-              
-    }
-    
-    func pickerView(_ pickerView: AKPickerView, imageForItem item: Int) -> UIImage {
-        return UIImage(named: "picker_\(allTeas![item])")!.imageWithSize(CGSize(width: 120, height: 120))
-    }
-    
-    func pickerView(_ pickerView: AKPickerView, didSelectItem item: Int) {
-        yourTea = allTeas![item]
-        
-        previousButton.isHidden = (item == 0) ? true : false
-        nextButton.isHidden = (item == allTeas!.count - 1) ? true : false
-        
-    }
 
     //actions
     @IBAction func termsAndConditions(_ sender: Any) {
@@ -120,19 +101,6 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
     }
     
 
-    
-    @IBAction func prevButton(_ sender: Any) {
-        
-        self.pickerTeas.selectItem(self.pickerTeas.selectedItem - 1, animated: true)
-    }
-    
-    
-    @IBAction func nextButton(_ sender: Any) {
-        self.pickerTeas.selectItem(self.pickerTeas.selectedItem + 1, animated: true)
-    }
-    
-    
-    
     
     @IBAction func cisWomanAction(_ sender: Any) {
         cisWomanButton.backgroundColor = UIColor.middleOrange
@@ -260,10 +228,9 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         
             print("Entrou")
             
-            print(yourTea!)
             
             if (emailTextField.text?.contains("@"))!{
-                meUser = MeUser(name: yourTea, email: emailTextField.text!, password: passwordTextField.text!, genderId: identification, birthDate: dateBirthTextField.text!, blocked: [" "])
+                meUser = MeUser(name: "Default", email: emailTextField.text!, password: passwordTextField.text!, genderId: identification, tutorial: "Not done", birthDate: dateBirthTextField.text!, blocked: [" "])
      
                 DAOManager.instance?.ckUsers.save(newUser: meUser, requester: newAccountUserResquester)
                 
@@ -312,11 +279,7 @@ class CreateNewAccount: UIViewController, AKPickerViewDelegate, AKPickerViewData
         emailTextField.textContentType = .emailAddress
         passwordTextField.textContentType = .password
         passwordConfirmationTextField.textContentType = .password
-        yourTea = allTeas![0]
-        
-        pickerTeas.delegate = self
-        pickerTeas.dataSource = self
-        previousButton.isHidden = true
+
 
         if #available(iOS 13.0, *) {
             activityView = UIActivityIndicatorView(style: .medium)

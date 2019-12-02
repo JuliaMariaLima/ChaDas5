@@ -155,7 +155,7 @@ extension Login: UserRequester {
             print("UHUL")
             if meUser!.password == password {
                 MeUser.instance = meUser
-                print(meUser?.genderId)
+                
                 do { try! MeUser.instance.save() }
 
                 print("sucesso login")
@@ -169,9 +169,12 @@ extension Login: UserRequester {
                     MeUser.instance.delete()
                     DaoPushNotifications.instance.delete()
                     
-                } else{
+                } else if meUser!.genderId != "Homem Cis" && meUser!.tutorial == "Done"{
                     
                     goTo(identifier: "Feed")
+                }else{
+                    
+                     goTo(identifier: "tutorial")
                 }
                 
                 
