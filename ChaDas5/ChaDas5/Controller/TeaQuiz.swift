@@ -43,7 +43,7 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     
     
     @objc func cancelTapped(button: UIBarButtonItem) {
-        
+        setNextButton(enabled: false)
         answerField.endEditing(true)
         answerField.text = oldText
    

@@ -176,54 +176,26 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
 
 
     @objc func teaAction(sender: UIButton!) {
-//        goTo(identifier: "storyScreenFromChat")
-    }
-
-    func goTo(identifier: String) {
-          DispatchQueue.main.async {
-              self.performSegue(withIdentifier: identifier, sender: self)
-          }
-      }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let story = channelRecord["fromStory"] as? String else { return }
-        if segue.identifier == "storyScreenFromChat" {
-            if let destinationVC = segue.destination as? StoryScreen {
-                DAOManager.instance?.ckStories.get(storyFrom: story, completion: { (record) in
-                    if record != nil {
-                       destinationVC.selectedStory = record
-                       destinationVC.chatButton.isHidden = true
-                   }
-               })
-           }
-       }
-
-   }
-
-
-
-
         storyView.isHidden = false
-        blurView.isHidden = false
-        messageInputBar.isUserInteractionEnabled = false
-        guard let story = channelRecord["fromStory"] as? String else { return }
+         blurView.isHidden = false
+         messageInputBar.isUserInteractionEnabled = false
+         guard let story = channelRecord["fromStory"] as? String else { return }
 
-        //let vc = try! StoryScreen.initializeFromStoryboard()
+         //let vc = try! StoryScreen.initializeFromStoryboard()
 
-        self.spinner.startAnimating()
-        DAOManager.instance?.ckStories.get(storyFrom: story, completion: { (record) in
-            DispatchQueue.main.async {
-                self.spinner.stopAnimating()
-                self.spinner.removeFromSuperview()
-                if record != nil {
-                    guard let content = record!["content"] as? String  else {return}
-                    self.contentText.text = "Relato dessa conversa:\n\n" + content
-                }
+         self.spinner.startAnimating()
+         DAOManager.instance?.ckStories.get(storyFrom: story, completion: { (record) in
+             DispatchQueue.main.async {
+                 self.spinner.stopAnimating()
+                 self.spinner.removeFromSuperview()
+                 if record != nil {
+                     guard let content = record!["content"] as? String  else {return}
+                     self.contentText.text = "Relato dessa conversa:\n\n" + content
+                 }
 
 
-            }
-        })
-
+             }
+         })
     }
 
 
@@ -622,6 +594,7 @@ extension ChatViewController: UserRequester {
     func retrieved(meUser: MeUser?, meUserError: Error?) {}
 
     func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
+}
 
 extension ChatViewController: StoryboardInitializable{
     static var storyboardName: String {

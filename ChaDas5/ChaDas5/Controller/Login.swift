@@ -169,12 +169,12 @@ extension Login: UserRequester {
                     MeUser.instance.delete()
                     DaoPushNotifications.instance.delete()
                     
-                } else if meUser!.genderId != "Homem Cis" && meUser!.tutorial == "Done"{
-                    
+                } else if meUser!.genderId != "Homem Cis" && meUser!.name == "Default"{
+                    goTo(identifier: "Quiz")
+                }else if meUser!.genderId != "Homem Cis" && meUser!.tutorial == "Done"{
                     goTo(identifier: "Feed")
                 }else{
-                    
-                     goTo(identifier: "tutorial")
+                    goTo(identifier: "Tutorial")
                 }
                 
                 

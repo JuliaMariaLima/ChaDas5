@@ -134,12 +134,23 @@
                         <outlet property="passwordTextField" destination="8vj-HA-pqc" id="saZ-yT-gEs"/>
                         <segue destination="a8d-0r-HBW" kind="show" identifier="Feed" id="5O7-9n-hYD"/>
                         <segue destination="7rx-1x-NgJ" kind="show" identifier="cisMan" id="GWQ-57-OD6"/>
-                        <segue destination="t0c-zy-4a9" kind="show" identifier="tutorial" id="oZk-EO-T4f"/>
+                        <segue destination="t0c-zy-4a9" kind="show" identifier="Tutorial" id="oZk-EO-T4f"/>
+                        <segue destination="9Sz-8X-Dzu" kind="show" identifier="Quiz" id="60r-HL-tLG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qnn-f4-DXI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-271.19999999999999" y="108.39580209895054"/>
+        </scene>
+        <!--TeaQuiz-->
+        <scene sceneID="91Z-si-stM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TeaQuiz" id="9Sz-8X-Dzu" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="KOl-52-qgP"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dCm-ha-WEV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-453" y="576"/>
         </scene>
         <!--Main-->
         <scene sceneID="arh-qS-4r3">
