@@ -37,10 +37,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if MeUser.instance.name == "Default"{
                 storyboard = UIStoryboard(name: "TeaQuiz", bundle: nil)
             }else{
+<<<<<<< HEAD
                 if MeUser.instance.tutorial == "Done"{
                       storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
                 }else{
+=======
+                if MeUser.instance.tutorial != "Done"{
+                    print(MeUser.instance.tutorial)
+>>>>>>> Working on Tea Quiz
                       storyboard = UIStoryboard(name: "Tutorial", bundle: nil)
+                }else{
+                      storyboard = UIStoryboard(name: "Profile", bundle: nil)
                 }
             }
 
