@@ -22,7 +22,7 @@ class AnalysisLog {
     var questionableInputs: [String]
     
     init() {
-        self.user = MeUser.instance.email
+        self.user = /* MeUser.instance.email */ "juliaafr@outlook.com"
         self.status = .inAnalysis
         self.empathyResult = -1
         self.empathyAnswers = []

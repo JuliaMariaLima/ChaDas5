@@ -50,7 +50,6 @@ class YourTea: UIViewController, AKPickerViewDelegate, AKPickerViewDataSource{
         pickerTeas.dataSource = self
         continueButton.setTitle("Continuar", for: .normal)
         setContinueButton(enabled: false)
-        //Tea image
     }
     
     @IBAction func noButtonAction(_ sender: Any) {

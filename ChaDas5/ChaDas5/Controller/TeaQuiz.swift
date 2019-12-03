@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
+class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+
     
     var pickerView = UIPickerView()
     let toolBar = UIToolbar()
@@ -23,7 +24,7 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     
     var teaName:String = "Default"
     var answers = ["---","Discordo fortemente","Discordo", "Concordo", "Concordo Fortemente"]
-    var usersAnswers:[Int] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    var usersAnswers:[Int] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     var currentQuestion = 18
     var finished = false
     
@@ -110,9 +111,51 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     }
     
     func calculate(){
+        var sum = 0.0
+        let invert = [3, 4, 5, 7]
+        for value in invert {
+            let answer = self.usersAnswers[value]
+            switch answer {
+            case 4:
+                self.usersAnswers[value] = 1
+            case 3:
+                self.usersAnswers[value] = 2
+            case 2:
+                self.usersAnswers[value] = 3
+            case 1:
+                self.usersAnswers[value] = 4
+            default:
+                self.usersAnswers[value] = self.usersAnswers[value]
+            }
+        }
+        for value in self.usersAnswers {
+            sum += Double(value)
+        }
+        let result = sum/19
         
-        //change tea name
-        
+        if 0 < result && result < 1 {
+            self.teaName = "Chá Preto"
+        } else if 1 < result && result < 2 {
+            self.teaName = "Capim Limão"
+        } else if 2 < result && result < 3 {
+            self.teaName = "Hibisco"
+        } else if 3.1 < result && result < 3.4 {
+            self.teaName = "Frutas Vermelhas"
+        } else if 3.4 < result && result < 3.7 {
+            self.teaName = "Erva Doce"
+        } else {
+            self.teaName = "Camomila"
+        }
+        performSegue(withIdentifier: "yourTea", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "yourTea" {
+            debugPrint("go to Story")
+            if let destinationVC = segue.destination as? YourTea {
+                destinationVC.yourTeaName = self.teaName
+            }
+        }
         
     }
     
@@ -121,8 +164,10 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     @IBAction func nextButtonAction(_ sender: Any) {
         self.usersAnswers[currentQuestion - 1] = getAnswer(with: answerField.text ?? "")
         if finished {
+            let analysisLog = AnalysisLog()
+            analysisLog.empathyAnswers = self.usersAnswers
+//            DAOManager.instance?.ckAnalysisLog.save(analysis: analysisLog, with: self)
             calculate()
-            //mandar o cha pra outra tela e fazer o segue
         } else {
             print(currentQuestion)
             setNextButton(enabled: false)
@@ -141,6 +186,7 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
         
         currentQuestion += 1
         self.questionField.text = getQuestionContent(on: currentQuestion)
+//        self.numberLabel = currentQuestion
         if currentQuestion == questions.count {
             nextButton.setTitle("Pronto", for: .normal)
             self.finished = true
@@ -204,4 +250,33 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
         "Eu sou bom em antecipar o que alguém irá fazer.",
         "Eu costumo me envolver emocionalmente com os problemas dos meus amigos."
     ]
+}
+
+extension TeaQuiz: AnalysisLogProtocol {
+    
+    func createdAnalysisLog() {
+        debugPrint("created")
+        
+    }
+    
+    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
+        
+    }
+    
+    func updatedAnalysisLog() {
+        
+    }
+    
+    func createdAnalysisLog(with error: Error) {
+        debugPrint(error.localizedDescription)
+    }
+    
+    func retrievedAnalysisLog(with error: Error) {
+        
+    }
+    
+    func updatedAnalysisLog(with error: Error) {
+        
+    }
+    
 }
