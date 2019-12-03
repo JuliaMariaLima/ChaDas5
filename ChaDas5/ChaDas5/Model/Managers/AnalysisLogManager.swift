@@ -94,6 +94,7 @@ class AnalysisLogManager {
                 _ = AnalysisLog(from: (results?.first)!) { (analysis) in
                     if analysis == nil {
                         // error handling
+                        debugPrint(#function, "error:", error!)
                     } else {
                         manager.retrievedAnalysisLog(with: analysis!)
                     }
@@ -150,7 +151,7 @@ class AnalysisLogManager {
     
     func updateEmpathyAnswers(new answers: [Int], on log:CKRecord, with manager: AnalysisLogProtocol, hasCompletion: Bool ) {
         // check if empty
-        guard let currentAnswers = log["empathyAnswers"] as? [Int] else {
+        guard let currentAnswers = log["empathyAnswersInt"] as? [Int] else {
             return
             
         }
@@ -161,7 +162,7 @@ class AnalysisLogManager {
         if newAnswers.count >= 22 {
             debugPrint("more answers than expected")
         }
-        log.setObject(newAnswers as __CKRecordObjCValue, forKey: "empathyAnswers")
+        log.setObject(newAnswers as __CKRecordObjCValue, forKey: "empathyAnswersInt")
         if hasCompletion {
             updateAnalysisLog(on: log, with: manager)
         }
@@ -181,13 +182,24 @@ class AnalysisLogManager {
     }
     
     func updateAnalysisLog(on log:CKRecord, with manager: AnalysisLogProtocol) {
-        self.database.save(log) { (record, error) in
-            if error == nil && record != nil {
-                manager.updatedAnalysisLog()
-            } else if error != nil {
-                manager.updatedAnalysisLog(with: error!)
+        let predicate = NSPredicate(format: "user = %@", MeUser.instance.email)
+        let query = CKQuery(recordType: "AnalysisLog", predicate: predicate)
+        self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+            if error != nil {
+                debugPrint(error!.localizedDescription)
+                return
             }
-        }
+            if (results?.count)! > 0 {
+                self.database.save((results?.first!)!) { (record, error) in
+                    if error != nil {
+                        manager.updatedAnalysisLog(with: error!)
+                    } else if record != nil {
+                        manager.updatedAnalysisLog()
+                    }
+                }
+                return
+            }
+        })
     }
     
     func classifyInput(with input:String, on date:String, with manager: AnalysisLogProtocol) {
@@ -207,16 +219,14 @@ class AnalysisLogManager {
     
     
     func calculateEmpathy(on log: CKRecord, with manager: AnalysisLogProtocol) {
-        guard let answers = log["empathyAnswers"] as? [Int] else { return }
-        // fix order
-        let invertAnswersFor = [3, 4, 5, 7, 11, 22]
+        guard let answers = log["empathyAnswersInt"] as? [Int] else { return }
+        // error: answers getting just the first
+        print(answers)
         var sum = 0.0
-        for i in answers {
-            if invertAnswersFor.contains(i+1) {
-                sum = sum + invert(value: answers[i])
-            } else {
-                sum = sum + Double(answers[i])
-            }
+        var invertedAnswers = answers
+        invertedAnswers[invertedAnswers.count - 1] = Int(invert(value: answers.last!))
+        for i in invertedAnswers {
+                sum = sum + Double(invertedAnswers[0])
         }
         self.updateEmpathyResult(new: sum/22, on: log, with: manager, hasCompletion: true)
         
@@ -224,7 +234,7 @@ class AnalysisLogManager {
     
     func invert(value:Int) -> Double {
         let invert = [4, 3, 2, 1]
-        return Double(invert[value - 1])
+        return Double(invert[value])
     }
     
     

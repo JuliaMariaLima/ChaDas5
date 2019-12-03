@@ -18,14 +18,14 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     
     @IBOutlet weak var answerField: UITextField!
     @IBOutlet weak var questionField: UILabel!
-    @IBOutlet weak var numberLabel: NSLayoutConstraint!
+    @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     
     
     var teaName:String = "Default"
     var answers = ["---","Discordo fortemente","Discordo", "Concordo", "Concordo Fortemente"]
     var usersAnswers:[Int] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    var currentQuestion = 18
+    var currentQuestion = 1
     var finished = false
     
     @objc func answersLabelTarget1(textField: UITextField) {
@@ -164,10 +164,7 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     @IBAction func nextButtonAction(_ sender: Any) {
         self.usersAnswers[currentQuestion - 1] = getAnswer(with: answerField.text ?? "")
         if finished {
-            let analysisLog = AnalysisLog()
-            analysisLog.empathyAnswers = self.usersAnswers
-//            DAOManager.instance?.ckAnalysisLog.save(analysis: analysisLog, with: self)
-            calculate()
+            DAOManager.instance?.ckAnalysisLog.retrieveAnalysisLog(with: self)
         } else {
             print(currentQuestion)
             setNextButton(enabled: false)
@@ -183,10 +180,9 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     }
     
     func handleQuestions() {
-        
         currentQuestion += 1
         self.questionField.text = getQuestionContent(on: currentQuestion)
-//        self.numberLabel = currentQuestion
+        self.numberLabel.text = String(currentQuestion)
         if currentQuestion == questions.count {
             nextButton.setTitle("Pronto", for: .normal)
             self.finished = true
@@ -259,12 +255,14 @@ extension TeaQuiz: AnalysisLogProtocol {
         
     }
     
+    // check
     func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
-        
+        DAOManager.instance?.ckAnalysisLog.updateEmpathyAnswers(new: self.usersAnswers, on: analysisLog.asCKRecord, with: self, hasCompletion: true)
+        calculate()
     }
     
     func updatedAnalysisLog() {
-        
+        debugPrint("saved")
     }
     
     func createdAnalysisLog(with error: Error) {
@@ -272,11 +270,11 @@ extension TeaQuiz: AnalysisLogProtocol {
     }
     
     func retrievedAnalysisLog(with error: Error) {
-        
+        debugPrint(error.localizedDescription)
     }
     
     func updatedAnalysisLog(with error: Error) {
-        
+        debugPrint(error.localizedDescription)
     }
     
 }

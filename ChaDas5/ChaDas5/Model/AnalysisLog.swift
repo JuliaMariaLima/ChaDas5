@@ -22,7 +22,7 @@ class AnalysisLog {
     var questionableInputs: [String]
     
     init() {
-        self.user = /* MeUser.instance.email */ "juliaafr@outlook.com"
+        self.user = MeUser.instance.email
         self.status = .inAnalysis
         self.empathyResult = -1
         self.empathyAnswers = []
@@ -33,20 +33,47 @@ class AnalysisLog {
     }
     
     init?(from record:CKRecord, completion: @escaping (AnalysisLog?) -> Void) {
-        guard let recordStatus = record["status"] as? String,
-              let recordEmpathyResult   = record["empathyResult"] as? Double,
-              let recordInputs   = record["inputs"] as? Int,
-              let recordDateOfEntry     = record["dateOfEntry"] as? String,
-              let recordDateOfLastInput = record["dateOfLastInteraction"] as? String,
-              let recordEmpathyAnswers = record["empathyAnswers"] as? [Int],
-              let recordQuestionableInputs    = record["questionableInputs"] as? [String]
+        debugPrint(record.description)
+        guard let recordStatus          = record["status"] as? String else {
+            debugPrint("error here")
+            fatalError()
+        }
+        if let recordEmpathyResult   = record["empathyResult"] as? Double {
+            debugPrint("error here")
+//            fatalError()
+            
+        }
+        guard let recordInputs          = record["inputs"] as? Int else {
+            debugPrint("error here")
+            fatalError()
+        }
+        guard let recordDateOfEntry     = record["dateOfEntry"] as? String else {
+            debugPrint("error here")
+            fatalError()
+        }
+        guard let recordDateOfLastInput = record["dateOfLastInteraction"] as? String else {
+            debugPrint("error here")
+            fatalError()
+        }
+        guard let recordEmpathyAnswers  = record["empathyAnswersInt"] as? [Int] else {
+            debugPrint("error here")
+            fatalError()
+        }
+        guard
+//            let recordStatus          = record["status"] as? String,
+//              let recordEmpathyResult   = record["empathyResult"] as? Double,
+//              let recordInputs          = record["inputs"] as? Int,
+//              let recordDateOfEntry     = record["dateOfEntry"] as? String,
+//              let recordDateOfLastInput = record["dateOfLastInteraction"] as? String,
+//              let recordEmpathyAnswers  = record["empathyAnswers"] as? [Int],
+              let recordQuestionableInputs = record["questionableInputs"] as? [String]
         else {
-            completion(nil)
+            fatalError()
             return nil
         }
         self.user = MeUser.instance.email
         self.status = .inAnalysis
-        self.empathyResult = recordEmpathyResult
+        self.empathyResult = 0
         self.dateOfEntry = recordDateOfEntry
         self.dateOfLastInteraction = recordDateOfLastInput
         self.empathyAnswers = recordEmpathyAnswers
@@ -64,7 +91,7 @@ class AnalysisLog {
         record.setObject(self.dateOfEntry as __CKRecordObjCValue, forKey: "dateOfEntry")
         record.setObject(self.dateOfEntry as __CKRecordObjCValue, forKey: "dateOfEntry")
         record.setObject(self.dateOfLastInteraction as __CKRecordObjCValue, forKey: "dateOfLastInteraction")
-        record.setObject(self.empathyAnswers as __CKRecordObjCValue, forKey: "empathyAnswers")
+        record.setObject(self.empathyAnswers as __CKRecordObjCValue, forKey: "empathyAnswersInt")
         record.setObject(self.questionableInputs as __CKRecordObjCValue, forKey: "questionableInputs")
         return record
     }
