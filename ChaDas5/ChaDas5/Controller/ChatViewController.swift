@@ -139,9 +139,9 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate {
         customReloadData()
         guard let currentChannel = self.channel else { return }
         dao.loadMessages(from: currentChannel, requester: self)
-        
+
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         scheduledTimerWithTimeInterval()
     }
@@ -169,26 +169,25 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate {
     // MARK: -  Actions
     @objc func teaAction(sender: UIButton!) {
         storyView.isHidden = false
-        blurView.isHidden = false
-        messageInputBar.isUserInteractionEnabled = false
-        guard let story = channelRecord["fromStory"] as? String else { return }
+         blurView.isHidden = false
+         messageInputBar.isUserInteractionEnabled = false
+         guard let story = channelRecord["fromStory"] as? String else { return }
 
-        //let vc = try! StoryScreen.initializeFromStoryboard()
+         //let vc = try! StoryScreen.initializeFromStoryboard()
 
-        self.spinner.startAnimating()
-        DAOManager.instance?.ckStories.get(storyFrom: story, completion: { (record) in
-            DispatchQueue.main.async {
-                self.spinner.stopAnimating()
-                self.spinner.removeFromSuperview()
-                if record != nil {
-                    guard let content = record!["content"] as? String  else {return}
-                    self.contentText.text = "Relato dessa conversa:\n\n" + content
-                }
+         self.spinner.startAnimating()
+         DAOManager.instance?.ckStories.get(storyFrom: story, completion: { (record) in
+             DispatchQueue.main.async {
+                 self.spinner.stopAnimating()
+                 self.spinner.removeFromSuperview()
+                 if record != nil {
+                     guard let content = record!["content"] as? String  else {return}
+                     self.contentText.text = "Relato dessa conversa:\n\n" + content
+                 }
 
 
-            }
-        })
-
+             }
+         })
     }
 
     @objc func buttonAction(sender: UIButton!) {
@@ -602,13 +601,13 @@ extension ChatViewController: MessagesDataSource {
             // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
         }
-    
+
         @objc func updateCounting() {
             guard let dao = dao else { return }
             guard let currentChannel = self.channel else { return }
             dao.loadMessages(from: currentChannel, requester: self)
         }
-    
+
 
     func customReloadData() {
         // FIXME: - Scroll to bottom not working

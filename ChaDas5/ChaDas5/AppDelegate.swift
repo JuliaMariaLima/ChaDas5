@@ -32,14 +32,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // first responder default
             self.window = UIWindow(frame: UIScreen.main.bounds)
 
-            // Change to Profile
-            var storyboard:UIStoryboard?
+            let storyboard:UIStoryboard?
 
-            if MeUser.instance.tutorial == "Done"{
-                  storyboard = UIStoryboard(name: "Profile", bundle: nil)
+            if MeUser.instance.name == "Default"{
+                storyboard = UIStoryboard(name: "TeaQuiz", bundle: nil)
             }else{
-                  storyboard = UIStoryboard(name: "Tutorial", bundle: nil)
+                if MeUser.instance.tutorial == "Done"{
+                      storyboard = UIStoryboard(name: "Profile", bundle: nil)
+                }else{
+                      storyboard = UIStoryboard(name: "Tutorial", bundle: nil)
+                }
             }
+
+
 
             let initialViewController = storyboard!.instantiateInitialViewController()
 

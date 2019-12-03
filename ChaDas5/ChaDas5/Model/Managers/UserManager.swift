@@ -172,6 +172,7 @@ class UserManager {
         })
     }
 
+
     func block(_ user: String, requester: UserRequester) {
         let predicateMe = NSPredicate(format: "email = %@", MeUser.instance.email)
         let queryMe = CKQuery(recordType: "User", predicate: predicateMe)
@@ -199,6 +200,7 @@ class UserManager {
             }
         }
     }
+
 
 
 
