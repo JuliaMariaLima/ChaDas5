@@ -60,6 +60,7 @@ class UserManager {
                         }
                         print("sucesso")
                         requester.saved(userRecord: record, userError: nil)
+                        try? MeUser.instance.save()
                         return
                     })
                 } else { // Há registro com o nome fornecido já salvo no CloudKit.
@@ -121,7 +122,7 @@ class UserManager {
               let blocked = meFromRecord["blocked"] as? [String],
               let tutorial = meFromRecord["tutorial"] as? String
               else { fatalError() }
-        let meUser = MeUser(name: name, email: email, password: password, genderId: genderId, tutorial: tutorial, birthDate: birthDate, blocked: blocked)
+        let meUser = MeUser(name: name, email: email, password: password, b: genderId, tutorial: tutorial, birthDate: birthDate, blocked: blocked)
         return meUser
     }
 
@@ -157,6 +158,7 @@ class UserManager {
             record.setObject(meUser.name as CKRecordValue?, forKey: "name")
             record.setObject(meUser.email as CKRecordValue?, forKey: "email")
             record.setObject(meUser.password as CKRecordValue?, forKey: "password")
+            record.setObject(meUser.tutorial as CKRecordValue?, forKey: "tutorial")
             // Salvar nome do CloudKit.
             self.database.save(record, completionHandler: {(record,error) -> Void in
 
@@ -167,6 +169,8 @@ class UserManager {
                 }
                 print("sucesso no upload")
                 requester.saved(userRecord: record, userError: nil)
+                try? MeUser.instance.save()
+                
                 return
             })
         })

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CloudKit
 
 class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -76,6 +77,8 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     
     override func viewDidLoad() {
         
+        
+//        print(MeUser.instance)
         pickerView = UIPickerView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: view.frame.width, height: 220.0)))
         view.addSubview(pickerView)
         pickerView.isHidden = true

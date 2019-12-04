@@ -265,35 +265,31 @@ class CreateNewAccount: UIViewController{
             createNewAccountButton.setTitle("Criar Conta", for: .normal)
             activityView.stopAnimating()
 
-
-            print("Entrou")
-
-
-            if (emailTextField.text?.contains("@"))!{
-                meUser = MeUser(name: "Default", email: emailTextField.text!, password: passwordTextField.text!, genderId: identification, tutorial: "Not done", birthDate: dateBirthTextField.text!, blocked: [" "])
+        } else if (emailTextField.text?.contains("@"))! {
+            
+            meUser = MeUser(name: "Default", email: emailTextField.text!, password: passwordTextField.text!, b: identification, tutorial: "Not done", birthDate: dateBirthTextField.text!, blocked: [" "])
 
                 DAOManager.instance?.ckUsers.save(newUser: meUser, requester: newAccountUserResquester)
 
-            } else {
-                let alert4 = UIAlertController(title: "", message: "O e-mail digitado não é válido", preferredStyle: UIAlertController.Style.alert)
-                           alert4.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                           alert4.view.tintColor = UIColor.buttonOrange
-
-                           self.present(alert4, animated: true, completion: nil)
-                           emailTextField.text = ""
-                           setcreateNewAccountButton(enabled: true)
-                           createNewAccountButton.setTitle("Criar Conta", for: .normal)
-                           activityView.stopAnimating()
-
-            }
-        } else {
+        } else if passwordTextField.text!.count < 8 {
 
             let alert5 = UIAlertController(title: "", message: "Reveja a sua senha, ela tem que ter no mínimo 8 caracteres", preferredStyle: UIAlertController.Style.alert)
             alert5.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             alert5.view.tintColor = UIColor.buttonOrange
             self.present(alert5, animated: true, completion: nil)
-            passwordTextField.text = ""
-            passwordConfirmationTextField.text = ""
+            self.passwordTextField.text = ""
+            self.passwordConfirmationTextField.text = ""
+            self.setcreateNewAccountButton(enabled: true)
+            self.createNewAccountButton.setTitle("Criar Conta", for: .normal)
+            self.activityView.stopAnimating()
+
+        } else {
+            let alert4 = UIAlertController(title: "", message: "O e-mail digitado não é válido", preferredStyle: UIAlertController.Style.alert)
+            alert4.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            alert4.view.tintColor = UIColor.buttonOrange
+            
+            self.present(alert4, animated: true, completion: nil)
+            emailTextField.text = ""
             setcreateNewAccountButton(enabled: true)
             createNewAccountButton.setTitle("Criar Conta", for: .normal)
             activityView.stopAnimating()
@@ -445,6 +441,7 @@ extension CreateNewAccount: UserRequester {
                 } else{
                     goTo(identifier: "otherGroup")
                     DaoPushNotifications.instance.registerChannelNotifications()
+                    MeUser.instance = self.meUser
                     // check
 //                    setUpAnalysis()
                 }
@@ -477,7 +474,7 @@ extension CreateNewAccount: UserRequester {
 //    func setUpAnalysis() {
 //        DAOManager.instance?.ckAnalysisLog.checkAnalysisLog(completion: { (exists) in
 //            if !exists! {
-//                DAOManager.instance?.ckAnalysisLog.createAnalysisLog(with: self)
+//                DAOManager.instance?.ckAnalysisLog.setUpAnalysisLog(with: self)
 //            }
 //        })
 //    }

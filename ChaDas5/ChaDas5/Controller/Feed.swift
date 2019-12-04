@@ -45,7 +45,6 @@ class Feed: UIViewController, UITextFieldDelegate, StoryManagerProtocol {
     
     // MARK: -  View Configurations
     override func viewDidLoad() {
-        
         //table view setting
         self.feedTableView.separatorStyle = .none
         

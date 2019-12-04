@@ -26,7 +26,7 @@ class MyStoriesManager {
     func loadMyStories(requester:StoryManagerProtocol) {
         var activeStories: [CKRecord] = []
         var nonActiveStories: [CKRecord] = []
-        let predicate = NSPredicate(format: "email = %@", MeUser.instance.email)
+        let predicate = NSPredicate(format: "author = %@", MeUser.instance.email)
         let query = CKQuery(recordType: "Story", predicate: predicate)
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             if error != nil {

@@ -10,6 +10,7 @@ import Foundation
 import CloudKit
 
 class MeUser: Codable {
+    
     static var instance: MeUser!
     var password: String
     var name: String
@@ -24,7 +25,7 @@ class MeUser: Codable {
     
     init(name: String = "",
          email: String = "",
-         password: String = "",
+         password: String = "",b
          genderId: String = "",
          tutorial: String = "",
          birthDate: String = "",

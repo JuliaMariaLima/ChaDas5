@@ -20,6 +20,7 @@
 		158069902332E00D00C458FE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698F2332E00D00C458FE /* Extensions.swift */; };
 		1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588D7B121E7AEB000136083 /* MessagesManager.swift */; };
 		158DBDB721CAD40100C9888F /* StoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158DBDB621CAD40100C9888F /* StoryManager.swift */; };
+		15A89B92239765BB009C1B20 /* CreateNewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A89B91239765BB009C1B20 /* CreateNewAccount.swift */; };
 		15AEA6162393AAC70047D0B9 /* PreChatBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AEA6152393AAC70047D0B9 /* PreChatBot.swift */; };
 		15DBC6E42395805D008241F4 /* EmpathyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DBC6E32395805D008241F4 /* EmpathyTest.swift */; };
 		15E402312388758600A50D70 /* AnalysisLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E402302388758600A50D70 /* AnalysisLogManager.swift */; };
@@ -47,7 +48,6 @@
 		9A4E542D21AF46000033FEBF /* Informations.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E542C21AF46000033FEBF /* Informations.storyboard */; };
 		9A4E542F21AF4B160033FEBF /* NewStoryScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E542E21AF4B160033FEBF /* NewStoryScreen.storyboard */; };
 		9A4E543121AF4C490033FEBF /* StoryScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E543021AF4C490033FEBF /* StoryScreen.storyboard */; };
-		9A4E543321B0065A0033FEBF /* CreateNewAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E543221B0065A0033FEBF /* CreateNewAccount.swift */; };
 		9A4E543521B0066F0033FEBF /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E543421B0066F0033FEBF /* Login.swift */; };
 		9A4E543721B006870033FEBF /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E543621B006870033FEBF /* Profile.swift */; };
 		9A4E543921B0069B0033FEBF /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E543821B0069B0033FEBF /* Feed.swift */; };
@@ -117,6 +117,7 @@
 		1580698F2332E00D00C458FE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1588D7B121E7AEB000136083 /* MessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesManager.swift; sourceTree = "<group>"; };
 		158DBDB621CAD40100C9888F /* StoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
+		15A89B91239765BB009C1B20 /* CreateNewAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewAccount.swift; sourceTree = "<group>"; };
 		15AEA6152393AAC70047D0B9 /* PreChatBot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreChatBot.swift; sourceTree = "<group>"; };
 		15BC14A021C811D500768231 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15DBC6E32395805D008241F4 /* EmpathyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpathyTest.swift; sourceTree = "<group>"; };
@@ -148,7 +149,6 @@
 		9A4E542C21AF46000033FEBF /* Informations.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Informations.storyboard; sourceTree = "<group>"; };
 		9A4E542E21AF4B160033FEBF /* NewStoryScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewStoryScreen.storyboard; sourceTree = "<group>"; };
 		9A4E543021AF4C490033FEBF /* StoryScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StoryScreen.storyboard; sourceTree = "<group>"; };
-		9A4E543221B0065A0033FEBF /* CreateNewAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewAccount.swift; sourceTree = "<group>"; };
 		9A4E543421B0066F0033FEBF /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		9A4E543621B006870033FEBF /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		9A4E543821B0069B0033FEBF /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
@@ -290,10 +290,10 @@
 			isa = PBXGroup;
 			children = (
 				E23901B421CADDA8006B3CF3 /* SplashScreen.swift */,
-				9A4E543221B0065A0033FEBF /* CreateNewAccount.swift */,
 				E287177D2370C58B00C6BB6F /* StoryScreen.swift */,
 				9A4E543421B0066F0033FEBF /* Login.swift */,
 				9A4E543821B0069B0033FEBF /* Feed.swift */,
+				15A89B91239765BB009C1B20 /* CreateNewAccount.swift */,
 				9A4E543E21B006E60033FEBF /* NewStoryScreen.swift */,
 				9A4E543621B006870033FEBF /* Profile.swift */,
 				9A82FD8621E5030400566AE1 /* ChooseYourTeaScreen.swift */,
@@ -584,7 +584,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A4E543321B0065A0033FEBF /* CreateNewAccount.swift in Sources */,
 				E233AB8E237C7F4E00464E03 /* emotions.mlmodel in Sources */,
 				E200BFDB2384B6EF0050247C /* TermsAndConditions.swift in Sources */,
 				E26F83C5236757B600681771 /* GenderInformations.swift in Sources */,
@@ -621,6 +620,7 @@
 				E2C3A6B6236B4F67006A7D7D /* AKPickerView.swift in Sources */,
 				1559C96F238F2DF10003A9EE /* ChatBotViewController.swift in Sources */,
 				E28284E62339719500137924 /* UIView+Additions.swift in Sources */,
+				15A89B92239765BB009C1B20 /* CreateNewAccount.swift in Sources */,
 				9A1B11CE21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift in Sources */,
 				9A76AF9021C04B80003ED02C /* ProfileTableViewCell.swift in Sources */,
 				1580698A2332AA4100C458FE /* MeUser.swift in Sources */,
@@ -805,7 +805,7 @@
 				CODE_SIGN_ENTITLEMENTS = ChaDas5/ChaDas5.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 32H23754C8;
 				INFOPLIST_FILE = "$(SRCROOT)/ChaDas5/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -830,7 +830,7 @@
 				CODE_SIGN_ENTITLEMENTS = ChaDas5/ChaDas5.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 32H23754C8;
 				INFOPLIST_FILE = "$(SRCROOT)/ChaDas5/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

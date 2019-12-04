@@ -18,7 +18,7 @@ class YourTea: UIViewController, AKPickerViewDelegate, AKPickerViewDataSource{
     let allTeas = DAOManager.instance?.ckUsers.teas
 
     var userRequester: UserRequester!
-    var meUser: MeUser!
+//    var meUser: MeUser!
 
     @IBOutlet weak var teaImage: UIImageView!
     @IBOutlet weak var noButton: UIButton!
@@ -56,6 +56,8 @@ class YourTea: UIViewController, AKPickerViewDelegate, AKPickerViewDataSource{
     }
 
     override func viewDidLoad() {
+        
+//        MeUser.instance = self.meUser
         pickerTeas.isHidden = true
         nextButton.isHidden = true
         chooseYourTeaLabel.isHidden = true
@@ -117,9 +119,8 @@ class YourTea: UIViewController, AKPickerViewDelegate, AKPickerViewDataSource{
 
         userRequester = self
 
-         meUser = MeUser(name: yourTeaName, email: MeUser.instance.email, password: MeUser.instance.password, blocked: MeUser.instance.blocked)
-         DAOManager.instance?.ckUsers.edit(meUser: meUser, requester: userRequester)
-         MeUser.instance = meUser
+         MeUser.instance.name = yourTeaName
+         DAOManager.instance?.ckUsers.save(newUser: MeUser.instance, requester: userRequester)
          do {
           try MeUser.instance.save()
           try MeUser.instance.load()
@@ -165,7 +166,7 @@ extension YourTea: UserRequester {
         if userRecord != nil {
             print("user novo salvou")
             do{
-                try meUser.save()
+                try MeUser.instance.save()
                 print("salvouuuuuuuuuuuuu")
             } catch {
                 let alert = UIAlertController(title: "", message: "Ocorreu um erro inesperado", preferredStyle: UIAlertController.Style.alert)

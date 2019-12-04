@@ -33,8 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.window = UIWindow(frame: UIScreen.main.bounds)
 
             let storyboard:UIStoryboard?
-
-            if MeUser.instance.name == "Default"{
+            print(MeUser.instance.email)
+            if MeUser.instance.name == "Default" {
                 storyboard = UIStoryboard(name: "TeaQuiz", bundle: nil)
             }else{
                 if MeUser.instance.tutorial != "Done"{
