@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xpR-60-dBa">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -213,7 +213,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnc-Y2-ASZ">
                                 <rect key="frame" x="69.666666666666686" y="212.66666666666663" width="275" height="466"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Teste" translatesAutoresizingMaskIntoConstraints="NO" id="kPf-fb-9rf">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Tava conversando com um amigo numa festa e ele começou a me agarrar, fiquei com medo do que ele poderia fazer ali. " translatesAutoresizingMaskIntoConstraints="NO" id="kPf-fb-9rf">
                                         <rect key="frame" x="25" y="8" width="224" height="425"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="224" id="pfD-YK-zHr"/>
@@ -255,6 +255,9 @@
                                     <constraint firstAttribute="width" constant="60" id="by6-lj-Zlw"/>
                                 </constraints>
                                 <state key="normal" image="chatIcon"/>
+                                <connections>
+                                    <action selector="goToBot:" destination="Nbk-3y-bsc" eventType="touchUpInside" id="a2G-fA-CTb"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorialArrow" translatesAutoresizingMaskIntoConstraints="NO" id="Kzp-Ts-S7q">
                                 <rect key="frame" x="216" y="738" width="173" height="82"/>

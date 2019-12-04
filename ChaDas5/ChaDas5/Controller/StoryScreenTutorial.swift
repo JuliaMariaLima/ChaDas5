@@ -48,5 +48,12 @@ class StoryScreenTutorial: UIViewController, UITextFieldDelegate {
         chatBotButton.layer.add(pulse, forKey: "pulseAnimation")
     }
 
-
+    @IBAction func goToBot(_ sender: Any) {
+        DispatchQueue.main.async {
+            let vc = ChatBotViewController()
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
 }

@@ -35,12 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let storyboard:UIStoryboard?
 
             if MeUser.instance.name == "Default"{
-                storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
+                storyboard = UIStoryboard(name: "TeaQuiz", bundle: nil)
             }else{
                 if MeUser.instance.tutorial != "Done"{
                       storyboard = UIStoryboard(name: "Tutorial", bundle: nil)
-                }else{
-                      storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
+                } else {
+                      storyboard = UIStoryboard(name: "Profile", bundle: nil)
                 }
             }
 
@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.window = UIWindow(frame: UIScreen.main.bounds)
 
             // Change to SplashScreen
-            let storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
+            let storyboard = UIStoryboard(name: "SplashScreen", bundle: nil)
 
             let initialViewController = storyboard.instantiateInitialViewController()
             self.window?.rootViewController = initialViewController

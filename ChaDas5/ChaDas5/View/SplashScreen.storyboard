@@ -1,84 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TNK-Yo-e59">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3ir-X5-7KO">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Splash Screen-->
-        <scene sceneID="by7-Gw-kk3">
+        <scene sceneID="8Oi-NH-V53">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="TNK-Yo-e59" customClass="SplashScreen" customModule="ChaDas5" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2Y9-WK-oaJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                <viewController modalPresentationStyle="fullScreen" id="3ir-X5-7KO" customClass="SplashScreen" customModule="ChaDas5" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VLO-Mu-bRK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AyU-iS-QKU">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SZN-gY-bcm">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" red="0.97254901959999995" green="0.80784313730000001" blue="0.62745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splashIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Raa-1C-V3k">
-                                <rect key="frame" x="67.666666666666686" y="306" width="240" height="200"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splashIcon" translatesAutoresizingMaskIntoConstraints="NO" id="D7e-x3-UzN">
+                                <rect key="frame" x="87" y="348" width="240" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="dZO-WS-2wL"/>
-                                    <constraint firstAttribute="width" constant="240" id="fdR-ud-W6r"/>
+                                    <constraint firstAttribute="height" constant="200" id="ehO-Pf-ROE"/>
+                                    <constraint firstAttribute="width" constant="240" id="eok-48-vrc"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="AyU-iS-QKU" firstAttribute="top" secondItem="2Y9-WK-oaJ" secondAttribute="top" id="2a9-9U-cDh"/>
-                            <constraint firstItem="AyU-iS-QKU" firstAttribute="trailing" secondItem="2Y9-WK-oaJ" secondAttribute="trailing" id="8ec-Eu-pJl"/>
-                            <constraint firstItem="AyU-iS-QKU" firstAttribute="leading" secondItem="2Y9-WK-oaJ" secondAttribute="leading" id="PgU-4P-DCf"/>
-                            <constraint firstItem="Raa-1C-V3k" firstAttribute="centerY" secondItem="2Y9-WK-oaJ" secondAttribute="centerY" id="UPv-Uh-Aw0"/>
-                            <constraint firstItem="AyU-iS-QKU" firstAttribute="bottom" secondItem="2Y9-WK-oaJ" secondAttribute="bottom" id="afp-f1-mfQ"/>
-                            <constraint firstItem="AyU-iS-QKU" firstAttribute="centerX" secondItem="2Y9-WK-oaJ" secondAttribute="centerX" id="dfu-bp-07f"/>
-                            <constraint firstItem="Raa-1C-V3k" firstAttribute="centerX" secondItem="2Y9-WK-oaJ" secondAttribute="centerX" id="sM3-lD-d5v"/>
+                            <constraint firstItem="SZN-gY-bcm" firstAttribute="leading" secondItem="VLO-Mu-bRK" secondAttribute="leading" id="6As-ue-DEK"/>
+                            <constraint firstItem="SZN-gY-bcm" firstAttribute="top" secondItem="VLO-Mu-bRK" secondAttribute="top" id="KMi-Dk-bcY"/>
+                            <constraint firstItem="SZN-gY-bcm" firstAttribute="centerX" secondItem="VLO-Mu-bRK" secondAttribute="centerX" id="L4V-3B-bfp"/>
+                            <constraint firstItem="D7e-x3-UzN" firstAttribute="centerY" secondItem="VLO-Mu-bRK" secondAttribute="centerY" id="R0A-Zi-sFf"/>
+                            <constraint firstItem="SZN-gY-bcm" firstAttribute="trailing" secondItem="VLO-Mu-bRK" secondAttribute="trailing" id="WbO-d5-pcO"/>
+                            <constraint firstItem="D7e-x3-UzN" firstAttribute="centerX" secondItem="VLO-Mu-bRK" secondAttribute="centerX" id="h3T-Ko-SpD"/>
+                            <constraint firstItem="SZN-gY-bcm" firstAttribute="bottom" secondItem="VLO-Mu-bRK" secondAttribute="bottom" id="vb4-TN-YVs"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="dCr-Zx-6SV"/>
+                        <viewLayoutGuide key="safeArea" id="Zcm-43-cX2"/>
                     </view>
                     <connections>
-                        <outlet property="splashImage" destination="Raa-1C-V3k" id="jiO-Lq-76D"/>
-                        <outlet property="splashView" destination="AyU-iS-QKU" id="AVF-Z2-uJJ"/>
-                        <segue destination="1N6-5B-4yK" kind="presentation" identifier="goToMain" animates="NO" id="hLT-xv-pwa"/>
-                        <segue destination="wdW-MZ-UaU" kind="show" identifier="profile" id="SqH-k1-aDk"/>
-                        <segue destination="Nxo-Os-bPE" kind="show" identifier="tutorial" id="heI-87-irR"/>
+                        <outlet property="splashImage" destination="D7e-x3-UzN" id="1rr-HD-kTm"/>
+                        <outlet property="splashView" destination="SZN-gY-bcm" id="buG-j3-5pU"/>
+                        <segue destination="Y6Y-EZ-VTo" kind="presentation" identifier="goToMain" animates="NO" id="t7B-ck-SOL"/>
+                        <segue destination="sL8-ML-55x" kind="show" identifier="profile" id="sWD-TV-L5y"/>
+                        <segue destination="ZKi-i2-xgx" kind="show" identifier="tutorial" id="516-1Q-RxR"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UlL-W6-xUi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eJa-Uv-yPY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-288.40579710144931" y="162.72321428571428"/>
         </scene>
         <!--Storyboard Reference-->
-        <scene sceneID="N2p-ey-8wp">
+        <scene sceneID="wKC-SW-iYq">
             <objects>
-                <viewControllerPlaceholder id="Nxo-Os-bPE" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="0Lk-hw-vUW"/>
+                <viewControllerPlaceholder id="ZKi-i2-xgx" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ycL-od-egw"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ua2-ME-ixF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="llL-Ga-rlr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="328" y="-117"/>
         </scene>
         <!--Profile-->
-        <scene sceneID="cFy-O5-PVB">
+        <scene sceneID="D6F-98-mhi">
             <objects>
-                <viewControllerPlaceholder storyboardName="Profile" id="wdW-MZ-UaU" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oFe-0x-8HT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Profile" id="sL8-ML-55x" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="zM5-8X-Nhi"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xtg-bh-33K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="322" y="-15"/>
         </scene>
         <!--Main-->
-        <scene sceneID="bzm-jS-99X">
+        <scene sceneID="AbW-L1-Og2">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="1N6-5B-4yK" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mVW-dO-HDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Main" id="Y6Y-EZ-VTo" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CID-8Z-9GB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="294" y="175"/>
         </scene>
     </scenes>
     <resources>
-        <image name="splashIcon" width="845" height="635.66668701171875"/>
+        <image name="splashIcon" width="845" height="635.5"/>
     </resources>
 </document>

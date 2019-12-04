@@ -16,7 +16,7 @@ class FeedTutorial: UIViewController, UITableViewDataSource, UITableViewDelegate
     var activityView:UIActivityIndicatorView!
     var xibCell:FeedTableViewCell?
     var selectedIndex:Int?
-    let content = "Teste"
+    let content = "Tava conversando com um amigo numa festa e ele começou a me agarrar, fiquei com medo do que ele poderia fazer ali."
     private let refreshControl = UIRefreshControl()
 
     //outlets
