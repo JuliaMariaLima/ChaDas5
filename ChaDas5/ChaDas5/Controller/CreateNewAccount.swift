@@ -446,7 +446,7 @@ extension CreateNewAccount: UserRequester {
                     goTo(identifier: "otherGroup")
                     DaoPushNotifications.instance.registerChannelNotifications()
                     // check
-                    setUpAnalysis()
+//                    setUpAnalysis()
                 }
             } catch {
                 DispatchQueue.main.async {
@@ -474,42 +474,42 @@ extension CreateNewAccount: UserRequester {
 
     func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
 
-    func setUpAnalysis() {
-        DAOManager.instance?.ckAnalysisLog.checkAnalysisLog(completion: { (exists) in
-            if !exists! {
-                DAOManager.instance?.ckAnalysisLog.setUpAnalysisLog(with: self)
-            }
-        })
-    }
+//    func setUpAnalysis() {
+//        DAOManager.instance?.ckAnalysisLog.checkAnalysisLog(completion: { (exists) in
+//            if !exists! {
+//                DAOManager.instance?.ckAnalysisLog.createAnalysisLog(with: self)
+//            }
+//        })
+//    }
 }
 
-// MARK: -  AnalysisLogProtocol Extention
-extension CreateNewAccount: AnalysisLogProtocol {
-
-    func createdAnalysisLog() {
-
-    }
-
-    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
-
-    }
-
-    func updatedAnalysisLog() {
-
-    }
-
-    func createdAnalysisLog(with error: Error) {
-
-    }
-
-    func retrievedAnalysisLog(with error: Error) {
-
-    }
-
-    func updatedAnalysisLog(with error: Error) {
-
-    }
-
-
-
-}
+//// MARK: -  AnalysisLogProtocol Extention
+//extension CreateNewAccount: AnalysisLogProtocol {
+//
+//    func createdAnalysisLog() {
+//
+//    }
+//
+//    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
+//
+//    }
+//
+//    func updatedAnalysisLog() {
+//
+//    }
+//
+//    func createdAnalysisLog(with error: Error) {
+//
+//    }
+//
+//    func retrievedAnalysisLog(with error: Error) {
+//
+//    }
+//
+//    func updatedAnalysisLog(with error: Error) {
+//
+//    }
+//
+//
+//
+//}

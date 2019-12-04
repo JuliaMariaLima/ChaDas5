@@ -164,7 +164,8 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     @IBAction func nextButtonAction(_ sender: Any) {
         self.usersAnswers[currentQuestion - 1] = getAnswer(with: answerField.text ?? "")
         if finished {
-            DAOManager.instance?.ckAnalysisLog.retrieveAnalysisLog(with: self)
+//            DAOManager.instance?.ckAnalysisLog.retrieveAnalysisLog(with: self)
+            calculate()
         } else {
             print(currentQuestion)
             setNextButton(enabled: false)
@@ -248,33 +249,33 @@ class TeaQuiz: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPi
     ]
 }
 
-extension TeaQuiz: AnalysisLogProtocol {
-    
-    func createdAnalysisLog() {
-        debugPrint("created")
-        
-    }
-    
-    // check
-    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
-        DAOManager.instance?.ckAnalysisLog.updateEmpathyAnswers(new: self.usersAnswers, on: analysisLog.asCKRecord, with: self, hasCompletion: true)
-        calculate()
-    }
-    
-    func updatedAnalysisLog() {
-        debugPrint("saved")
-    }
-    
-    func createdAnalysisLog(with error: Error) {
-        debugPrint(error.localizedDescription)
-    }
-    
-    func retrievedAnalysisLog(with error: Error) {
-        debugPrint(error.localizedDescription)
-    }
-    
-    func updatedAnalysisLog(with error: Error) {
-        debugPrint(error.localizedDescription)
-    }
-    
-}
+//extension TeaQuiz {
+//
+//    func createdAnalysisLog() {
+//        debugPrint("created")
+//
+//    }
+//
+//    // check
+//    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
+//        DAOManager.instance?.ckAnalysisLog.updateEmpathyAnswers(new: self.usersAnswers, on: analysisLog.asCKRecord, with: self, hasCompletion: true)
+//        calculate()
+//    }
+//
+//    func updatedAnalysisLog() {
+//        debugPrint("saved")
+//    }
+//
+//    func createdAnalysisLog(with error: Error) {
+//        debugPrint(error.localizedDescription)
+//    }
+//
+//    func retrievedAnalysisLog(with error: Error) {
+//        debugPrint(error.localizedDescription)
+//    }
+//
+//    func updatedAnalysisLog(with error: Error) {
+//        debugPrint(error.localizedDescription)
+//    }
+//
+//}

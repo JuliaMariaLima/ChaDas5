@@ -36,14 +36,14 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
         let yes = UIAlertAction(title: "Sim", style: .default, handler: { (action) -> Void in
             
             let story = Story(conteudo: self.newStoryTextView.text, gatilho: 5)
-            self.sendForAnalysis(input: story)
+//            self.sendForAnalysis(input: story)
             self.dismiss()
         })
         
         let no = UIAlertAction(title: "Não", style: .default, handler: { (action) -> Void in
                 
             let story = Story(conteudo: self.newStoryTextView.text, gatilho: 0)
-            self.sendForAnalysis(input: story)
+//            self.sendForAnalysis(input: story)
             self.dismiss()
             })
         
@@ -57,10 +57,10 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
         alert.view.tintColor = UIColor.buttonOrange
         
     }
-    
-    func sendForAnalysis(input: Story) {
-        DAOManager.instance?.ckAnalysisLog.classifyInput(with: input.content, on: input.date, with: self)
-    }
+//
+//    func sendForAnalysis(input: Story) {
+//        DAOManager.instance?.ckAnalysisLog.classifyInput(with: input.content, on: input.date, with: self)
+//    }
     
     @IBOutlet weak var newStoryTextView: UITextView!
     
@@ -78,34 +78,34 @@ class NewStoryScreen: UIViewController, UITextViewDelegate {
     
 }
 
-// MARK: -  Extentions
-
-// MARK: -  AnalysisLogProtocol extention
-extension NewStoryScreen: AnalysisLogProtocol {
-    
-    func createdAnalysisLog() {
-        
-    }
-    
-    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
-        
-    }
-    
-    func updatedAnalysisLog() {
-        debugPrint("successfully updated")
-    }
-    
-    func createdAnalysisLog(with error: Error) {
-        
-    }
-    
-    func retrievedAnalysisLog(with error: Error) {
-        
-    }
-    
-    func updatedAnalysisLog(with error: Error) {
-        debugPrint(error)
-    }
-    
-    
-}
+//// MARK: -  Extentions
+//
+//// MARK: -  AnalysisLogProtocol extention
+//extension NewStoryScreen: AnalysisLogProtocol {
+//
+//    func createdAnalysisLog() {
+//
+//    }
+//
+//    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
+//
+//    }
+//
+//    func updatedAnalysisLog() {
+//        debugPrint("successfully updated")
+//    }
+//
+//    func createdAnalysisLog(with error: Error) {
+//
+//    }
+//
+//    func retrievedAnalysisLog(with error: Error) {
+//
+//    }
+//
+//    func updatedAnalysisLog(with error: Error) {
+//        debugPrint(error)
+//    }
+//
+//
+//}

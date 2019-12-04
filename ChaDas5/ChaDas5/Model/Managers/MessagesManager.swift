@@ -77,7 +77,7 @@ class MessagesManager {
                 let _ = Message(from: record!) { (message, error) in
                     if error == nil && message != nil {
                         DAOManager.instance?.ckChannels.updateLastMessageDate(with: message!, on: message!.onChannel)
-                        DAOManager.instance?.ckAnalysisLog.classifyInput(with: message!.content, on: message!.sentDate.keyString, with: self)
+//                        DAOManager.instance?.ckAnalysisLog.classifyInput(with: message!.content, on: message!.sentDate.keyString, with: self)
                         requester.messageSaved()
                     }
                 }
@@ -164,33 +164,33 @@ class MessagesManager {
 
 }
 
-extension MessagesManager: AnalysisLogProtocol {
-    
-    
-    func createdAnalysisLog() {
-        
-    }
-    
-    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
-        
-    }
-    
-    func updatedAnalysisLog() {
-        
-    }
-    
-    func createdAnalysisLog(with error: Error) {
-        
-    }
-    
-    func retrievedAnalysisLog(with error: Error) {
-        
-    }
-    
-    func updatedAnalysisLog(with error: Error) {
-        debugPrint("successfully updated")
-    }
-    
-    
-    
-}
+//extension MessagesManager: AnalysisLogProtocol {
+//    
+//    
+//    func createdAnalysisLog() {
+//        
+//    }
+//    
+//    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
+//        
+//    }
+//    
+//    func updatedAnalysisLog() {
+//        
+//    }
+//    
+//    func createdAnalysisLog(with error: Error) {
+//        
+//    }
+//    
+//    func retrievedAnalysisLog(with error: Error) {
+//        
+//    }
+//    
+//    func updatedAnalysisLog(with error: Error) {
+//        debugPrint("successfully updated")
+//    }
+//    
+//    
+//    
+//}

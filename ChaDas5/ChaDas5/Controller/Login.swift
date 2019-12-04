@@ -143,7 +143,7 @@ class Login: UIViewController {
 // MARK: -  Extentions
 
 // MARK: -  UserRequester and AnalysisLogProtocol extentions
-extension Login: UserRequester, AnalysisLogProtocol {
+extension Login: UserRequester {
 
     func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
 
@@ -208,33 +208,33 @@ extension Login: UserRequester, AnalysisLogProtocol {
     }
 
     func retrieved(userArray: [User]?, userError: Error?) {}
-
-    // MARK: -  Analysis Log Protocol Stubs
-    func setUpAnalysis() {
-        DAOManager.instance?.ckAnalysisLog.checkAnalysisLog(completion: { (exists) in
-            if !exists! {
-                DAOManager.instance?.ckAnalysisLog.setUpAnalysisLog(with: self)
-            }
-        })
-    }
-
-    func createdAnalysisLog() {
-        debugPrint("successfully created")
-    }
-
-    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
-    }
-
-    func updatedAnalysisLog() {
-    }
-
-    func createdAnalysisLog(with error: Error) {
-    }
-
-    func retrievedAnalysisLog(with error: Error) {
-    }
-
-    func updatedAnalysisLog(with error: Error) {
-    }
+//
+////    // MARK: -  Analysis Log Protocol Stubs
+////    func setUpAnalysis() {
+////        DAOManager.instance?.ckAnalysisLog.checkAnalysisLog(completion: { (exists) in
+////            if !exists! {
+////                DAOManager.instance?.ckAnalysisLog.createAnalysisLog(with: self)
+////            }
+////        })
+////    }
+//
+//    func createdAnalysisLog() {
+//        debugPrint("successfully created")
+//    }
+//
+//    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
+//    }
+//
+//    func updatedAnalysisLog() {
+//    }
+//
+//    func createdAnalysisLog(with error: Error) {
+//    }
+//
+//    func retrievedAnalysisLog(with error: Error) {
+//    }
+//
+//    func updatedAnalysisLog(with error: Error) {
+//    }
 
 }

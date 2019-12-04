@@ -13,7 +13,7 @@ import MessageKit
 import InputBarAccessoryView
 
 // MARK: -  Declaration
-class ChatBotViewController: MessagesViewController, UIPickerViewDelegate, UIPickerViewDataSource, AnalysisLogProtocol {
+class ChatBotViewController: MessagesViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     
     var pickerView = UIPickerView()
@@ -151,7 +151,7 @@ class ChatBotViewController: MessagesViewController, UIPickerViewDelegate, UIPic
     
     func talkToBot(with text:String) {
         save(text)
-        self.saveInAnalysisLog()
+//        self.saveInAnalysisLog()
         let request = ApiAI.shared().textRequest()
         if text != "" {
             request?.query = text
@@ -229,39 +229,39 @@ class ChatBotViewController: MessagesViewController, UIPickerViewDelegate, UIPic
         
     }
     
-    func saveInAnalysisLog() {
-        debugPrint("saving...")
-        let dao = DAOManager.instance?.ckAnalysisLog
-        dao?.retrieveAnalysisLog(with: self)
-    }
+//    func saveInAnalysisLog() {
+//        debugPrint("saving...")
+//        let dao = DAOManager.instance?.ckAnalysisLog
+//        dao?.retrieveAnalysisLog(with: self)
+//    }
+//
+//
+//    func createdAnalysisLog() {
+//
+//    }
+//
+//    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
+//        let currentAnswers = analysisLog.empathyAnswers
+//        let new = currentAnswers + userAnswers
+//        DAOManager.instance?.ckAnalysisLog.updateEmpathyAnswers(new: new, on: analysisLog.asCKRecord, with: self, hasCompletion: true)
+//        DAOManager.instance?.ckAnalysisLog.calculateEmpathy(on: analysisLog.asCKRecord, with: self)
+//    }
     
-    
-    func createdAnalysisLog() {
-        
-    }
-    
-    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
-        let currentAnswers = analysisLog.empathyAnswers
-        let new = currentAnswers + userAnswers
-        DAOManager.instance?.ckAnalysisLog.updateEmpathyAnswers(new: new, on: analysisLog.asCKRecord, with: self, hasCompletion: true)
-        DAOManager.instance?.ckAnalysisLog.calculateEmpathy(on: analysisLog.asCKRecord, with: self)
-    }
-    
-    func updatedAnalysisLog() {
-        debugPrint("saved")
-    }
-    
-    func createdAnalysisLog(with error: Error) {
-        
-    }
-    
-    func retrievedAnalysisLog(with error: Error) {
-        debugPrint(error.localizedDescription)
-    }
-    
-    func updatedAnalysisLog(with error: Error) {
-        debugPrint(error.localizedDescription)
-    }
+//    func updatedAnalysisLog() {
+//        debugPrint("saved")
+//    }
+//
+//    func createdAnalysisLog(with error: Error) {
+//
+//    }
+//
+//    func retrievedAnalysisLog(with error: Error) {
+//        debugPrint(error.localizedDescription)
+//    }
+//
+//    func updatedAnalysisLog(with error: Error) {
+//        debugPrint(error.localizedDescription)
+//    }
     
     
 }
