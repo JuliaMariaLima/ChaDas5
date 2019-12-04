@@ -9,6 +9,7 @@ target 'ChaDas5' do
   # Pods for ChaDas5
 
   pod 'MessageKit'
+  pod 'ApiAI'
   post_install do |installer|
       installer.pods_project.targets.each do |target|
           if target.name == 'MessageKit'

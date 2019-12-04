@@ -8,6 +8,7 @@
 
 import UIKit
 
+// MARK: -  Declaration
 @IBDesignable
 class CustomSegmentedContrl: UIControl {
     
@@ -15,8 +16,7 @@ class CustomSegmentedContrl: UIControl {
     var selector: UIView!
     var selectedSegmentIndex = 0
     
-    
-    
+    // MARK: -  View configurations
     @IBInspectable var borderWidth: CGFloat = 0 {
         
         didSet {
@@ -69,6 +69,7 @@ class CustomSegmentedContrl: UIControl {
         }
     }
     
+    // MARK: -  Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         updateView()
@@ -96,20 +97,14 @@ class CustomSegmentedContrl: UIControl {
         subviews.forEach { (view) in
             view.removeFromSuperview()
         }
-        
-        
-        
-        
         let buttonTitles = commaSeperatedButtonTitles.components(separatedBy: ",")
-        
         for buttonTitle in buttonTitles {
-            
             let button = UIButton.init(type: .system)
             button.setTitle(buttonTitle, for: .normal)
             button.setTitleColor(textColor, for: .normal)
             button.addTarget(self, action: #selector(buttonTapped(button:)), for: .touchUpInside)
             buttons.append(button)
-//            button.setTitleColor(button.isSelected ? UIColor.gray : selectorTextColor, for: .normal)
+            //            button.setTitleColor(button.isSelected ? UIColor.gray : selectorTextColor, for: .normal)
         }
         
         buttons[0].setTitleColor(selectorTextColor, for: .normal)
@@ -138,7 +133,7 @@ class CustomSegmentedContrl: UIControl {
         stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         stackView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         stackView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-
+        
         
     }
     
@@ -148,73 +143,56 @@ class CustomSegmentedContrl: UIControl {
         
         // Drawing code
         
-       // layer.cornerRadius = frame.height/2
+        // layer.cornerRadius = frame.height/2
         
     }
     
-
+    // MARK: -  Action
     @objc func buttonTapped(button: UIButton) {
         
-        
         for (buttonIndex,btn) in buttons.enumerated() {
-            
             btn.setTitleColor(textColor, for: .normal)
-            
             if btn == button {
                 selectedSegmentIndex = buttonIndex
-                
                 let  selectorStartPosition = frame.width / CGFloat(buttons.count) * CGFloat(buttonIndex)
-                
                 UIView.animate(withDuration: 0.3, animations: {
-                    
                     self.selector.frame.origin.x = selectorStartPosition
                 })
-                
                 btn.setTitleColor(selectorTextColor, for: .normal)
             }
         }
-        
         sendActions(for: .valueChanged)
- 
- 
-        
-        
     }
     
     
     func updateSegmentedControlSegs(index: Int) {
-        
         for btn in buttons {
             btn.setTitleColor(textColor, for: .normal)
         }
-        
         let  selectorStartPosition = frame.width / CGFloat(buttons.count) * CGFloat(index)
-        
         UIView.animate(withDuration: 0.3, animations: {
             
             self.selector.frame.origin.x = selectorStartPosition
         })
-        
         buttons[index].setTitleColor(selectorTextColor, for: .normal)
-        
     }
-
-   
     
-//    override func sendActions(for controlEvents: UIControlEvents) {
-//
-//        super.sendActions(for: controlEvents)
-//
-//        let  selectorStartPosition = frame.width / CGFloat(buttons.count) * CGFloat(selectedSegmentIndex)
-//
-//        UIView.animate(withDuration: 0.3, animations: {
-//
-//            self.selector.frame.origin.x = selectorStartPosition
-//        })
-//
-//        buttons[selectedSegmentIndex].setTitleColor(selectorTextColor, for: .normal)
-//
-//    }
+    
+    
+    //    override func sendActions(for controlEvents: UIControlEvents) {
+    //
+    //        super.sendActions(for: controlEvents)
+    //
+    //        let  selectorStartPosition = frame.width / CGFloat(buttons.count) * CGFloat(selectedSegmentIndex)
+    //
+    //        UIView.animate(withDuration: 0.3, animations: {
+    //
+    //            self.selector.frame.origin.x = selectorStartPosition
+    //        })
+    //
+    //        buttons[selectedSegmentIndex].setTitleColor(selectorTextColor, for: .normal)
+    //
+    //    }
     
     
     

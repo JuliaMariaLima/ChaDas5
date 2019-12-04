@@ -36,6 +36,9 @@ struct Message: MessageType {
         kind = .text(content)
         sender = Sender(id: senderID, displayName: senderDisplayName)
         id = nil
+        if channel == "chatbot" {
+            sender = Sender(id: "bot", displayName: "Camomila")
+        }
     }
     
     init?(from record:CKRecord, completion: @escaping (Message?, String?) -> Void) {

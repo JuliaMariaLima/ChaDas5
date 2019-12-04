@@ -9,14 +9,13 @@
 import Foundation
 import UIKit
 
+// MARK: -  Declaration
 class GenderInformations: UIViewController { 
     
     
-    
+    // MARK: -  Actions
     @IBAction func dismissButton(_ sender: Any) {
-        
          dismiss(animated: true)
-        
     }
     
 }

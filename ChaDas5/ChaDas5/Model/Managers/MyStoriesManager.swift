@@ -24,8 +24,9 @@ class MyStoriesManager {
     var activeStories = [CKRecord]()
     
     func loadMyStories(requester:StoryManagerProtocol) {
-        emptyArrays()
-        let predicate = NSPredicate(value: true)
+        var activeStories: [CKRecord] = []
+        var nonActiveStories: [CKRecord] = []
+        let predicate = NSPredicate(format: "email = %@", MeUser.instance.email)
         let query = CKQuery(recordType: "Story", predicate: predicate)
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             if error != nil {
@@ -33,33 +34,25 @@ class MyStoriesManager {
                 requester.readedMyStories(stories: [[]])
                 return
             }
-            if (results?.count)! > 0 {
-                for result in results! {
-                    guard let author = result["author"] as? String else { return }
-                    guard let status = result["status"] as? String else { return }
-                    if author == MeUser.instance.email {
-                            if status == "active" {
-                                self.activeStories.append(result)
-                            } else {
-                                self.nonActiveStories.append(result)
-                            }
-                        }
-                    }
+            for result in results ?? [] {
+                guard let status = result["status"] as? String else { return }
+                if status == "active" {
+                    activeStories.append(result)
+                } else {
+                    nonActiveStories.append(result)
                 }
-                requester.readedMyStories(stories: [results!, []])
-                return
-            })
-            requester.readedMyStories(stories: [[]])
-//        
-//        requester.readedMyStories(stories: [self.nonActiveStories, self.activeStories])
+            }
+            activeStories.sort(by: { $0.creationDate! > $1.creationDate! })
+            nonActiveStories.sort(by: { $0.creationDate! > $1.creationDate! })
+            self.activeStories = activeStories
+            self.nonActiveStories = nonActiveStories
+            requester.readedMyStories(stories: [results!, []])
+            return
+        })
+        requester.readedMyStories(stories: [[]])
     }
     
-    func emptyArrays() {
-        self.activeStories = []
-        self.nonActiveStories = []
-    }
     
-
     func switchToNonAvaliable(storyID: String, completion: @escaping (CKRecord?, Error?) -> Void) {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Story", predicate: predicate)
@@ -91,10 +84,6 @@ class MyStoriesManager {
             completion(nil, nil)
         })
     }
-    
-    
-    
-
 
     
     func switchArchived(storyID: String, completion: @escaping (CKRecord?, Error?) -> Void) {
@@ -149,3 +138,5 @@ class MyStoriesManager {
     
 }
 
+
+// - TODO: Reload data when find a new record

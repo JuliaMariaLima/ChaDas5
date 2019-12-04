@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import CloudKit
 
 
@@ -34,10 +35,10 @@ class MessagesManager {
     var messages = [Message]()
     
     func loadMessages(from channel: Channel, requester: MessagesProtocol) {
+        var messages:[Message] = []
         guard let id = channel.id?.recordName else { return }
         let predicate = NSPredicate(format: "onChannel = %@", id)
         let query = CKQuery(recordType: "Thread", predicate: predicate)
-        self.messages = []
         self.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
             if error != nil {
                 print(error!)
@@ -48,12 +49,12 @@ class MessagesManager {
                 for result in results! {
                     _ = Message(from: result) { (message, error) in
                         if error == nil && message != nil {
-                            self.messages.append(message!)
+                            messages.append(message!)
                         }
                     }
                 }
-                self.messages = self.messages.sorted(by: { $0.sentDate < $1.sentDate })
-                DAOManager.instance?.ckChannels.updateOpenedBy(with: Date.distantFuture, on: id)
+                messages.sort(by: { $0.sentDate < $1.sentDate })
+                self.messages = messages
                 requester.readedMessagesFromChannel(messages: self.messages, error: nil)
                 return
             }
@@ -61,22 +62,22 @@ class MessagesManager {
         })
     }
     
+    
     // FIX 
     func save(message:Message, to requester: MessagesProtocol) {
         self.messages.append(message)
-//        self.messages = self.messages.sorted(by: { $0.sentDate.keyString < $1.sentDate.keyString })
-
+        self.messages = self.messages.sorted(by: { $0.sentDate.keyString < $1.sentDate.keyString })
         self.database.save(message.asCKRecord, completionHandler: {(record, error) in
             if let error = error {
-                debugPrint("==========", error)
+                debugPrint(#function, error)
                 requester.messageSaved(with: error)
                 return
             }
-            // CHECK
             if let _ = record {
                 let _ = Message(from: record!) { (message, error) in
                     if error == nil && message != nil {
                         DAOManager.instance?.ckChannels.updateLastMessageDate(with: message!, on: message!.onChannel)
+//                        DAOManager.instance?.ckAnalysisLog.classifyInput(with: message!.content, on: message!.sentDate.keyString, with: self)
                         requester.messageSaved()
                     }
                 }
@@ -162,3 +163,34 @@ class MessagesManager {
     
 
 }
+
+//extension MessagesManager: AnalysisLogProtocol {
+//    
+//    
+//    func createdAnalysisLog() {
+//        
+//    }
+//    
+//    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
+//        
+//    }
+//    
+//    func updatedAnalysisLog() {
+//        
+//    }
+//    
+//    func createdAnalysisLog(with error: Error) {
+//        
+//    }
+//    
+//    func retrievedAnalysisLog(with error: Error) {
+//        
+//    }
+//    
+//    func updatedAnalysisLog(with error: Error) {
+//        debugPrint("successfully updated")
+//    }
+//    
+//    
+//    
+//}

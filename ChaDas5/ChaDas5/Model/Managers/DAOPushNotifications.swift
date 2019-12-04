@@ -105,8 +105,8 @@ class DaoPushNotifications: Codable {
     
     func retrieveSubscription(on channel:String, completion: @escaping (Bool?) -> Void) {
         let predicate = NSPredicate(format: "channel = %@", channel)
-         let query = CKQuery(recordType: "Subscriptions", predicate: predicate)
-         DAOManager.instance?.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
+        let query = CKQuery(recordType: "Subscriptions", predicate: predicate)
+        DAOManager.instance?.database.perform(query, inZoneWith: nil, completionHandler: { (results, error) in
              if error != nil {
                 debugPrint("error fetching subscription", error!.localizedDescription)
                 completion(nil)
@@ -118,11 +118,10 @@ class DaoPushNotifications: Codable {
                         completion(true)
                         return
                     }
-                    completion(false)
-                    return
                 }
+                completion(false)
+                return
             }
-            completion(false)
         })
     }
     
@@ -136,6 +135,7 @@ class DaoPushNotifications: Codable {
     }
     
     func registerChannelNotifications() {
+        debugPrint("creating channel notifications...")
         let predicate = NSPredicate(format: "storyAuthor = %@", MeUser.instance.email)
         let subscription = CKQuerySubscription(recordType: "Channel", predicate: predicate, options: .firesOnRecordCreation)
         let info = CKSubscription.NotificationInfo()
@@ -143,14 +143,14 @@ class DaoPushNotifications: Codable {
         info.alertBody = "Alguém criou uma nova conversa com você."
         info.shouldBadge = true
         info.soundName = "default"
-
         subscription.notificationInfo = info
         DAOManager.instance?.database.save(subscription, completionHandler: { subscription, error in
             if error == nil {
-                print("subscription saved!")
+                print("channel subscription saved!")
                 // Subscription saved successfully
             } else {
                 // Error occurred
+                debugPrint("=========", error.debugDescription)
             }
         })
     }

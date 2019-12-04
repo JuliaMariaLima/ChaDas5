@@ -98,21 +98,26 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
         setupDelegates()
         addMenuControllerObservers()
         addObservers()
+        
+
     }
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         isMessagesControllerBeingDismissed = false
+        
     }
     
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         isMessagesControllerBeingDismissed = true
+       
     }
     
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         isMessagesControllerBeingDismissed = false
+
     }
     
     open override func viewDidLayoutSubviews() {
@@ -419,3 +424,4 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
         MessageStyle.bubbleImageCache.removeAllObjects()
     }
 }
+

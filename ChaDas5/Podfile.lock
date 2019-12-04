@@ -1,20 +1,48 @@
 PODS:
+  - ApiAI (0.7.2):
+    - ApiAI/AudioFileConverter (= 0.7.2)
+    - ApiAI/Core (= 0.7.2)
+    - ApiAI/Events (= 0.7.2)
+    - ApiAI/ResponseMapping (= 0.7.2)
+    - ApiAI/UIKit (= 0.7.2)
+    - ApiAI/UserEntities (= 0.7.2)
+    - ApiAI/VoiceFileRequest (= 0.7.2)
+    - ApiAI/VoiceRequest (= 0.7.2)
+  - ApiAI/AudioFileConverter (0.7.2):
+    - ApiAI/Core
+  - ApiAI/Core (0.7.2)
+  - ApiAI/Events (0.7.2):
+    - ApiAI/Core
+  - ApiAI/ResponseMapping (0.7.2):
+    - ApiAI/Core
+  - ApiAI/UIKit (0.7.2):
+    - ApiAI/Core
+    - ApiAI/VoiceRequest
+  - ApiAI/UserEntities (0.7.2):
+    - ApiAI/Core
+  - ApiAI/VoiceFileRequest (0.7.2):
+    - ApiAI/Core
+  - ApiAI/VoiceRequest (0.7.2):
+    - ApiAI/Core
   - InputBarAccessoryView (4.2.2)
   - MessageKit (3.0.0):
     - InputBarAccessoryView (~> 4.2.2)
 
 DEPENDENCIES:
+  - ApiAI
   - MessageKit
 
 SPEC REPOS:
   trunk:
+    - ApiAI
     - InputBarAccessoryView
     - MessageKit
 
 SPEC CHECKSUMS:
+  ApiAI: d4b49d3736f33ce6f3ef66dc33c0e0fccb23579e
   InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
   MessageKit: e892a9ca49ebe6d82684d3a93ad84021fa23e2c6
 
-PODFILE CHECKSUM: f42e68bb1f419c44ac3d6abe8383bb5be340403b
+PODFILE CHECKSUM: 2243e61be84592da33e31943337ebe693e454a17
 
 COCOAPODS: 1.8.0

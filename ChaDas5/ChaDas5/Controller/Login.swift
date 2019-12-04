@@ -10,43 +10,20 @@ import Foundation
 import UIKit
 import CloudKit
 
-
+// MARK: -  Declaration
 class Login: UIViewController {
 
-    //outlets
+    // MARK: -  Outlets
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    
+
     var loginUserRequester: UserRequester!
     var password: String!
     var meUser: MeUser!
-
-
     var activityView:UIActivityIndicatorView!
 
-    //action
-    @IBAction func dismissButton(_ sender: Any) {
-        dismiss()
-    }
-    
-    
-    @IBAction func loginButton(_ sender: Any) {
-        
-        setLoginButton(enabled: false)
-        activityView.center = loginButton.center
-        loginButton.setTitle("", for: .normal)
-        activityView.startAnimating()
-        
-         
-        loginUserRequester = self as UserRequester
-        DAOManager.instance?.ckUsers.get(meFromEmail: emailTextField.text!, requester: loginUserRequester)
-        MeUser.instance = self.meUser
-        password = passwordTextField.text!
-        loginButton.isEnabled = false
-
-    }
-
+    // MARK: -  View Configurations
     override func viewDidLoad() {
         hideKeyboardWhenTappedAround()
         passwordTextField.isSecureTextEntry = true
@@ -90,6 +67,27 @@ class Login: UIViewController {
         }
     }
 
+    // MARK: -  Actions
+    @IBAction func dismissButton(_ sender: Any) {
+        dismiss()
+    }
+
+
+    @IBAction func loginButton(_ sender: Any) {
+        setLoginButton(enabled: false)
+        activityView.center = loginButton.center
+        loginButton.setTitle("", for: .normal)
+        activityView.startAnimating()
+        loginUserRequester = self as UserRequester
+        DAOManager.instance?.ckUsers.get(meFromEmail: emailTextField.text!, requester: loginUserRequester)
+        MeUser.instance = self.meUser
+        password = passwordTextField.text!
+        loginButton.isEnabled = false
+
+    }
+
+
+    // MARK: -  Text Fields
     @objc func keyboardWillAppear(notification: NSNotification){
 
         let info = notification.userInfo!
@@ -132,52 +130,52 @@ class Login: UIViewController {
             loginButton.isEnabled = false
         }
     }
-    
- 
+
+
     func goTo(identifier: String) {
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: identifier, sender: self)
         }
     }
-    
+
 }
 
+// MARK: -  Extentions
+
+// MARK: -  UserRequester and AnalysisLogProtocol extentions
 extension Login: UserRequester {
-    
+
     func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
-    
+
     func saved(userRecord: CKRecord?, userError: Error?) {}
-    
+
     func retrieved(user: User?, userError: Error?) {}
-    
+
     func retrieved(meUser: MeUser?, meUserError: Error?) {
         if meUser != nil {
-            print("UHUL")
             if meUser!.password == password {
                 MeUser.instance = meUser
+
                 do { try! MeUser.instance.save() }
                 DaoPushNotifications.instance.registerChannelNotifications()
-
-                print("sucesso login")
                 DispatchQueue.main.async {
                     self.activityView.stopAnimating()
                 }
-                
-                if meUser!.genderId == "Homem Cis"
-                {
+
+                if meUser!.genderId == "Homem Cis" {
                     goTo(identifier: "cisMan")
                     MeUser.instance.delete()
                     DaoPushNotifications.instance.delete()
-                    
-                } else{
-                    
+
+                } else if meUser!.genderId != "Homem Cis" && meUser!.name == "Default"{
+                    goTo(identifier: "Quiz")
+                }else if meUser!.genderId != "Homem Cis" && meUser!.tutorial == "Done"{
                     goTo(identifier: "Feed")
+                }else{
+                    goTo(identifier: "Tutorial")
                 }
-                
-                
-            } else{
+            } else {
                 // erro
-                print("deu ruim")
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "", message: "Sua senha ou email estão errados.", preferredStyle: UIAlertController.Style.alert)
                     let ok = UIAlertAction(title: "Ok", style: .default ) { (action) -> Void in
@@ -185,17 +183,12 @@ extension Login: UserRequester {
                         self.setLoginButton(enabled: true)
                         self.loginButton.setTitle("Criar Conta", for: .normal)
                         self.activityView.stopAnimating()
-                                
-                         }
 
+                    }
                     alert.addAction(ok)
                     self.present(alert, animated: true, completion: nil)
-                    
                     alert.view.tintColor = UIColor.buttonOrange
                 }
-                
-                
-    
             }
         } else if meUserError != nil {
             // nao tem cadastro
@@ -206,18 +199,42 @@ extension Login: UserRequester {
                     self.setLoginButton(enabled: true)
                     self.loginButton.setTitle("Criar Conta", for: .normal)
                     self.activityView.stopAnimating()
-                        
-                 }
+                }
                 alert.addAction(ok)
                 alert.view.tintColor = UIColor.buttonOrange
                 self.present(alert, animated: true, completion: nil)
-                
             }
-
         }
     }
-    
+
     func retrieved(userArray: [User]?, userError: Error?) {}
+//
+////    // MARK: -  Analysis Log Protocol Stubs
+////    func setUpAnalysis() {
+////        DAOManager.instance?.ckAnalysisLog.checkAnalysisLog(completion: { (exists) in
+////            if !exists! {
+////                DAOManager.instance?.ckAnalysisLog.createAnalysisLog(with: self)
+////            }
+////        })
+////    }
+//
+//    func createdAnalysisLog() {
+//        debugPrint("successfully created")
+//    }
+//
+//    func retrievedAnalysisLog(with analysisLog: AnalysisLog) {
+//    }
+//
+//    func updatedAnalysisLog() {
+//    }
+//
+//    func createdAnalysisLog(with error: Error) {
+//    }
+//
+//    func retrievedAnalysisLog(with error: Error) {
+//    }
+//
+//    func updatedAnalysisLog(with error: Error) {
+//    }
+
 }
-
-
