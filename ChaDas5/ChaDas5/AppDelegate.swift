@@ -35,19 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let storyboard:UIStoryboard?
 
             if MeUser.instance.name == "Default"{
-                storyboard = UIStoryboard(name: "TeaQuiz", bundle: nil)
+                storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
             }else{
-
                 if MeUser.instance.tutorial != "Done"{
-                    print(MeUser.instance.tutorial)
-
                       storyboard = UIStoryboard(name: "Tutorial", bundle: nil)
                 }else{
-                      storyboard = UIStoryboard(name: "Profile", bundle: nil)
+                      storyboard = UIStoryboard(name: "TestingChatBot", bundle: nil)
                 }
             }
-
-
 
             let initialViewController = storyboard!.instantiateInitialViewController()
 

@@ -13,65 +13,22 @@ import MessageKit
 import InputBarAccessoryView
 
 // MARK: -  Declaration
-class ChatBotViewController: MessagesViewController, UIPickerViewDelegate, UIPickerViewDataSource, AnalysisLogProtocol {
+class ChatBotViewController: MessagesViewController, AnalysisLogProtocol {
     
+
+    let doneView = UIView()
+    var doneLabel = UILabel()
+    var doneButton = UIButton()
     
-    var pickerView = UIPickerView()
-    let toolBar = UIToolbar()
-    let oldText = String()
-    var answers = ["---","Discordo fortemente","Discordo", "Concordo", "Concordo Fortemente"]
+    var answer1 = UIButton()
+    var answer2 = UIButton()
+    var answer3 = UIButton()
+    var answer4 = UIButton()
+    
+    var labelBefore = UILabel()
+    
     var userAnswers = [0, 0, 0]
     var indexTrack = 0
-    
-    
-    @objc func answersLabelTarget1(textField: UITextField) {
-        pickerView.isHidden = false
-        pickerView.autoresizingMask = .flexibleWidth
-        messageInputBar.inputTextView.text = oldText
-        print("oi")
-    }
-    
-    @objc func doneTapped(button: UIBarButtonItem) {
-        messageInputBar.inputTextView.endEditing(true)
-        if messageInputBar.inputTextView.text != "---" && messageInputBar.inputTextView.text != nil{
-            //nao teve resposta
-        } else {
-            //teve reposta
-        }
-        
-    }
-    
-    
-    @objc func cancelTapped(button: UIBarButtonItem) {
-        
-        messageInputBar.inputTextView.endEditing(true)
-        messageInputBar.inputTextView.text = oldText
-        
-    }
-    
-    // - MARK: Picker
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return answers.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return answers[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        messageInputBar.inputTextView.text = answers[row]
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        pickerView.removeFromSuperview()
-    }
-    
-    
     
     // MARK: -  Outlets
     @IBOutlet weak var insertText: UITextField!
@@ -92,55 +49,176 @@ class ChatBotViewController: MessagesViewController, UIPickerViewDelegate, UIPic
     // MARK: -  View Configurations
     override func viewDidLoad() {
         super.viewDidLoad()
+   
+        doneView.frame.size = CGSize(width: 100, height: 200)
+        doneView.backgroundColor = .middleOrange
+        doneView.layer.cornerRadius = 20
+        doneView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        doneView.layer.shadowColor = UIColor.black.cgColor
+        doneView.layer.shadowOpacity = 0.23
+        doneView.layer.shadowRadius = 4
         
+        doneButton = UIButton(frame: CGRect(x: 30, y: 45, width: 254, height: 71))
+        doneButton.layer.cornerRadius = 10
+        doneButton.backgroundColor = .buttonOrange
+        doneButton.setTitle("Vamos lá!", for: .normal)
+        doneButton.setTitleColor(.black, for: .normal)
+        doneButton.titleLabel?.font = UIFont(name: "SFCompactDisplay-Regular", size: 17)
+        //answer1.addTarget(self, action: #selector(self.dismissAction), for: .touchUpInside)
+        doneButton.contentMode = .center
         
-        pickerView = UIPickerView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: view.frame.width, height: 220.0)))
-        view.addSubview(pickerView)
-        pickerView.isHidden = true
+        doneLabel.textColor = .black
+        doneLabel.text = "Você chegou ao fim do tutorial. Seja bem-vinda ao Chá das 5! Esperamos que faça a diferença para você."
+        doneLabel.font = UIFont(name: "SFCompactDisplay-Regular", size: 17)
+        doneLabel.textAlignment = .center
+        doneLabel.numberOfLines = 5
         
-        pickerView.delegate = self
-        pickerView.dataSource = self
+        labelBefore.textColor = .black
+        labelBefore.text = "Pergunte mais sobre o relato e compartilhe suas experiências."
+        labelBefore.font = UIFont(name: "SFCompactDisplay-Regular", size: 17)
+        labelBefore.textAlignment = .center
+        labelBefore.numberOfLines = 3
         
-        //        messageInputBar.inputTextView.addObserver(self, selector: #selector(answersLabelTarget1(textField: messageInputBar.inputTextView), name: UITextView.textDidChangeNotification, object: messageInputBar.inputTextView)
+        view.addSubview(labelBefore)
+        doneView.addSubview(doneLabel)
+        doneView.addSubview(doneButton)
+        view.addSubview(doneView)
         
-        messageInputBar.inputTextView.allowsEditingTextAttributes = false
+        doneView.isHidden = true
         
-        toolBar.barStyle = UIBarStyle.default
-        toolBar.isTranslucent = true
-        toolBar.tintColor = UIColor(red: 59/255, green: 61/255, blue: 66/255, alpha: 1)
-        toolBar.sizeToFit()
+        configureAnswersButtons()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(doneTapped))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancelTapped))
-        cancelButton.tintColor =  .buttonOrange
-        doneButton.tintColor = .buttonOrange
-        
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        
-        //        messageInputBar.inputTextView.inputView = pickerView
-        //        messageInputBar.inputTextView.inputAccessoryView = toolBar
-        
-        
+        messageInputBar.isHidden = true
+    
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
         
         let myCollection = messagesCollectionView as UICollectionView
+        
         myCollection.translatesAutoresizingMaskIntoConstraints = false
+        labelBefore.translatesAutoresizingMaskIntoConstraints = false
+        doneView.translatesAutoresizingMaskIntoConstraints = false
+        doneLabel.translatesAutoresizingMaskIntoConstraints = false
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        
         //constraints
         NSLayoutConstraint.activate([
             myCollection.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             myCollection.leftAnchor.constraint(equalTo: view.leftAnchor),
             myCollection.rightAnchor.constraint(equalTo: view.rightAnchor),
-            myCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50)
+            myCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            
+            labelBefore.topAnchor.constraint(equalTo: myCollection.topAnchor, constant: 200),
+            labelBefore.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            labelBefore.widthAnchor.constraint(equalToConstant: 305),
+            labelBefore.heightAnchor.constraint(equalToConstant: 100),
+            
+            doneView.topAnchor.constraint(equalTo: view.topAnchor, constant: 500),
+            doneView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            doneView.widthAnchor.constraint(equalToConstant: 300),
+            doneView.heightAnchor.constraint(equalToConstant: 250),
+            
+            doneLabel.topAnchor.constraint(equalTo: doneView.topAnchor, constant: 20),
+            doneLabel.centerXAnchor.constraint(equalTo: doneView.centerXAnchor),
+            doneLabel.widthAnchor.constraint(equalToConstant: 250),
+            doneLabel.heightAnchor.constraint(equalToConstant: 100),
+            
+            doneButton.topAnchor.constraint(equalTo: doneView.topAnchor, constant: 160),
+            doneButton.centerXAnchor.constraint(equalTo: doneView.centerXAnchor),
+            doneButton.widthAnchor.constraint(equalToConstant: 150),
+            doneButton.heightAnchor.constraint(equalToConstant: 60)
+            
             
         ])
+        
         configureNavigationBar()
         configureInputBar()
+        view.bringSubviewToFront(labelBefore)
+        view.bringSubviewToFront(doneView)
     }
+    
+    
+    
+    func configureAnswersButtons(){
+        
+        answer1 = UIButton(frame: CGRect(x: 30, y: 45, width: 254, height: 71))
+        answer1.layer.cornerRadius = 10
+        answer1.backgroundColor = .buttonOrange
+        answer1.setTitle("Resposta 1", for: .normal)
+        answer1.setTitleColor(.black, for: .normal)
+        answer1.titleLabel?.font = UIFont(name: "SFCompactDisplay-Regular", size: 17)
+        //answer1.addTarget(self, action: #selector(self.dismissAction), for: .touchUpInside)
+        answer1.contentMode = .center
+        
+        answer2 = UIButton(frame: CGRect(x: 30, y: 45, width: 254, height: 71))
+        answer2.layer.cornerRadius = 10
+        answer2.backgroundColor = .buttonOrange
+        answer2.setTitle("Resposta 2", for: .normal)
+        answer2.setTitleColor(.black, for: .normal)
+        answer2.titleLabel?.font = UIFont(name: "SFCompactDisplay-Regular", size: 17)
+        //answer1.addTarget(self, action: #selector(self.dismissAction), for: .touchUpInside)
+        answer2.contentMode = .center
+        
+        answer3 = UIButton(frame: CGRect(x: 30, y: 45, width: 254, height: 71))
+        answer3.layer.cornerRadius = 10
+        answer3.backgroundColor = .buttonOrange
+        answer3.setTitle("Resposta 3", for: .normal)
+        answer3.setTitleColor(.black, for: .normal)
+        answer3.titleLabel?.font = UIFont(name: "SFCompactDisplay-Regular", size: 17)
+        //answer1.addTarget(self, action: #selector(self.dismissAction), for: .touchUpInside)
+        answer3.contentMode = .center
+        
+        answer4 = UIButton(frame: CGRect(x: 30, y: 45, width: 254, height: 71))
+        answer4.layer.cornerRadius = 10
+        answer4.backgroundColor = .buttonOrange
+        answer4.setTitle("Resposta 4", for: .normal)
+        answer4.setTitleColor(.black, for: .normal)
+        answer4.titleLabel?.font = UIFont(name: "SFCompactDisplay-Regular", size: 17)
+        //answer1.addTarget(self, action: #selector(self.dismissAction), for: .touchUpInside)
+        answer3.contentMode = .center
+        
+        self.view.addSubview(answer1)
+        self.view.addSubview(answer2)
+        self.view.addSubview(answer3)
+        self.view.addSubview(answer4)
+        
+        answer1.translatesAutoresizingMaskIntoConstraints = false
+        answer2.translatesAutoresizingMaskIntoConstraints = false
+        answer3.translatesAutoresizingMaskIntoConstraints = false
+        answer4.translatesAutoresizingMaskIntoConstraints = false
+ 
+        //constraints
+        NSLayoutConstraint.activate([
+            answer1.topAnchor.constraint(equalTo: view.topAnchor, constant: 600),
+            answer1.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -80),
+            answer1.widthAnchor.constraint(equalToConstant: 150),
+            answer1.heightAnchor.constraint(equalToConstant: 60),
+            
+            answer2.topAnchor.constraint(equalTo: view.topAnchor, constant: 600),
+            answer2.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 80),
+            answer2.widthAnchor.constraint(equalToConstant: 150),
+            answer2.heightAnchor.constraint(equalToConstant: 60),
+            
+            answer3.topAnchor.constraint(equalTo: view.topAnchor, constant: 688),
+            answer3.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -80),
+            answer3.widthAnchor.constraint(equalToConstant: 150),
+            answer3.heightAnchor.constraint(equalToConstant: 60),
+            
+            answer4.topAnchor.constraint(equalTo: view.topAnchor, constant: 688),
+            answer4.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 80),
+            answer4.widthAnchor.constraint(equalToConstant: 150),
+            answer4.heightAnchor.constraint(equalToConstant: 60)
+            
+        ])
+
+        
+    }
+    
+    
+    
+    
     
     
     // MARK: -  Actions

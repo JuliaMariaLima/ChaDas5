@@ -38,7 +38,6 @@
 		9A1B11CE21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11CC21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift */; };
 		9A1B11CF21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1B11CD21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.xib */; };
 		9A1B11D721C43B39006956B7 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11D221C43B39006956B7 /* Story.swift */; };
-		9A1B11DB21C43B83006956B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11DA21C43B83006956B7 /* AppDelegate.swift */; };
 		9A1B11E621C43CAF006956B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11E521C43CAF006956B7 /* ViewController.swift */; };
 		9A1B11EB21C43CC1006956B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A1B11E821C43CC1006956B7 /* Assets.xcassets */; };
 		9A1B11EF21C43EFB006956B7 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11EE21C43EFB006956B7 /* FeedTableViewCell.swift */; };
@@ -74,6 +73,8 @@
 		E23901B521CADDA8006B3CF3 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23901B421CADDA8006B3CF3 /* SplashScreen.swift */; };
 		E25631F823957DB50079E1BF /* QuestionsInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25631F723957DB50079E1BF /* QuestionsInformation.swift */; };
 		E26F83C5236757B600681771 /* GenderInformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26F83C4236757B600681771 /* GenderInformations.swift */; };
+		E26FE4D823972F8C00E4F5F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FE4D723972F8C00E4F5F3 /* AppDelegate.swift */; };
+		E26FE4DA239730BE00E4F5F3 /* TeaQuiz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26FE4D9239730BE00E4F5F3 /* TeaQuiz.storyboard */; };
 		E27BE68023955A0D009C1090 /* YourTea.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27BE67F23955A0D009C1090 /* YourTea.swift */; };
 		E28284E32339719500137924 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284DE2339719500137924 /* ViewExtensions.swift */; };
 		E28284E42339719500137924 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284DF2339719500137924 /* NavigationBar.swift */; };
@@ -81,7 +82,6 @@
 		E28284E62339719500137924 /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284E12339719500137924 /* UIView+Additions.swift */; };
 		E28284E72339719500137924 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284E22339719500137924 /* UIImage+Additions.swift */; };
 		E287177E2370C58B00C6BB6F /* StoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287177D2370C58B00C6BB6F /* StoryScreen.swift */; };
-		E2A85874238F1899003C26F3 /* TeaQuiz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A85873238F1899003C26F3 /* TeaQuiz.storyboard */; };
 		E2A85878238F2AF6003C26F3 /* StoryboardError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A85876238F2AF6003C26F3 /* StoryboardError.swift */; };
 		E2A85879238F2AF6003C26F3 /* StoryboardInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A85877238F2AF6003C26F3 /* StoryboardInitializable.swift */; };
 		E2A8587B238F6C6E003C26F3 /* TeaQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8587A238F6C6E003C26F3 /* TeaQuiz.swift */; };
@@ -140,7 +140,6 @@
 		9A1B11CC21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseYourTeaCollectionViewCell.swift; sourceTree = "<group>"; };
 		9A1B11CD21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseYourTeaCollectionViewCell.xib; sourceTree = "<group>"; };
 		9A1B11D221C43B39006956B7 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
-		9A1B11DA21C43B83006956B7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A1B11E521C43CAF006956B7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9A1B11E821C43CC1006956B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A1B11EE21C43EFB006956B7 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
@@ -178,6 +177,8 @@
 		E23901B421CADDA8006B3CF3 /* SplashScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		E25631F723957DB50079E1BF /* QuestionsInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsInformation.swift; sourceTree = "<group>"; };
 		E26F83C4236757B600681771 /* GenderInformations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderInformations.swift; sourceTree = "<group>"; };
+		E26FE4D723972F8C00E4F5F3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E26FE4D9239730BE00E4F5F3 /* TeaQuiz.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TeaQuiz.storyboard; sourceTree = "<group>"; };
 		E27BE67F23955A0D009C1090 /* YourTea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourTea.swift; sourceTree = "<group>"; };
 		E28284DE2339719500137924 /* ViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		E28284DF2339719500137924 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
@@ -185,7 +186,6 @@
 		E28284E12339719500137924 /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
 		E28284E22339719500137924 /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		E287177D2370C58B00C6BB6F /* StoryScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryScreen.swift; sourceTree = "<group>"; };
-		E2A85873238F1899003C26F3 /* TeaQuiz.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeaQuiz.storyboard; sourceTree = "<group>"; };
 		E2A85876238F2AF6003C26F3 /* StoryboardError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardError.swift; sourceTree = "<group>"; };
 		E2A85877238F2AF6003C26F3 /* StoryboardInitializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInitializable.swift; sourceTree = "<group>"; };
 		E2A8587A238F6C6E003C26F3 /* TeaQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeaQuiz.swift; sourceTree = "<group>"; };
@@ -267,7 +267,7 @@
 				15639B5C2314728900BDF79B /* ChaDas5.entitlements */,
 				9AEAA57A21C84CF5001B490F /* SFCompactDisplay-Ultralight.otf */,
 				E233AB8F237C861900464E03 /* SFCompactDisplay-Regular.otf */,
-				9A1B11DA21C43B83006956B7 /* AppDelegate.swift */,
+				E26FE4D723972F8C00E4F5F3 /* AppDelegate.swift */,
 				9A76AF8B21C038CB003ED02C /* Model */,
 				96451FF321AC79FC00C9C351 /* Controller */,
 				96451FF421AC7A0300C9C351 /* View */,
@@ -335,7 +335,7 @@
 				E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */,
 				96451FDB21AC79F000C9C351 /* LaunchScreen.storyboard */,
 				E2D32561238C6F95005CF45B /* CreateNewAccount.storyboard */,
-				E2A85873238F1899003C26F3 /* TeaQuiz.storyboard */,
+				E26FE4D9239730BE00E4F5F3 /* TeaQuiz.storyboard */,
 				9A4E542421AF40790033FEBF /* Login.storyboard */,
 				E2F886A7237DA3CA004E5DD3 /* Profile.storyboard */,
 				9A4E542821AF44FF0033FEBF /* Feed.storyboard */,
@@ -524,8 +524,8 @@
 				E200BFE02384CC8A0050247C /* TermsAndConditions.storyboard in Resources */,
 				96451FDA21AC79F000C9C351 /* Assets.xcassets in Resources */,
 				9A76AF8A21C034F8003ED02C /* FeedTableViewCell.xib in Resources */,
-				E2A85874238F1899003C26F3 /* TeaQuiz.storyboard in Resources */,
 				9A4E542F21AF4B160033FEBF /* NewStoryScreen.storyboard in Resources */,
+				E26FE4DA239730BE00E4F5F3 /* TeaQuiz.storyboard in Resources */,
 				9A4E542521AF40790033FEBF /* Login.storyboard in Resources */,
 				E22F5F6423886A900026FC79 /* Tutorial.storyboard in Resources */,
 				96451FD821AC79EF00C9C351 /* Main.storyboard in Resources */,
@@ -619,8 +619,8 @@
 				E2A85879238F2AF6003C26F3 /* StoryboardInitializable.swift in Sources */,
 				158069882332A94700C458FE /* User.swift in Sources */,
 				154633022370BE96001DC7C1 /* DAOPushNotifications.swift in Sources */,
-				9A1B11DB21C43B83006956B7 /* AppDelegate.swift in Sources */,
 				9A1B11D721C43B39006956B7 /* Story.swift in Sources */,
+				E26FE4D823972F8C00E4F5F3 /* AppDelegate.swift in Sources */,
 				1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */,
 				E2C3A6B6236B4F67006A7D7D /* AKPickerView.swift in Sources */,
 				1559C96F238F2DF10003A9EE /* ChatBotViewController.swift in Sources */,
