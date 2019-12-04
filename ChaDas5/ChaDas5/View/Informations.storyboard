@@ -24,10 +24,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x3u-E2-5D8" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="19" width="414" height="759"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1I-g8-gz0">
-                                                <rect key="frame" x="131.66666666666666" y="33" width="149.99999999999997" height="150"/>
+                                                <rect key="frame" x="131.66666666666666" y="78" width="149.99999999999997" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="RcH-3g-Ahs"/>
                                                     <constraint firstAttribute="height" constant="150" id="jDr-ea-MLK"/>
@@ -40,7 +40,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O que fazer em caso de assédio?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auk-Xp-CXR">
-                                                <rect key="frame" x="38" y="196" width="336" height="45"/>
+                                                <rect key="frame" x="38" y="241" width="336" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="DUM-Le-o7G"/>
                                                 </constraints>
@@ -49,7 +49,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q04-fT-Lpb">
-                                                <rect key="frame" x="131.66666666666666" y="287" width="149.99999999999997" height="150"/>
+                                                <rect key="frame" x="131.66666666666666" y="332" width="149.99999999999997" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="XY3-Uh-Aey"/>
                                                     <constraint firstAttribute="height" constant="150" id="YRK-lu-kar"/>
@@ -62,7 +62,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Números para denúncia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JyL-pN-Acz">
-                                                <rect key="frame" x="95" y="450" width="222" height="45"/>
+                                                <rect key="frame" x="95" y="495" width="222" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="bZa-a1-WER"/>
                                                 </constraints>
@@ -71,7 +71,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dúvidas e informações" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBE-2R-LdL">
-                                                <rect key="frame" x="99" y="694" width="214" height="45"/>
+                                                <rect key="frame" x="99" y="739" width="214" height="45"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="fRE-Jg-qQa"/>
                                                 </constraints>
@@ -80,7 +80,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJd-8t-EQ6">
-                                                <rect key="frame" x="131.66666666666666" y="536" width="149.99999999999997" height="150"/>
+                                                <rect key="frame" x="131.66666666666666" y="581" width="149.99999999999997" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="Yo2-fw-Fbd"/>
                                                     <constraint firstAttribute="width" constant="150" id="zps-xP-JVl"/>
@@ -104,14 +104,14 @@
                                             <constraint firstItem="AJd-8t-EQ6" firstAttribute="top" secondItem="JyL-pN-Acz" secondAttribute="bottom" constant="41" id="BIg-qp-TsI"/>
                                             <constraint firstItem="a1I-g8-gz0" firstAttribute="centerX" secondItem="x3u-E2-5D8" secondAttribute="centerX" constant="-0.5" id="CBt-dy-wK6"/>
                                             <constraint firstItem="JyL-pN-Acz" firstAttribute="leading" secondItem="x3u-E2-5D8" secondAttribute="leading" constant="95" id="GSx-QB-ubk"/>
-                                            <constraint firstItem="a1I-g8-gz0" firstAttribute="top" secondItem="x3u-E2-5D8" secondAttribute="top" constant="33" id="NM4-gH-esj"/>
+                                            <constraint firstItem="a1I-g8-gz0" firstAttribute="top" secondItem="x3u-E2-5D8" secondAttribute="top" constant="78" id="NM4-gH-esj"/>
                                             <constraint firstItem="auk-Xp-CXR" firstAttribute="centerX" secondItem="x3u-E2-5D8" secondAttribute="centerX" constant="-1" id="U3T-pJ-UCt"/>
                                             <constraint firstAttribute="trailing" secondItem="UBE-2R-LdL" secondAttribute="trailing" constant="101" id="XZG-Up-3In"/>
                                             <constraint firstItem="AJd-8t-EQ6" firstAttribute="centerX" secondItem="x3u-E2-5D8" secondAttribute="centerX" constant="-0.5" id="arV-ss-Huk"/>
                                             <constraint firstItem="auk-Xp-CXR" firstAttribute="leading" secondItem="x3u-E2-5D8" secondAttribute="leading" constant="38" id="dYj-vw-Rcn"/>
                                             <constraint firstItem="UBE-2R-LdL" firstAttribute="top" secondItem="AJd-8t-EQ6" secondAttribute="bottom" constant="8" id="gtf-Dh-MM1"/>
                                             <constraint firstItem="q04-fT-Lpb" firstAttribute="top" secondItem="auk-Xp-CXR" secondAttribute="bottom" constant="46" id="m1E-91-2Mx"/>
-                                            <constraint firstAttribute="bottom" secondItem="UBE-2R-LdL" secondAttribute="bottom" constant="20" id="rep-7p-QYH"/>
+                                            <constraint firstAttribute="bottom" secondItem="UBE-2R-LdL" secondAttribute="bottom" constant="29" id="rep-7p-QYH"/>
                                             <constraint firstItem="UBE-2R-LdL" firstAttribute="centerX" secondItem="x3u-E2-5D8" secondAttribute="centerX" constant="-1" id="txS-Cv-hgm"/>
                                             <constraint firstAttribute="trailing" secondItem="JyL-pN-Acz" secondAttribute="trailing" constant="97" id="vPv-Qx-iBI"/>
                                         </constraints>
@@ -119,9 +119,9 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="x3u-E2-5D8" firstAttribute="leading" secondItem="fqs-IF-1Jj" secondAttribute="leading" id="Ihq-Ur-fbb"/>
-                                    <constraint firstAttribute="bottom" secondItem="x3u-E2-5D8" secondAttribute="bottom" constant="35" id="bUN-Py-Tz4"/>
+                                    <constraint firstAttribute="bottom" secondItem="x3u-E2-5D8" secondAttribute="bottom" id="bUN-Py-Tz4"/>
                                     <constraint firstAttribute="trailing" secondItem="x3u-E2-5D8" secondAttribute="trailing" id="sgm-3o-K1Z"/>
-                                    <constraint firstItem="x3u-E2-5D8" firstAttribute="top" secondItem="fqs-IF-1Jj" secondAttribute="top" constant="19" id="tsP-Du-eNP"/>
+                                    <constraint firstItem="x3u-E2-5D8" firstAttribute="top" secondItem="fqs-IF-1Jj" secondAttribute="top" id="tsP-Du-eNP"/>
                                 </constraints>
                             </scrollView>
                         </subviews>

@@ -6,27 +6,8 @@ import MessageKit
 import InputBarAccessoryView
 
 
-
-class ChatViewController: MessagesViewController, UINavigationBarDelegate, MessagesProtocol {
-
-
-    func messageSaved(with error: Error) {
-        debugPrint("deu erro porra", error)
-    }
-
-    func messageSaved() {
-        // mudar status da msg
-        debugPrint("salvou bunitin")
-    }
-
-
-    func deleted() {
-
-    }
-
-    func deletedError(with: Error) {
-
-    }
+// MARK: -  Declaration
+class ChatViewController: MessagesViewController, UINavigationBarDelegate {
 
 
     var chatUserRequester: UserRequester!
@@ -34,18 +15,140 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     private let channel: Channel?
     var channelRecord: CKRecord
 
+    let spinner = UIActivityIndicatorView()
+    let storyView = UIView()
+    let blurView = UIView()
+    let contentText = UITextView()
+
+
+
     let dao = DAOManager.instance?.ckMessages
     var daoRef: Int?
+    static var lcount = 0
+    var timer = Timer()
 
+    // MARK: -  Initialization
     init(channel: CKRecord) {
         self.channelRecord = channel
         self.channel = Channel(from: channel, completion: { (channel, error) in
             if error != nil {
-                debugPrint(#function, error!.description)
+                debugPrint(#function, error!)
             }
         })
         super.init(nibName: nil, bundle: nil)
         checkSubscription()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        debugPrint("error initializing chat")
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: -  View Configurations
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        guard let dao = dao else { return }
+
+        spinner.color = .buttonOrange
+
+        storyView.frame.size = CGSize(width: 100, height: 200)
+        storyView.backgroundColor = .middleOrange
+        storyView.layer.cornerRadius = 20
+        storyView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        storyView.layer.shadowColor = UIColor.black.cgColor
+        storyView.layer.shadowOpacity = 0.23
+        storyView.layer.shadowRadius = 4
+
+        blurView.backgroundColor = .white
+        blurView.alpha = 0.2
+
+        let dismissButton = UIButton(frame: CGRect(x: 30, y: 45, width: 40, height: 40))
+        dismissButton.setImage(UIImage(named: "dismissIcon") , for: .normal)
+        dismissButton.addTarget(self, action: #selector(self.dismissAction), for: .touchUpInside)
+        dismissButton.contentMode = .center
+        dismissButton.imageView?.contentMode = .scaleAspectFit
+
+        contentText.font =  UIFont.systemFont(ofSize: 17)
+        contentText.backgroundColor = .clear
+
+        storyView.addSubview(dismissButton)
+        storyView.addSubview(contentText)
+        storyView.addSubview(spinner)
+        storyView.isHidden = true
+        blurView.isHidden = true
+
+        self.view.addSubview(blurView)
+        self.view.addSubview(storyView)
+
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
+        storyView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        contentText.translatesAutoresizingMaskIntoConstraints = false
+
+       NSLayoutConstraint.activate([
+           spinner.centerXAnchor.constraint(equalTo: storyView.centerXAnchor),
+           spinner.centerYAnchor.constraint(equalTo: storyView.centerYAnchor),
+           spinner.widthAnchor.constraint(equalToConstant: 500),
+           spinner.heightAnchor.constraint(equalToConstant: 500),
+           blurView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+           blurView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+           blurView.widthAnchor.constraint(equalToConstant: self.view.frame.width),
+           blurView.heightAnchor.constraint(equalToConstant: self.view.frame.height),
+           storyView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+           storyView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+           storyView.widthAnchor.constraint(equalToConstant: 300),
+           storyView.heightAnchor.constraint(equalToConstant: 300),
+           dismissButton.centerXAnchor.constraint(equalTo: storyView.centerXAnchor, constant: -140),
+           dismissButton.centerYAnchor.constraint(equalTo:  storyView.centerYAnchor, constant: -140),
+           dismissButton.widthAnchor.constraint(equalToConstant: 40),
+           dismissButton.heightAnchor.constraint(equalToConstant: 40),
+           contentText.centerXAnchor.constraint(equalTo: storyView.centerXAnchor),
+           contentText.centerYAnchor.constraint(equalTo: storyView.centerYAnchor),
+           contentText.widthAnchor.constraint(equalToConstant: 240),
+           contentText.heightAnchor.constraint(equalToConstant: 252)
+       ])
+
+
+
+        messagesCollectionView.messagesDataSource = self
+        messagesCollectionView.messagesLayoutDelegate = self
+        messagesCollectionView.messagesDisplayDelegate = self
+        maintainPositionOnKeyboardFrameChanged = true
+
+        configureNavigationBar()
+        configureInputBar()
+        configureActivityView()
+
+
+        hideKeyboardWhenTappedAround()
+
+
+
+        let myCollection = messagesCollectionView as UICollectionView
+        myCollection.translatesAutoresizingMaskIntoConstraints = false
+        //constraints
+        NSLayoutConstraint.activate([
+            myCollection.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            myCollection.leftAnchor.constraint(equalTo: view.leftAnchor),
+            myCollection.rightAnchor.constraint(equalTo: view.rightAnchor),
+            myCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90)
+
+        ])
+        customReloadData()
+        guard let currentChannel = self.channel else { return }
+        dao.loadMessages(from: currentChannel, requester: self)
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        scheduledTimerWithTimeInterval()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        dao?.messages = []
+        timer.invalidate()
     }
 
     func checkSubscription() {
@@ -62,73 +165,41 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         }
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        debugPrint("error initializing chat")
-        fatalError("init(coder:) has not been implemented")
-    }
 
-    static var lcount = 0
-
-
-
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        guard let dao = dao else { return }
-
-        messagesCollectionView.messagesDataSource = self
-        messagesCollectionView.messagesLayoutDelegate = self
-        messagesCollectionView.messagesDisplayDelegate = self
-        maintainPositionOnKeyboardFrameChanged = true
-        configureNavigationBar()
-        configureInputBar()
-        configureActivityView()
-
-        let myCollection = messagesCollectionView as UICollectionView
-        myCollection.translatesAutoresizingMaskIntoConstraints = false
-        //constraints
-         NSLayoutConstraint.activate([
-             myCollection.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-             myCollection.leftAnchor.constraint(equalTo: view.leftAnchor),
-             myCollection.rightAnchor.constraint(equalTo: view.rightAnchor),
-             myCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90)
-
-             ])
-        customReloadData()
-        guard let currentChannel = self.channel else { return }
-        dao.loadMessages(from: currentChannel, requester: self)
-    }
-
-
+    // MARK: -  Actions
     @objc func teaAction(sender: UIButton!) {
-//        goTo(identifier: "storyScreenFromChat")
+        storyView.isHidden = false
+         blurView.isHidden = false
+         messageInputBar.isUserInteractionEnabled = false
+         guard let story = channelRecord["fromStory"] as? String else { return }
+
+         //let vc = try! StoryScreen.initializeFromStoryboard()
+
+         self.spinner.startAnimating()
+         DAOManager.instance?.ckStories.get(storyFrom: story, completion: { (record) in
+             DispatchQueue.main.async {
+                 self.spinner.stopAnimating()
+                 self.spinner.removeFromSuperview()
+                 if record != nil {
+                     guard let content = record!["content"] as? String  else {return}
+                     self.contentText.text = "Relato dessa conversa:\n\n" + content
+                 }
+
+
+             }
+         })
     }
-
-    func goTo(identifier: String) {
-          DispatchQueue.main.async {
-              self.performSegue(withIdentifier: identifier, sender: self)
-          }
-      }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let story = channelRecord["fromStory"] as? String else { return }
-        if segue.identifier == "storyScreenFromChat" {
-            if let destinationVC = segue.destination as? StoryScreen {
-                DAOManager.instance?.ckStories.get(storyFrom: story, completion: { (record) in
-                    if record != nil {
-                       destinationVC.selectedStory = record
-                       destinationVC.chatButton.isHidden = true
-                   }
-               })
-           }
-       }
-
-   }
-
 
     @objc func buttonAction(sender: UIButton!) {
         DAOManager.instance?.ckChannels.updateOpenedBy(with: Date(), on: self.channelRecord.recordID.recordName)
         self.dismiss(animated: false, completion: nil)
+    }
+
+    @objc func dismissAction(sender: UIButton!) {
+        storyView.isHidden = true
+        blurView.isHidden = true
+        messageInputBar.isUserInteractionEnabled = true
+
     }
 
 
@@ -168,9 +239,29 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         alert.view.tintColor = UIColor.buttonOrange
     }
 
+    func goTo(identifier: String) {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: identifier, sender: self)
+        }
+    }
 
-  // MARK: -  Database Helpers
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let story = channelRecord["fromStory"] as? String else { return }
+        if segue.identifier == "storyScreenFromChat" {
+            if let destinationVC = segue.destination as? StoryScreen {
+                DAOManager.instance?.ckStories.get(storyFrom: story, completion: { (record) in
+                    if record != nil {
+                        destinationVC.selectedStory = record
+                        destinationVC.chatButton.isHidden = true
+                    }
+                })
+            }
+        }
 
+    }
+
+
+    // MARK: -  Database Helpers
     private func save(_ message: String) {
         let channelID = self.channelRecord.recordID.recordName
         let messageRep = Message(content: message, on: channelID)
@@ -179,7 +270,6 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     }
 
     private func insertNewMessage(_ message: Message) {
-
         guard let messages = dao?.messages else {
             return
         }
@@ -206,7 +296,35 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
     }
 
 
-    // MARK: - Configure self layout
+
+}
+
+// MARK: -  Extensions
+
+// MARK: -  MessagesProtocol extension
+extension ChatViewController: MessagesProtocol {
+
+    func messageSaved(with error: Error) {
+        debugPrint(#function, "error saving message", error)
+    }
+
+    func messageSaved() {
+        // mudar status da msg
+        debugPrint("message saved")
+    }
+
+
+    func deleted() {
+    }
+
+    func deletedError(with: Error) {
+    }
+
+
+}
+
+// MARK: -  self layout extension
+extension ChatViewController {
 
     func configureActivityView() {
         if #available(iOS 13.0, *) {
@@ -227,7 +345,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         bar.frame = CGRect(x: 0.5, y: 0.5, width: 375, height: 100)
         bar.barTintColor = UIColor.middleOrange
         bar.isTranslucent = true
-//        let navbarFont = UIFont(name: "SFCompactDisplay-Regular", size: 17) ?? UIFont.systemFont(ofSize: 17)
+        //        let navbarFont = UIFont(name: "SFCompactDisplay-Regular", size: 17) ?? UIFont.systemFont(ofSize: 17)
         self.view.addSubview(bar)
         configureButtons()
 
@@ -239,7 +357,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
             bar.leftAnchor.constraint(equalTo: view.leftAnchor),
             bar.rightAnchor.constraint(equalTo: view.rightAnchor)
 
-            ])
+        ])
 
     }
 
@@ -298,22 +416,22 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
                 }
             })
         } else {
-           // username vem do ownerID
+            // username vem do ownerID
 
             DAOManager.instance?.ckUsers.retrieve(nameFrom: channel!.ownerID, completion: { (retrievedUsername, error) in
-               if error == nil && retrievedUsername != nil {
-                   username = retrievedUsername!
-                   DispatchQueue.main.async {
-                       let photo = UIImage.init(named: username)
-                       teaName.text = username
-                       teaButton.setImage(photo , for: .normal)
-                   }
-               }
-           })
-       }
+                if error == nil && retrievedUsername != nil {
+                    username = retrievedUsername!
+                    DispatchQueue.main.async {
+                        let photo = UIImage.init(named: username)
+                        teaName.text = username
+                        teaButton.setImage(photo , for: .normal)
+                    }
+                }
+            })
+        }
 
 
-       // teaButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        // teaButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         teaButton.contentMode = .center
         teaButton.imageView?.contentMode = .scaleAspectFit
         self.view.addSubview(teaButton)
@@ -353,7 +471,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
             teaName.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0),
             teaName.widthAnchor.constraint(equalToConstant: 300),
             teaName.heightAnchor.constraint(equalToConstant: 30)
-            ])
+        ])
 
     }
 
@@ -367,7 +485,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         messageInputBar.leftStackView.alignment = .center
         messageInputBar.sendButton.title = "Enviar"
         messageInputBar.backgroundView.backgroundColor = UIColor.middleOrange
-      //  messageInputBar.backgroundView.frame = CGRect(x: 50, y: 50, width: view.frame.width, height: 10)
+        //  messageInputBar.backgroundView.frame = CGRect(x: 50, y: 50, width: view.frame.width, height: 10)
         messageInputBar.isTranslucent = true
         messageInputBar.inputTextView.placeholderLabel.text = "Nova mensagem"
         messageInputBar.inputTextView.placeholderLabel.font = UIFont(name: "SFCompactDisplay-Regular", size: 18)
@@ -376,6 +494,7 @@ class ChatViewController: MessagesViewController, UINavigationBarDelegate, Messa
         messageInputBar.inputTextView.layer.cornerRadius = 15
         messageInputBar.inputTextView.font = UIFont.systemFont(ofSize: 18)
         messageInputBar.setLeftStackViewWidthConstant(to: 10, animated: false)
+
 
 
     }
@@ -475,8 +594,19 @@ extension ChatViewController: MessagesDataSource {
         if !dao.messages.isEmpty {
             return dao.messages[indexPath.row]
         }
-        return Message(content: "0", on: "0")
+        return Message(content: "", on: "0")
     }
+
+    func scheduledTimerWithTimeInterval() {
+            // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+        }
+
+        @objc func updateCounting() {
+            guard let dao = dao else { return }
+            guard let currentChannel = self.channel else { return }
+            dao.loadMessages(from: currentChannel, requester: self)
+        }
 
 
     func customReloadData() {
@@ -503,6 +633,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     }
 
 }
+
 extension ChatViewController: UserRequester {
     func saved(userRecord: CKRecord?, userError: Error?) {}
 
@@ -513,5 +644,15 @@ extension ChatViewController: UserRequester {
     func retrieved(meUser: MeUser?, meUserError: Error?) {}
 
     func retrieved(user: User?, fromIndex: Int, userError: Error?) {}
+}
+
+extension ChatViewController: StoryboardInitializable {
+    static var storyboardName: String {
+        "Chat"
+    }
+
+    static var storyboardID: String {
+        "ChatViewController"
+    }
 
 }

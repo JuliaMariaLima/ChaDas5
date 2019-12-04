@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		154633022370BE96001DC7C1 /* DAOPushNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154633012370BE96001DC7C1 /* DAOPushNotifications.swift */; };
+		1559C96B238F2D500003A9EE /* ChatBot.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1559C96A238F2D500003A9EE /* ChatBot.storyboard */; };
+		1559C96F238F2DF10003A9EE /* ChatBotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1559C96E238F2DF10003A9EE /* ChatBotViewController.swift */; };
 		155CF80821DE6E6800AFB04B /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80721DE6E6800AFB04B /* Channel.swift */; };
 		155CF80C21DE7D2B00AFB04B /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80B21DE7D2B00AFB04B /* ChannelManager.swift */; };
 		155CF80E21DE89F400AFB04B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155CF80D21DE89F400AFB04B /* Message.swift */; };
@@ -18,10 +20,16 @@
 		158069902332E00D00C458FE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1580698F2332E00D00C458FE /* Extensions.swift */; };
 		1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588D7B121E7AEB000136083 /* MessagesManager.swift */; };
 		158DBDB721CAD40100C9888F /* StoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158DBDB621CAD40100C9888F /* StoryManager.swift */; };
+		15AEA6162393AAC70047D0B9 /* PreChatBot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AEA6152393AAC70047D0B9 /* PreChatBot.swift */; };
+		15DBC6E42395805D008241F4 /* EmpathyTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DBC6E32395805D008241F4 /* EmpathyTest.swift */; };
+		15E402312388758600A50D70 /* AnalysisLogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E402302388758600A50D70 /* AnalysisLogManager.swift */; };
+		15E402352388786200A50D70 /* AnalysisLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E402342388786200A50D70 /* AnalysisLog.swift */; };
+		15E4023723887DC500A50D70 /* AnalysisStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E4023623887DC500A50D70 /* AnalysisStatus.swift */; };
 		15F34C9A231850A60015FEFB /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34C98231850A60015FEFB /* NotificationsManager.swift */; };
 		15F34C9F231D9FE10015FEFB /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F34C9E231D9FE10015FEFB /* CloudKit.framework */; };
 		15F34CA3231DB7160015FEFB /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34CA2231DB7160015FEFB /* UserManager.swift */; };
 		15F34CA5231F0B8C0015FEFB /* DAOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F34CA4231F0B8C0015FEFB /* DAOManager.swift */; };
+		15FD7B772397573F000D8CD7 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FD7B762397573F000D8CD7 /* SplashScreen.storyboard */; };
 		87E6EFDC56BBE0AC7CDDA59E /* Pods_ChaDas5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2348569ACD9BB32945EBB10C /* Pods_ChaDas5.framework */; };
 		96451FD821AC79EF00C9C351 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96451FD621AC79EF00C9C351 /* Main.storyboard */; };
 		96451FDA21AC79F000C9C351 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96451FD921AC79F000C9C351 /* Assets.xcassets */; };
@@ -30,11 +38,9 @@
 		9A1B11CE21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11CC21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift */; };
 		9A1B11CF21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A1B11CD21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.xib */; };
 		9A1B11D721C43B39006956B7 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11D221C43B39006956B7 /* Story.swift */; };
-		9A1B11DB21C43B83006956B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11DA21C43B83006956B7 /* AppDelegate.swift */; };
 		9A1B11E621C43CAF006956B7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11E521C43CAF006956B7 /* ViewController.swift */; };
 		9A1B11EB21C43CC1006956B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A1B11E821C43CC1006956B7 /* Assets.xcassets */; };
 		9A1B11EF21C43EFB006956B7 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B11EE21C43EFB006956B7 /* FeedTableViewCell.swift */; };
-		9A4E542021AEC8C30033FEBF /* CreateNewAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E541F21AEC8C30033FEBF /* CreateNewAccount.storyboard */; };
 		9A4E542521AF40790033FEBF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E542421AF40790033FEBF /* Login.storyboard */; };
 		9A4E542921AF44FF0033FEBF /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E542821AF44FF0033FEBF /* Feed.storyboard */; };
 		9A4E542B21AF458A0033FEBF /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A4E542A21AF458A0033FEBF /* Messages.storyboard */; };
@@ -57,23 +63,32 @@
 		9A82FD8721E5030400566AE1 /* ChooseYourTeaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A82FD8621E5030400566AE1 /* ChooseYourTeaScreen.swift */; };
 		9AEAA57B21C84CF8001B490F /* SFCompactDisplay-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9AEAA57A21C84CF5001B490F /* SFCompactDisplay-Ultralight.otf */; };
 		9AFBE59E21B1D2D90050AE3E /* CustomSegmentedContrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFBE59D21B1D2D90050AE3E /* CustomSegmentedContrl.swift */; };
-		E200BFD9238474C70050247C /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E200BFD8238474C70050247C /* Chat.storyboard */; };
 		E200BFDB2384B6EF0050247C /* TermsAndConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E200BFDA2384B6EF0050247C /* TermsAndConditions.swift */; };
 		E200BFDD2384B7F10050247C /* Termos de Serviço Chá das 5.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E200BFDC2384B7F00050247C /* Termos de Serviço Chá das 5.pdf */; };
 		E200BFE02384CC8A0050247C /* TermsAndConditions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E200BFDF2384CC8A0050247C /* TermsAndConditions.storyboard */; };
+		E22F5F6423886A900026FC79 /* Tutorial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E22F5F6323886A900026FC79 /* Tutorial.storyboard */; };
+		E22F5F6623886B0A0026FC79 /* FeedTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22F5F6523886B0A0026FC79 /* FeedTutorial.swift */; };
 		E233AB8E237C7F4E00464E03 /* emotions.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E233AB8D237C7F4E00464E03 /* emotions.mlmodel */; };
-		E23901B321CADD94006B3CF3 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */; };
 		E23901B521CADDA8006B3CF3 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23901B421CADDA8006B3CF3 /* SplashScreen.swift */; };
+		E25631F823957DB50079E1BF /* QuestionsInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25631F723957DB50079E1BF /* QuestionsInformation.swift */; };
 		E26F83C5236757B600681771 /* GenderInformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26F83C4236757B600681771 /* GenderInformations.swift */; };
+		E26FE4D823972F8C00E4F5F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26FE4D723972F8C00E4F5F3 /* AppDelegate.swift */; };
+		E26FE4DA239730BE00E4F5F3 /* TeaQuiz.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26FE4D9239730BE00E4F5F3 /* TeaQuiz.storyboard */; };
+		E27BE68023955A0D009C1090 /* YourTea.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27BE67F23955A0D009C1090 /* YourTea.swift */; };
 		E28284E32339719500137924 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284DE2339719500137924 /* ViewExtensions.swift */; };
 		E28284E42339719500137924 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284DF2339719500137924 /* NavigationBar.swift */; };
 		E28284E52339719500137924 /* UICollectionView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284E02339719500137924 /* UICollectionView+Additions.swift */; };
 		E28284E62339719500137924 /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284E12339719500137924 /* UIView+Additions.swift */; };
 		E28284E72339719500137924 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28284E22339719500137924 /* UIImage+Additions.swift */; };
 		E287177E2370C58B00C6BB6F /* StoryScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287177D2370C58B00C6BB6F /* StoryScreen.swift */; };
+		E2A85878238F2AF6003C26F3 /* StoryboardError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A85876238F2AF6003C26F3 /* StoryboardError.swift */; };
+		E2A85879238F2AF6003C26F3 /* StoryboardInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A85877238F2AF6003C26F3 /* StoryboardInitializable.swift */; };
+		E2A8587B238F6C6E003C26F3 /* TeaQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A8587A238F6C6E003C26F3 /* TeaQuiz.swift */; };
 		E2C3A6B4236B4F63006A7D7D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3A6B3236B4F63006A7D7D /* UIImage+Resize.swift */; };
 		E2C3A6B6236B4F67006A7D7D /* AKPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3A6B5236B4F67006A7D7D /* AKPickerView.swift */; };
+		E2D32562238C6F95005CF45B /* CreateNewAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2D32561238C6F95005CF45B /* CreateNewAccount.storyboard */; };
 		E2F886A8237DA3CA004E5DD3 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2F886A7237DA3CA004E5DD3 /* Profile.storyboard */; };
+		E2FA130A238B45530025900A /* StoryScreenTutorial.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FA1309238B45530025900A /* StoryScreenTutorial.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,23 +104,30 @@
 /* Begin PBXFileReference section */
 		13138019BAAD1FCD878B0713 /* Pods-ChaDas5.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChaDas5.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5.release.xcconfig"; sourceTree = "<group>"; };
 		154633012370BE96001DC7C1 /* DAOPushNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DAOPushNotifications.swift; sourceTree = "<group>"; };
+		1559C96A238F2D500003A9EE /* ChatBot.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatBot.storyboard; sourceTree = "<group>"; };
+		1559C96E238F2DF10003A9EE /* ChatBotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBotViewController.swift; sourceTree = "<group>"; };
 		155CF80721DE6E6800AFB04B /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		155CF80B21DE7D2B00AFB04B /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		155CF80D21DE89F400AFB04B /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		155CF80F21DE8A9000AFB04B /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		155CF81121DE926100AFB04B /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		15639B5C2314728900BDF79B /* ChaDas5.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChaDas5.entitlements; sourceTree = "<group>"; };
-		157E76DB23738FC400FFDC77 /* genders.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = genders.mlmodel; sourceTree = "<group>"; };
 		158069872332A94700C458FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		158069892332AA4100C458FE /* MeUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeUser.swift; sourceTree = "<group>"; };
 		1580698F2332E00D00C458FE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1588D7B121E7AEB000136083 /* MessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesManager.swift; sourceTree = "<group>"; };
 		158DBDB621CAD40100C9888F /* StoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryManager.swift; sourceTree = "<group>"; };
+		15AEA6152393AAC70047D0B9 /* PreChatBot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreChatBot.swift; sourceTree = "<group>"; };
 		15BC14A021C811D500768231 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15DBC6E32395805D008241F4 /* EmpathyTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmpathyTest.swift; sourceTree = "<group>"; };
+		15E402302388758600A50D70 /* AnalysisLogManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisLogManager.swift; sourceTree = "<group>"; };
+		15E402342388786200A50D70 /* AnalysisLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisLog.swift; sourceTree = "<group>"; };
+		15E4023623887DC500A50D70 /* AnalysisStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisStatus.swift; sourceTree = "<group>"; };
 		15F34C98231850A60015FEFB /* NotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
 		15F34C9E231D9FE10015FEFB /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		15F34CA2231DB7160015FEFB /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		15F34CA4231F0B8C0015FEFB /* DAOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAOManager.swift; sourceTree = "<group>"; };
+		15FD7B762397573F000D8CD7 /* SplashScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		2348569ACD9BB32945EBB10C /* Pods_ChaDas5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChaDas5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96451FCF21AC79EF00C9C351 /* ChaDas5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChaDas5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96451FD721AC79EF00C9C351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,11 +139,9 @@
 		9A1B11CC21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseYourTeaCollectionViewCell.swift; sourceTree = "<group>"; };
 		9A1B11CD21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseYourTeaCollectionViewCell.xib; sourceTree = "<group>"; };
 		9A1B11D221C43B39006956B7 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
-		9A1B11DA21C43B83006956B7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A1B11E521C43CAF006956B7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9A1B11E821C43CC1006956B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A1B11EE21C43EFB006956B7 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
-		9A4E541F21AEC8C30033FEBF /* CreateNewAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateNewAccount.storyboard; sourceTree = "<group>"; };
 		9A4E542421AF40790033FEBF /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		9A4E542821AF44FF0033FEBF /* Feed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		9A4E542A21AF458A0033FEBF /* Messages.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
@@ -145,24 +165,33 @@
 		9AEAA57A21C84CF5001B490F /* SFCompactDisplay-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Ultralight.otf"; sourceTree = "<group>"; };
 		9AFBE59D21B1D2D90050AE3E /* CustomSegmentedContrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegmentedContrl.swift; sourceTree = "<group>"; };
 		D71E81824C6FD27BB88A6028 /* Pods-ChaDas5.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChaDas5.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChaDas5/Pods-ChaDas5.debug.xcconfig"; sourceTree = "<group>"; };
-		E200BFD8238474C70050247C /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		E200BFDA2384B6EF0050247C /* TermsAndConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditions.swift; sourceTree = "<group>"; };
 		E200BFDC2384B7F00050247C /* Termos de Serviço Chá das 5.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Termos de Serviço Chá das 5.pdf"; sourceTree = "<group>"; };
 		E200BFDF2384CC8A0050247C /* TermsAndConditions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TermsAndConditions.storyboard; sourceTree = "<group>"; };
+		E22F5F6323886A900026FC79 /* Tutorial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tutorial.storyboard; sourceTree = "<group>"; };
+		E22F5F6523886B0A0026FC79 /* FeedTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTutorial.swift; sourceTree = "<group>"; };
 		E233AB8D237C7F4E00464E03 /* emotions.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = emotions.mlmodel; sourceTree = "<group>"; };
 		E233AB8F237C861900464E03 /* SFCompactDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Regular.otf"; sourceTree = "<group>"; };
-		E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		E23901B421CADDA8006B3CF3 /* SplashScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		E25631F723957DB50079E1BF /* QuestionsInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsInformation.swift; sourceTree = "<group>"; };
 		E26F83C4236757B600681771 /* GenderInformations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderInformations.swift; sourceTree = "<group>"; };
+		E26FE4D723972F8C00E4F5F3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E26FE4D9239730BE00E4F5F3 /* TeaQuiz.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TeaQuiz.storyboard; sourceTree = "<group>"; };
+		E27BE67F23955A0D009C1090 /* YourTea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourTea.swift; sourceTree = "<group>"; };
 		E28284DE2339719500137924 /* ViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		E28284DF2339719500137924 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		E28284E02339719500137924 /* UICollectionView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Additions.swift"; sourceTree = "<group>"; };
 		E28284E12339719500137924 /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
 		E28284E22339719500137924 /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		E287177D2370C58B00C6BB6F /* StoryScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryScreen.swift; sourceTree = "<group>"; };
+		E2A85876238F2AF6003C26F3 /* StoryboardError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardError.swift; sourceTree = "<group>"; };
+		E2A85877238F2AF6003C26F3 /* StoryboardInitializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardInitializable.swift; sourceTree = "<group>"; };
+		E2A8587A238F6C6E003C26F3 /* TeaQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeaQuiz.swift; sourceTree = "<group>"; };
 		E2C3A6B3236B4F63006A7D7D /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		E2C3A6B5236B4F67006A7D7D /* AKPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPickerView.swift; sourceTree = "<group>"; };
+		E2D32561238C6F95005CF45B /* CreateNewAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateNewAccount.storyboard; sourceTree = "<group>"; };
 		E2F886A7237DA3CA004E5DD3 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		E2FA1309238B45530025900A /* StoryScreenTutorial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryScreenTutorial.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				158DBDB621CAD40100C9888F /* StoryManager.swift */,
+				15E402302388758600A50D70 /* AnalysisLogManager.swift */,
 				15F34CA2231DB7160015FEFB /* UserManager.swift */,
 				155CF80B21DE7D2B00AFB04B /* ChannelManager.swift */,
 				9A76AF8C21C038D9003ED02C /* MyStoriesManager.swift */,
@@ -235,7 +265,7 @@
 				15639B5C2314728900BDF79B /* ChaDas5.entitlements */,
 				9AEAA57A21C84CF5001B490F /* SFCompactDisplay-Ultralight.otf */,
 				E233AB8F237C861900464E03 /* SFCompactDisplay-Regular.otf */,
-				9A1B11DA21C43B83006956B7 /* AppDelegate.swift */,
+				E26FE4D723972F8C00E4F5F3 /* AppDelegate.swift */,
 				9A76AF8B21C038CB003ED02C /* Model */,
 				96451FF321AC79FC00C9C351 /* Controller */,
 				96451FF421AC7A0300C9C351 /* View */,
@@ -276,7 +306,14 @@
 				9A1B11CC21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift */,
 				9AFBE59D21B1D2D90050AE3E /* CustomSegmentedContrl.swift */,
 				E26F83C4236757B600681771 /* GenderInformations.swift */,
+				15AEA6152393AAC70047D0B9 /* PreChatBot.swift */,
+				E25631F723957DB50079E1BF /* QuestionsInformation.swift */,
 				E200BFDA2384B6EF0050247C /* TermsAndConditions.swift */,
+				1559C96E238F2DF10003A9EE /* ChatBotViewController.swift */,
+				E22F5F6523886B0A0026FC79 /* FeedTutorial.swift */,
+				E2A8587A238F6C6E003C26F3 /* TeaQuiz.swift */,
+				E27BE67F23955A0D009C1090 /* YourTea.swift */,
+				E2FA1309238B45530025900A /* StoryScreenTutorial.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -284,6 +321,7 @@
 		96451FF421AC7A0300C9C351 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E2A85875238F2AF6003C26F3 /* Storyboard Utils */,
 				E28284DF2339719500137924 /* NavigationBar.swift */,
 				E28284E02339719500137924 /* UICollectionView+Additions.swift */,
 				E2C3A6B3236B4F63006A7D7D /* UIImage+Resize.swift */,
@@ -291,10 +329,11 @@
 				E2C3A6B5236B4F67006A7D7D /* AKPickerView.swift */,
 				E28284E12339719500137924 /* UIView+Additions.swift */,
 				E28284DE2339719500137924 /* ViewExtensions.swift */,
+				15FD7B762397573F000D8CD7 /* SplashScreen.storyboard */,
 				96451FD621AC79EF00C9C351 /* Main.storyboard */,
-				E23901B221CADD92006B3CF3 /* SplashScreen.storyboard */,
 				96451FDB21AC79F000C9C351 /* LaunchScreen.storyboard */,
-				9A4E541F21AEC8C30033FEBF /* CreateNewAccount.storyboard */,
+				E2D32561238C6F95005CF45B /* CreateNewAccount.storyboard */,
+				E26FE4D9239730BE00E4F5F3 /* TeaQuiz.storyboard */,
 				9A4E542421AF40790033FEBF /* Login.storyboard */,
 				E2F886A7237DA3CA004E5DD3 /* Profile.storyboard */,
 				9A4E542821AF44FF0033FEBF /* Feed.storyboard */,
@@ -302,12 +341,13 @@
 				9A4E542C21AF46000033FEBF /* Informations.storyboard */,
 				9A4E542E21AF4B160033FEBF /* NewStoryScreen.storyboard */,
 				9A4E543021AF4C490033FEBF /* StoryScreen.storyboard */,
-				E200BFD8238474C70050247C /* Chat.storyboard */,
 				E200BFDF2384CC8A0050247C /* TermsAndConditions.storyboard */,
+				E22F5F6323886A900026FC79 /* Tutorial.storyboard */,
 				9A76AF8221C02873003ED02C /* MessagesTableViewCell.xib */,
 				9A76AF8821C034F8003ED02C /* FeedTableViewCell.xib */,
 				9A76AF8F21C04B80003ED02C /* ProfileTableViewCell.xib */,
 				9A1B11CD21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.xib */,
+				1559C96A238F2D500003A9EE /* ChatBot.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -332,15 +372,17 @@
 		9A76AF8B21C038CB003ED02C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				157E76DB23738FC400FFDC77 /* genders.mlmodel */,
 				E233AB8D237C7F4E00464E03 /* emotions.mlmodel */,
 				1588D7B021E7A3C100136083 /* Managers */,
 				158069892332AA4100C458FE /* MeUser.swift */,
 				158069872332A94700C458FE /* User.swift */,
+				15E402342388786200A50D70 /* AnalysisLog.swift */,
 				9A1B11D221C43B39006956B7 /* Story.swift */,
 				155CF80D21DE89F400AFB04B /* Message.swift */,
 				155CF80721DE6E6800AFB04B /* Channel.swift */,
 				155CF80F21DE8A9000AFB04B /* AppSettings.swift */,
+				15E4023623887DC500A50D70 /* AnalysisStatus.swift */,
+				15DBC6E32395805D008241F4 /* EmpathyTest.swift */,
 				1580698F2332E00D00C458FE /* Extensions.swift */,
 			);
 			path = Model;
@@ -353,6 +395,15 @@
 				13138019BAAD1FCD878B0713 /* Pods-ChaDas5.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E2A85875238F2AF6003C26F3 /* Storyboard Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E2A85876238F2AF6003C26F3 /* StoryboardError.swift */,
+				E2A85877238F2AF6003C26F3 /* StoryboardInitializable.swift */,
+			);
+			path = "Storyboard Utils";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -462,15 +513,17 @@
 				9AEAA57B21C84CF8001B490F /* SFCompactDisplay-Ultralight.otf in Resources */,
 				9A4E542B21AF458A0033FEBF /* Messages.storyboard in Resources */,
 				9A76AF8421C02873003ED02C /* MessagesTableViewCell.xib in Resources */,
+				E2D32562238C6F95005CF45B /* CreateNewAccount.storyboard in Resources */,
 				96451FDD21AC79F000C9C351 /* LaunchScreen.storyboard in Resources */,
-				E23901B321CADD94006B3CF3 /* SplashScreen.storyboard in Resources */,
-				9A4E542021AEC8C30033FEBF /* CreateNewAccount.storyboard in Resources */,
-				E200BFD9238474C70050247C /* Chat.storyboard in Resources */,
+				1559C96B238F2D500003A9EE /* ChatBot.storyboard in Resources */,
 				E200BFE02384CC8A0050247C /* TermsAndConditions.storyboard in Resources */,
 				96451FDA21AC79F000C9C351 /* Assets.xcassets in Resources */,
 				9A76AF8A21C034F8003ED02C /* FeedTableViewCell.xib in Resources */,
 				9A4E542F21AF4B160033FEBF /* NewStoryScreen.storyboard in Resources */,
+				E26FE4DA239730BE00E4F5F3 /* TeaQuiz.storyboard in Resources */,
 				9A4E542521AF40790033FEBF /* Login.storyboard in Resources */,
+				E22F5F6423886A900026FC79 /* Tutorial.storyboard in Resources */,
+				15FD7B772397573F000D8CD7 /* SplashScreen.storyboard in Resources */,
 				96451FD821AC79EF00C9C351 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,8 +588,10 @@
 				E233AB8E237C7F4E00464E03 /* emotions.mlmodel in Sources */,
 				E200BFDB2384B6EF0050247C /* TermsAndConditions.swift in Sources */,
 				E26F83C5236757B600681771 /* GenderInformations.swift in Sources */,
+				15E402312388758600A50D70 /* AnalysisLogManager.swift in Sources */,
 				9A4E543F21B006E60033FEBF /* NewStoryScreen.swift in Sources */,
 				9A1B11EF21C43EFB006956B7 /* FeedTableViewCell.swift in Sources */,
+				15E4023723887DC500A50D70 /* AnalysisStatus.swift in Sources */,
 				158069902332E00D00C458FE /* Extensions.swift in Sources */,
 				155CF80821DE6E6800AFB04B /* Channel.swift in Sources */,
 				155CF80E21DE89F400AFB04B /* Message.swift in Sources */,
@@ -548,29 +603,40 @@
 				15F34CA5231F0B8C0015FEFB /* DAOManager.swift in Sources */,
 				155CF81021DE8A9000AFB04B /* AppSettings.swift in Sources */,
 				E2C3A6B4236B4F63006A7D7D /* UIImage+Resize.swift in Sources */,
+				E2A85878238F2AF6003C26F3 /* StoryboardError.swift in Sources */,
 				155CF80C21DE7D2B00AFB04B /* ChannelManager.swift in Sources */,
 				9A1B11E621C43CAF006956B7 /* ViewController.swift in Sources */,
 				158DBDB721CAD40100C9888F /* StoryManager.swift in Sources */,
 				9A4E543721B006870033FEBF /* Profile.swift in Sources */,
+				15AEA6162393AAC70047D0B9 /* PreChatBot.swift in Sources */,
 				E28284E42339719500137924 /* NavigationBar.swift in Sources */,
+				E27BE68023955A0D009C1090 /* YourTea.swift in Sources */,
 				9A4E543B21B006B30033FEBF /* Messages.swift in Sources */,
+				E2A85879238F2AF6003C26F3 /* StoryboardInitializable.swift in Sources */,
 				158069882332A94700C458FE /* User.swift in Sources */,
 				154633022370BE96001DC7C1 /* DAOPushNotifications.swift in Sources */,
-				9A1B11DB21C43B83006956B7 /* AppDelegate.swift in Sources */,
 				9A1B11D721C43B39006956B7 /* Story.swift in Sources */,
+				E26FE4D823972F8C00E4F5F3 /* AppDelegate.swift in Sources */,
 				1588D7B221E7AEB000136083 /* MessagesManager.swift in Sources */,
 				E2C3A6B6236B4F67006A7D7D /* AKPickerView.swift in Sources */,
+				1559C96F238F2DF10003A9EE /* ChatBotViewController.swift in Sources */,
 				E28284E62339719500137924 /* UIView+Additions.swift in Sources */,
 				9A1B11CE21C28BBC006956B7 /* ChooseYourTeaCollectionViewCell.swift in Sources */,
 				9A76AF9021C04B80003ED02C /* ProfileTableViewCell.swift in Sources */,
 				1580698A2332AA4100C458FE /* MeUser.swift in Sources */,
 				9A76AF8D21C038D9003ED02C /* MyStoriesManager.swift in Sources */,
 				E23901B521CADDA8006B3CF3 /* SplashScreen.swift in Sources */,
+				E2FA130A238B45530025900A /* StoryScreenTutorial.swift in Sources */,
 				E28284E32339719500137924 /* ViewExtensions.swift in Sources */,
+				E25631F823957DB50079E1BF /* QuestionsInformation.swift in Sources */,
 				9A4E543D21B006CC0033FEBF /* Informations.swift in Sources */,
+				E22F5F6623886B0A0026FC79 /* FeedTutorial.swift in Sources */,
 				9AFBE59E21B1D2D90050AE3E /* CustomSegmentedContrl.swift in Sources */,
+				15DBC6E42395805D008241F4 /* EmpathyTest.swift in Sources */,
 				E28284E72339719500137924 /* UIImage+Additions.swift in Sources */,
+				E2A8587B238F6C6E003C26F3 /* TeaQuiz.swift in Sources */,
 				15F34CA3231DB7160015FEFB /* UserManager.swift in Sources */,
+				15E402352388786200A50D70 /* AnalysisLog.swift in Sources */,
 				E28284E52339719500137924 /* UICollectionView+Additions.swift in Sources */,
 				9A4E543521B0066F0033FEBF /* Login.swift in Sources */,
 				155CF81221DE926100AFB04B /* ChatViewController.swift in Sources */,
@@ -739,7 +805,7 @@
 				CODE_SIGN_ENTITLEMENTS = ChaDas5/ChaDas5.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 32H23754C8;
 				INFOPLIST_FILE = "$(SRCROOT)/ChaDas5/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -764,7 +830,7 @@
 				CODE_SIGN_ENTITLEMENTS = ChaDas5/ChaDas5.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = 32H23754C8;
 				INFOPLIST_FILE = "$(SRCROOT)/ChaDas5/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

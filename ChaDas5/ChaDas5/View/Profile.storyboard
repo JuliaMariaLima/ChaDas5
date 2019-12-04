@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wVE-nP-jju">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,14 +20,14 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="Ib0-Co-gM1" customClass="Profile" customModule="ChaDas5" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dvL-o5-qtX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gdk-XC-88G">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="218"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="262"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nh-oJ-Sxf">
-                                        <rect key="frame" x="315" y="59" width="30" height="30"/>
+                                        <rect key="frame" x="354" y="59" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Kjq-6d-WJK"/>
                                             <constraint firstAttribute="width" constant="30" id="tAO-FV-Qhl"/>
@@ -45,7 +45,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frutas Vermelhas" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q88-IL-ICW">
-                                <rect key="frame" x="146" y="102" width="226" height="25.5"/>
+                                <rect key="frame" x="146" y="146" width="265" height="25.333333333333343"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25.329999999999998" id="Dth-Ez-mo8"/>
                                 </constraints>
@@ -54,21 +54,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S3a-Mc-Id0">
-                                <rect key="frame" x="0.0" y="282" width="375" height="336"/>
+                                <rect key="frame" x="0.0" y="326" width="414" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileCell" rowHeight="91" id="JQD-da-S8w">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="91"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JQD-da-S8w" id="DvF-cG-nwG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="91"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4 relatos | 1 Conversa" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poq-io-vgS">
-                                <rect key="frame" x="139" y="109" width="240" height="62"/>
+                                <rect key="frame" x="139" y="153" width="279" height="62"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="62" id="4cQ-oP-ITd"/>
                                 </constraints>
@@ -77,10 +77,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LeW-nS-Cbh">
-                                <rect key="frame" x="27" y="65" width="100" height="100"/>
+                                <rect key="frame" x="27" y="109" width="139" height="100"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LOX-oQ-RBh">
-                                        <rect key="frame" x="17.5" y="7" width="74" height="85"/>
+                                        <rect key="frame" x="37" y="7" width="74" height="85"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="85" id="5i3-yq-o8K"/>
                                             <constraint firstAttribute="width" constant="74" id="P0F-Zj-7Ux"/>
@@ -97,6 +97,7 @@
                                     <constraint firstAttribute="height" constant="100" id="3YX-iP-jH9"/>
                                     <constraint firstItem="LOX-oQ-RBh" firstAttribute="top" secondItem="LeW-nS-Cbh" secondAttribute="topMargin" constant="-1" id="EQL-Th-MGV"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="TJL-vb-mCI"/>
+                                    <constraint firstAttribute="width" constant="139" id="jt1-Dx-2kT"/>
                                     <constraint firstItem="LOX-oQ-RBh" firstAttribute="centerX" secondItem="LeW-nS-Cbh" secondAttribute="centerX" constant="4.5" id="zBK-1o-EsQ"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -106,7 +107,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ges-bX-Snj">
-                                <rect key="frame" x="98" y="134" width="30" height="30"/>
+                                <rect key="frame" x="137" y="178" width="30" height="30"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.60784313729999995" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Fhp-e7-imr"/>
@@ -125,7 +126,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iND-70-mBY">
-                                <rect key="frame" x="37" y="308.5" width="302" height="283"/>
+                                <rect key="frame" x="37" y="428" width="341" height="283"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="283" id="C8J-98-P8L"/>
                                 </constraints>
@@ -197,11 +198,11 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="E6a-j2-m7h" customClass="ChooseYourTeaScreen" customModule="ChaDas5" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tFN-2a-3bA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifi-5s-0rX">
-                                <rect key="frame" x="17.5" y="33" width="40" height="40"/>
+                                <rect key="frame" x="37" y="77" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="EwK-Dp-dMF"/>
                                     <constraint firstAttribute="height" constant="40" id="nKr-0a-QSP"/>
@@ -212,7 +213,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Dek-xr-Q42">
-                                <rect key="frame" x="50.5" y="165.5" width="274" height="362.5"/>
+                                <rect key="frame" x="70" y="209.66666666666669" width="274" height="513.33333333333326"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="274" id="ziR-i6-Ewq"/>
@@ -235,7 +236,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQO-Y5-i3m">
-                                <rect key="frame" x="174" y="580" width="150" height="50"/>
+                                <rect key="frame" x="193.66666666666663" y="775" width="150" height="50"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.60784313729999995" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="OFb-Xz-oS3"/>
@@ -310,7 +311,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="3fo-5D-qM1">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="wVE-nP-jju" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Profile" modalPresentationStyle="fullScreen" id="wVE-nP-jju" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="U79-vV-G3E">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -329,9 +330,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dismissIcon" width="640.5" height="640.5"/>
-        <image name="doubtIcon" width="640.5" height="640.5"/>
-        <image name="editIcon" width="640.5" height="640.5"/>
-        <image name="teaBagIcon" width="26.5" height="31"/>
+        <image name="dismissIcon" width="640.33331298828125" height="640.33331298828125"/>
+        <image name="doubtIcon" width="640.33331298828125" height="640.33331298828125"/>
+        <image name="editIcon" width="640.33331298828125" height="640.33331298828125"/>
+        <image name="teaBagIcon" width="26.333333969116211" height="30.666666030883789"/>
     </resources>
 </document>
